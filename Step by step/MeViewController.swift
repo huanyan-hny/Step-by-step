@@ -9,89 +9,110 @@
 import UIKit
 import CoreData
 
-class MeViewController: UITableViewController {
+
+
+class MeViewController: UITableViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate{
     
     var managedObjectContext:NSManagedObjectContext?
-   
+    let imagePicker = UIImagePickerController()
+    
+    @IBOutlet weak var userAvatar: UIButton!
+    @IBOutlet weak var userName: UILabel!
+    
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.tableView.deselectRow(at: indexPath, animated: true)
     }
-
-    /*
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
-
-        // Configure the cell...
-
-        return cell
+    
+    @IBAction func changeAvatar(_ sender: UIButton) {
+        let alertController = UIAlertController(title: nil, message: "Change your profile image", preferredStyle: .actionSheet)
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) {(action) in}
+        
+        alertController.addAction(cancelAction)
+        
+        let changeAction = UIAlertAction(title: "Choose from photo library", style: .default) { (action) in
+            self.imagePicker.allowsEditing = false
+            self.imagePicker.sourceType = .photoLibrary
+            self.present(self.imagePicker, animated: true, completion: nil)
+        }
+        alertController.addAction(changeAction)
+        
+        self.navigationController?.present(alertController, animated: true,completion: nil)
     }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
     
     
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage{
+            userAvatar.imageView?.contentMode = .scaleAspectFill
+            userAvatar.setImage(pickedImage, for: .normal)
+            let documentPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+            let imagePath = documentPath.appendingPathComponent("userAvatar.png")
+            let userAvatarData = UIImagePNGRepresentation(pickedImage)
+            try? userAvatarData?.write(to: imagePath, options: .atomic)
+        }
+        self.dismiss(animated: true, completion: nil)
     }
-    */
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
+        viewController.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+        viewController.navigationController?.navigationBar.tintColor = UIColor.white
+        viewController.navigationController?.navigationBar.barTintColor = UIColor(red:49.0/255.0, green: 168.0/255.0, blue: 213.0/255.0, alpha:1.0)
+        viewController.navigationController?.navigationBar.isTranslucent = false
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if (indexPath.row==0) {
+            return 154*(self.tableView.frame.height-self.tabBarController!.tabBar.frame.height)/554
+        } else {
+            return 100*(self.tableView.frame.height-self.tabBarController!.tabBar.frame.height)/554
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.tabBarController?.tabBar.tintColor = UIColor(red:49.0/255.0,green:168.0/255.0,blue:213.0/255.0,alpha:1.0)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        userAvatar.imageView?.contentMode = .scaleAspectFill
+        userAvatar.layer.cornerRadius = userAvatar.frame.width/2
+        userAvatar.clipsToBounds = true
+        userAvatar.layer.borderWidth = 3
+        userAvatar.layer.borderColor = UIColor.white.cgColor
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tableView.tableFooterView = UIView();
         self.navigationItem.title = "Me";
         self.navigationController!.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
-        self.navigationController!.navigationBar.barTintColor = UIColor(red: 246.0/255.0, green: 97.0/255.0, blue: 61.0/255.0, alpha: 1.0)
+        self.navigationController?.navigationBar.tintColor = UIColor.white
+        self.navigationController?.navigationBar.setValue(true, forKey: "hidesShadow")
+        imagePicker.delegate = self
         
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
+        if let name = UserDefaults.standard.string(forKey: "userName") {
+            userName.text = name
+        }
         
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        let documentPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        let avatarPath = documentPath.appendingPathComponent("userAvatar.png")
+        
+        if let avatar = UIImage(contentsOfFile:avatarPath.path) {
+            userAvatar.setImage(avatar, for: .normal)
+        }
+        
+        print(Display.typeIsLike)
+
     }
-    
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destination = segue.destination as? AllActivitiesViewController {
             destination.managedObjectContext = self.managedObjectContext
         }
-        
     }
 
 }

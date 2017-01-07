@@ -12,7 +12,7 @@ import CoreMotion
 class MainActivity{
 
     
-    let pedometer = CMPedometer()
+    let pedometer = Pedometer.sharedInstance
     let today = Date()
     
     var steps:Int
@@ -26,11 +26,11 @@ class MainActivity{
         calorie = 0
         pedometer.startUpdates(from: Calendar.current.startOfDay(for: Date()), withHandler:{data, error in
             if (error==nil) {
-            self.steps = Int(data!.numberOfSteps.int32Value)
-            self.distance = Int(data!.distance!.int32Value)
-            NotificationCenter.default.post(name: Notification.Name(rawValue: "steps"), object: self)
+                self.steps = Int(data!.numberOfSteps.int32Value)
+                self.distance = Int(data!.distance!.int32Value)
+                NotificationCenter.default.post(name: Notification.Name(rawValue: "steps"), object: self)
             }
-            })
+        })
     }
     
 }

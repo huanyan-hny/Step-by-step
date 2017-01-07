@@ -10,6 +10,17 @@ import UIKit
 
 class ActivityTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var distanceLabel: UILabel!
+    @IBOutlet weak var timeLabel: UILabel!
+
+    
+    override func layoutSubviews() {
+        if (Display.typeIsLike == .iphone5) {
+            distanceLabel.font = UIFont(name: "Helvetica Neue", size: 13)
+            timeLabel.font = UIFont(name: "Helvetica Neue", size: 11)
+        }
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

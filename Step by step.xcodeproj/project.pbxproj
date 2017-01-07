@@ -8,8 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		051AC0A61D7A7BDA00D6C82F /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051AC0A51D7A7BDA00D6C82F /* ActivityViewController.swift */; };
+		05269AEE1DFBC1E000B2A600 /* RankingViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05269AED1DFBC1E000B2A600 /* RankingViewCell.swift */; };
+		05269AF01DFBD6A000B2A600 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05269AEF1DFBD69F00B2A600 /* Images.xcassets */; };
 		052E9F7E1BFF222D00BBF246 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 052E9F7D1BFF222D00BBF246 /* CoreLocation.framework */; };
 		052E9F801C00515600BBF246 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052E9F7F1C00515600BBF246 /* BaseViewController.swift */; };
+		052EB0CD1E1317F100F17B11 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052EB0CC1E1317F100F17B11 /* SettingViewController.swift */; };
+		053B3CFF1E17470E00ABC373 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053B3CFE1E17470E00ABC373 /* User.swift */; };
 		05441A271BE07BEE00A8ECA4 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 05441A251BE07BEE00A8ECA4 /* Model.xcdatamodeld */; };
 		05441A2C1BE089ED00A8ECA4 /* Location+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05441A281BE089ED00A8ECA4 /* Location+CoreDataProperties.swift */; };
 		05441A2D1BE089ED00A8ECA4 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05441A291BE089ED00A8ECA4 /* Location.swift */; };
@@ -19,19 +23,28 @@
 		0555EA4E1AE210CB00E127C8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0555EA4D1AE210CB00E127C8 /* AppDelegate.swift */; };
 		0555EA521AE210CB00E127C8 /* RunningViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0555EA511AE210CB00E127C8 /* RunningViewController.swift */; };
 		0555EA551AE210CB00E127C8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0555EA531AE210CB00E127C8 /* Main.storyboard */; };
-		0555EA571AE210CB00E127C8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0555EA561AE210CB00E127C8 /* Images.xcassets */; };
 		0555EA661AE210CB00E127C8 /* Step_by_stepTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0555EA651AE210CB00E127C8 /* Step_by_stepTests.swift */; };
+		055E7BFB1E1B51CE00356F29 /* AllRankingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055E7BFA1E1B51CE00356F29 /* AllRankingsViewController.swift */; };
+		055E7BFE1E1B521200356F29 /* RankingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055E7BFD1E1B521200356F29 /* RankingTableViewCell.swift */; };
+		055E7C001E1B66DC00356F29 /* AchievementTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055E7BFF1E1B66DC00356F29 /* AchievementTableViewCell.swift */; };
+		055E7C021E1B671200356F29 /* AllAchievementsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055E7C011E1B671200356F29 /* AllAchievementsTableViewController.swift */; };
+		055E7C051E1C020300356F29 /* AllRecordsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055E7C041E1C020300356F29 /* AllRecordsTableViewController.swift */; };
+		055E7C071E1C021900356F29 /* RecordTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055E7C061E1C021900356F29 /* RecordTableViewCell.swift */; };
+		057061F01E1EFE98001AE518 /* PauseLocation+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057061EE1E1EFE98001AE518 /* PauseLocation+CoreDataProperties.swift */; };
+		057061F11E1EFE98001AE518 /* PauseLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057061EF1E1EFE98001AE518 /* PauseLocation.swift */; };
 		0572A3C41C0AF846004A56C0 /* MeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0572A3C31C0AF846004A56C0 /* MeViewController.swift */; };
 		057F3FA51C0C96D6001BEA91 /* ActivityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057F3FA41C0C96D6001BEA91 /* ActivityTableViewCell.swift */; };
 		058483931C0C1674008AE503 /* AllActivitiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058483921C0C1674008AE503 /* AllActivitiesViewController.swift */; };
-		0596360E1B0CCD81007BCC22 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0596360D1B0CCD81007BCC22 /* HomeViewController.swift */; };
-		059636121B0CCDA9007BCC22 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059636111B0CCDA9007BCC22 /* SettingViewController.swift */; };
+		0586A8241E171D31005CC238 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0586A8231E171D31005CC238 /* LoginViewController.swift */; };
+		058C8AC91E14B80700140D71 /* Pedometer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058C8AC81E14B80600140D71 /* Pedometer.swift */; };
+		0596360E1B0CCD81007BCC22 /* StepsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0596360D1B0CCD81007BCC22 /* StepsViewController.swift */; };
 		059636141B0CD725007BCC22 /* MainActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059636131B0CD725007BCC22 /* MainActivity.swift */; };
 		05C364631BDB2F31008D1712 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05C364611BDB2F31008D1712 /* LaunchScreen.xib */; };
 		05DAC7311BDF6E1C008F10C5 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05DAC7301BDF6E1C008F10C5 /* MapKit.framework */; };
 		05DEFACA1C0557CC00EE5A5F /* InRunningViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DEFAC91C0557CC00EE5A5F /* InRunningViewController.swift */; };
-		05DEFACC1C05AD5000EE5A5F /* RunningBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DEFACB1C05AD5000EE5A5F /* RunningBaseViewController.swift */; };
-		05FEC9D41BDE83C50093DF7D /* MedalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FEC9D31BDE83C50093DF7D /* MedalViewController.swift */; };
+		05E26C951E20006600D1E22F /* Display.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E26C941E20006600D1E22F /* Display.swift */; };
+		05FEC9D41BDE83C50093DF7D /* RankingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FEC9D31BDE83C50093DF7D /* RankingViewController.swift */; };
+		988262BAF10AC5F8FF234B54 /* Pods_Step_by_step.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72A64F0ED2346E99320C8C04 /* Pods_Step_by_step.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,8 +59,12 @@
 
 /* Begin PBXFileReference section */
 		051AC0A51D7A7BDA00D6C82F /* ActivityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
+		05269AED1DFBC1E000B2A600 /* RankingViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RankingViewCell.swift; sourceTree = "<group>"; };
+		05269AEF1DFBD69F00B2A600 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		052E9F7D1BFF222D00BBF246 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		052E9F7F1C00515600BBF246 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		052EB0CC1E1317F100F17B11 /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		053B3CFE1E17470E00ABC373 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		05441A261BE07BEE00A8ECA4 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		05441A281BE089ED00A8ECA4 /* Location+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Location+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		05441A291BE089ED00A8ECA4 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
@@ -59,21 +76,33 @@
 		0555EA4D1AE210CB00E127C8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0555EA511AE210CB00E127C8 /* RunningViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunningViewController.swift; sourceTree = "<group>"; };
 		0555EA541AE210CB00E127C8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		0555EA561AE210CB00E127C8 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		0555EA5F1AE210CB00E127C8 /* Step by stepTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Step by stepTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0555EA641AE210CB00E127C8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0555EA651AE210CB00E127C8 /* Step_by_stepTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Step_by_stepTests.swift; sourceTree = "<group>"; };
+		055E7BFA1E1B51CE00356F29 /* AllRankingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllRankingsViewController.swift; sourceTree = "<group>"; };
+		055E7BFD1E1B521200356F29 /* RankingTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RankingTableViewCell.swift; sourceTree = "<group>"; };
+		055E7BFF1E1B66DC00356F29 /* AchievementTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AchievementTableViewCell.swift; sourceTree = "<group>"; };
+		055E7C011E1B671200356F29 /* AllAchievementsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllAchievementsTableViewController.swift; sourceTree = "<group>"; };
+		055E7C041E1C020300356F29 /* AllRecordsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllRecordsTableViewController.swift; sourceTree = "<group>"; };
+		055E7C061E1C021900356F29 /* RecordTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordTableViewCell.swift; sourceTree = "<group>"; };
+		057061EE1E1EFE98001AE518 /* PauseLocation+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PauseLocation+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		057061EF1E1EFE98001AE518 /* PauseLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PauseLocation.swift; sourceTree = "<group>"; };
 		0572A3C31C0AF846004A56C0 /* MeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeViewController.swift; sourceTree = "<group>"; };
 		057F3FA41C0C96D6001BEA91 /* ActivityTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityTableViewCell.swift; sourceTree = "<group>"; };
 		058483921C0C1674008AE503 /* AllActivitiesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllActivitiesViewController.swift; sourceTree = "<group>"; };
-		0596360D1B0CCD81007BCC22 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		059636111B0CCDA9007BCC22 /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		0586A8231E171D31005CC238 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		058C8AC81E14B80600140D71 /* Pedometer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pedometer.swift; sourceTree = "<group>"; };
+		0596360D1B0CCD81007BCC22 /* StepsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepsViewController.swift; sourceTree = "<group>"; };
 		059636131B0CD725007BCC22 /* MainActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = MainActivity.swift; sourceTree = "<group>"; };
+		05C0966C1E21854700607379 /* Step by step-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Step by step-Bridging-Header.h"; sourceTree = "<group>"; };
 		05C364621BDB2F31008D1712 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		05DAC7301BDF6E1C008F10C5 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		05DEFAC91C0557CC00EE5A5F /* InRunningViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InRunningViewController.swift; sourceTree = "<group>"; };
-		05DEFACB1C05AD5000EE5A5F /* RunningBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RunningBaseViewController.swift; sourceTree = "<group>"; };
-		05FEC9D31BDE83C50093DF7D /* MedalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MedalViewController.swift; sourceTree = "<group>"; };
+		05E26C941E20006600D1E22F /* Display.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Display.swift; sourceTree = "<group>"; };
+		05FEC9D31BDE83C50093DF7D /* RankingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RankingViewController.swift; sourceTree = "<group>"; };
+		6115B23D8EB24AE7BEAFEA10 /* Pods-Step by step.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Step by step.release.xcconfig"; path = "Pods/Target Support Files/Pods-Step by step/Pods-Step by step.release.xcconfig"; sourceTree = "<group>"; };
+		72A64F0ED2346E99320C8C04 /* Pods_Step_by_step.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Step_by_step.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CD9A6A6F4CEE6865278EB11E /* Pods-Step by step.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Step by step.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Step by step/Pods-Step by step.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +112,7 @@
 			files = (
 				052E9F7E1BFF222D00BBF246 /* CoreLocation.framework in Frameworks */,
 				05DAC7311BDF6E1C008F10C5 /* MapKit.framework in Frameworks */,
+				988262BAF10AC5F8FF234B54 /* Pods_Step_by_step.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -96,6 +126,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		053B3CFD1E17375800ABC373 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				0586A8231E171D31005CC238 /* LoginViewController.swift */,
+			);
+			name = Login;
+			sourceTree = "<group>";
+		};
 		0555EA3F1AE210CB00E127C8 = {
 			isa = PBXGroup;
 			children = (
@@ -104,6 +142,8 @@
 				0555EA4A1AE210CB00E127C8 /* Step by step */,
 				0555EA621AE210CB00E127C8 /* Step by stepTests */,
 				0555EA491AE210CB00E127C8 /* Products */,
+				6FB386CEE5279260FED24B6C /* Pods */,
+				487E18CB53FF71ACC70D4507 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -119,18 +159,25 @@
 		0555EA4A1AE210CB00E127C8 /* Step by step */ = {
 			isa = PBXGroup;
 			children = (
-				05DEFAD01C05B53000EE5A5F /* Activity */,
 				052E9F7F1C00515600BBF246 /* BaseViewController.swift */,
 				0572A3C31C0AF846004A56C0 /* MeViewController.swift */,
-				05DEFACB1C05AD5000EE5A5F /* RunningBaseViewController.swift */,
 				0555EA511AE210CB00E127C8 /* RunningViewController.swift */,
 				05DEFAC91C0557CC00EE5A5F /* InRunningViewController.swift */,
 				05441A551BE35EA800A8ECA4 /* RunningResultViewController.swift */,
-				0596360D1B0CCD81007BCC22 /* HomeViewController.swift */,
-				05FEC9D31BDE83C50093DF7D /* MedalViewController.swift */,
-				059636111B0CCDA9007BCC22 /* SettingViewController.swift */,
+				0596360D1B0CCD81007BCC22 /* StepsViewController.swift */,
+				05FEC9D31BDE83C50093DF7D /* RankingViewController.swift */,
+				05269AED1DFBC1E000B2A600 /* RankingViewCell.swift */,
+				052EB0CC1E1317F100F17B11 /* SettingViewController.swift */,
 				0555EA531AE210CB00E127C8 /* Main.storyboard */,
+				05E26C941E20006600D1E22F /* Display.swift */,
 				059636131B0CD725007BCC22 /* MainActivity.swift */,
+				058C8AC81E14B80600140D71 /* Pedometer.swift */,
+				053B3CFE1E17470E00ABC373 /* User.swift */,
+				053B3CFD1E17375800ABC373 /* Login */,
+				05DEFAD01C05B53000EE5A5F /* Running */,
+				055E7BFC1E1B51D600356F29 /* Ranking */,
+				055E7C031E1B671800356F29 /* Achievement */,
+				055E7C081E1C022300356F29 /* Record */,
 				05DEFACF1C05B49400EE5A5F /* CoreData */,
 				0555EA4B1AE210CB00E127C8 /* Supporting Files */,
 			);
@@ -141,9 +188,10 @@
 			isa = PBXGroup;
 			children = (
 				05C364611BDB2F31008D1712 /* LaunchScreen.xib */,
-				0555EA561AE210CB00E127C8 /* Images.xcassets */,
+				05269AEF1DFBD69F00B2A600 /* Images.xcassets */,
 				0555EA4D1AE210CB00E127C8 /* AppDelegate.swift */,
 				0555EA4C1AE210CB00E127C8 /* Info.plist */,
+				05C0966C1E21854700607379 /* Step by step-Bridging-Header.h */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -165,26 +213,72 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		055E7BFC1E1B51D600356F29 /* Ranking */ = {
+			isa = PBXGroup;
+			children = (
+				055E7BFA1E1B51CE00356F29 /* AllRankingsViewController.swift */,
+				055E7BFD1E1B521200356F29 /* RankingTableViewCell.swift */,
+			);
+			name = Ranking;
+			sourceTree = "<group>";
+		};
+		055E7C031E1B671800356F29 /* Achievement */ = {
+			isa = PBXGroup;
+			children = (
+				055E7C011E1B671200356F29 /* AllAchievementsTableViewController.swift */,
+				055E7BFF1E1B66DC00356F29 /* AchievementTableViewCell.swift */,
+			);
+			name = Achievement;
+			sourceTree = "<group>";
+		};
+		055E7C081E1C022300356F29 /* Record */ = {
+			isa = PBXGroup;
+			children = (
+				055E7C041E1C020300356F29 /* AllRecordsTableViewController.swift */,
+				055E7C061E1C021900356F29 /* RecordTableViewCell.swift */,
+			);
+			name = Record;
+			sourceTree = "<group>";
+		};
 		05DEFACF1C05B49400EE5A5F /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
 				05441A251BE07BEE00A8ECA4 /* Model.xcdatamodeld */,
-				05441A281BE089ED00A8ECA4 /* Location+CoreDataProperties.swift */,
+				057061EF1E1EFE98001AE518 /* PauseLocation.swift */,
+				057061EE1E1EFE98001AE518 /* PauseLocation+CoreDataProperties.swift */,
 				05441A291BE089ED00A8ECA4 /* Location.swift */,
+				05441A281BE089ED00A8ECA4 /* Location+CoreDataProperties.swift */,
 				05441A2A1BE089ED00A8ECA4 /* Run+CoreDataProperties.swift */,
 				05441A2B1BE089ED00A8ECA4 /* Run.swift */,
 			);
 			name = CoreData;
 			sourceTree = "<group>";
 		};
-		05DEFAD01C05B53000EE5A5F /* Activity */ = {
+		05DEFAD01C05B53000EE5A5F /* Running */ = {
 			isa = PBXGroup;
 			children = (
 				058483921C0C1674008AE503 /* AllActivitiesViewController.swift */,
 				057F3FA41C0C96D6001BEA91 /* ActivityTableViewCell.swift */,
 				051AC0A51D7A7BDA00D6C82F /* ActivityViewController.swift */,
 			);
-			name = Activity;
+			name = Running;
+			sourceTree = "<group>";
+		};
+		487E18CB53FF71ACC70D4507 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				72A64F0ED2346E99320C8C04 /* Pods_Step_by_step.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6FB386CEE5279260FED24B6C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				CD9A6A6F4CEE6865278EB11E /* Pods-Step by step.debug.xcconfig */,
+				6115B23D8EB24AE7BEAFEA10 /* Pods-Step by step.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -194,9 +288,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0555EA691AE210CB00E127C8 /* Build configuration list for PBXNativeTarget "Step by step" */;
 			buildPhases = (
+				AADCB62D67EA10D16D842DBB /* [CP] Check Pods Manifest.lock */,
 				0555EA441AE210CB00E127C8 /* Sources */,
 				0555EA451AE210CB00E127C8 /* Frameworks */,
 				0555EA461AE210CB00E127C8 /* Resources */,
+				B3E42A3A56AC517A913FCD9E /* [CP] Embed Pods Frameworks */,
+				8C9B8B168BE7BF45A4079451 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -232,16 +329,19 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0700;
-				LastUpgradeCheck = 0700;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = "Huanyan's";
 				TargetAttributes = {
 					0555EA471AE210CB00E127C8 = {
 						CreatedOnToolsVersion = 6.3;
 						DevelopmentTeam = 8V73BHVJKK;
-						LastSwiftMigration = 0810;
+						LastSwiftMigration = 0820;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
+							};
+							com.apple.Keychain = {
+								enabled = 0;
 							};
 							com.apple.Maps.iOS = {
 								enabled = 1;
@@ -279,9 +379,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05269AF01DFBD6A000B2A600 /* Images.xcassets in Resources */,
 				0555EA551AE210CB00E127C8 /* Main.storyboard in Resources */,
 				05C364631BDB2F31008D1712 /* LaunchScreen.xib in Resources */,
-				0555EA571AE210CB00E127C8 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -294,30 +394,90 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		8C9B8B168BE7BF45A4079451 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Step by step/Pods-Step by step-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AADCB62D67EA10D16D842DBB /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		B3E42A3A56AC517A913FCD9E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Step by step/Pods-Step by step-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		0555EA441AE210CB00E127C8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				057061F01E1EFE98001AE518 /* PauseLocation+CoreDataProperties.swift in Sources */,
 				0572A3C41C0AF846004A56C0 /* MeViewController.swift in Sources */,
 				0555EA521AE210CB00E127C8 /* RunningViewController.swift in Sources */,
 				057F3FA51C0C96D6001BEA91 /* ActivityTableViewCell.swift in Sources */,
+				055E7C001E1B66DC00356F29 /* AchievementTableViewCell.swift in Sources */,
 				05441A2D1BE089ED00A8ECA4 /* Location.swift in Sources */,
 				05441A2F1BE089ED00A8ECA4 /* Run.swift in Sources */,
 				0555EA4E1AE210CB00E127C8 /* AppDelegate.swift in Sources */,
+				05E26C951E20006600D1E22F /* Display.swift in Sources */,
 				05441A2E1BE089ED00A8ECA4 /* Run+CoreDataProperties.swift in Sources */,
+				055E7C021E1B671200356F29 /* AllAchievementsTableViewController.swift in Sources */,
 				052E9F801C00515600BBF246 /* BaseViewController.swift in Sources */,
 				05441A561BE35EA800A8ECA4 /* RunningResultViewController.swift in Sources */,
-				0596360E1B0CCD81007BCC22 /* HomeViewController.swift in Sources */,
+				05269AEE1DFBC1E000B2A600 /* RankingViewCell.swift in Sources */,
+				055E7C051E1C020300356F29 /* AllRecordsTableViewController.swift in Sources */,
+				0586A8241E171D31005CC238 /* LoginViewController.swift in Sources */,
+				0596360E1B0CCD81007BCC22 /* StepsViewController.swift in Sources */,
+				058C8AC91E14B80700140D71 /* Pedometer.swift in Sources */,
 				05441A2C1BE089ED00A8ECA4 /* Location+CoreDataProperties.swift in Sources */,
-				059636121B0CCDA9007BCC22 /* SettingViewController.swift in Sources */,
-				05DEFACC1C05AD5000EE5A5F /* RunningBaseViewController.swift in Sources */,
+				055E7C071E1C021900356F29 /* RecordTableViewCell.swift in Sources */,
+				055E7BFE1E1B521200356F29 /* RankingTableViewCell.swift in Sources */,
+				055E7BFB1E1B51CE00356F29 /* AllRankingsViewController.swift in Sources */,
 				05441A271BE07BEE00A8ECA4 /* Model.xcdatamodeld in Sources */,
-				05FEC9D41BDE83C50093DF7D /* MedalViewController.swift in Sources */,
+				05FEC9D41BDE83C50093DF7D /* RankingViewController.swift in Sources */,
+				052EB0CD1E1317F100F17B11 /* SettingViewController.swift in Sources */,
 				059636141B0CD725007BCC22 /* MainActivity.swift in Sources */,
+				057061F11E1EFE98001AE518 /* PauseLocation.swift in Sources */,
 				051AC0A61D7A7BDA00D6C82F /* ActivityViewController.swift in Sources */,
 				058483931C0C1674008AE503 /* AllActivitiesViewController.swift in Sources */,
 				05DEFACA1C0557CC00EE5A5F /* InRunningViewController.swift in Sources */,
+				053B3CFF1E17470E00ABC373 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -372,8 +532,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -396,7 +558,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -417,8 +579,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -434,39 +598,59 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
 		0555EA6A1AE210CB00E127C8 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CD9A6A6F4CEE6865278EB11E /* Pods-Step by step.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 8V73BHVJKK;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = "Step by step/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "Huanyan.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.huanyan.stepbystep;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Step by step/Step by step-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
 		0555EA6B1AE210CB00E127C8 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6115B23D8EB24AE7BEAFEA10 /* Pods-Step by step.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 8V73BHVJKK;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = "Step by step/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "Huanyan.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.huanyan.stepbystep;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Step by step/Step by step-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

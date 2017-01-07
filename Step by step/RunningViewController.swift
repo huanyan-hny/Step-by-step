@@ -15,6 +15,12 @@ import MapKit
 class RunningViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate{
     
     
+
+
+    @IBOutlet weak var userLocationView: UIView!
+    @IBOutlet weak var gpsView: UIView!
+    @IBOutlet weak var gpsStrengthIcon: UIImageView!
+    @IBOutlet weak var gpsStrengthText: UILabel!
     @IBOutlet weak var startRunningButton: UIButton!
     @IBOutlet weak var mapView: MKMapView! {
         didSet {
@@ -24,8 +30,40 @@ class RunningViewController: UIViewController, MKMapViewDelegate, CLLocationMana
         }
     }
     
+    var poorGPS = false
+    
+    func disableStartRunningButton() {
+        startRunningButton.isEnabled = false
+        startRunningButton.backgroundColor = UIColor.lightGray
+    }
+    
+    func enableStartRunningButton() {
+        startRunningButton.isEnabled = true
+        startRunningButton.backgroundColor = UIColor(red:49.0/255.0,green:168.0/255.0,blue:213.0/255.0,alpha:1.0)
+    }
+    
+    @IBAction func locationButtonTapped(_ sender: UIButton) {
+        self.userLocationView.backgroundColor = UIColor.groupTableViewBackground
+    }
+    
+    @IBAction func returnToUser(_ sender: UIButton) {
+    
+        let userRegion = MKCoordinateRegion(center: mapView.userLocation.coordinate, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta:0.01))
+        
+        mapView.setRegion(userRegion, animated: true)
+        
+        self.userLocationView.backgroundColor = UIColor.white
+    }
+    
+    func mapViewDidFinishRenderingMap(_ mapView: MKMapView, fullyRendered: Bool) {
+        print("rendered")
+        startRunningButton.backgroundColor = UIColor(red:49.0/255.0,green:168.0/255.0,blue:213.0/255.0,alpha:1.0)
+        startRunningButton.isEnabled = true
+    }
+    
     var locationManager:CLLocationManager!
     var managedObjectContext:NSManagedObjectContext?
+    var mapViewDidFinishLoading = false
     
     func initLocationManager() {
         if (CLLocationManager.locationServicesEnabled())
@@ -34,43 +72,133 @@ class RunningViewController: UIViewController, MKMapViewDelegate, CLLocationMana
             locationManager.delegate = self
             locationManager.desiredAccuracy = kCLLocationAccuracyBest
             locationManager.activityType = .fitness
-            locationManager.requestAlwaysAuthorization()
+            if #available(iOS 9.0, *) {
+                locationManager.allowsBackgroundLocationUpdates = true
+            }
+            locationManager.requestWhenInUseAuthorization()
         }
     }
     
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if let accuracy = locationManager.location?.horizontalAccuracy {
+            if (accuracy<0) {
+                gpsStrengthIcon.image = #imageLiteral(resourceName: "signal_none")
+                gpsStrengthText.text = "No GPS"
+                gpsStrengthText.textColor = UIColor(red: 207.0/255.0, green: 216.0/255.0, blue: 220.0/255.0, alpha: 1)
+                poorGPS = true
+            } else if (accuracy < 48) {
+                gpsStrengthIcon.image = #imageLiteral(resourceName: "signal_good")
+                gpsStrengthText.text = "Good GPS"
+                gpsStrengthText.textColor = UIColor(red: 139.0/255.0, green: 195.0/255.0, blue: 74.0/255.0, alpha: 1)
+                poorGPS = false
+            } else if (accuracy > 163) {
+                gpsStrengthIcon.image = #imageLiteral(resourceName: "signal_poor")
+                gpsStrengthText.text = "Poor GPS"
+                gpsStrengthText.textColor = UIColor(red: 237.0/255.0, green: 28.0/255.0, blue: 36.0/255.0, alpha: 1)
+                poorGPS = true
+            } else {
+                gpsStrengthIcon.image = #imageLiteral(resourceName: "signal_fair")
+                gpsStrengthText.text = "Fair GPS"
+                gpsStrengthText.textColor = UIColor(red: 248.0/255.0, green: 127.0/255.0, blue: 39.0/255.0, alpha: 1)
+                poorGPS = false
+            }
+        }
+    }
     
-//    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-//        let lastUpdatedLocation = locations.last! as CLLocation
-//    
-//        let center = CLLocationCoordinate2D(latitude: lastUpdatedLocation.coordinate.latitude, longitude: lastUpdatedLocation.coordinate.longitude)
-//        let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
-//    
-//        mapView.setRegion(region, animated: true)
-//    }
+    func isLocationAccessAuthorized() -> Bool {
+        let authStatus = CLLocationManager.authorizationStatus()
+        if (authStatus == .restricted || authStatus == .denied || authStatus == .notDetermined) {
+            let alertController = UIAlertController(title: "Location access denied", message: "Step by step is unable to track your run, please authorize access for in Settings", preferredStyle: .alert)
+            
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            
+            alertController.addAction(cancelAction)
+            
+            let openAction = UIAlertAction(title:"Go to settings", style: .default) {(action) in
+                if let settingURL = NSURL(string:UIApplicationOpenSettingsURLString) {
+                    UIApplication.shared.openURL(settingURL as URL)
+                }
+            }
+            alertController.addAction(openAction)
+            self.present(alertController, animated: true, completion: nil)
+            return false
+        }
+        
+        return true
+
+    }
+    
+    @IBAction func startRunning(_ sender: UIButton) {
+        if (isLocationAccessAuthorized()) {
+            if mapView.userLocation.location != nil {
+                if (poorGPS) {
+                    let alertController = UIAlertController(title: "Poor or no GPS signal", message: "Step by step might be unable to track your run accurately due to poor GPS signal, continue?", preferredStyle: .alert)
+                    
+                    let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+                    
+                    alertController.addAction(cancelAction)
+                    
+                    let continueAction = UIAlertAction(title:"Go to settings", style: .default) {(action) in
+                        self.performSegue(withIdentifier: "startRunning", sender: self)
+                    }
+                    
+                    alertController.addAction(continueAction)
+                    
+                    self.present(alertController, animated: true, completion: nil)
+                }
+                performSegue(withIdentifier: "startRunning", sender: self)
+            }
+        }
+    }
+    
+    func appWillResignActive() {
+        locationManager.stopUpdatingLocation()
+    }
+    
+    func appDidBecomeActive() {
+        locationManager.startUpdatingLocation()
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.isNavigationBarHidden = false
-//        locationManager.startUpdatingLocation()
+        self.tabBarController?.tabBar.tintColor = UIColor(red:49.0/255.0,green:168.0/255.0,blue:213.0/255.0,alpha:1.0)
+        locationManager.delegate = self
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        userLocationView.layer.cornerRadius = userLocationView.frame.width/2
+        userLocationView.clipsToBounds = true
+        locationManager.startUpdatingLocation()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
+        locationManager.stopUpdatingLocation()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "Running";
         self.navigationController!.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
-        self.navigationController!.navigationBar.barTintColor = UIColor(red: 127/255, green: 224/255, blue: 127/255, alpha: 1)
         self.startRunningButton.layer.cornerRadius = 20
+        self.navigationController?.navigationBar.setValue(true, forKey: "hidesShadow")
         initLocationManager()
+        gpsView.layer.cornerRadius = 10
+        startRunningButton.isEnabled = false
+        NotificationCenter.default.addObserver(self, selector: #selector(appWillResignActive), name:NSNotification.Name.UIApplicationWillResignActive, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(appDidBecomeActive), name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
+    }
+    
+    @IBAction func unwindToRvc(segue: UIStoryboardSegue) {
+        print("I'm back")
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destination = segue.destination as? InRunningViewController {
             destination.managedObjectContext = self.managedObjectContext
             destination.locationManager = self.locationManager
+            destination.locations.removeAll(keepingCapacity: false)
+            destination.locations.append(mapView.userLocation.location!)
             destination.startRunning()
         }
     }

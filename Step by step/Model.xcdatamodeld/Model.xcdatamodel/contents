@@ -1,19 +1,34 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9057" systemVersion="15B42" minimumToolsVersion="Xcode 7.0">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11759" systemVersion="16C67" minimumToolsVersion="Xcode 7.0" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
     <entity name="Location" representedClassName=".Location" syncable="YES">
-        <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
-        <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
-        <attribute name="timestamp" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="timestamp" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <relationship name="run" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Run" inverseName="locations" inverseEntity="Run" syncable="YES"/>
     </entity>
+    <entity name="PauseLocation" representedClassName=".PauseLocation" syncable="YES">
+        <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="timestamp" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <relationship name="run" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Run" inverseName="pausedLocations" inverseEntity="Run" syncable="YES"/>
+    </entity>
     <entity name="Run" representedClassName=".Run" syncable="YES">
-        <attribute name="distance" optional="YES" attributeType="Float" defaultValueString="0" syncable="YES"/>
-        <attribute name="duration" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <attribute name="timestamp" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="address" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="city" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="country" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="distance" optional="YES" attributeType="Float" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="energy" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="notes" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="pace" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="time" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="weather" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="locations" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Location" inverseName="run" inverseEntity="Location" syncable="YES"/>
+        <relationship name="pausedLocations" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="PauseLocation" inverseName="run" inverseEntity="PauseLocation" syncable="YES"/>
     </entity>
     <elements>
         <element name="Location" positionX="162" positionY="-18" width="128" height="105"/>
-        <element name="Run" positionX="-63" positionY="-18" width="128" height="105"/>
+        <element name="Run" positionX="-63" positionY="-18" width="128" height="223"/>
+        <element name="PauseLocation" positionX="162" positionY="174" width="128" height="103"/>
     </elements>
 </model>

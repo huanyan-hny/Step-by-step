@@ -1,0 +1,6 @@
+framework module Pods_Step_by_step {
+  umbrella header "Pods-Step by step-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import FacebookCore
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,25 +16,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
-    
-        let baseVC = window?.rootViewController as! BaseViewController
+        SDKApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
         
-        for nVC in (baseVC.viewControllers as? [UINavigationController])! {
-            if let rVC = nVC.topViewController as? RunningViewController{
-                rVC.managedObjectContext = self.managedObjectContext
-            }
-            
-            if let mVC = nVC.topViewController as? MeViewController {
-                mVC.managedObjectContext = self.managedObjectContext
-            }
-        }
-
+        let loginVC = window?.rootViewController as! LoginViewController
+        loginVC.managedObjectContext = self.managedObjectContext
+        
         window?.layer.backgroundColor = UIColor(red: 0, green: 148/255, blue: 210/255, alpha: 1).cgColor;
         
         return true
     }
-
+    
+    func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
+        return SDKApplicationDelegate.shared.application(application, open: url, sourceApplication: sourceApplication, annotation: annotation)
+    }
+    
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.

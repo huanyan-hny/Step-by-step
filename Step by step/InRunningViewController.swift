@@ -13,93 +13,263 @@ import CoreData
 import MapKit
 
 
-class InRunningViewController: UIViewController,CLLocationManagerDelegate {
 
+class InRunningViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     
     
+    @IBOutlet weak var pauseButton: UIButton!
+    @IBOutlet weak var stopButton: UIButton!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var averagePaceLabel: UILabel!
+    @IBOutlet weak var energyLabel: UILabel!
+    @IBOutlet weak var stepLabel: UILabel!
     @IBOutlet weak var distanceLabel: UILabel!
+    @IBOutlet weak var higherSeparateView: UIView!
+    @IBOutlet weak var lowerSeparateView: UIView!
+    @IBOutlet weak var gpsStrengthIcon: UIImageView!
+    @IBOutlet weak var gpsStrengthText: UILabel!
+    
+    
+    @IBOutlet weak var mapView: MKMapView! {
+        didSet {
+            mapView.delegate = self
+            mapView.showsUserLocation = true
+            mapView.userTrackingMode = .follow
+        }
+    }
     
     var locationManager:CLLocationManager!
     var managedObjectContext:NSManagedObjectContext?
-    var run:Run?
     
-    var seconds = 0.0
+    var seconds = 0
     var distance = 0.0
+    var pace = "00:00"
+    var energy = 0
+    var paused = false
+    var resumedFromPausing = false
+    var city: String?
+    var country: String?
+    var address: String?
     
     lazy var locations = [CLLocation]()
+    lazy var pauseLocations = [CLLocation]()
     lazy var timer = Timer()
     
+    let pedometer = Pedometer.sharedInstance
+    var startTime = Date()
+    
+    func secondsToHoursMinutesSeconds(seconds: Int) -> String {
+        let hours = seconds / 3600
+        let minutes = seconds / 60 % 60
+        let seconds = seconds % 60
+        if hours>10 {
+            return String(format:"%02i:%02i:%02i", hours, minutes, seconds)
+        } else if hours>0 {
+            return String(format:"%01i:%02i:%02i", hours, minutes, seconds)
+        } else {
+            return String(format:"%02i:%02i",minutes, seconds)
+        }
+    }
+    
     func startRunning() {
-        locationManager.startUpdatingLocation()
         print("Started running")
-        seconds = 0.0
+        startTime = Date()
+        seconds = 0
         distance = 0.0
-        locations.removeAll(keepingCapacity: false)
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(InRunningViewController.eachSecond(_:)), userInfo: nil, repeats: true)
+        getLocation()
+    }
+    
+    func getLocation() {
+        CLGeocoder().reverseGeocodeLocation(locations.first!, completionHandler: {(placemarks, error) -> Void in
+            if error == nil {
+                if let addr = placemarks?.first?.addressDictionary {
+                    print (addr)
+                    
+                    if let address = addr["Thoroughfare"] as? String {
+                        print (address)
+                        self.address = address
+                    }
+                    
+                    if let city = addr["City"] as? String {
+                        print(city)
+                        self.city = city
+                    }
+                    
+                    if let country = addr["Country"] as? String {
+                        print(country)
+                        self.country = country
+                    }
+                }
+            }
+        })
     }
     
     
     func eachSecond(_ timer:Timer) {
-        print("ticking")
-        seconds += 1
-        let secondsQuantity = HKQuantity(unit: HKUnit.second(), doubleValue: seconds)
-        timeLabel.text = secondsQuantity.description
-        let displayDistance = Double(round(distance*100)/100)
-        distanceLabel.text = "\(displayDistance) km"
-    }
-    
-     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        print("Updated location")
-        for location in locations {
-            if location.horizontalAccuracy < 20 {
-                if self.locations.count>0 {
-                    distance += location.distance(from: self.locations.last!) / 1000.0
+        if !paused {
+            print(seconds)
+            seconds += 1
+            let displayDistance = String(format:"%.2f", Double(round(distance*100)/100))
+            let displayTime = secondsToHoursMinutesSeconds(seconds: seconds)
+            
+            timeLabel.text = displayTime
+            distanceLabel.text = displayDistance
+            
+            pedometer.queryPedometerData(from: startTime, to: Date(), withHandler: {data, error in
+                if (error==nil) {
+                    DispatchQueue.main.async {
+                        self.stepLabel.text = "\(Int(data!.numberOfSteps.int32Value))"
+                    }
+                }
+            })
+            
+            
+            if (seconds>0 && distance>0) {
+                pace = secondsToHoursMinutesSeconds(seconds: Int(Double(seconds)/distance))
+                averagePaceLabel.text = pace
+                
+                if (seconds%10==0) {
+                    energy = Int(70*distance*1.036)
+                    energyLabel.text = "\(energy)"
                 }
             }
-            self.locations.append(location)
+        }
+    }
+
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        print("Updated")
+        let lastUpdatedLocation = locations.last! as CLLocation
+        
+        let center = CLLocationCoordinate2D(latitude: lastUpdatedLocation.coordinate.latitude, longitude: lastUpdatedLocation.coordinate.longitude)
+        let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.001, longitudeDelta:0.001))
+        
+        mapView.setRegion(region, animated: true)
+        
+        if let accuracy = locationManager.location?.horizontalAccuracy {
+            print(accuracy)
+            if (accuracy<0) {
+                gpsStrengthIcon.image = #imageLiteral(resourceName: "signal_none")
+                gpsStrengthText.text = "No GPS"
+                gpsStrengthText.textColor = UIColor(red: 207.0/255.0, green: 216.0/255.0, blue: 220.0/255.0, alpha: 1)
+            } else if (accuracy < 48) {
+                gpsStrengthIcon.image = #imageLiteral(resourceName: "signal_good")
+                gpsStrengthText.text = "Good GPS"
+                gpsStrengthText.textColor = UIColor(red: 139.0/255.0, green: 195.0/255.0, blue: 74.0/255.0, alpha: 1)
+            } else if (accuracy > 163) {
+                gpsStrengthIcon.image = #imageLiteral(resourceName: "signal_poor")
+                gpsStrengthText.text = "Poor GPS"
+                gpsStrengthText.textColor = UIColor(red: 237.0/255.0, green: 28.0/255.0, blue: 36.0/255.0, alpha: 1)
+            } else {
+                gpsStrengthIcon.image = #imageLiteral(resourceName: "signal_fair")
+                gpsStrengthText.text = "Fair GPS"
+                gpsStrengthText.textColor = UIColor(red: 248.0/255.0, green: 127.0/255.0, blue: 39.0/255.0, alpha: 1)
+            }
+        }
+        
+        if !paused {
+            for location in locations {
+                if location.horizontalAccuracy < 163 {
+                    if self.locations.count>0 && seconds>1 {
+                        let increment = location.distance(from: self.locations.last!) / 1000.0
+                        print(increment)
+                        if increment > 0.005 {
+                            if !resumedFromPausing {
+                                distance += increment
+                            } else {
+                                resumedFromPausing = false
+                            }
+                            self.locations.append(location)
+                        }
+                    }
+                }
+            }
         }
     }
     
-    func saveRun() {
-        
-        let savedRun = NSEntityDescription.insertNewObject(forEntityName: "Run", into:managedObjectContext!) as! Run
-        
-        savedRun.distance = distance as NSNumber?
-        savedRun.duration = seconds as NSNumber?
-        savedRun.timestamp = Date()
-        
-        var savedLocations = [Location]()
-        for location in locations {
-            let savedLocation = NSEntityDescription.insertNewObject(forEntityName: "Location",
-                into: managedObjectContext!) as! Location
-            savedLocation.timestamp = location.timestamp
-            savedLocation.latitude = location.coordinate.latitude as NSNumber?
-            savedLocation.longitude = location.coordinate.longitude as NSNumber?
-            savedLocations.append(savedLocation)
-        }
-        
-        savedRun.locations = NSOrderedSet(array: savedLocations)
-        run = savedRun
-        
-        do{ try managedObjectContext!.save()} catch _ { print("Could not save run!")}
-        
+    
+    override func viewDidAppear(_ animated: Bool) {
+        locationManager.startUpdatingLocation()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        locationManager?.delegate = self
+        locationManager.delegate = self
+        locationManager.pausesLocationUpdatesAutomatically = false
         self.navigationController?.isNavigationBarHidden = true
         self.navigationItem.hidesBackButton = true
+        self.pauseButton.layer.cornerRadius = 20
+        self.stopButton.layer.cornerRadius = 20
+        self.higherSeparateView.layer.borderWidth = 0.5
+        self.higherSeparateView.layer.borderColor = UIColor(red: 221.0/255.0, green: 221.0/255.0, blue: 221.0/255.0, alpha: 1).cgColor
+        self.lowerSeparateView.layer.borderWidth = 0.5
+        self.lowerSeparateView.layer.borderColor = UIColor(red: 221.0/255.0, green: 221.0/255.0, blue: 221.0/255.0, alpha: 1).cgColor
+    }
+    
+    @IBAction func togglePause(_ sender: UIButton) {
+        if let pauseLocation = mapView.userLocation.location {
+            pauseLocations.append(pauseLocation)
+        }
+        if (paused == false){
+            paused = true
+            pauseButton.setTitle("Resume", for: .normal)
+            pauseButton.backgroundColor = UIColor(red:53.0/255.0, green:204.0/255.0, blue:113.0/255.0, alpha:1.0)
+        } else {
+            paused = false
+            resumedFromPausing = true
+            pauseButton.setTitle("Pause", for: .normal)
+            pauseButton.backgroundColor = UIColor(red:49.0/255.0,green:168.0/255.0,blue:213.0/255.0,alpha:1.0)
+        }
+    }
+    
+    @IBAction func stopRunning(_ sender: UIButton) {
+        let alertController = UIAlertController(title: nil, message: "Stop running?", preferredStyle: .actionSheet)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) {(action) in}
         
+        alertController.addAction(cancelAction)
+        
+        let changeAction = UIAlertAction(title: "Stop", style:.destructive) { (action) in
+            self.performSegue(withIdentifier: "stopRunning", sender: self)
+        }
+        alertController.addAction(changeAction)
+        
+        self.navigationController?.present(alertController, animated: true,completion: nil)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        locationManager.stopUpdatingLocation()
-        saveRun()
+        timer.invalidate()
         if let destination = segue.destination as? RunningResultViewController {
-            destination.run = self.run
+            locationManager.stopUpdatingLocation()
+            destination.managedObjectContext = self.managedObjectContext
+            destination.seconds = seconds
+            destination.distance = distance
+            destination.pace = pace
+            destination.energy = energy
+            destination.date = Date()
+            var savedLocations = [Location]()
+            for location in locations {
+                let savedLocation = NSEntityDescription.insertNewObject(forEntityName: "Location",
+                                                                        into: managedObjectContext!) as! Location
+                savedLocation.timestamp = location.timestamp
+                savedLocation.latitude = location.coordinate.latitude as NSNumber?
+                savedLocation.longitude = location.coordinate.longitude as NSNumber?
+                savedLocations.append(savedLocation)
+            }
+            
+            var savedPauseLocations = [PauseLocation]()
+            for pauseLocation in pauseLocations {
+                let savedPauseLocation = NSEntityDescription.insertNewObject(forEntityName: "PauseLocation", into: managedObjectContext!) as! PauseLocation
+                savedPauseLocation.timestamp = pauseLocation.timestamp
+                savedPauseLocation.latitude = pauseLocation.coordinate.latitude as NSNumber?
+                savedPauseLocation.longitude = pauseLocation.coordinate.longitude as NSNumber?
+                savedPauseLocations.append(savedPauseLocation)
+            }
+            destination.locations = NSOrderedSet(array: savedLocations)
+            destination.pauseLocations = NSOrderedSet(array: savedPauseLocations)
+            destination.city = self.city
+            destination.country = self.country
+            destination.address = self.address
         }
     }
 }

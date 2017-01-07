@@ -13,10 +13,17 @@ import Foundation
 import CoreData
 
 extension Run {
-
+    
     @NSManaged var distance: NSNumber?
-    @NSManaged var duration: NSNumber?
-    @NSManaged var timestamp: Date?
+    @NSManaged var time: NSNumber?
+    @NSManaged var pace: String?
+    @NSManaged var energy: NSNumber?
+    @NSManaged var notes: String?
+    @NSManaged var date: Date?
+    @NSManaged var weather: String?
+    @NSManaged var city: String?
+    @NSManaged var country: String?
+    @NSManaged var address: String?
     @NSManaged var locations: NSOrderedSet?
-
+    @NSManaged var pausedLocations: NSOrderedSet?
 }
