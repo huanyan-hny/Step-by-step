@@ -59,16 +59,16 @@
     _labelMarginTop      = 0;
     _chartMarginLeft     = 25.0;
     _chartMarginRight    = 25.0;
-    _chartMarginTop      = 25.0;
-    _chartMarginBottom   = 25.0;
+    _chartMarginTop      = 0;
+    _chartMarginBottom   = 0;
     _barRadius           = 2.0;
     _showChartBorder     = NO;
     _chartBorderColor    = PNLightGrey;
     _showLevelLine       = NO;
     _yChartLabelWidth    = 18;
     _rotateForXAxisText  = false;
-    _isGradientShow      = YES;
-    _isShowNumbers       = YES;
+    _isGradientShow      = NO;
+    _isShowNumbers       = NO;
     _yLabelPrefix        = @"";
     _yLabelSuffix        = @"";
 	_yLabelFormatter = ^(CGFloat yValue){
@@ -79,13 +79,15 @@
 - (void)setYValues:(NSArray *)yValues
 {
     _yValues = yValues;
-  //make the _yLabelSum value dependant of the distinct values of yValues to avoid duplicates on yAxis
-
+//make the _yLabelSum value dependant of the distinct values of yValues to avoid duplicates on yAxis
+/* Broken Y labels omitted*/
+/*
   if (_showLabel) {
     [self __addYCoordinateLabelsValues];
   } else {
     [self processYMaxValue];
   }
+*/
 }
 
 - (void)processYMaxValue {
@@ -112,7 +114,7 @@
   [self processYMaxValue];
 
   float sectionHeight = (self.frame.size.height - _chartMarginTop - _chartMarginBottom - kXLabelHeight) / _yLabelSum;
-    
+
   for (int i = 0; i <= _yLabelSum; i++) {
     NSString *labelText;
     if (_yLabels) {
@@ -187,7 +189,7 @@
                     labelXPosition = (index *  _xLabelWidth + _chartMarginLeft + _xLabelWidth /2.0 );
                 }
                 label.center = CGPointMake(labelXPosition,
-                                           self.frame.size.height - kXLabelHeight - _chartMarginTop + label.frame.size.height /2.0 + _labelMarginTop);
+                                           self.frame.size.height - kXLabelHeight/2.0);
                 labelAddCount = 0;
 
                 [_xChartLabels addObject:label];

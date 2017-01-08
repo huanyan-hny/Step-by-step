@@ -33,6 +33,7 @@
 		057061F01E1EFE98001AE518 /* PauseLocation+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057061EE1E1EFE98001AE518 /* PauseLocation+CoreDataProperties.swift */; };
 		057061F11E1EFE98001AE518 /* PauseLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057061EF1E1EFE98001AE518 /* PauseLocation.swift */; };
 		0572A3C41C0AF846004A56C0 /* MeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0572A3C31C0AF846004A56C0 /* MeViewController.swift */; };
+		057EA67C1E21F4C500064BFD /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057EA67B1E21F4C500064BFD /* Colors.swift */; };
 		057F3FA51C0C96D6001BEA91 /* ActivityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057F3FA41C0C96D6001BEA91 /* ActivityTableViewCell.swift */; };
 		058483931C0C1674008AE503 /* AllActivitiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058483921C0C1674008AE503 /* AllActivitiesViewController.swift */; };
 		0586A8241E171D31005CC238 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0586A8231E171D31005CC238 /* LoginViewController.swift */; };
@@ -88,6 +89,7 @@
 		057061EE1E1EFE98001AE518 /* PauseLocation+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PauseLocation+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		057061EF1E1EFE98001AE518 /* PauseLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PauseLocation.swift; sourceTree = "<group>"; };
 		0572A3C31C0AF846004A56C0 /* MeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeViewController.swift; sourceTree = "<group>"; };
+		057EA67B1E21F4C500064BFD /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		057F3FA41C0C96D6001BEA91 /* ActivityTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityTableViewCell.swift; sourceTree = "<group>"; };
 		058483921C0C1674008AE503 /* AllActivitiesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllActivitiesViewController.swift; sourceTree = "<group>"; };
 		0586A8231E171D31005CC238 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -170,6 +172,7 @@
 				052EB0CC1E1317F100F17B11 /* SettingViewController.swift */,
 				0555EA531AE210CB00E127C8 /* Main.storyboard */,
 				05E26C941E20006600D1E22F /* Display.swift */,
+				057EA67B1E21F4C500064BFD /* Colors.swift */,
 				059636131B0CD725007BCC22 /* MainActivity.swift */,
 				058C8AC81E14B80600140D71 /* Pedometer.swift */,
 				053B3CFE1E17470E00ABC373 /* User.swift */,
@@ -472,6 +475,7 @@
 				05441A271BE07BEE00A8ECA4 /* Model.xcdatamodeld in Sources */,
 				05FEC9D41BDE83C50093DF7D /* RankingViewController.swift in Sources */,
 				052EB0CD1E1317F100F17B11 /* SettingViewController.swift in Sources */,
+				057EA67C1E21F4C500064BFD /* Colors.swift in Sources */,
 				059636141B0CD725007BCC22 /* MainActivity.swift in Sources */,
 				057061F11E1EFE98001AE518 /* PauseLocation.swift in Sources */,
 				051AC0A61D7A7BDA00D6C82F /* ActivityViewController.swift in Sources */,

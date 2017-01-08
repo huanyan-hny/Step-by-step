@@ -1,4 +1,3 @@
-
 //
 //  HomeViewController.swift
 //  Step by step
@@ -12,45 +11,100 @@ import Charts
 import CoreMotion
 import PNChart
 
-class BarChartFormatter: NSObject, IAxisValueFormatter
-{
-    var weekdays: [String]! = ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"]
-    
-    func stringForValue(_ value: Double, axis: AxisBase?) -> String {
-        return weekdays[Int(value)]
-    }
-}
-
-class StepsViewController: UIViewController, ChartViewDelegate, PNChartDelegate {
+class StepsViewController: UIViewController, ChartViewDelegate, PNChartDelegate, UIScrollViewDelegate {
 
     @IBOutlet var currentSteps: UILabel!
     @IBOutlet var currentDistance: UILabel!
     @IBOutlet var currentCalorie: UILabel!
-
-    @IBOutlet weak var runningView: BarChartView!
-    @IBOutlet weak var stepsWeekView: PNBarChart!
+    @IBOutlet weak var pageControl: UIPageControl!
     
-    let ma = MainActivity()
-
+    let scrollView = UIScrollView()
+    let stepsChart = PNBarChart()
     
-    override func viewDidLoad() {
-        self.navigationItem.title = "Steps";
-        self.navigationController!.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
-        self.navigationController?.navigationBar.setValue(true, forKey: "hidesShadow")
-        NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: "steps"), object: ma, queue: OperationQueue.main){ notification in
-            self.updateSteps()
-        }
-        updateSteps()
+    func drawScrollView() {
+        scrollView.frame = CGRect(x:0, y:325, width:375, height:150)
+        scrollView.delegate = self
+        view.addSubview(scrollView)
         
-        let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul"]
-        let unitsSold = [20.0, 4.0, 6.0, 3.0, 12.0, 16.0, 4.0]
-        setChart(chartView: runningView,dataPoints: months, values: unitsSold)
+        let weekLabel = UILabel(frame:CGRect(x:8, y:26, width:115, height:17))
+        weekLabel.font = UIFont.systemFont(ofSize: 14)
+        weekLabel.text = "Week 2, Jan 2017"
+        weekLabel.textColor = Colors.myTextGray
+        
+        let totalStepsLabel = UILabel(frame: CGRect(x:24, y:74, width:74, height:25))
+        totalStepsLabel.center.x = weekLabel.center.x
+        totalStepsLabel.font = UIFont.systemFont(ofSize: 25)
+        totalStepsLabel.text = "16847"
+        totalStepsLabel.textColor = Colors.myBlue
+        
+        let thisWeekLabel = UILabel(frame: CGRect(x:32, y:102, width: 59, height: 13))
+        thisWeekLabel.center.x = weekLabel.center.x
+        thisWeekLabel.font = UIFont.systemFont(ofSize: 13)
+        thisWeekLabel.text = "this week"
+        thisWeekLabel.textColor = Colors.myTextLightGray
+        
+        let walkingLabel = UILabel(frame: CGRect(x:310, y:0, width:48, height:16))
+        walkingLabel.font = UIFont.systemFont(ofSize: 13)
+        walkingLabel.text = "Walking"
+        walkingLabel.textColor = Colors.myTextLightGray
+        
+        scrollView.addSubview(weekLabel)
+        scrollView.addSubview(totalStepsLabel)
+        scrollView.addSubview(thisWeekLabel)
+        scrollView.addSubview(walkingLabel)
+        scrollView.addSubview(stepsChart)
+        drawChart()
     }
+    
+    
+    func drawChart() {
+        
+        stepsChart.frame = CGRect(x:105,y:26,width:270,height:121)
+        
+        var colors = [UIColor](repeatElement(Colors.myBlue, count: 7))
+        
+        stepsChart.xLabels = ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"]
+        stepsChart.yValues = [3450,2000,5260,9120,1380,7720,0]
+        stepsChart.yValueMax = 10000
+        colors[5] = Colors.myOrange
+        stepsChart.strokeColors = colors
+        stepsChart.backgroundColor = UIColor.clear
+        stepsChart.stroke()
+        
+        let yLabelZero = UILabel(frame:CGRect(x:stepsChart.frame.width - 30, y:stepsChart.frame.height-30, width:30, height:11))
+        yLabelZero.text = "0"
+        yLabelZero.textColor = UIColor.gray
+        yLabelZero.font = UIFont.systemFont(ofSize: 9)
+        yLabelZero.textAlignment = .natural
+        
+        let yLabelHalf = UILabel(frame:CGRect(x:stepsChart.frame.width - 30, y:stepsChart.frame.height/3+5,width:30,height:11))
+        yLabelHalf.text = "5000"
+        yLabelHalf.textColor = UIColor.gray
+        yLabelHalf.font = UIFont.systemFont(ofSize: 9)
+        yLabelHalf.textAlignment = .natural
+        
+        let yLabelFull = UILabel(frame:CGRect(x:stepsChart.frame.width - 30, y:5, width:35, height:11))
+        yLabelFull.text = "10000"
+        yLabelFull.textColor = UIColor.gray
+        yLabelFull.font = UIFont.systemFont(ofSize: 9)
+        yLabelFull.textAlignment = .natural
+        
+        stepsChart.addSubview(yLabelZero)
+        stepsChart.addSubview(yLabelHalf)
+        stepsChart.addSubview(yLabelFull)
+    }
+    
+    
     
     override func viewWillAppear(_ animated: Bool) {
         self.tabBarController?.tabBar.tintColor = UIColor(red:49.0/255.0,green:168.0/255.0,blue:213.0/255.0,alpha:1.0)
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+
+    }
+    
+    let ma = MainActivity()
     
     func updateSteps()
     {
@@ -61,43 +115,15 @@ class StepsViewController: UIViewController, ChartViewDelegate, PNChartDelegate 
     }
     
     
-    func setChart(chartView:BarChartView, dataPoints: [String], values: [Double]){
-        chartView.noDataText = "No steps data"
-        chartView.delegate = self
-        chartView.legend.enabled = false
-        chartView.leftAxis.enabled = false
-        chartView.rightAxis.enabled = false
-        chartView.xAxis.drawGridLinesEnabled = false
-        chartView.leftAxis.drawAxisLineEnabled = false
-        chartView.rightAxis.drawAxisLineEnabled = false
-        chartView.drawBordersEnabled = false
-        chartView.drawGridBackgroundEnabled = false
-        chartView.chartDescription?.enabled = false
-        chartView.xAxis.labelPosition = .bottom
-        let formatter = BarChartFormatter()
-        chartView.xAxis.valueFormatter = formatter
-        chartView.isUserInteractionEnabled = false
-        //        chartView.xAxis.labelTextColor = UIColor.white
-        chartView.borderColor = UIColor.white
-        //        chartView.xAxis.labelWidth = 0
-        
-        var dataEntries: [BarChartDataEntry] = []
-        
-        for i in 0..<dataPoints.count {
-            let dataEntry = BarChartDataEntry(x: Double(i), y:values[i])
-            dataEntries.append(dataEntry)
+    override func viewDidLoad() {
+        self.navigationItem.title = "Steps";
+        self.navigationController!.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+        self.navigationController?.navigationBar.setValue(true, forKey: "hidesShadow")
+        NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: "steps"), object: ma, queue: OperationQueue.main){ notification in
+            self.updateSteps()
         }
-        
-        let chartDataSet = BarChartDataSet(values: dataEntries, label: nil)
-        
-        chartDataSet.setColor(UIColor(red:49.0/255.0,green:168.0/255.0,blue:213.0/255.0,alpha:1.0))
-        
-        let chartData = BarChartData(dataSet: chartDataSet)
-        chartData.setDrawValues(false)
-        chartData.barWidth = 0.5
-        chartView.data = chartData
-        
+        updateSteps()
+        drawScrollView()
     }
-    
 }
  
