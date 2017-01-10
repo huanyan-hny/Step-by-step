@@ -9,7 +9,7 @@
 import Foundation
 import CoreMotion
 
-class MainActivity{
+class StepsMonitor{
 
     
     let pedometer = Pedometer.sharedInstance
@@ -29,7 +29,7 @@ class MainActivity{
                 self.steps = Int(data!.numberOfSteps.int32Value)
                 self.distance = Int(data!.distance!.int32Value)
                 NotificationCenter.default.post(name: Notification.Name(rawValue: "steps"), object: self)
-            }
+            }   
         })
     }
     

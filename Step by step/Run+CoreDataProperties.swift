@@ -13,10 +13,10 @@ import Foundation
 import CoreData
 
 extension Run {
-    
+    @NSManaged var userID: String?
     @NSManaged var distance: NSNumber?
     @NSManaged var time: NSNumber?
-    @NSManaged var pace: String?
+    @NSManaged var pace: NSNumber?
     @NSManaged var energy: NSNumber?
     @NSManaged var notes: String?
     @NSManaged var date: Date?

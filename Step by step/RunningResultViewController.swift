@@ -34,7 +34,7 @@ class RunningResultViewController: UIViewController,MKMapViewDelegate, UITextFie
     
     var seconds = 0
     var distance = 0.0
-    var pace = "00:00"
+    var pace = 0
     var energy = 0
     var date:Date?
     var locations:NSOrderedSet?
@@ -43,23 +43,11 @@ class RunningResultViewController: UIViewController,MKMapViewDelegate, UITextFie
     var country:String?
     var address:String?
     
-    func secondsToHoursMinutesSeconds(seconds: Int) -> String {
-        let hours = seconds / 3600
-        let minutes = seconds / 60 % 60
-        let seconds = seconds % 60
-        if hours>10 {
-            return String(format:"%02i:%02i:%02i", hours, minutes, seconds)
-        } else if hours>0 {
-            return String(format:"%01i:%02i:%02i", hours, minutes, seconds)
-        } else {
-            return String(format:"%02i:%02i",minutes, seconds)
-        }
-    }
     
     func updateUI() {
-        let displayTime = secondsToHoursMinutesSeconds(seconds: seconds)
+        let displayTime = Time.secondsFormatted(seconds: seconds)
         let displayDistance = String(format:"%.2f", Double(round(distance*100)/100))
-        let displayPace = pace
+        let displayPace = Time.secondsFormatted(seconds: pace)
         let displayEnergy = energy
         
         timeLabel.text = displayTime
@@ -219,14 +207,14 @@ class RunningResultViewController: UIViewController,MKMapViewDelegate, UITextFie
 
     func persistRun() {
         let savedRun = NSEntityDescription.insertNewObject(forEntityName: "Run", into:managedObjectContext!) as! Run
+        savedRun.userID = UserDefaults.standard.string(forKey: "userID")
         savedRun.distance = distance as NSNumber?
         savedRun.time = seconds as NSNumber?
         savedRun.energy = energy as NSNumber?
+        savedRun.pace = pace as NSNumber?
         savedRun.locations = locations
         savedRun.pausedLocations = pauseLocations
-        savedRun.pace = pace
         savedRun.weather = weather
-        print(notes.text!)
         savedRun.notes = notes.text
         savedRun.date = date
         savedRun.address = address
@@ -258,12 +246,12 @@ class RunningResultViewController: UIViewController,MKMapViewDelegate, UITextFie
         mapView.delegate = self
         updateUI()
         self.navigationController?.isNavigationBarHidden = false
-
+        self.navigationController?.navigationBar.tintColor = UIColor.white
+        
         self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: "Save", style: .plain, target: self, action: #selector(persistRun))
-        self.navigationItem.rightBarButtonItem?.tintColor = UIColor.white
         
         self.navigationItem.leftBarButtonItem = UIBarButtonItem.init(image:#imageLiteral(resourceName: "deleteButton"), style:.plain, target: self, action: #selector(discardRun))
-        self.navigationItem.leftBarButtonItem?.tintColor = UIColor.white
+    
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MMM d, YYYY"

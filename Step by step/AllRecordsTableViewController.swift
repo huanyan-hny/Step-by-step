@@ -7,11 +7,14 @@
 //
 
 import UIKit
+import CoreData
 
 class AllRecordsTableViewController: UITableViewController {
 
     var sectionHeaderHeight = CGFloat(30)
     var rowHeight = CGFloat(75)
+    var managedObjectContext:NSManagedObjectContext?
+    var fetchResultsController:NSFetchedResultsController<NSFetchRequestResult>?
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
@@ -37,20 +40,50 @@ class AllRecordsTableViewController: UITableViewController {
         }
     }
     
+    func updateRecords() {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMM D, YYYY"
+        for object in fetchResultsController!.fetchedObjects! {
+            let record = object as! Record
+            if let type = record.type {
+                switch type {
+                case "Distance":
+                    let cell = tableView.cellForRow(at: [0,0]) as! RecordTableViewCell
+                    cell.recordTime.text = dateFormatter.string(from: record.date!)
+                    cell.recordDetail.text = String(format: "%.1f miles", record.value!.doubleValue)
+                case "Pace":
+                    let cell = tableView.cellForRow(at: [0,1]) as! RecordTableViewCell
+                    cell.recordTime.text = dateFormatter.string(from: record.date!)
+                    cell.recordDetail.text = Time.secondsFormatted(seconds: record.value!.intValue) + "/mi"
+                case "Duration":
+                    let cell = tableView.cellForRow(at: [0,2]) as! RecordTableViewCell
+                    cell.recordTime.text = dateFormatter.string(from: record.date!)
+                    cell.recordDetail.text = Time.secondsFormattedString(seconds: record.value!.intValue)
+                case "Steps":
+                    let cell = tableView.cellForRow(at: [1,0]) as! RecordTableViewCell
+                    cell.recordTime.text = dateFormatter.string(from: record.date!)
+                    cell.recordDetail.text = record.value!.stringValue
+                default:
+                    break
+                }
+            }
+
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        updateRecords()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "Personal Records"
         self.navigationController!.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
         self.tableView.tableFooterView = UIView()
-        tableView.register(UITableViewHeaderFooterView.classForCoder(), forHeaderFooterViewReuseIdentifier: "RecordTableHeaderView")
+
         if (Display.typeIsLike == .iphone5) {
             sectionHeaderHeight = CGFloat(26)
             rowHeight = CGFloat(64)
         }
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-
 }

@@ -13,16 +13,134 @@ import CoreData
 
 class MeViewController: UITableViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate{
     
-    var managedObjectContext:NSManagedObjectContext?
-    let imagePicker = UIImagePickerController()
+   
     
     @IBOutlet weak var userAvatar: UIButton!
-    @IBOutlet weak var userName: UILabel!
+    @IBOutlet weak var username: UILabel!
+    @IBOutlet weak var userSignature: UILabel!
+    @IBOutlet weak var runTitle: UILabel!
+    @IBOutlet weak var runDetail: UILabel!
+    @IBOutlet weak var rankingTitle: UILabel!
+    @IBOutlet weak var rankingDetail: UILabel!
+    @IBOutlet weak var achievementTitle: UILabel!
+    @IBOutlet weak var achievementDetail: UILabel!
+    @IBOutlet weak var recordTitle: UILabel!
+    @IBOutlet weak var recordDetail: UILabel!
     
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.tableView.deselectRow(at: indexPath, animated: true)
+    var managedObjectContext:NSManagedObjectContext?
+    let numberOfAchievements = 12
+    let imagePicker = UIImagePickerController()
+    let runFetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Run")
+    let rankingFetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Ranking")
+    let achievementFetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Achievement")
+    let recordFetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Record")
+    var runFetchResultsController:NSFetchedResultsController<NSFetchRequestResult>?
+    var rankingFetchResultsController:NSFetchedResultsController<NSFetchRequestResult>?
+    var achievementFetchResultsController:NSFetchedResultsController<NSFetchRequestResult>?
+    var recordFetchResultsController:NSFetchedResultsController<NSFetchRequestResult>?
+
+    
+    func initFetchRequest() {
+        let userID = UserDefaults.standard.string(forKey: "userID")!
+        
+        runFetchRequest.predicate = NSPredicate(format: "userID = %@", userID)
+        runFetchRequest.sortDescriptors = [NSSortDescriptor(key: "date", ascending: false)]
+        runFetchResultsController = NSFetchedResultsController(fetchRequest: runFetchRequest, managedObjectContext: managedObjectContext!, sectionNameKeyPath: "date", cacheName: nil)
+        
+        
+        rankingFetchRequest.predicate = NSPredicate(format: "userID = %@", userID)
+        rankingFetchRequest.sortDescriptors = [NSSortDescriptor(key: "endDate", ascending: false)]
+        rankingFetchResultsController = NSFetchedResultsController(fetchRequest: rankingFetchRequest, managedObjectContext: managedObjectContext!, sectionNameKeyPath: nil, cacheName: nil)
+        
+        
+        achievementFetchRequest.predicate = NSPredicate(format: "userID = %@", userID)
+        achievementFetchRequest.sortDescriptors = [NSSortDescriptor(key: "date", ascending: false)]
+        achievementFetchResultsController = NSFetchedResultsController(fetchRequest: achievementFetchRequest, managedObjectContext: managedObjectContext!, sectionNameKeyPath: nil, cacheName: nil)
+        
+        
+        recordFetchRequest.predicate = NSPredicate(format: "userID = %@", userID)
+        recordFetchRequest.sortDescriptors = [NSSortDescriptor(key: "type", ascending: false)]
+        recordFetchResultsController = NSFetchedResultsController(fetchRequest: recordFetchRequest, managedObjectContext: managedObjectContext!, sectionNameKeyPath: nil, cacheName: nil)
+        
+        performFetch()
     }
+    
+    func performFetch() {
+        do{ try runFetchResultsController?.performFetch()} catch _ { print("Could not fetch run!")}
+        do{ try rankingFetchResultsController?.performFetch()} catch _ { print("Could not fetch ranking!")}
+        do{ try achievementFetchResultsController?.performFetch()} catch _ { print("Could not fetch achievement!")}
+        do{ try recordFetchResultsController?.performFetch()} catch _ { print("Could not fetch record!")}
+    }
+    
+    
+    func updateUI() {
+        updateRun()
+        updateRanking()
+        updateAchievement()
+        updateRecord()
+    }
+    
+    func updateRun() {
+        var numberOfRun = 0
+        var totalDistance = 0.0
+        
+        for object in (runFetchResultsController?.fetchedObjects)! {
+            numberOfRun += 1
+            if let run = object as? Run {
+                totalDistance += run.distance!.doubleValue
+            }
+        }
+        self.runTitle.text = "\(numberOfRun)"
+        self.runDetail.text = String(format: "%.2f total miles", totalDistance)
+    }
+    
+    func updateRanking() {
+        self.rankingTitle.text = "\((rankingFetchResultsController?.fetchedObjects?.count)!)"
+    }
+    
+    func updateAchievement() {
+        self.achievementDetail.text = "Try to unlock more achievements!"
+        self.achievementDetail.textColor = Colors.myTextLightGray
+        if (achievementFetchResultsController?.fetchedObjects?.count == numberOfAchievements) {
+            self.achievementDetail.text = "Grats! You have unlocked all achievements"
+        }
+        for object in (achievementFetchResultsController?.fetchedObjects)! {
+            if let achievement = object as? Achievement {
+                if achievement.isNew!.boolValue{
+                    self.achievementDetail.text = "New achievement unlocked!"
+                    self.achievementDetail.textColor = Colors.myOrange
+                }
+            }
+        }
+    }
+    
+    func updateRecord() {
+        let count = (recordFetchResultsController?.fetchedObjects?.count)!
+        if (count>0) {
+            let displayOne = arc4random_uniform(UInt32(count-1))
+            let record = recordFetchResultsController?.object(at: [0,Int(displayOne)]) as! Record
+            if let type = record.type {
+                switch type {
+                case "Distance":
+                    self.recordTitle.text = String(format: "%.2f miles", record.value!.doubleValue)
+                    self.recordDetail.text = "Farthest distance"
+                case "Pace":
+                    self.recordTitle.text = Time.secondsFormatted(seconds: record.value!.intValue) + "/mi"
+                    self.recordDetail.text = "Fastest pace"
+                case "Duration":
+                    self.recordTitle.text = Time.secondsFormattedString(seconds: record.value!.intValue)
+                    self.recordDetail.text = "Longest duration"
+                case "Steps":
+                    self.recordTitle.text = record.value!.stringValue
+                    self.recordDetail.text = "Highest daily steps"
+                default:
+                    break
+                }
+            }
+        }
+    }
+    
     
     @IBAction func changeAvatar(_ sender: UIButton) {
         let alertController = UIAlertController(title: nil, message: "Change your profile image", preferredStyle: .actionSheet)
@@ -58,11 +176,8 @@ class MeViewController: UITableViewController, UINavigationControllerDelegate, U
         self.dismiss(animated: true, completion: nil)
     }
     
-    func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
-        viewController.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
-        viewController.navigationController?.navigationBar.tintColor = UIColor.white
-        viewController.navigationController?.navigationBar.barTintColor = UIColor(red:49.0/255.0, green: 168.0/255.0, blue: 213.0/255.0, alpha:1.0)
-        viewController.navigationController?.navigationBar.isTranslucent = false
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.tableView.deselectRow(at: indexPath, animated: true)
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -73,9 +188,19 @@ class MeViewController: UITableViewController, UINavigationControllerDelegate, U
         }
     }
     
+    
     override func viewWillAppear(_ animated: Bool) {
         self.tabBarController?.tabBar.tintColor = UIColor(red:49.0/255.0,green:168.0/255.0,blue:213.0/255.0,alpha:1.0)
+        if let name = UserDefaults.standard.string(forKey: "username") {
+            username.text = name
+        }
+        
+        if let signature = UserDefaults.standard.string(forKey: "signature") {
+            userSignature.text = signature
+        }
+        updateUI()
     }
+    
     
     override func viewDidAppear(_ animated: Bool) {
         userAvatar.imageView?.contentMode = .scaleAspectFill
@@ -93,10 +218,7 @@ class MeViewController: UITableViewController, UINavigationControllerDelegate, U
         self.navigationController?.navigationBar.tintColor = UIColor.white
         self.navigationController?.navigationBar.setValue(true, forKey: "hidesShadow")
         imagePicker.delegate = self
-        
-        if let name = UserDefaults.standard.string(forKey: "userName") {
-            userName.text = name
-        }
+        initFetchRequest()
         
         let documentPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
         let avatarPath = documentPath.appendingPathComponent("userAvatar.png")
@@ -112,7 +234,18 @@ class MeViewController: UITableViewController, UINavigationControllerDelegate, U
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destination = segue.destination as? AllActivitiesViewController {
             destination.managedObjectContext = self.managedObjectContext
+            destination.fetchResultsController = self.runFetchResultsController
+        } else if let destination = segue.destination as? AllRankingsViewController {
+            destination.managedObjectContext = self.managedObjectContext
+            destination.fetchResultsController = self.rankingFetchResultsController
+        } else if let destination = segue.destination as? AllAchievementsTableViewController {
+            destination.managedObjectContext = self.managedObjectContext
+            destination.fetchResultsController = self.achievementFetchResultsController
+        } else if let destination = segue.destination as? AllRecordsTableViewController {
+            destination.managedObjectContext = self.managedObjectContext
+            destination.fetchResultsController = self.recordFetchResultsController
         }
+    
     }
 
 }

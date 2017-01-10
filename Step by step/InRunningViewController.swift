@@ -43,7 +43,7 @@ class InRunningViewController: UIViewController, MKMapViewDelegate, CLLocationMa
     
     var seconds = 0
     var distance = 0.0
-    var pace = "00:00"
+    var pace = 0
     var energy = 0
     var paused = false
     var resumedFromPausing = false
@@ -58,18 +58,6 @@ class InRunningViewController: UIViewController, MKMapViewDelegate, CLLocationMa
     let pedometer = Pedometer.sharedInstance
     var startTime = Date()
     
-    func secondsToHoursMinutesSeconds(seconds: Int) -> String {
-        let hours = seconds / 3600
-        let minutes = seconds / 60 % 60
-        let seconds = seconds % 60
-        if hours>10 {
-            return String(format:"%02i:%02i:%02i", hours, minutes, seconds)
-        } else if hours>0 {
-            return String(format:"%01i:%02i:%02i", hours, minutes, seconds)
-        } else {
-            return String(format:"%02i:%02i",minutes, seconds)
-        }
-    }
     
     func startRunning() {
         print("Started running")
@@ -111,7 +99,7 @@ class InRunningViewController: UIViewController, MKMapViewDelegate, CLLocationMa
             print(seconds)
             seconds += 1
             let displayDistance = String(format:"%.2f", Double(round(distance*100)/100))
-            let displayTime = secondsToHoursMinutesSeconds(seconds: seconds)
+            let displayTime = Time.secondsFormatted(seconds: seconds)
             
             timeLabel.text = displayTime
             distanceLabel.text = displayDistance
@@ -125,9 +113,10 @@ class InRunningViewController: UIViewController, MKMapViewDelegate, CLLocationMa
             })
             
             
-            if (seconds>0 && distance>0) {
-                pace = secondsToHoursMinutesSeconds(seconds: Int(Double(seconds)/distance))
-                averagePaceLabel.text = pace
+            if (seconds>0 && distance>0 && seconds%8==0) {
+                pace = Int(Double(seconds)/distance)
+                let displayPace = Time.secondsFormatted(seconds:pace)
+                averagePaceLabel.text = displayPace
                 
                 if (seconds%10==0) {
                     energy = Int(70*distance*1.036)
@@ -189,23 +178,7 @@ class InRunningViewController: UIViewController, MKMapViewDelegate, CLLocationMa
     }
     
     
-    override func viewDidAppear(_ animated: Bool) {
-        locationManager.startUpdatingLocation()
-    }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        locationManager.delegate = self
-        locationManager.pausesLocationUpdatesAutomatically = false
-        self.navigationController?.isNavigationBarHidden = true
-        self.navigationItem.hidesBackButton = true
-        self.pauseButton.layer.cornerRadius = 20
-        self.stopButton.layer.cornerRadius = 20
-        self.higherSeparateView.layer.borderWidth = 0.5
-        self.higherSeparateView.layer.borderColor = UIColor(red: 221.0/255.0, green: 221.0/255.0, blue: 221.0/255.0, alpha: 1).cgColor
-        self.lowerSeparateView.layer.borderWidth = 0.5
-        self.lowerSeparateView.layer.borderColor = UIColor(red: 221.0/255.0, green: 221.0/255.0, blue: 221.0/255.0, alpha: 1).cgColor
-    }
     
     @IBAction func togglePause(_ sender: UIButton) {
         if let pauseLocation = mapView.userLocation.location {
@@ -235,6 +208,24 @@ class InRunningViewController: UIViewController, MKMapViewDelegate, CLLocationMa
         alertController.addAction(changeAction)
         
         self.navigationController?.present(alertController, animated: true,completion: nil)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        locationManager.startUpdatingLocation()
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        locationManager.delegate = self
+        locationManager.pausesLocationUpdatesAutomatically = false
+        self.navigationController?.isNavigationBarHidden = true
+        self.navigationItem.hidesBackButton = true
+        self.pauseButton.layer.cornerRadius = 20
+        self.stopButton.layer.cornerRadius = 20
+        self.higherSeparateView.layer.borderWidth = 0.5
+        self.higherSeparateView.layer.borderColor = UIColor(red: 221.0/255.0, green: 221.0/255.0, blue: 221.0/255.0, alpha: 1).cgColor
+        self.lowerSeparateView.layer.borderWidth = 0.5
+        self.lowerSeparateView.layer.borderColor = UIColor(red: 221.0/255.0, green: 221.0/255.0, blue: 221.0/255.0, alpha: 1).cgColor
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

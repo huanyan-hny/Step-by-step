@@ -30,6 +30,8 @@ class LoginViewController: UIViewController,LoginButtonDelegate {
     }
     
     func fetchUserProfile() {
+        UserDefaults.standard.set(4000, forKey: "dailyWalkingGoal")
+        UserDefaults.standard.set(5.0, forKey: "dailyRunningGoal")
         print("Fetching profile")
         let connection = GraphRequestConnection()
         connection.add(GraphRequest(graphPath: "/me",parameters:["fields":"name, email, picture.type(large)"])) { httpResponse, result in
@@ -37,13 +39,13 @@ class LoginViewController: UIViewController,LoginButtonDelegate {
             case .success(let response):
                 let results = response.dictionaryValue
                 
-                if let userName = results?["name"] as? String {
-                    UserDefaults.standard.set(userName, forKey: "userName")
-                    print(userName)
+                if let username = results?["name"] as? String {
+                    UserDefaults.standard.set(username, forKey: "username")
+                    print(username)
                 }
                 
                 if let userEmail = results?["email"] as? String {
-                    UserDefaults.standard.set(userEmail, forKey: "userEmail")
+                    UserDefaults.standard.set(userEmail, forKey: "userID")
                     print(userEmail)
                 }
                 
@@ -71,30 +73,32 @@ class LoginViewController: UIViewController,LoginButtonDelegate {
         print("User logged in")
         fetchUserProfile()
         performSegue(withIdentifier: "toMain", sender: self)
-        //TODO:check server to retrive Running Activities
     }
     
     func loginButtonDidLogOut(_ loginButton: LoginButton) {
         print("User logged out")
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         let baseVC = segue.destination as! UITabBarController
         
+        //passing managedObjectContext
         for nVC in (baseVC.viewControllers as? [UINavigationController])! {
+            if let mVC = nVC.topViewController as? MeViewController {
+                mVC.managedObjectContext = self.managedObjectContext
+            }
+            
             if let rVC = nVC.topViewController as? RunningViewController{
                 rVC.managedObjectContext = self.managedObjectContext
             }
             
-            if let mVC = nVC.topViewController as? MeViewController {
-                mVC.managedObjectContext = self.managedObjectContext
+            if let sVC = nVC.topViewController as? StepsViewController {
+                sVC.managedObjectContext = self.managedObjectContext
+            }
+            
+            if let kVC = nVC.topViewController as? RankingViewController {
+                kVC.managedObjectContext = self.managedObjectContext
             }
         }
 

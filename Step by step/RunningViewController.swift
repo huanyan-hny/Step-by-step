@@ -13,9 +13,6 @@ import CoreData
 import MapKit
 
 class RunningViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate{
-    
-    
-
 
     @IBOutlet weak var userLocationView: UIView!
     @IBOutlet weak var gpsView: UIView!
@@ -30,7 +27,11 @@ class RunningViewController: UIViewController, MKMapViewDelegate, CLLocationMana
         }
     }
     
+    var mapViewDidFinishLoading = false
     var poorGPS = false
+    var locationManager:CLLocationManager!
+    var managedObjectContext:NSManagedObjectContext?
+    
     
     func disableStartRunningButton() {
         startRunningButton.isEnabled = false
@@ -61,9 +62,7 @@ class RunningViewController: UIViewController, MKMapViewDelegate, CLLocationMana
         startRunningButton.isEnabled = true
     }
     
-    var locationManager:CLLocationManager!
-    var managedObjectContext:NSManagedObjectContext?
-    var mapViewDidFinishLoading = false
+    
     
     func initLocationManager() {
         if (CLLocationManager.locationServicesEnabled())
@@ -108,13 +107,13 @@ class RunningViewController: UIViewController, MKMapViewDelegate, CLLocationMana
     func isLocationAccessAuthorized() -> Bool {
         let authStatus = CLLocationManager.authorizationStatus()
         if (authStatus == .restricted || authStatus == .denied || authStatus == .notDetermined) {
-            let alertController = UIAlertController(title: "Location access denied", message: "Step by step is unable to track your run, please authorize access for in Settings", preferredStyle: .alert)
+            let alertController = UIAlertController(title: "Location access denied", message: "Step by step is unable to track your run, please authorize access for in your phone's Settings", preferredStyle: .alert)
             
             let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
             
             alertController.addAction(cancelAction)
             
-            let openAction = UIAlertAction(title:"Go to settings", style: .default) {(action) in
+            let openAction = UIAlertAction(title:"Go to Settings", style: .default) {(action) in
                 if let settingURL = NSURL(string:UIApplicationOpenSettingsURLString) {
                     UIApplication.shared.openURL(settingURL as URL)
                 }

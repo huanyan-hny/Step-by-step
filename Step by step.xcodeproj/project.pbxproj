@@ -7,13 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0517B3351E23309700D8DDCB /* SettingTextFieldController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0517B3341E23309700D8DDCB /* SettingTextFieldController.swift */; };
+		0517B3371E2330FD00D8DDCB /* SecondarySettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0517B3361E2330FD00D8DDCB /* SecondarySettingViewController.swift */; };
 		051AC0A61D7A7BDA00D6C82F /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051AC0A51D7A7BDA00D6C82F /* ActivityViewController.swift */; };
 		05269AEE1DFBC1E000B2A600 /* RankingViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05269AED1DFBC1E000B2A600 /* RankingViewCell.swift */; };
 		05269AF01DFBD6A000B2A600 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05269AEF1DFBD69F00B2A600 /* Images.xcassets */; };
 		052E9F7E1BFF222D00BBF246 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 052E9F7D1BFF222D00BBF246 /* CoreLocation.framework */; };
 		052E9F801C00515600BBF246 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052E9F7F1C00515600BBF246 /* BaseViewController.swift */; };
 		052EB0CD1E1317F100F17B11 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052EB0CC1E1317F100F17B11 /* SettingViewController.swift */; };
-		053B3CFF1E17470E00ABC373 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053B3CFE1E17470E00ABC373 /* User.swift */; };
 		05441A271BE07BEE00A8ECA4 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 05441A251BE07BEE00A8ECA4 /* Model.xcdatamodeld */; };
 		05441A2C1BE089ED00A8ECA4 /* Location+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05441A281BE089ED00A8ECA4 /* Location+CoreDataProperties.swift */; };
 		05441A2D1BE089ED00A8ECA4 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05441A291BE089ED00A8ECA4 /* Location.swift */; };
@@ -30,6 +31,13 @@
 		055E7C021E1B671200356F29 /* AllAchievementsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055E7C011E1B671200356F29 /* AllAchievementsTableViewController.swift */; };
 		055E7C051E1C020300356F29 /* AllRecordsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055E7C041E1C020300356F29 /* AllRecordsTableViewController.swift */; };
 		055E7C071E1C021900356F29 /* RecordTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055E7C061E1C021900356F29 /* RecordTableViewCell.swift */; };
+		056FA8981E242A6300089132 /* Achievement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056FA8971E242A6300089132 /* Achievement.swift */; };
+		056FA89A1E242C1600089132 /* Achievement+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056FA8991E242C1600089132 /* Achievement+CoreDataProperties.swift */; };
+		056FA89C1E242C2700089132 /* Ranking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056FA89B1E242C2700089132 /* Ranking.swift */; };
+		056FA89E1E242C3200089132 /* Ranking+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056FA89D1E242C3200089132 /* Ranking+CoreDataProperties.swift */; };
+		056FA8A01E242C4300089132 /* Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056FA89F1E242C4300089132 /* Record.swift */; };
+		056FA8A21E242C4F00089132 /* Record+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056FA8A11E242C4E00089132 /* Record+CoreDataProperties.swift */; };
+		056FA8AB1E247B0900089132 /* Time.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056FA8AA1E247B0900089132 /* Time.swift */; };
 		057061F01E1EFE98001AE518 /* PauseLocation+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057061EE1E1EFE98001AE518 /* PauseLocation+CoreDataProperties.swift */; };
 		057061F11E1EFE98001AE518 /* PauseLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057061EF1E1EFE98001AE518 /* PauseLocation.swift */; };
 		0572A3C41C0AF846004A56C0 /* MeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0572A3C31C0AF846004A56C0 /* MeViewController.swift */; };
@@ -39,7 +47,7 @@
 		0586A8241E171D31005CC238 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0586A8231E171D31005CC238 /* LoginViewController.swift */; };
 		058C8AC91E14B80700140D71 /* Pedometer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058C8AC81E14B80600140D71 /* Pedometer.swift */; };
 		0596360E1B0CCD81007BCC22 /* StepsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0596360D1B0CCD81007BCC22 /* StepsViewController.swift */; };
-		059636141B0CD725007BCC22 /* MainActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059636131B0CD725007BCC22 /* MainActivity.swift */; };
+		059636141B0CD725007BCC22 /* StepsMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059636131B0CD725007BCC22 /* StepsMonitor.swift */; };
 		05C364631BDB2F31008D1712 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05C364611BDB2F31008D1712 /* LaunchScreen.xib */; };
 		05DAC7311BDF6E1C008F10C5 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05DAC7301BDF6E1C008F10C5 /* MapKit.framework */; };
 		05DEFACA1C0557CC00EE5A5F /* InRunningViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DEFAC91C0557CC00EE5A5F /* InRunningViewController.swift */; };
@@ -59,13 +67,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0517B3341E23309700D8DDCB /* SettingTextFieldController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingTextFieldController.swift; sourceTree = "<group>"; };
+		0517B3361E2330FD00D8DDCB /* SecondarySettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondarySettingViewController.swift; sourceTree = "<group>"; };
 		051AC0A51D7A7BDA00D6C82F /* ActivityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
 		05269AED1DFBC1E000B2A600 /* RankingViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RankingViewCell.swift; sourceTree = "<group>"; };
 		05269AEF1DFBD69F00B2A600 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		052E9F7D1BFF222D00BBF246 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		052E9F7F1C00515600BBF246 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		052EB0CC1E1317F100F17B11 /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
-		053B3CFE1E17470E00ABC373 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		05441A261BE07BEE00A8ECA4 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		05441A281BE089ED00A8ECA4 /* Location+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Location+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		05441A291BE089ED00A8ECA4 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
@@ -86,6 +95,13 @@
 		055E7C011E1B671200356F29 /* AllAchievementsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllAchievementsTableViewController.swift; sourceTree = "<group>"; };
 		055E7C041E1C020300356F29 /* AllRecordsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllRecordsTableViewController.swift; sourceTree = "<group>"; };
 		055E7C061E1C021900356F29 /* RecordTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordTableViewCell.swift; sourceTree = "<group>"; };
+		056FA8971E242A6300089132 /* Achievement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Achievement.swift; sourceTree = "<group>"; };
+		056FA8991E242C1600089132 /* Achievement+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Achievement+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		056FA89B1E242C2700089132 /* Ranking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ranking.swift; sourceTree = "<group>"; };
+		056FA89D1E242C3200089132 /* Ranking+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Ranking+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		056FA89F1E242C4300089132 /* Record.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Record.swift; sourceTree = "<group>"; };
+		056FA8A11E242C4E00089132 /* Record+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Record+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		056FA8AA1E247B0900089132 /* Time.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Time.swift; sourceTree = "<group>"; };
 		057061EE1E1EFE98001AE518 /* PauseLocation+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PauseLocation+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		057061EF1E1EFE98001AE518 /* PauseLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PauseLocation.swift; sourceTree = "<group>"; };
 		0572A3C31C0AF846004A56C0 /* MeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeViewController.swift; sourceTree = "<group>"; };
@@ -95,7 +111,7 @@
 		0586A8231E171D31005CC238 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		058C8AC81E14B80600140D71 /* Pedometer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pedometer.swift; sourceTree = "<group>"; };
 		0596360D1B0CCD81007BCC22 /* StepsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepsViewController.swift; sourceTree = "<group>"; };
-		059636131B0CD725007BCC22 /* MainActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = MainActivity.swift; sourceTree = "<group>"; };
+		059636131B0CD725007BCC22 /* StepsMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = StepsMonitor.swift; sourceTree = "<group>"; };
 		05C0966C1E21854700607379 /* Step by step-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Step by step-Bridging-Header.h"; sourceTree = "<group>"; };
 		05C364621BDB2F31008D1712 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		05DAC7301BDF6E1C008F10C5 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -170,12 +186,10 @@
 				05FEC9D31BDE83C50093DF7D /* RankingViewController.swift */,
 				05269AED1DFBC1E000B2A600 /* RankingViewCell.swift */,
 				052EB0CC1E1317F100F17B11 /* SettingViewController.swift */,
+				0517B3341E23309700D8DDCB /* SettingTextFieldController.swift */,
+				0517B3361E2330FD00D8DDCB /* SecondarySettingViewController.swift */,
 				0555EA531AE210CB00E127C8 /* Main.storyboard */,
-				05E26C941E20006600D1E22F /* Display.swift */,
-				057EA67B1E21F4C500064BFD /* Colors.swift */,
-				059636131B0CD725007BCC22 /* MainActivity.swift */,
-				058C8AC81E14B80600140D71 /* Pedometer.swift */,
-				053B3CFE1E17470E00ABC373 /* User.swift */,
+				056FA8A71E2437B400089132 /* Helper */,
 				053B3CFD1E17375800ABC373 /* Login */,
 				05DEFAD01C05B53000EE5A5F /* Running */,
 				055E7BFC1E1B51D600356F29 /* Ranking */,
@@ -243,6 +257,18 @@
 			name = Record;
 			sourceTree = "<group>";
 		};
+		056FA8A71E2437B400089132 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				05E26C941E20006600D1E22F /* Display.swift */,
+				057EA67B1E21F4C500064BFD /* Colors.swift */,
+				059636131B0CD725007BCC22 /* StepsMonitor.swift */,
+				058C8AC81E14B80600140D71 /* Pedometer.swift */,
+				056FA8AA1E247B0900089132 /* Time.swift */,
+			);
+			name = Helper;
+			sourceTree = "<group>";
+		};
 		05DEFACF1C05B49400EE5A5F /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
@@ -251,8 +277,14 @@
 				057061EE1E1EFE98001AE518 /* PauseLocation+CoreDataProperties.swift */,
 				05441A291BE089ED00A8ECA4 /* Location.swift */,
 				05441A281BE089ED00A8ECA4 /* Location+CoreDataProperties.swift */,
-				05441A2A1BE089ED00A8ECA4 /* Run+CoreDataProperties.swift */,
 				05441A2B1BE089ED00A8ECA4 /* Run.swift */,
+				05441A2A1BE089ED00A8ECA4 /* Run+CoreDataProperties.swift */,
+				056FA8971E242A6300089132 /* Achievement.swift */,
+				056FA8991E242C1600089132 /* Achievement+CoreDataProperties.swift */,
+				056FA89B1E242C2700089132 /* Ranking.swift */,
+				056FA89D1E242C3200089132 /* Ranking+CoreDataProperties.swift */,
+				056FA89F1E242C4300089132 /* Record.swift */,
+				056FA8A11E242C4E00089132 /* Record+CoreDataProperties.swift */,
 			);
 			name = CoreData;
 			sourceTree = "<group>";
@@ -456,9 +488,14 @@
 				057F3FA51C0C96D6001BEA91 /* ActivityTableViewCell.swift in Sources */,
 				055E7C001E1B66DC00356F29 /* AchievementTableViewCell.swift in Sources */,
 				05441A2D1BE089ED00A8ECA4 /* Location.swift in Sources */,
+				0517B3351E23309700D8DDCB /* SettingTextFieldController.swift in Sources */,
 				05441A2F1BE089ED00A8ECA4 /* Run.swift in Sources */,
+				056FA89E1E242C3200089132 /* Ranking+CoreDataProperties.swift in Sources */,
 				0555EA4E1AE210CB00E127C8 /* AppDelegate.swift in Sources */,
+				056FA8981E242A6300089132 /* Achievement.swift in Sources */,
 				05E26C951E20006600D1E22F /* Display.swift in Sources */,
+				056FA8AB1E247B0900089132 /* Time.swift in Sources */,
+				0517B3371E2330FD00D8DDCB /* SecondarySettingViewController.swift in Sources */,
 				05441A2E1BE089ED00A8ECA4 /* Run+CoreDataProperties.swift in Sources */,
 				055E7C021E1B671200356F29 /* AllAchievementsTableViewController.swift in Sources */,
 				052E9F801C00515600BBF246 /* BaseViewController.swift in Sources */,
@@ -466,22 +503,25 @@
 				05269AEE1DFBC1E000B2A600 /* RankingViewCell.swift in Sources */,
 				055E7C051E1C020300356F29 /* AllRecordsTableViewController.swift in Sources */,
 				0586A8241E171D31005CC238 /* LoginViewController.swift in Sources */,
+				056FA8A21E242C4F00089132 /* Record+CoreDataProperties.swift in Sources */,
+				056FA8A01E242C4300089132 /* Record.swift in Sources */,
 				0596360E1B0CCD81007BCC22 /* StepsViewController.swift in Sources */,
 				058C8AC91E14B80700140D71 /* Pedometer.swift in Sources */,
 				05441A2C1BE089ED00A8ECA4 /* Location+CoreDataProperties.swift in Sources */,
 				055E7C071E1C021900356F29 /* RecordTableViewCell.swift in Sources */,
+				056FA89A1E242C1600089132 /* Achievement+CoreDataProperties.swift in Sources */,
 				055E7BFE1E1B521200356F29 /* RankingTableViewCell.swift in Sources */,
 				055E7BFB1E1B51CE00356F29 /* AllRankingsViewController.swift in Sources */,
 				05441A271BE07BEE00A8ECA4 /* Model.xcdatamodeld in Sources */,
 				05FEC9D41BDE83C50093DF7D /* RankingViewController.swift in Sources */,
+				056FA89C1E242C2700089132 /* Ranking.swift in Sources */,
 				052EB0CD1E1317F100F17B11 /* SettingViewController.swift in Sources */,
 				057EA67C1E21F4C500064BFD /* Colors.swift in Sources */,
-				059636141B0CD725007BCC22 /* MainActivity.swift in Sources */,
+				059636141B0CD725007BCC22 /* StepsMonitor.swift in Sources */,
 				057061F11E1EFE98001AE518 /* PauseLocation.swift in Sources */,
 				051AC0A61D7A7BDA00D6C82F /* ActivityViewController.swift in Sources */,
 				058483931C0C1674008AE503 /* AllActivitiesViewController.swift in Sources */,
 				05DEFACA1C0557CC00EE5A5F /* InRunningViewController.swift in Sources */,
-				053B3CFF1E17470E00ABC373 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

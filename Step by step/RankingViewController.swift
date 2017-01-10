@@ -23,6 +23,7 @@ class RankingViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var dateLabel: UILabel!
    
     var rowHeight = CGFloat(75)
+    var managedObjectContext:NSManagedObjectContext?
     
     
     @IBAction func changeToWeekly(_ sender: UIButton) {
@@ -47,7 +48,7 @@ class RankingViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10;
+        return 5;
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

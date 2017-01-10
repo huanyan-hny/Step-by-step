@@ -13,8 +13,8 @@ class RankingTableViewCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var rankLabel: UILabel!
-    @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var userAvatar: UIImageView!
+    @IBOutlet weak var dateLabel: UILabel!
 
     
     override func layoutSubviews() {
@@ -22,7 +22,7 @@ class RankingTableViewCell: UITableViewCell {
             self.nameLabel.font = UIFont(name: "Helvetica Neue", size: 13)
             self.rankLabel.font = UIFont(name: "Helvetica Neue", size: 13)
             self.distanceLabel.font = UIFont(name: "Helvetica Neue", size: 11)
-            self.timeLabel.font = UIFont(name: "Helvetica Neue", size: 11)
+            self.dateLabel.font = UIFont(name: "Helvetica Neue", size: 11)
             self.userAvatar.layer.cornerRadius = 21.5
         } else {
             self.userAvatar.layer.cornerRadius = 25

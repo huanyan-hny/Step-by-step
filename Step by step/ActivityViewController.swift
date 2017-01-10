@@ -43,7 +43,7 @@ class ActivityViewController: UIViewController, MKMapViewDelegate {
     func updateUI() {
         let displayTime = secondsToHoursMinutesSeconds(seconds: run!.time!.intValue)
         let displayDistance = String(format:"%.2f", Double(round(run!.distance!.doubleValue*100)/100))
-        let displayPace = run!.pace!
+        let displayPace = secondsToHoursMinutesSeconds(seconds: run!.pace!.intValue)
         let displayEnergy = run!.energy!.intValue
         
         timeLabel.text = displayTime
@@ -76,7 +76,7 @@ class ActivityViewController: UIViewController, MKMapViewDelegate {
             locationLabel.text = run!.address! + ", " + run!.city!
         }
         
-        let notes = run?.notes
+        let notes = run!.notes
         if (notes==""){
             notesLabel.text = "There are no notes"
         } else {
@@ -199,6 +199,12 @@ class ActivityViewController: UIViewController, MKMapViewDelegate {
         alertController.addAction(changeAction)
         
         self.navigationController?.present(alertController, animated: true,completion: nil)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMM d, YYYY"
+        self.navigationItem.title = dateFormatter.string(from: run!.date!)
     }
     
     override func viewDidLoad() {
