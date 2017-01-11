@@ -15,19 +15,19 @@ class StepsMonitor{
     let pedometer = Pedometer.sharedInstance
     let today = Date()
     
-    var steps:Int
-    var distance:Int
-    var calorie:Double
+    var steps = 0
+    var distance = 0.0
+    var calorie = 0
+    var lift = 0
     
     init()
     {
-        steps = 0
-        distance = 0
-        calorie = 0
         pedometer.startUpdates(from: Calendar.current.startOfDay(for: Date()), withHandler:{data, error in
             if (error==nil) {
-                self.steps = Int(data!.numberOfSteps.int32Value)
-                self.distance = Int(data!.distance!.int32Value)
+                self.steps = Int(data!.numberOfSteps.intValue)
+                self.distance = Double(round((data!.distance!.doubleValue/1000)*10)/10)
+                self.calorie = Int(70*self.distance*1.036/1000)
+                self.lift = data!.floorsAscended!.intValue
                 NotificationCenter.default.post(name: Notification.Name(rawValue: "steps"), object: self)
             }   
         })

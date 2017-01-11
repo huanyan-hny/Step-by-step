@@ -19,7 +19,7 @@ class AllRankingsViewController: UITableViewController {
     func displayEmptyMessage() {
         let messageLabel = UILabel(frame: CGRect(x:0,y:0,width:self.view.bounds.size.width,height:self.view.bounds.size.height))
         messageLabel.text = "You don't have any ranking history yet"
-        messageLabel.textColor = UIColor.black
+        messageLabel.textColor = Colors.myTextGray
         messageLabel.numberOfLines = 0;
         messageLabel.textAlignment = .center;
         messageLabel.font = UIFont(name: "TrebuchetMS", size: 15)
@@ -36,7 +36,11 @@ class AllRankingsViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return fetchResultsController!.fetchedObjects!.count
+        let count = fetchResultsController!.fetchedObjects!.count
+        if count == 0 {
+            displayEmptyMessage()
+        }
+        return count
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

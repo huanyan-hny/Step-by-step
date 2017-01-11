@@ -95,15 +95,22 @@ class RankingViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.tableView.deselectRow(at: indexPath, animated: true)
+        print("selected")
+        performSegue(withIdentifier: "showDetail", sender: self)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return rowHeight
     }
     
+    
     override func viewWillAppear(_ animated: Bool) {
         self.tabBarController?.tabBar.tintColor = UIColor(red: 253.0/255.0, green: 97.0/255.0, blue: 92.0/255.0, alpha: 1.0)
         
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        self.tabBarController?.tabBar.isUserInteractionEnabled = true
     }
     
     override func viewDidLoad() {
@@ -131,4 +138,5 @@ class RankingViewController: UIViewController, UITableViewDelegate, UITableViewD
             starAvatar.layer.borderWidth = 3.0
         }
     }
+    
 }

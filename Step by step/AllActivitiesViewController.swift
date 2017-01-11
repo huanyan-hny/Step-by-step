@@ -20,9 +20,25 @@ class AllActivitiesViewController: UITableViewController, NSFetchedResultsContro
     var sectionHeaderHeight = CGFloat(30)
     var rowHeight = CGFloat(75)
     
+    
+    func displayEmptyMessage() {
+        let messageLabel = UILabel(frame: CGRect(x:0,y:0,width:self.view.bounds.size.width,height:self.view.bounds.size.height))
+        messageLabel.text = "You don't have any running activities yet"
+        messageLabel.textColor = Colors.myTextGray
+        messageLabel.numberOfLines = 0;
+        messageLabel.textAlignment = .center;
+        messageLabel.font = UIFont(name: "TrebuchetMS", size: 15)
+        messageLabel.sizeToFit()
+        self.tableView.backgroundView = messageLabel;
+    }
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
-        if let sections = fetchResultsController?.sections {
-            return sections.count
+        if let count = fetchResultsController?.sections?.count {
+            if (count == 0) {
+                displayEmptyMessage()
+            } else {
+                return count
+            }
         }
         return 0
     }
@@ -150,7 +166,7 @@ class AllActivitiesViewController: UITableViewController, NSFetchedResultsContro
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.tableFooterView = UIView()
-        self.navigationItem.title = "Activities"
+        self.navigationItem.title = "Run"
         self.navigationController!.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
         tableView.register(UITableViewHeaderFooterView.classForCoder(), forHeaderFooterViewReuseIdentifier: "ActivityTableHeaderView")
         dateFormatter.dateStyle = .full

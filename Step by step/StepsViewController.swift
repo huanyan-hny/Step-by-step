@@ -17,6 +17,7 @@ class StepsViewController: UIViewController, ChartViewDelegate, PNChartDelegate,
     @IBOutlet var currentSteps: UILabel!
     @IBOutlet var currentDistance: UILabel!
     @IBOutlet var currentCalorie: UILabel!
+    @IBOutlet weak var currentLift: UILabel!
     @IBOutlet weak var pageControl: UIPageControl!
     
     
@@ -293,7 +294,9 @@ class StepsViewController: UIViewController, ChartViewDelegate, PNChartDelegate,
     
     func updateSteps() {
         self.currentSteps.text = "\(self.monitor.steps)"
-        self.currentDistance.text = "\(self.monitor.distance) m"
+        self.currentDistance.text = "\(self.monitor.distance)"
+        self.currentCalorie.text = "\(self.monitor.calorie)"
+        self.currentLift.text = "\(self.monitor.lift)"
     }
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
@@ -341,6 +344,10 @@ class StepsViewController: UIViewController, ChartViewDelegate, PNChartDelegate,
         if(Display.typeIsLike == .iphone5 || Display.typeIsLike == .iphone6plus) {
             updateUI()
         }
+//        testData()
+    }
+    
+    func testData() {
         UserDefaults.standard.set("happyhn2020@163.com", forKey: "userID")
         let savedRanking = NSEntityDescription.insertNewObject(forEntityName: "Ranking", into:managedObjectContext!) as! Ranking
         savedRanking.rank = 16
@@ -395,7 +402,6 @@ class StepsViewController: UIViewController, ChartViewDelegate, PNChartDelegate,
         savedRecord4.value = 19927
         
         do {try managedObjectContext!.save()} catch _ {print ("Cannot save")}
-    
     }
 }
  

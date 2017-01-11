@@ -41,6 +41,7 @@
 		057061F01E1EFE98001AE518 /* PauseLocation+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057061EE1E1EFE98001AE518 /* PauseLocation+CoreDataProperties.swift */; };
 		057061F11E1EFE98001AE518 /* PauseLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057061EF1E1EFE98001AE518 /* PauseLocation.swift */; };
 		0572A3C41C0AF846004A56C0 /* MeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0572A3C31C0AF846004A56C0 /* MeViewController.swift */; };
+		05745A111E25784600E8D1CA /* RankingDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05745A101E25784600E8D1CA /* RankingDetailViewController.swift */; };
 		057EA67C1E21F4C500064BFD /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057EA67B1E21F4C500064BFD /* Colors.swift */; };
 		057F3FA51C0C96D6001BEA91 /* ActivityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057F3FA41C0C96D6001BEA91 /* ActivityTableViewCell.swift */; };
 		058483931C0C1674008AE503 /* AllActivitiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058483921C0C1674008AE503 /* AllActivitiesViewController.swift */; };
@@ -105,6 +106,7 @@
 		057061EE1E1EFE98001AE518 /* PauseLocation+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PauseLocation+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		057061EF1E1EFE98001AE518 /* PauseLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PauseLocation.swift; sourceTree = "<group>"; };
 		0572A3C31C0AF846004A56C0 /* MeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeViewController.swift; sourceTree = "<group>"; };
+		05745A101E25784600E8D1CA /* RankingDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RankingDetailViewController.swift; sourceTree = "<group>"; };
 		057EA67B1E21F4C500064BFD /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		057F3FA41C0C96D6001BEA91 /* ActivityTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityTableViewCell.swift; sourceTree = "<group>"; };
 		058483921C0C1674008AE503 /* AllActivitiesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllActivitiesViewController.swift; sourceTree = "<group>"; };
@@ -185,6 +187,7 @@
 				0596360D1B0CCD81007BCC22 /* StepsViewController.swift */,
 				05FEC9D31BDE83C50093DF7D /* RankingViewController.swift */,
 				05269AED1DFBC1E000B2A600 /* RankingViewCell.swift */,
+				05745A101E25784600E8D1CA /* RankingDetailViewController.swift */,
 				052EB0CC1E1317F100F17B11 /* SettingViewController.swift */,
 				0517B3341E23309700D8DDCB /* SettingTextFieldController.swift */,
 				0517B3361E2330FD00D8DDCB /* SecondarySettingViewController.swift */,
@@ -487,6 +490,7 @@
 				0555EA521AE210CB00E127C8 /* RunningViewController.swift in Sources */,
 				057F3FA51C0C96D6001BEA91 /* ActivityTableViewCell.swift in Sources */,
 				055E7C001E1B66DC00356F29 /* AchievementTableViewCell.swift in Sources */,
+				05745A111E25784600E8D1CA /* RankingDetailViewController.swift in Sources */,
 				05441A2D1BE089ED00A8ECA4 /* Location.swift in Sources */,
 				0517B3351E23309700D8DDCB /* SettingTextFieldController.swift in Sources */,
 				05441A2F1BE089ED00A8ECA4 /* Run.swift in Sources */,

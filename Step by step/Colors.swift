@@ -13,4 +13,5 @@ public final class Colors {
     class var myBlue:UIColor { return UIColor(red:49.0/255.0,green:168.0/255.0,blue:213.0/255.0,alpha:1.0)}
     class var myTextGray:UIColor { return UIColor(red:51.0/255.0,green:51.0/255.0,blue:51.0/255.0,alpha:1.0)}
     class var myTextLightGray:UIColor { return UIColor(red:102.0/255.0,green:102.0/255.0,blue:102.0/255.0,alpha:1.0)}
+    class var myPinkBackground:UIColor { return UIColor(red:246.0/255.0,green:246.0/255.0,blue:255.0/255.0,alpha:1.0)}
 }
