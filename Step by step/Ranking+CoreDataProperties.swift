@@ -17,5 +17,5 @@ extension Ranking {
     @NSManaged var totalDistance: NSNumber?
     @NSManaged var startDate: Date?
     @NSManaged var endDate: Date?
-
+    @NSManaged var synchronized: NSNumber?
 }

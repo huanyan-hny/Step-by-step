@@ -10,8 +10,6 @@ import UIKit
 import CoreData
 
 class AllActivitiesViewController: UITableViewController, NSFetchedResultsControllerDelegate {
-
-    // MARK: - Table view data source
     
     var managedObjectContext:NSManagedObjectContext?
     var fetchResultsController:NSFetchedResultsController<NSFetchRequestResult>?
@@ -34,6 +32,7 @@ class AllActivitiesViewController: UITableViewController, NSFetchedResultsContro
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         if let count = fetchResultsController?.sections?.count {
+            print(count)
             if (count == 0) {
                 displayEmptyMessage()
             } else {
@@ -113,10 +112,6 @@ class AllActivitiesViewController: UITableViewController, NSFetchedResultsContro
         return headerView
     }
     
-    
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return true
-    }
 
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle==UITableViewCellEditingStyle.delete {
@@ -125,38 +120,8 @@ class AllActivitiesViewController: UITableViewController, NSFetchedResultsContro
         }
     }
     
-    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        self.tableView.beginUpdates()
-    }
-    
-    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange sectionInfo: NSFetchedResultsSectionInfo, atSectionIndex sectionIndex: Int, for type: NSFetchedResultsChangeType) {
-        switch type {
-        case .insert:
-            tableView.insertSections(NSIndexSet(index: sectionIndex) as IndexSet, with: .fade)
-        case .delete:
-            tableView.deleteSections(NSIndexSet(index: sectionIndex) as IndexSet, with: .fade)
-        case .move:
-            break
-        case .update:
-            break
-        }
-    }
-    
-    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
-        switch type {
-        case .insert:
-            tableView.insertRows(at: [newIndexPath! as IndexPath], with: .fade)
-        case .delete:
-            tableView.deleteRows(at: [indexPath! as IndexPath], with: .fade)
-        case .update:
-            configureCell(cell: tableView.cellForRow(at: indexPath! as IndexPath)! as! ActivityTableViewCell, indexPath: indexPath! as IndexPath)
-        case .move:
-            tableView.moveRow(at: indexPath! as IndexPath, to: newIndexPath! as IndexPath)
-        }
-    }
-    
-    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        tableView.endUpdates()
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return false
     }
     
     override func viewDidAppear(_ animated: Bool) {

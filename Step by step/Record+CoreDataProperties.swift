@@ -14,5 +14,5 @@ extension Record {
     @NSManaged var value: NSNumber?
     @NSManaged var type: String?
     @NSManaged var date: Date?
-    
+    @NSManaged var synchronized: NSNumber?
 }

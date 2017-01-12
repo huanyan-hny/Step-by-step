@@ -15,6 +15,8 @@
 		052E9F7E1BFF222D00BBF246 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 052E9F7D1BFF222D00BBF246 /* CoreLocation.framework */; };
 		052E9F801C00515600BBF246 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052E9F7F1C00515600BBF246 /* BaseViewController.swift */; };
 		052EB0CD1E1317F100F17B11 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052EB0CC1E1317F100F17B11 /* SettingViewController.swift */; };
+		0539F9951E2714EA00C1FB19 /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0539F9941E2714EA00C1FB19 /* Test.swift */; };
+		0539F9A41E271F0700C1FB19 /* Sdk in Resources */ = {isa = PBXBuildFile; fileRef = 0539F9A31E271F0700C1FB19 /* Sdk */; };
 		05441A271BE07BEE00A8ECA4 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 05441A251BE07BEE00A8ECA4 /* Model.xcdatamodeld */; };
 		05441A2C1BE089ED00A8ECA4 /* Location+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05441A281BE089ED00A8ECA4 /* Location+CoreDataProperties.swift */; };
 		05441A2D1BE089ED00A8ECA4 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05441A291BE089ED00A8ECA4 /* Location.swift */; };
@@ -76,6 +78,10 @@
 		052E9F7D1BFF222D00BBF246 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		052E9F7F1C00515600BBF246 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		052EB0CC1E1317F100F17B11 /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		0539F9901E2710EC00C1FB19 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		0539F9921E2710F700C1FB19 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		0539F9941E2714EA00C1FB19 /* Test.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
+		0539F9A31E271F0700C1FB19 /* Sdk */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Sdk; sourceTree = "<group>"; };
 		05441A261BE07BEE00A8ECA4 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		05441A281BE089ED00A8ECA4 /* Location+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Location+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		05441A291BE089ED00A8ECA4 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
@@ -185,6 +191,7 @@
 				05DEFAC91C0557CC00EE5A5F /* InRunningViewController.swift */,
 				05441A551BE35EA800A8ECA4 /* RunningResultViewController.swift */,
 				0596360D1B0CCD81007BCC22 /* StepsViewController.swift */,
+				0539F9941E2714EA00C1FB19 /* Test.swift */,
 				05FEC9D31BDE83C50093DF7D /* RankingViewController.swift */,
 				05269AED1DFBC1E000B2A600 /* RankingViewCell.swift */,
 				05745A101E25784600E8D1CA /* RankingDetailViewController.swift */,
@@ -192,6 +199,7 @@
 				0517B3341E23309700D8DDCB /* SettingTextFieldController.swift */,
 				0517B3361E2330FD00D8DDCB /* SecondarySettingViewController.swift */,
 				0555EA531AE210CB00E127C8 /* Main.storyboard */,
+				0539F9A31E271F0700C1FB19 /* Sdk */,
 				056FA8A71E2437B400089132 /* Helper */,
 				053B3CFD1E17375800ABC373 /* Login */,
 				05DEFAD01C05B53000EE5A5F /* Running */,
@@ -305,6 +313,8 @@
 		487E18CB53FF71ACC70D4507 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0539F9921E2710F700C1FB19 /* libz.tbd */,
+				0539F9901E2710EC00C1FB19 /* libsqlite3.tbd */,
 				72A64F0ED2346E99320C8C04 /* Pods_Step_by_step.framework */,
 			);
 			name = Frameworks;
@@ -418,6 +428,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				05269AF01DFBD6A000B2A600 /* Images.xcassets in Resources */,
+				0539F9A41E271F0700C1FB19 /* Sdk in Resources */,
 				0555EA551AE210CB00E127C8 /* Main.storyboard in Resources */,
 				05C364631BDB2F31008D1712 /* LaunchScreen.xib in Resources */,
 			);
@@ -497,6 +508,7 @@
 				056FA89E1E242C3200089132 /* Ranking+CoreDataProperties.swift in Sources */,
 				0555EA4E1AE210CB00E127C8 /* AppDelegate.swift in Sources */,
 				056FA8981E242A6300089132 /* Achievement.swift in Sources */,
+				0539F9951E2714EA00C1FB19 /* Test.swift in Sources */,
 				05E26C951E20006600D1E22F /* Display.swift in Sources */,
 				056FA8AB1E247B0900089132 /* Time.swift in Sources */,
 				0517B3371E2330FD00D8DDCB /* SecondarySettingViewController.swift in Sources */,
@@ -658,7 +670,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = CD9A6A6F4CEE6865278EB11E /* Pods-Step by step.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -666,6 +677,7 @@
 				DEVELOPMENT_TEAM = 8V73BHVJKK;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
+					"$(SRCROOT)/**",
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = "Step by step/Info.plist";
@@ -683,7 +695,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6115B23D8EB24AE7BEAFEA10 /* Pods-Step by step.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -691,6 +702,7 @@
 				DEVELOPMENT_TEAM = 8V73BHVJKK;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
+					"$(SRCROOT)/**",
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = "Step by step/Info.plist";

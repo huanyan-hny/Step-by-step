@@ -24,6 +24,16 @@ class SecondarySettingViewController: UITableViewController {
         
     }
 
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if (Display.typeIsLike == .iphone5) {
+            return 37
+        } else if (Display.typeIsLike == .iphone7) {
+            return 45
+        } else if (Display.typeIsLike == .iphone7plus) {
+            return 50
+        }
+        return 45
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

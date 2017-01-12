@@ -220,6 +220,7 @@ class RunningResultViewController: UIViewController,MKMapViewDelegate, UITextFie
         savedRun.address = address
         savedRun.city = city
         savedRun.country = country
+        savedRun.synchronized = true as NSNumber?
         print("Saving")
         do{ try managedObjectContext!.save()} catch _ { print("Could not save run!")}
         performSegue(withIdentifier: "unwindToRvc", sender: self)

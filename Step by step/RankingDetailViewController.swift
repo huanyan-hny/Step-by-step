@@ -14,20 +14,29 @@ class RankingDetailViewController: UIViewController {
     @IBOutlet weak var detailView: UIView!
     @IBOutlet weak var avatar: UIButton!
     @IBOutlet weak var name: UILabel!
-    @IBOutlet weak var rank: UILabel!
+    @IBOutlet weak var ranking: UILabel!
+    @IBOutlet weak var signature: UILabel!
     @IBOutlet weak var barChart: PNBarChart!
     @IBOutlet weak var type: UILabel!
     @IBOutlet weak var currentDistance: UILabel!
     @IBOutlet weak var totalDistance: UILabel!
     @IBOutlet weak var thisweekLabel: UILabel!
     @IBOutlet weak var totalLabel: UILabel!
+    @IBOutlet weak var separator: UIView!
+    
     
     var dayOfWeek = 7
     var data = [Double]()
     var weekDays = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"]
     var colors = [UIColor](repeatElement(Colors.myBlue, count: 7))
+    var displayAvatar:UIImage?
+    var displayName:String?
+    var displaySignature:String?
+    var displayCurrentDistance:String?
+    var displayRanking:String?
     
     @IBAction func enlargeImage(_ sender: UIButton) {
+        barChart.displayAnimated = false
         let imageView = sender.imageView!
         let newImageView = UIImageView(image: imageView.image)
         let newBackgroundView = UIView(frame: self.view.frame)
@@ -51,8 +60,9 @@ class RankingDetailViewController: UIViewController {
     }
     
     func adjustAndDraw() {
-        
         if (Display.typeIsLike == .iphone5) {
+            name.font = UIFont.init(name: "HelveticaNeue-Medium", size: 13)
+            signature.font = UIFont.init(name: "HelveticaNeue", size: 11)
             currentDistance.frame = CGRect(x:17,y:20,width:66,height:24)
             currentDistance.font = UIFont.systemFont(ofSize: 17)
             currentDistance.sizeToFit()
@@ -65,7 +75,6 @@ class RankingDetailViewController: UIViewController {
             totalLabel.center.x = currentDistance.center.x
             totalLabel.center.y = totalDistance.center.y + thisweekLabel.center.y - currentDistance.center.y
             barChart.frame = CGRect(x:60, y: 10, width:220,height:105)
-            print(thisweekLabel.center.y)
         } else if (Display.typeIsLike == .iphone7plus) {
             currentDistance.frame = CGRect(x:30,y:30,width:90,height:29)
             currentDistance.font = UIFont.systemFont(ofSize: 22)
@@ -83,6 +92,8 @@ class RankingDetailViewController: UIViewController {
             totalLabel.font = UIFont.systemFont(ofSize: 11)
             barChart.frame = CGRect(x:100, y: 22, width:260,height:135)
         }
+        
+        separator.center.y = (thisweekLabel.center.y + totalDistance.center.y)/2-3
         
         drawWeeklyChart(chart: barChart, values: data, maxValue: 6)
     }
@@ -145,12 +156,21 @@ class RankingDetailViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
+    func updateUI() {
+        avatar.setImage(displayAvatar, for: .normal)
+        name.text = displayName
+        signature.text = displaySignature
+        ranking.text = displayRanking
+        currentDistance.text = displayCurrentDistance
+    }
+    
     override func viewDidLayoutSubviews() {
         avatar.layer.cornerRadius = avatar.frame.width/2
         avatar.clipsToBounds = true
         avatar.layer.borderWidth = 2
         avatar.layer.borderColor = UIColor.white.cgColor
         adjustAndDraw()
+        updateUI()
     }
     
     override func viewWillAppear(_ animated: Bool) {

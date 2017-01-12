@@ -92,6 +92,17 @@ class SettingTextFieldController: UITableViewController, UITextFieldDelegate{
         _ = self.navigationController?.popViewController(animated: true)
     }
     
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if (Display.typeIsLike == .iphone5) {
+            return 37
+        } else if (Display.typeIsLike == .iphone7) {
+            return 45
+        } else if (Display.typeIsLike == .iphone7plus) {
+            return 50
+        }
+        return 45
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         self.navigationItem.title = fieldType.rawValue
         textField.becomeFirstResponder()

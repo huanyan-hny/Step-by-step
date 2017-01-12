@@ -21,7 +21,10 @@ class RankingViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var monthlyButton: UIButton!
     @IBOutlet weak var slider: UIView!
     @IBOutlet weak var dateLabel: UILabel!
-   
+    
+    var selectedCell:RankingViewCell?
+    
+    
     var rowHeight = CGFloat(75)
     var managedObjectContext:NSManagedObjectContext?
     
@@ -94,9 +97,9 @@ class RankingViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.tableView.deselectRow(at: indexPath, animated: true)
-        print("selected")
+        selectedCell = tableView.cellForRow(at: indexPath) as? RankingViewCell
         performSegue(withIdentifier: "showDetail", sender: self)
+        self.tableView.deselectRow(at: indexPath, animated: true)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -136,6 +139,16 @@ class RankingViewController: UIViewController, UITableViewDelegate, UITableViewD
         for starAvatar in starAvatars {
             starAvatar.layer.borderColor = UIColor.white.cgColor
             starAvatar.layer.borderWidth = 3.0
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destination = segue.destination as? RankingDetailViewController {
+            destination.displayAvatar = selectedCell?.avatar.image
+            destination.displayName = selectedCell?.name.text
+            destination.displayCurrentDistance = selectedCell?.distance.text
+            destination.displayRanking = selectedCell?.ranking.text
+            destination.displaySignature = selectedCell?.signature.text
         }
     }
     

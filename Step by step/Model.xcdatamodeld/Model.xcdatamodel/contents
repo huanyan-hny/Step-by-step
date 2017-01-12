@@ -4,6 +4,7 @@
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="isNew" optional="YES" attributeType="Integer 16" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="synchronized" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="userID" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="Location" representedClassName=".Location" syncable="YES">
@@ -22,12 +23,14 @@
         <attribute name="endDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="rank" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="startDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="synchronized" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="totalDistance" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="userID" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="Record" representedClassName=".Record" syncable="YES">
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="synchronized" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="userID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="value" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
@@ -41,6 +44,7 @@
         <attribute name="energy" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="notes" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="pace" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="synchronized" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="time" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="userID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="weather" optional="YES" attributeType="String" syncable="YES"/>
@@ -48,11 +52,11 @@
         <relationship name="pausedLocations" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="PauseLocation" inverseName="run" inverseEntity="PauseLocation" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Achievement" positionX="63" positionY="126" width="128" height="105"/>
+        <element name="Achievement" positionX="63" positionY="126" width="128" height="120"/>
         <element name="Location" positionX="162" positionY="-18" width="128" height="105"/>
         <element name="PauseLocation" positionX="162" positionY="174" width="128" height="103"/>
-        <element name="Ranking" positionX="54" positionY="117" width="128" height="135"/>
-        <element name="Record" positionX="72" positionY="135" width="128" height="105"/>
-        <element name="Run" positionX="-63" positionY="-18" width="128" height="240"/>
+        <element name="Ranking" positionX="54" positionY="117" width="128" height="150"/>
+        <element name="Record" positionX="72" positionY="135" width="128" height="120"/>
+        <element name="Run" positionX="-63" positionY="-18" width="128" height="255"/>
     </elements>
 </model>

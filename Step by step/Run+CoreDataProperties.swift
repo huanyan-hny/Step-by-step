@@ -26,4 +26,5 @@ extension Run {
     @NSManaged var address: String?
     @NSManaged var locations: NSOrderedSet?
     @NSManaged var pausedLocations: NSOrderedSet?
+    @NSManaged var synchronized: NSNumber?
 }

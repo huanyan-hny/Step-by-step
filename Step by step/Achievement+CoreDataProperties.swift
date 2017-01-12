@@ -14,4 +14,5 @@ extension Achievement {
     @NSManaged var date: Date?
     @NSManaged var userID: String?
     @NSManaged var isNew: NSNumber?
+    @NSManaged var synchronized: NSNumber?
 }
