@@ -8,6 +8,7 @@
 
 import UIKit
 import PNChart
+import AWSDynamoDB
 
 class RankingDetailViewController: UIViewController {
 
@@ -27,6 +28,7 @@ class RankingDetailViewController: UIViewController {
     
     var dayOfWeek = 7
     var data = [Double]()
+    var dataUpdatedCount = 0
     var weekDays = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"]
     var colors = [UIColor](repeatElement(Colors.myBlue, count: 7))
     var displayAvatar:UIImage?
@@ -34,19 +36,26 @@ class RankingDetailViewController: UIViewController {
     var displaySignature:String?
     var displayCurrentDistance:String?
     var displayRanking:String?
+    var userId:String?
+    var calendar = Calendar.current
+    
+    let objectMapper = AWSDynamoDBObjectMapper.default()
+    let activityView = UIView(frame:CGRect(x:0,y:0,width:80,height:80))
+    let activityIndicator = UIActivityIndicatorView.init(activityIndicatorStyle: .whiteLarge)
     
     @IBAction func enlargeImage(_ sender: UIButton) {
         barChart.displayAnimated = false
         let imageView = sender.imageView!
         let newImageView = UIImageView(image: imageView.image)
         let newBackgroundView = UIView(frame: self.view.frame)
-        let scaleFactor = self.view.frame.width/imageView.frame.width
+        let scaleFactorX = self.view.frame.width/imageView.frame.width
         newBackgroundView.backgroundColor = .black
         newImageView.frame = imageView.convert(imageView.frame, to: self.view)
+        newImageView.contentMode = .scaleAspectFit
         newBackgroundView.addSubview(newImageView)
         UIView.animate(withDuration: 0.2, animations: {
             newImageView.center = newBackgroundView.center
-            newImageView.transform = CGAffineTransform(scaleX: scaleFactor, y: scaleFactor)
+            newImageView.transform = CGAffineTransform(scaleX: scaleFactorX, y: scaleFactorX)
         })
         
         newBackgroundView.isUserInteractionEnabled = true
@@ -64,11 +73,11 @@ class RankingDetailViewController: UIViewController {
             name.font = UIFont.init(name: "HelveticaNeue-Medium", size: 13)
             signature.font = UIFont.init(name: "HelveticaNeue", size: 11)
             currentDistance.frame = CGRect(x:17,y:20,width:66,height:24)
-            currentDistance.font = UIFont.systemFont(ofSize: 17)
+            currentDistance.font = UIFont.systemFont(ofSize: 14)
             currentDistance.sizeToFit()
             thisweekLabel.center.x = currentDistance.center.x
             thisweekLabel.center.y = 50
-            totalDistance.font = UIFont.systemFont(ofSize: 17)
+            totalDistance.font = UIFont.systemFont(ofSize: 14)
             totalDistance.sizeToFit()
             totalDistance.frame.origin.y = 65
             totalDistance.center.x = currentDistance.center.x
@@ -77,12 +86,12 @@ class RankingDetailViewController: UIViewController {
             barChart.frame = CGRect(x:60, y: 10, width:220,height:105)
         } else if (Display.typeIsLike == .iphone7plus) {
             currentDistance.frame = CGRect(x:30,y:30,width:90,height:29)
-            currentDistance.font = UIFont.systemFont(ofSize: 22)
+            currentDistance.font = UIFont.systemFont(ofSize: 18)
             currentDistance.sizeToFit()
             thisweekLabel.center.x = currentDistance.center.x
             thisweekLabel.center.y = 60
             thisweekLabel.font = UIFont.systemFont(ofSize: 11)
-            totalDistance.font = UIFont.systemFont(ofSize: 21)
+            totalDistance.font = UIFont.systemFont(ofSize: 18)
             totalDistance.frame.size.width = 90
             totalDistance.sizeToFit()
             totalDistance.frame.origin.y = 85
@@ -157,11 +166,87 @@ class RankingDetailViewController: UIViewController {
     }
     
     func updateUI() {
+        adjustAndDraw()
         avatar.setImage(displayAvatar, for: .normal)
         name.text = displayName
         signature.text = displaySignature
         ranking.text = displayRanking
         currentDistance.text = displayCurrentDistance
+        stopLoadingAnimation()
+    }
+    
+    func retrieveData() {
+        let today = Date()
+        let beginOfToday = calendar.startOfDay(for: today)
+        let beginOfTomorrow = calendar.startOfDay(for: calendar.date(byAdding: .day, value: 1, to: beginOfToday)!)
+        let endOfToday = calendar.date(byAdding: .second, value: -1, to: beginOfTomorrow)!
+        
+        let component = calendar.dateComponents([.weekOfYear, .day, .month,.year,.weekday], from: today)
+        dayOfWeek = component.weekday!
+        
+        for i in 1...component.weekday! {
+            let beginOfWeekDay = Int(calendar.date(byAdding: .day, value: -(component.weekday!-i), to: beginOfToday)!.timeIntervalSince1970)
+            let endOfWeekDay = Int(calendar.date(byAdding: .day, value: -(component.weekday!-i), to: endOfToday)!.timeIntervalSince1970)
+            var distanceOfTheDay = 0.0
+            
+            let query = AWSDynamoDBQueryExpression()
+            
+            query.expressionAttributeNames = ["#D":"date"]
+            query.expressionAttributeValues = [":userId":userId!,":begin":beginOfWeekDay,":end":endOfWeekDay]
+            query.keyConditionExpression = "userId = :userId AND #D BETWEEN :begin AND :end"
+            
+            objectMapper.query(AllTimeRun.classForCoder(), expression: query).continue(with: AWSExecutor.default(), with: {(task:AWSTask!)-> Any! in
+                if (task.error != nil) {
+                    print(task.error!)
+                }
+                if (task.exception != nil) {
+                    print(task.exception!)
+                }
+                if (task.result != nil) {
+                    DispatchQueue.main.async {
+                        let paginatedOutput = task.result!
+                        for item in paginatedOutput.items {
+                            if let run = item as? AllTimeRun {
+                                distanceOfTheDay += run._distance!.doubleValue
+                            }
+                        }
+                        self.data[i-1] = distanceOfTheDay
+                        self.dataUpdatedCount += 1
+                        if(self.dataUpdatedCount==component.weekday) {
+                            self.updateUI()
+                        }
+                    }
+                }
+                return nil
+            })
+        }
+        
+        objectMapper.load(User.classForCoder(), hashKey: userId!, rangeKey: nil).continue(with: AWSExecutor.default(), with: {(task:AWSTask!) -> Any! in
+            if (task.error != nil) {
+                print(task.error!)
+            }
+            if (task.exception != nil) {
+                print(task.exception!)
+            }
+            if (task.result != nil) {
+                let user = task.result as! User
+                DispatchQueue.main.async {
+                    self.totalDistance.text = String(format:"%.1f miles", Double(round(user._totalRunningDistance!.doubleValue*10)/10))
+                }
+            }
+            return nil
+        })
+
+    }
+    
+    func startLoadingAnimation() {
+        activityIndicator.startAnimating()
+        activityView.isHidden = false
+    }
+    
+    func stopLoadingAnimation() {
+        activityIndicator.stopAnimating()
+        activityView.isHidden = true
     }
     
     override func viewDidLayoutSubviews() {
@@ -169,23 +254,31 @@ class RankingDetailViewController: UIViewController {
         avatar.clipsToBounds = true
         avatar.layer.borderWidth = 2
         avatar.layer.borderColor = UIColor.white.cgColor
-        adjustAndDraw()
-        updateUI()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         UIView.animate(withDuration: 0.3, animations: {
             self.detailView.center.y += self.view.bounds.height
+        }, completion: {(completed:Bool) -> Void in
+            self.retrieveData()
         })
+        self.view.addSubview(activityView)
+        self.view.addSubview(activityIndicator)
+        activityView.center = self.view.center
+        activityView.backgroundColor = UIColor(red:0,green:0,blue:0,alpha:0.7)
+        activityView.layer.cornerRadius = 10
+        activityView.clipsToBounds = true
+        activityIndicator.center = self.view.center
+        startLoadingAnimation()
     }
-
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        data = [3.55, 4.29, 5.21, 2.13, 3.57, 3.56, 3.66]
+        avatar.imageView?.contentMode = .scaleAspectFill
         barChart.backgroundColor = Colors.myPinkBackground
         detailView.layer.cornerRadius = 10
         detailView.clipsToBounds = true
         detailView.center.y -= self.view.bounds.height
+        data = [Double](repeatElement(0, count: 7))
     }
 }

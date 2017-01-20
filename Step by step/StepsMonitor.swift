@@ -26,10 +26,23 @@ class StepsMonitor{
             if (error==nil) {
                 self.steps = Int(data!.numberOfSteps.intValue)
                 self.distance = Double(round((data!.distance!.doubleValue/1000)*10)/10)
-                self.calorie = Int(70*self.distance*1.036/1000)
+                self.calorie = Int(70*data!.distance!.doubleValue*1.036/1000)
                 self.lift = data!.floorsAscended!.intValue
                 NotificationCenter.default.post(name: Notification.Name(rawValue: "steps"), object: self)
             }   
+        })
+    }
+    
+    func refresh() {
+        pedometer.stopUpdates()
+        pedometer.startUpdates(from: Calendar.current.startOfDay(for: Date()), withHandler:{data, error in
+            if (error==nil) {
+                self.steps = Int(data!.numberOfSteps.intValue)
+                self.distance = Double(round((data!.distance!.doubleValue/1000)*10)/10)
+                self.calorie = Int(70*data!.distance!.doubleValue*1.036/1000)
+                self.lift = data!.floorsAscended!.intValue
+                NotificationCenter.default.post(name: Notification.Name(rawValue: "steps"), object: self)
+            }
         })
     }
     

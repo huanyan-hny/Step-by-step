@@ -8,42 +8,231 @@
 
 import UIKit
 import CoreData
+import AWSMobileHubHelper
+import AWSDynamoDB
+import AWSS3
 
 class RankingViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
+    enum rankingType {
+        case weekly
+        case monthly
+    }
     
+    @IBOutlet var starAvatars: [UIButton]!
     @IBOutlet var starDistances: [UILabel]!
     @IBOutlet var starSignitures: [UILabel]!
     @IBOutlet var starNames: [UILabel]!
-    @IBOutlet var starAvatars: [UIImageView]!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var weeklyButton: UIButton!
     @IBOutlet weak var monthlyButton: UIButton!
     @IBOutlet weak var slider: UIView!
     @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var activityView: UIView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
-    var selectedCell:RankingViewCell?
     
+
+    let manager = AWSS3TransferManager.default()
+    let objectMapper = AWSDynamoDBObjectMapper.default()
+    let calendar = Calendar.current
+    
+    var selectedAvatar:UIImage?
+    var selectedName:String?
+    var selectedSignature:String?
+    var selectedCurrentDistance:String?
+    var selectedRanking:String?
+    var selectedUserId:String?
     
     var rowHeight = CGFloat(75)
     var managedObjectContext:NSManagedObjectContext?
-    
+    var weeklyRankings = [WeeklyRanking]()
+    var monthlyRankings = [MonthlyRanking]()
+    var userNames = [String:String]()
+    var userSignatures = [String:String]()
+    var finishedLoading = false
+    var type = rankingType.weekly
+
     
     @IBAction func changeToWeekly(_ sender: UIButton) {
+        type = .weekly
+        disableSwitch()
+        refresh()
         UIView.animate(withDuration: 0.2, animations: {
             self.slider.center.x = self.weeklyButton.center.x
             self.weeklyButton.setTitleColor(UIColor(red:51.0/255.0, green:51.0/255.0, blue:51.0/255.0, alpha:1.0), for: .normal)
-            
             self.monthlyButton.setTitleColor(UIColor(red: 102.0/255.0, green: 102.0/255.0, blue: 102.0/255.0, alpha: 1.0), for: .normal)
         })
+        enableSwitch()
     }
     @IBAction func changeToMonthly(_ sender: UIButton) {
+        type = .monthly
+        disableSwitch()
+        refresh()
         UIView.animate(withDuration: 0.2, animations: {
             self.slider.center.x = self.monthlyButton.center.x
             self.monthlyButton.setTitleColor(UIColor(red:51.0/255.0, green:51.0/255.0, blue:51.0/255.0, alpha:1.0), for: .normal)
             
             self.weeklyButton.setTitleColor(UIColor(red: 102.0/255.0, green: 102.0/255.0, blue: 102.0/255.0, alpha: 1.0), for: .normal)
         })
+        enableSwitch()
+    }
+    
+    @IBAction func displayStarDetail(_ sender: UIButton) {
+        let index = starAvatars.startIndex.distance(to: starAvatars.index(of: sender)!) as Int
+        selectedAvatar = sender.imageView?.image
+        selectedName = starNames[index].text
+        selectedSignature = starSignitures[index].text
+        selectedCurrentDistance = starDistances[index].text
+        selectedRanking = "\(index+1)"
+        let cell = tableView.cellForRow(at: [0,index]) as! RankingViewCell
+        selectedUserId = cell.userId
+        performSegue(withIdentifier: "showDetail", sender: self)
+
+    }
+    
+    func disableSwitch() {
+        DispatchQueue.main.async {
+            self.weeklyButton.isEnabled = false
+            self.monthlyButton.isEnabled = false
+        }
+    }
+    
+    func enableSwitch() {
+        DispatchQueue.main.async {
+            self.weeklyButton.isEnabled = true
+            self.monthlyButton.isEnabled = true
+        }
+    }
+    
+    func retrieveWeeklyRankingData() {
+        print("Retrieve ranking data")
+        disableSwitch()
+        let query = AWSDynamoDBQueryExpression()
+        let component = calendar.dateComponents([.weekOfYear, .day, .month,.year,.weekday], from: Date())
+        let weekNumString = String(component.year!) + String(component.weekOfYear!)
+        let weekNum = NSNumber.init(value: Int(weekNumString)!)
+        
+        query.expressionAttributeValues = [":weekNum":weekNum]
+        query.expressionAttributeNames = ["#W":"week"]
+        query.keyConditionExpression = "#W = :weekNum"
+        
+        objectMapper.query(WeeklyRanking.classForCoder(), expression: query).continue(with: AWSExecutor.default(), with: {(task:AWSTask!)-> Any! in
+            if (task.error != nil) {
+                print(task.error!)
+            }
+            if (task.exception != nil) {
+                print(task.exception!)
+            }
+            if (task.result != nil) {
+                let paginatedOutput = task.result!
+                for item in paginatedOutput.items {
+                    if let rankItem = item as? WeeklyRanking {
+                        if rankItem._appear!.boolValue {
+                            self.weeklyRankings.append(rankItem)
+                            print("Retrived rank item")
+                        }
+                    }
+                }
+            }
+            print("Finished retrieving ranking data")
+            self.weeklyRankings.sort(by: {$0._distance!.doubleValue>$1._distance!.doubleValue})
+            DispatchQueue.main.async {
+                self.finishedLoading = true
+                self.tableView.reloadData()
+                self.enableSwitch()
+                self.activityIndicator.stopAnimating()
+                self.activityView.isHidden = true
+            }
+            return nil
+        })
+        
+    }
+    
+    func retrieveMonthlyRankingData() {
+        print("Retrieve ranking data")
+        disableSwitch()
+        let query = AWSDynamoDBQueryExpression()
+        let component = calendar.dateComponents([.weekOfYear, .day, .month,.year,.weekday], from: Date())
+        let monthNumString = String(component.year!) + String(component.month!)
+        let monthNum = NSNumber.init(value: Int(monthNumString)!)
+        
+        query.expressionAttributeNames = ["#M":"month"]
+        query.expressionAttributeValues = [":monthNum":monthNum]
+        query.keyConditionExpression = "#M = :monthNum"
+        
+        objectMapper.query(MonthlyRanking.classForCoder(), expression: query).continue(with: AWSExecutor.default(), with: {(task:AWSTask!)-> Any! in
+            if (task.error != nil) {
+                print(task.error!)
+            }
+            if (task.exception != nil) {
+                print(task.exception!)
+            }
+            if (task.result != nil) {
+                let paginatedOutput = task.result!
+                for item in paginatedOutput.items {
+                    if let rankItem = item as? MonthlyRanking {
+                        if rankItem._appear!.boolValue {
+                            self.monthlyRankings.append(rankItem)
+                            print("Retrived rank item")
+                        }
+                    }
+                }
+            }
+            
+            print("Finished retrieving ranking data")
+            self.monthlyRankings.sort(by: {$0._distance!.doubleValue>$1._distance!.doubleValue})
+            DispatchQueue.main.async {
+                self.finishedLoading = true
+                self.tableView.reloadData()
+                self.enableSwitch()
+                self.activityIndicator.stopAnimating()
+                self.activityView.isHidden = true
+            }
+            return nil
+        })
+
+    }
+    
+    func retrieveUserData() {
+        print("Retrieve user data")
+        disableSwitch()
+        let scanExpression = AWSDynamoDBScanExpression()
+        objectMapper.scan(User.classForCoder(), expression: scanExpression).continue(with: AWSExecutor.default(), with: {(task:AWSTask!)-> Any! in
+            if (task.error != nil) {
+                print(task.error!)
+            }
+            if (task.exception != nil) {
+                print(task.exception!)
+            }
+            if (task.result != nil) {
+                let paginatedOutput = task.result!
+                for item in paginatedOutput.items {
+                    if let userItem = item as? User {
+                        self.userNames[userItem._userId!] = userItem._name
+                        self.userSignatures[userItem._userId!] = userItem._signature
+                        print("Retrived data for " + userItem._userId!)
+                    }
+                }
+            }
+            print("Finished retrieving user data")
+            if (self.type == .weekly){
+                self.retrieveWeeklyRankingData()
+            } else {
+                self.retrieveMonthlyRankingData()
+            }
+            return nil
+        })
+    }
+    
+    func refresh() {
+        self.activityIndicator.startAnimating()
+        self.activityView.isHidden = false
+        clearTempFolder()
+        finishedLoading = false
+        weeklyRankings.removeAll()
+        monthlyRankings.removeAll()
+        retrieveUserData()
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -51,53 +240,188 @@ class RankingViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5;
+        if (type == .weekly) {
+            return weeklyRankings.count;
+        } else {
+            return monthlyRankings.count
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let rankCell = cell as! RankingViewCell
+        
+        let path = NSTemporaryDirectory().appending(rankCell.userId!)
+        let url = URL(fileURLWithPath: path)
+        let avatarExists = (try? url.checkResourceIsReachable()) ?? false
+        if (!avatarExists) {
+            DispatchQueue.global().async {
+                let path = NSTemporaryDirectory().appending(rankCell.userId!)
+                let url = URL(fileURLWithPath: path)
+                let downloadRequest = AWSS3TransferManagerDownloadRequest()
+                downloadRequest?.bucket = "stepbystep-userfiles-mobilehub-138898687"
+                downloadRequest?.key = "public/avatars/" + rankCell.userId!
+                downloadRequest?.downloadingFileURL = url
+                self.manager?.download(downloadRequest).continue(with: AWSExecutor.default(), with: {(task:AWSTask!) -> Any! in
+                    if (task.error != nil) {
+                        print(task.error!)
+                    }
+                    
+                    if (task.exception != nil) {
+                        print (task.exception!)
+                    }
+                    
+                    if (task.result != nil) {
+                        print("Retrieved avatar for " + self.userNames[rankCell.userId!]!)
+                        let avatarPath = NSTemporaryDirectory().appending(rankCell.userId!)
+                        let avatarUrl = URL(fileURLWithPath: avatarPath)
+                        DispatchQueue.main.async {
+                            rankCell.avatar.image = UIImage(contentsOfFile: avatarUrl.path)
+                            if (indexPath.row<3) {
+                                self.starAvatars[indexPath.row].setImage(UIImage(contentsOfFile: avatarUrl.path), for: .normal)
+                            }
+                        }
+                    }
+                    return nil
+                })
+            }
+            
+        }
+    }
+    
+    func configureWeeklyRankingCell(cell:RankingViewCell, rank:Int) {
+        cell.ranking.text = "\(rank+1)"
+        cell.distance.text = String(format:"%.1f miles", Double(round(weeklyRankings[rank]._distance!.doubleValue*10)/10))
+        cell.name.text = userNames[weeklyRankings[rank]._userId!]
+        cell.signature.text = userSignatures[weeklyRankings[rank]._userId!]
+        cell.userId = weeklyRankings[rank]._userId
+        if (rank<3) {
+            starNames[rank].text = userNames[weeklyRankings[rank]._userId!]
+            starSignitures[rank].text = userSignatures[weeklyRankings[rank]._userId!]
+            starDistances[rank].text = cell.distance.text
+        }
+        
+        if (weeklyRankings[rank]._userId == UserDefaults.standard.string(forKey: "userID")) {
+            if (rank+1<=20) {
+                updateRankingAchievement(id: 6)
+            }
+            
+            if (rank+1<=10) {
+                updateRankingAchievement(id: 7)
+            }
+            
+            if (rank+1<=3) {
+                updateRankingAchievement(id: 8)
+            }
+            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Ranking")
+            fetchRequest.predicate = NSPredicate(format: "week = %@", weeklyRankings[rank]._week!)
+            do {
+                let records = try managedObjectContext!.fetch(fetchRequest) as! [Ranking]
+                if (records.isEmpty) {
+                    let component = calendar.dateComponents([.weekOfYear, .day, .month,.year,.weekday], from:Date())
+                    let beginOfWeek = calendar.date(byAdding: .day, value: 1-component.weekday!, to: Date())!
+                    let endOfWeek = calendar.date(byAdding: .day, value: 7-component.weekday!, to: Date())!
+                    let savedRanking = NSEntityDescription.insertNewObject(forEntityName: "Ranking", into:managedObjectContext!) as! Ranking
+                    savedRanking.rank = rank+1 as NSNumber?
+                    savedRanking.userID = UserDefaults.standard.string(forKey: "userID")
+                    savedRanking.type = "Weekly"
+                    savedRanking.startDate = beginOfWeek
+                    savedRanking.endDate = endOfWeek
+                    savedRanking.week = weeklyRankings[rank]._week!
+                    savedRanking.totalDistance = weeklyRankings[rank]._distance!
+                    
+                    do{ try managedObjectContext!.save()} catch _ { print("Could not save rank!")}
+                } else {
+                    let record = records.first!
+                    record.rank = rank+1 as NSNumber?
+                    record.totalDistance = weeklyRankings[rank]._distance!
+                    do{ try managedObjectContext!.save()} catch _ { print("Could not save rank!")}
+                }
+                
+            } catch _ {}
+            
+        }
+
+    }
+    
+    func configureMonthlyRankingCell(cell:RankingViewCell, rank:Int) {
+        cell.ranking.text = "\(rank+1)"
+        cell.distance.text = String(format:"%.1f miles", Double(round(monthlyRankings[rank]._distance!.doubleValue*10)/10))
+        cell.name.text = userNames[monthlyRankings[rank]._userId!]
+        cell.signature.text = userSignatures[monthlyRankings[rank]._userId!]
+        cell.userId = monthlyRankings[rank]._userId
+        if (rank<3) {
+            starNames[rank].text = userNames[monthlyRankings[rank]._userId!]
+            starSignitures[rank].text = userSignatures[monthlyRankings[rank]._userId!]
+            starDistances[rank].text = cell.distance.text
+        }
+        
+        if (monthlyRankings[rank]._userId == UserDefaults.standard.string(forKey: "userID")) {
+            if (rank+1<=20) {
+                updateRankingAchievement(id: 6)
+            }
+            
+            if (rank+1<=10) {
+                updateRankingAchievement(id: 7)
+            }
+            
+            if (rank+1<=3) {
+                updateRankingAchievement(id: 8)
+            }
+            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Ranking")
+            fetchRequest.predicate = NSPredicate(format: "month = %@", monthlyRankings[rank]._month!)
+            do {
+                let records = try managedObjectContext!.fetch(fetchRequest) as! [Ranking]
+                if (records.isEmpty) {
+                   
+                    let beginOfMonth = calendar.date(from: Calendar.current.dateComponents([.year, .month], from: Calendar.current.startOfDay(for: Date())))!
+                    
+                    let endOfMonth = calendar.date(byAdding: DateComponents(month: 1, day: -1), to: beginOfMonth)!
+
+                    let savedRanking = NSEntityDescription.insertNewObject(forEntityName: "Ranking", into:managedObjectContext!) as! Ranking
+                    savedRanking.rank = rank+1 as NSNumber?
+                    savedRanking.userID = UserDefaults.standard.string(forKey: "userID")
+                    savedRanking.type = "Monthly"
+                    savedRanking.startDate = beginOfMonth
+                    savedRanking.endDate = endOfMonth
+                    savedRanking.month = monthlyRankings[rank]._month!
+                    savedRanking.totalDistance = monthlyRankings[rank]._distance!
+                    do{ try managedObjectContext!.save()} catch _ { print("Could not save rank!")}
+                } else {
+                    let record = records.first!
+                    record.rank = rank+1 as NSNumber?
+                    record.totalDistance = monthlyRankings[rank]._distance!
+                    do{ try managedObjectContext!.save()} catch _ { print("Could not save rank!")}
+                }
+                
+            } catch _ {}
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "RankingViewCell", for: indexPath) as! RankingViewCell
         
-        
-        if(indexPath.row==0) {
-            cell.name.text = "陈垚"
-            cell.distance.text = "16 miles"
-            cell.ranking.text = "1"
-            cell.avatar.image = #imageLiteral(resourceName: "chenyao")
-            cell.signature.text = "make things happen."
-        } else if(indexPath.row==1) {
-            cell.name.text = "小胖兔"
-            cell.distance.text = "15 miles"
-            cell.ranking.text = "2"
-            cell.avatar.image = #imageLiteral(resourceName: "shezhang")
-            cell.signature.text = "我虽然胖，但我吃得多啊"
-        } else if(indexPath.row==2) {
-            cell.name.text = "欢言"
-            cell.distance.text = "7 miles"
-            cell.ranking.text = "3"
-            cell.avatar.image = #imageLiteral(resourceName: "huanyan")
-            cell.signature.text = "Maplestory"
-        } else if(indexPath.row==3) {
-            cell.name.text = "站在树上唱rap"
-            cell.distance.text = "13 miles"
-            cell.ranking.text = "4"
-            cell.avatar.image = #imageLiteral(resourceName: "laoshezhang")
-            cell.signature.text = "生活不止眼前的苟且，还有诗和远方"
-        } else {
-            cell.name.text = "小狗君"
-            cell.distance.text = "8 miles"
-            cell.ranking.text = "5"
-            cell.avatar.image = #imageLiteral(resourceName: "xiaogou")
-            cell.signature.text = "Had I not seen the sun"
+        if (finishedLoading) {
+            if (type == .weekly) {
+                configureWeeklyRankingCell(cell: cell, rank: indexPath.row)
+            } else {
+                configureMonthlyRankingCell(cell: cell, rank: indexPath.row)
+            }
         }
-        
-        cell.avatar.layer.cornerRadius = cell.avatar.frame.size.width/2
-        cell.avatar.clipsToBounds = true
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectedCell = tableView.cellForRow(at: indexPath) as? RankingViewCell
+        
+        let selectedCell = tableView.cellForRow(at: indexPath) as? RankingViewCell
+        
+        selectedAvatar = selectedCell?.avatar.image
+        selectedName = selectedCell?.name.text
+        selectedSignature = selectedCell?.signature.text
+        selectedCurrentDistance = selectedCell?.distance.text
+        selectedRanking = selectedCell?.ranking.text
+        selectedUserId = selectedCell?.userId
+        
         performSegue(withIdentifier: "showDetail", sender: self)
         self.tableView.deselectRow(at: indexPath, animated: true)
     }
@@ -119,16 +443,17 @@ class RankingViewController: UIViewController, UITableViewDelegate, UITableViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "Leaderboard";
-        
         self.navigationController!.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
         self.navigationController?.navigationBar.setValue(true, forKey: "hidesShadow")
         tableView.delegate = self
         slider.layer.cornerRadius = 2
+        
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .full
         dateFormatter.dateFormat = "MMMM d, yyyy - EEEE"
         dateFormatter.locale = Locale(identifier: "en_US")
         dateLabel.text = dateFormatter.string(from: Date())
+        
         if (Display.typeIsLike == .iphone5) {
             rowHeight = 64
             for starSigniture in starSignitures {
@@ -138,18 +463,40 @@ class RankingViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         for starAvatar in starAvatars {
             starAvatar.layer.borderColor = UIColor.white.cgColor
-            starAvatar.layer.borderWidth = 3.0
+            starAvatar.imageView?.contentMode = .scaleAspectFill
+            if Display.typeIsLike == .iphone5 {
+                starAvatar.layer.borderWidth = 2.0
+            } else {
+                starAvatar.layer.borderWidth = 3.0
+            }
         }
+        
+        activityView.layer.cornerRadius = 10
+        refresh()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destination = segue.destination as? RankingDetailViewController {
-            destination.displayAvatar = selectedCell?.avatar.image
-            destination.displayName = selectedCell?.name.text
-            destination.displayCurrentDistance = selectedCell?.distance.text
-            destination.displayRanking = selectedCell?.ranking.text
-            destination.displaySignature = selectedCell?.signature.text
+            destination.displayAvatar = selectedAvatar
+            destination.displayName = selectedName
+            destination.displayCurrentDistance = selectedCurrentDistance
+            destination.displayRanking = selectedRanking
+            destination.displaySignature = selectedSignature
+            destination.userId = selectedUserId
         }
     }
-    
+        
+    func clearTempFolder() {
+        let fileManager = FileManager.default
+        let tempFolderPath = NSTemporaryDirectory()
+        
+        do {
+            let filePaths = try fileManager.contentsOfDirectory(atPath: tempFolderPath)
+            for filePath in filePaths {
+                try fileManager.removeItem(atPath: NSTemporaryDirectory() + filePath)
+            }
+        } catch let error as NSError {
+            print("Could not clear temp folder: \(error.debugDescription)")
+        }
+    }
 }

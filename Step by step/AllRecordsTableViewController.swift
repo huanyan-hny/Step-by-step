@@ -72,6 +72,7 @@ class AllRecordsTableViewController: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        do{ try fetchResultsController?.performFetch()} catch _ { print("Could not fetch ranking!")}
         updateRecords()
     }
     

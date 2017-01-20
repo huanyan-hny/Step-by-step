@@ -98,7 +98,7 @@ class InRunningViewController: UIViewController, MKMapViewDelegate, CLLocationMa
         if !paused {
             print(seconds)
             seconds += 1
-            let displayDistance = String(format:"%.2f", Double(round(distance*100)/100))
+            let displayDistance = String(format:"%.1f", Double(round(distance*10)/10))
             let displayTime = Time.secondsFormatted(seconds: seconds)
             
             timeLabel.text = displayTime
@@ -137,7 +137,6 @@ class InRunningViewController: UIViewController, MKMapViewDelegate, CLLocationMa
         mapView.setRegion(region, animated: true)
         
         if let accuracy = locationManager.location?.horizontalAccuracy {
-            print(accuracy)
             if (accuracy<0) {
                 gpsStrengthIcon.image = #imageLiteral(resourceName: "signal_none")
                 gpsStrengthText.text = "No GPS"

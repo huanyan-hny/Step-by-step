@@ -7,6 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		050633531E272FE4001DA272 /* Sdk in Resources */ = {isa = PBXBuildFile; fileRef = 050633521E272FE4001DA272 /* Sdk */; };
+		050633571E27305C001DA272 /* AWSCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 050633541E27305C001DA272 /* AWSCore.framework */; };
+		050633581E27305C001DA272 /* AWSCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 050633541E27305C001DA272 /* AWSCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		050633591E27305C001DA272 /* AWSDynamoDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 050633551E27305C001DA272 /* AWSDynamoDB.framework */; };
+		0506335A1E27305C001DA272 /* AWSDynamoDB.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 050633551E27305C001DA272 /* AWSDynamoDB.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0506335B1E27305C001DA272 /* AWSS3.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 050633561E27305C001DA272 /* AWSS3.framework */; };
+		0506335C1E27305C001DA272 /* AWSS3.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 050633561E27305C001DA272 /* AWSS3.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0506336C1E2732E4001DA272 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 0539F9921E2710F700C1FB19 /* libz.tbd */; };
+		0506336D1E2732F1001DA272 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 0539F9901E2710EC00C1FB19 /* libsqlite3.tbd */; };
+		050633771E27598C001DA272 /* AWSMobileHubHelper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 050633701E27598C001DA272 /* AWSMobileHubHelper.framework */; };
+		050633781E27598C001DA272 /* AllTimeRun.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050633731E27598C001DA272 /* AllTimeRun.swift */; };
+		050633791E27598C001DA272 /* MonthlyRanking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050633741E27598C001DA272 /* MonthlyRanking.swift */; };
+		0506337A1E27598C001DA272 /* WeeklyRanking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050633751E27598C001DA272 /* WeeklyRanking.swift */; };
 		0517B3351E23309700D8DDCB /* SettingTextFieldController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0517B3341E23309700D8DDCB /* SettingTextFieldController.swift */; };
 		0517B3371E2330FD00D8DDCB /* SecondarySettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0517B3361E2330FD00D8DDCB /* SecondarySettingViewController.swift */; };
 		051AC0A61D7A7BDA00D6C82F /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051AC0A51D7A7BDA00D6C82F /* ActivityViewController.swift */; };
@@ -16,7 +29,6 @@
 		052E9F801C00515600BBF246 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052E9F7F1C00515600BBF246 /* BaseViewController.swift */; };
 		052EB0CD1E1317F100F17B11 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052EB0CC1E1317F100F17B11 /* SettingViewController.swift */; };
 		0539F9951E2714EA00C1FB19 /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0539F9941E2714EA00C1FB19 /* Test.swift */; };
-		0539F9A41E271F0700C1FB19 /* Sdk in Resources */ = {isa = PBXBuildFile; fileRef = 0539F9A31E271F0700C1FB19 /* Sdk */; };
 		05441A271BE07BEE00A8ECA4 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 05441A251BE07BEE00A8ECA4 /* Model.xcdatamodeld */; };
 		05441A2C1BE089ED00A8ECA4 /* Location+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05441A281BE089ED00A8ECA4 /* Location+CoreDataProperties.swift */; };
 		05441A2D1BE089ED00A8ECA4 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05441A291BE089ED00A8ECA4 /* Location.swift */; };
@@ -51,10 +63,20 @@
 		058C8AC91E14B80700140D71 /* Pedometer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058C8AC81E14B80600140D71 /* Pedometer.swift */; };
 		0596360E1B0CCD81007BCC22 /* StepsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0596360D1B0CCD81007BCC22 /* StepsViewController.swift */; };
 		059636141B0CD725007BCC22 /* StepsMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059636131B0CD725007BCC22 /* StepsMonitor.swift */; };
+		05C00C731E308C51000675B8 /* NBUIKitMainThreadGuard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C00C721E308C51000675B8 /* NBUIKitMainThreadGuard.swift */; };
 		05C364631BDB2F31008D1712 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05C364611BDB2F31008D1712 /* LaunchScreen.xib */; };
 		05DAC7311BDF6E1C008F10C5 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05DAC7301BDF6E1C008F10C5 /* MapKit.framework */; };
 		05DEFACA1C0557CC00EE5A5F /* InRunningViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DEFAC91C0557CC00EE5A5F /* InRunningViewController.swift */; };
 		05E26C951E20006600D1E22F /* Display.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E26C941E20006600D1E22F /* Display.swift */; };
+		05E781CF1E2D86C00090E410 /* LoginViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E781C81E2D86C00090E410 /* LoginViewControllerExtensions.swift */; };
+		05E781D71E2D931B0090E410 /* AWSCognito.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05E781D61E2D931B0090E410 /* AWSCognito.framework */; };
+		05E781D81E2D931C0090E410 /* AWSCognito.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 05E781D61E2D931B0090E410 /* AWSCognito.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		05E781DA1E2D93B50090E410 /* AWSCognitoIdentityProvider.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05E781D91E2D93B50090E410 /* AWSCognitoIdentityProvider.framework */; };
+		05E781DB1E2D93B50090E410 /* AWSCognitoIdentityProvider.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 05E781D91E2D93B50090E410 /* AWSCognitoIdentityProvider.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		05E781E01E2DC8D50090E410 /* AWSConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E781DE1E2DC8D50090E410 /* AWSConfiguration.swift */; };
+		05E781E11E2DC8D50090E410 /* AWSMobileClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E781DF1E2DC8D50090E410 /* AWSMobileClient.swift */; };
+		05E88DC91E2BD9B5005D40A3 /* Extentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E88DC81E2BD9B5005D40A3 /* Extentions.swift */; };
+		05E88DCB1E2BF82A005D40A3 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E88DCA1E2BF82A005D40A3 /* User.swift */; };
 		05FEC9D41BDE83C50093DF7D /* RankingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FEC9D31BDE83C50093DF7D /* RankingViewController.swift */; };
 		988262BAF10AC5F8FF234B54 /* Pods_Step_by_step.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72A64F0ED2346E99320C8C04 /* Pods_Step_by_step.framework */; };
 /* End PBXBuildFile section */
@@ -69,7 +91,33 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		0506335D1E27305C001DA272 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				0506335A1E27305C001DA272 /* AWSDynamoDB.framework in Embed Frameworks */,
+				050633581E27305C001DA272 /* AWSCore.framework in Embed Frameworks */,
+				05E781D81E2D931C0090E410 /* AWSCognito.framework in Embed Frameworks */,
+				05E781DB1E2D93B50090E410 /* AWSCognitoIdentityProvider.framework in Embed Frameworks */,
+				0506335C1E27305C001DA272 /* AWSS3.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		050633521E272FE4001DA272 /* Sdk */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Sdk; sourceTree = "<group>"; };
+		050633541E27305C001DA272 /* AWSCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSCore.framework; path = "Step by step/Sdk/Aws/AWSCore.framework"; sourceTree = "<group>"; };
+		050633551E27305C001DA272 /* AWSDynamoDB.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSDynamoDB.framework; path = "Step by step/Sdk/Aws/AWSDynamoDB.framework"; sourceTree = "<group>"; };
+		050633561E27305C001DA272 /* AWSS3.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSS3.framework; path = "Step by step/Sdk/Aws/AWSS3.framework"; sourceTree = "<group>"; };
+		050633701E27598C001DA272 /* AWSMobileHubHelper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AWSMobileHubHelper.framework; sourceTree = "<group>"; };
+		050633731E27598C001DA272 /* AllTimeRun.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllTimeRun.swift; sourceTree = "<group>"; };
+		050633741E27598C001DA272 /* MonthlyRanking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonthlyRanking.swift; sourceTree = "<group>"; };
+		050633751E27598C001DA272 /* WeeklyRanking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeeklyRanking.swift; sourceTree = "<group>"; };
 		0517B3341E23309700D8DDCB /* SettingTextFieldController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingTextFieldController.swift; sourceTree = "<group>"; };
 		0517B3361E2330FD00D8DDCB /* SecondarySettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondarySettingViewController.swift; sourceTree = "<group>"; };
 		051AC0A51D7A7BDA00D6C82F /* ActivityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
@@ -81,7 +129,6 @@
 		0539F9901E2710EC00C1FB19 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		0539F9921E2710F700C1FB19 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		0539F9941E2714EA00C1FB19 /* Test.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
-		0539F9A31E271F0700C1FB19 /* Sdk */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Sdk; sourceTree = "<group>"; };
 		05441A261BE07BEE00A8ECA4 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		05441A281BE089ED00A8ECA4 /* Location+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Location+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		05441A291BE089ED00A8ECA4 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
@@ -116,15 +163,23 @@
 		057EA67B1E21F4C500064BFD /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		057F3FA41C0C96D6001BEA91 /* ActivityTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityTableViewCell.swift; sourceTree = "<group>"; };
 		058483921C0C1674008AE503 /* AllActivitiesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllActivitiesViewController.swift; sourceTree = "<group>"; };
-		0586A8231E171D31005CC238 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		0586A8231E171D31005CC238 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = ../LoginViewController.swift; sourceTree = "<group>"; };
 		058C8AC81E14B80600140D71 /* Pedometer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pedometer.swift; sourceTree = "<group>"; };
 		0596360D1B0CCD81007BCC22 /* StepsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepsViewController.swift; sourceTree = "<group>"; };
 		059636131B0CD725007BCC22 /* StepsMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = StepsMonitor.swift; sourceTree = "<group>"; };
+		05C00C721E308C51000675B8 /* NBUIKitMainThreadGuard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NBUIKitMainThreadGuard.swift; sourceTree = "<group>"; };
 		05C0966C1E21854700607379 /* Step by step-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Step by step-Bridging-Header.h"; sourceTree = "<group>"; };
 		05C364621BDB2F31008D1712 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		05DAC7301BDF6E1C008F10C5 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		05DEFAC91C0557CC00EE5A5F /* InRunningViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InRunningViewController.swift; sourceTree = "<group>"; };
 		05E26C941E20006600D1E22F /* Display.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Display.swift; sourceTree = "<group>"; };
+		05E781C81E2D86C00090E410 /* LoginViewControllerExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewControllerExtensions.swift; sourceTree = "<group>"; };
+		05E781D61E2D931B0090E410 /* AWSCognito.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSCognito.framework; path = "Step by step/Sdk/Aws/extras/AWSCognito.framework"; sourceTree = "<group>"; };
+		05E781D91E2D93B50090E410 /* AWSCognitoIdentityProvider.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSCognitoIdentityProvider.framework; path = "Step by step/Sdk/Aws/AWSCognitoIdentityProvider.framework"; sourceTree = "<group>"; };
+		05E781DE1E2DC8D50090E410 /* AWSConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AWSConfiguration.swift; sourceTree = "<group>"; };
+		05E781DF1E2DC8D50090E410 /* AWSMobileClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AWSMobileClient.swift; sourceTree = "<group>"; };
+		05E88DC81E2BD9B5005D40A3 /* Extentions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extentions.swift; sourceTree = "<group>"; };
+		05E88DCA1E2BF82A005D40A3 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		05FEC9D31BDE83C50093DF7D /* RankingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RankingViewController.swift; sourceTree = "<group>"; };
 		6115B23D8EB24AE7BEAFEA10 /* Pods-Step by step.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Step by step.release.xcconfig"; path = "Pods/Target Support Files/Pods-Step by step/Pods-Step by step.release.xcconfig"; sourceTree = "<group>"; };
 		72A64F0ED2346E99320C8C04 /* Pods_Step_by_step.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Step_by_step.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -136,9 +191,17 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0506336C1E2732E4001DA272 /* libz.tbd in Frameworks */,
+				0506336D1E2732F1001DA272 /* libsqlite3.tbd in Frameworks */,
 				052E9F7E1BFF222D00BBF246 /* CoreLocation.framework in Frameworks */,
+				05E781DA1E2D93B50090E410 /* AWSCognitoIdentityProvider.framework in Frameworks */,
+				050633571E27305C001DA272 /* AWSCore.framework in Frameworks */,
+				05E781D71E2D931B0090E410 /* AWSCognito.framework in Frameworks */,
+				0506335B1E27305C001DA272 /* AWSS3.framework in Frameworks */,
 				05DAC7311BDF6E1C008F10C5 /* MapKit.framework in Frameworks */,
 				988262BAF10AC5F8FF234B54 /* Pods_Step_by_step.framework in Frameworks */,
+				050633591E27305C001DA272 /* AWSDynamoDB.framework in Frameworks */,
+				050633771E27598C001DA272 /* AWSMobileHubHelper.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -152,17 +215,44 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		053B3CFD1E17375800ABC373 /* Login */ = {
+		0506336E1E27598C001DA272 /* AmazonAws */ = {
 			isa = PBXGroup;
 			children = (
-				0586A8231E171D31005CC238 /* LoginViewController.swift */,
+				05E781DE1E2DC8D50090E410 /* AWSConfiguration.swift */,
+				05E781DF1E2DC8D50090E410 /* AWSMobileClient.swift */,
+				050633701E27598C001DA272 /* AWSMobileHubHelper.framework */,
+				050633711E27598C001DA272 /* Models */,
 			);
-			name = Login;
+			path = AmazonAws;
+			sourceTree = "<group>";
+		};
+		050633711E27598C001DA272 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				050633721E27598C001DA272 /* NoSQL */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		050633721E27598C001DA272 /* NoSQL */ = {
+			isa = PBXGroup;
+			children = (
+				050633731E27598C001DA272 /* AllTimeRun.swift */,
+				050633741E27598C001DA272 /* MonthlyRanking.swift */,
+				05E88DCA1E2BF82A005D40A3 /* User.swift */,
+				050633751E27598C001DA272 /* WeeklyRanking.swift */,
+			);
+			path = NoSQL;
 			sourceTree = "<group>";
 		};
 		0555EA3F1AE210CB00E127C8 = {
 			isa = PBXGroup;
 			children = (
+				05E781D91E2D93B50090E410 /* AWSCognitoIdentityProvider.framework */,
+				05E781D61E2D931B0090E410 /* AWSCognito.framework */,
+				050633541E27305C001DA272 /* AWSCore.framework */,
+				050633551E27305C001DA272 /* AWSDynamoDB.framework */,
+				050633561E27305C001DA272 /* AWSS3.framework */,
 				052E9F7D1BFF222D00BBF246 /* CoreLocation.framework */,
 				05DAC7301BDF6E1C008F10C5 /* MapKit.framework */,
 				0555EA4A1AE210CB00E127C8 /* Step by step */,
@@ -199,9 +289,11 @@
 				0517B3341E23309700D8DDCB /* SettingTextFieldController.swift */,
 				0517B3361E2330FD00D8DDCB /* SecondarySettingViewController.swift */,
 				0555EA531AE210CB00E127C8 /* Main.storyboard */,
-				0539F9A31E271F0700C1FB19 /* Sdk */,
+				05C00C721E308C51000675B8 /* NBUIKitMainThreadGuard.swift */,
+				05E781C71E2D86C00090E410 /* Login */,
+				0506336E1E27598C001DA272 /* AmazonAws */,
+				050633521E272FE4001DA272 /* Sdk */,
 				056FA8A71E2437B400089132 /* Helper */,
-				053B3CFD1E17375800ABC373 /* Login */,
 				05DEFAD01C05B53000EE5A5F /* Running */,
 				055E7BFC1E1B51D600356F29 /* Ranking */,
 				055E7C031E1B671800356F29 /* Achievement */,
@@ -271,6 +363,7 @@
 		056FA8A71E2437B400089132 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				05E88DC81E2BD9B5005D40A3 /* Extentions.swift */,
 				05E26C941E20006600D1E22F /* Display.swift */,
 				057EA67B1E21F4C500064BFD /* Colors.swift */,
 				059636131B0CD725007BCC22 /* StepsMonitor.swift */,
@@ -310,6 +403,16 @@
 			name = Running;
 			sourceTree = "<group>";
 		};
+		05E781C71E2D86C00090E410 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				0586A8231E171D31005CC238 /* LoginViewController.swift */,
+				05E781C81E2D86C00090E410 /* LoginViewControllerExtensions.swift */,
+			);
+			name = Login;
+			path = UserPools;
+			sourceTree = "<group>";
+		};
 		487E18CB53FF71ACC70D4507 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -342,6 +445,8 @@
 				0555EA461AE210CB00E127C8 /* Resources */,
 				B3E42A3A56AC517A913FCD9E /* [CP] Embed Pods Frameworks */,
 				8C9B8B168BE7BF45A4079451 /* [CP] Copy Pods Resources */,
+				0506335D1E27305C001DA272 /* Embed Frameworks */,
+				0506335E1E273114001DA272 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -428,7 +533,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				05269AF01DFBD6A000B2A600 /* Images.xcassets in Resources */,
-				0539F9A41E271F0700C1FB19 /* Sdk in Resources */,
+				050633531E272FE4001DA272 /* Sdk in Resources */,
 				0555EA551AE210CB00E127C8 /* Main.storyboard in Resources */,
 				05C364631BDB2F31008D1712 /* LaunchScreen.xib in Resources */,
 			);
@@ -444,6 +549,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		0506335E1E273114001DA272 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "bash \"${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSCore.framework/strip-frameworks.sh\"";
+		};
 		8C9B8B168BE7BF45A4079451 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -497,6 +615,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				057061F01E1EFE98001AE518 /* PauseLocation+CoreDataProperties.swift in Sources */,
+				050633791E27598C001DA272 /* MonthlyRanking.swift in Sources */,
 				0572A3C41C0AF846004A56C0 /* MeViewController.swift in Sources */,
 				0555EA521AE210CB00E127C8 /* RunningViewController.swift in Sources */,
 				057F3FA51C0C96D6001BEA91 /* ActivityTableViewCell.swift in Sources */,
@@ -511,24 +630,32 @@
 				0539F9951E2714EA00C1FB19 /* Test.swift in Sources */,
 				05E26C951E20006600D1E22F /* Display.swift in Sources */,
 				056FA8AB1E247B0900089132 /* Time.swift in Sources */,
+				050633781E27598C001DA272 /* AllTimeRun.swift in Sources */,
 				0517B3371E2330FD00D8DDCB /* SecondarySettingViewController.swift in Sources */,
 				05441A2E1BE089ED00A8ECA4 /* Run+CoreDataProperties.swift in Sources */,
+				05E88DCB1E2BF82A005D40A3 /* User.swift in Sources */,
 				055E7C021E1B671200356F29 /* AllAchievementsTableViewController.swift in Sources */,
 				052E9F801C00515600BBF246 /* BaseViewController.swift in Sources */,
 				05441A561BE35EA800A8ECA4 /* RunningResultViewController.swift in Sources */,
+				05C00C731E308C51000675B8 /* NBUIKitMainThreadGuard.swift in Sources */,
+				05E781E11E2DC8D50090E410 /* AWSMobileClient.swift in Sources */,
 				05269AEE1DFBC1E000B2A600 /* RankingViewCell.swift in Sources */,
 				055E7C051E1C020300356F29 /* AllRecordsTableViewController.swift in Sources */,
 				0586A8241E171D31005CC238 /* LoginViewController.swift in Sources */,
+				05E781E01E2DC8D50090E410 /* AWSConfiguration.swift in Sources */,
 				056FA8A21E242C4F00089132 /* Record+CoreDataProperties.swift in Sources */,
+				0506337A1E27598C001DA272 /* WeeklyRanking.swift in Sources */,
 				056FA8A01E242C4300089132 /* Record.swift in Sources */,
 				0596360E1B0CCD81007BCC22 /* StepsViewController.swift in Sources */,
 				058C8AC91E14B80700140D71 /* Pedometer.swift in Sources */,
+				05E781CF1E2D86C00090E410 /* LoginViewControllerExtensions.swift in Sources */,
 				05441A2C1BE089ED00A8ECA4 /* Location+CoreDataProperties.swift in Sources */,
 				055E7C071E1C021900356F29 /* RecordTableViewCell.swift in Sources */,
 				056FA89A1E242C1600089132 /* Achievement+CoreDataProperties.swift in Sources */,
 				055E7BFE1E1B521200356F29 /* RankingTableViewCell.swift in Sources */,
 				055E7BFB1E1B51CE00356F29 /* AllRankingsViewController.swift in Sources */,
 				05441A271BE07BEE00A8ECA4 /* Model.xcdatamodeld in Sources */,
+				05E88DC91E2BD9B5005D40A3 /* Extentions.swift in Sources */,
 				05FEC9D41BDE83C50093DF7D /* RankingViewController.swift in Sources */,
 				056FA89C1E242C2700089132 /* Ranking.swift in Sources */,
 				052EB0CD1E1317F100F17B11 /* SettingViewController.swift in Sources */,
@@ -678,7 +805,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/**",
-					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/**",
 				);
 				INFOPLIST_FILE = "Step by step/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -703,7 +830,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/**",
-					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/**",
 				);
 				INFOPLIST_FILE = "Step by step/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

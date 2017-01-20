@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import AWSS3
 
 
 
@@ -42,6 +43,7 @@ class MeViewController: UITableViewController, UINavigationControllerDelegate, U
 
     
     func initFetchRequest() {
+        
         let userID = UserDefaults.standard.string(forKey: "userID")!
         
         runFetchRequest.predicate = NSPredicate(format: "userID = %@", userID)
@@ -55,15 +57,13 @@ class MeViewController: UITableViewController, UINavigationControllerDelegate, U
         
         
         achievementFetchRequest.predicate = NSPredicate(format: "userID = %@", userID)
-        achievementFetchRequest.sortDescriptors = [NSSortDescriptor(key: "date", ascending: false)]
+        achievementFetchRequest.sortDescriptors = [NSSortDescriptor(key: "id", ascending: false)]
         achievementFetchResultsController = NSFetchedResultsController(fetchRequest: achievementFetchRequest, managedObjectContext: managedObjectContext!, sectionNameKeyPath: nil, cacheName: nil)
         
         
         recordFetchRequest.predicate = NSPredicate(format: "userID = %@", userID)
         recordFetchRequest.sortDescriptors = [NSSortDescriptor(key: "type", ascending: false)]
         recordFetchResultsController = NSFetchedResultsController(fetchRequest: recordFetchRequest, managedObjectContext: managedObjectContext!, sectionNameKeyPath: nil, cacheName: nil)
-        
-        performFetch()
     }
     
     func performFetch() {
@@ -92,7 +92,7 @@ class MeViewController: UITableViewController, UINavigationControllerDelegate, U
             }
         }
         self.runTitle.text = "\(numberOfRun)"
-        self.runDetail.text = String(format: "%.2f total miles", totalDistance)
+        self.runDetail.text = String(format: "%.1f total miles", totalDistance)
     }
     
     func updateRanking() {
@@ -100,11 +100,15 @@ class MeViewController: UITableViewController, UINavigationControllerDelegate, U
     }
     
     func updateAchievement() {
-        self.achievementDetail.text = "Try to unlock more achievements!"
         self.achievementDetail.textColor = Colors.myTextLightGray
-        if (achievementFetchResultsController?.fetchedObjects?.count == numberOfAchievements) {
+        self.achievementDetail.text = "Try to unlock more achievements!"
+        
+        let count = achievementFetchResultsController?.fetchedObjects?.count
+        self.achievementTitle.text = "\(count!)/12 unlocked"
+        if (count == numberOfAchievements) {
             self.achievementDetail.text = "Grats! You have unlocked all achievements"
         }
+        
         for object in (achievementFetchResultsController?.fetchedObjects)! {
             if let achievement = object as? Achievement {
                 if achievement.isNew!.boolValue{
@@ -162,12 +166,41 @@ class MeViewController: UITableViewController, UINavigationControllerDelegate, U
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage{
-            userAvatar.imageView?.contentMode = .scaleAspectFill
-            userAvatar.setImage(pickedImage, for: .normal)
+            
             let documentPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-            let imagePath = documentPath.appendingPathComponent("userAvatar.png")
-            let userAvatarData = UIImagePNGRepresentation(pickedImage)
+            let imagePath = documentPath.appendingPathComponent("userAvatarToUpload.png")
+            let userAvatarData = UIImageJPEGRepresentation(pickedImage, 0.5)
             try? userAvatarData?.write(to: imagePath, options: .atomic)
+            
+            let S3BucketName = "stepbystep-userfiles-mobilehub-138898687"
+            let uploadRequest = AWSS3TransferManagerUploadRequest()
+
+            uploadRequest?.body = imagePath
+            uploadRequest?.key = "public/avatars/" + UserDefaults.standard.string(forKey: "userID")!
+            uploadRequest?.contentType = "image/jpeg"
+            uploadRequest?.bucket = S3BucketName
+            let manager = AWSS3TransferManager.default()
+            manager?.upload(uploadRequest).continue(with: AWSExecutor.default(), with: {(task:AWSTask!) -> Any! in
+                if (task.error != nil) {
+                    let alertController = UIAlertController(title: "Fail to change Avatar", message: "Please try again later (Error:\(task.error!.localizedDescription))", preferredStyle: .alert)
+                    
+                    let cancelAction = UIAlertAction(title: "OK", style: .cancel)  {(action) in
+                        return
+                    }
+                    
+                    alertController.addAction(cancelAction)
+                    self.present(alertController, animated: true, completion: nil)
+                } else {
+                    DispatchQueue.main.async {
+                        let avatarPath = documentPath.appendingPathComponent("userAvatar.png")
+                        try? userAvatarData?.write(to: avatarPath, options: .atomic)
+                        self.userAvatar.setImage(pickedImage, for: .normal)
+                    }
+                }
+                
+                return nil
+            })
+
         }
         self.dismiss(animated: true, completion: nil)
     }
@@ -198,6 +231,7 @@ class MeViewController: UITableViewController, UINavigationControllerDelegate, U
         if let signature = UserDefaults.standard.string(forKey: "signature") {
             userSignature.text = signature
         }
+        performFetch()
         updateUI()
     }
     
@@ -228,9 +262,8 @@ class MeViewController: UITableViewController, UINavigationControllerDelegate, U
         }
         
         print(Display.typeIsLike)
-
     }
-
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destination = segue.destination as? AllActivitiesViewController {
             destination.managedObjectContext = self.managedObjectContext
@@ -246,6 +279,10 @@ class MeViewController: UITableViewController, UINavigationControllerDelegate, U
             destination.fetchResultsController = self.recordFetchResultsController
         }
     
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
 
 }

@@ -31,6 +31,7 @@ class RunningViewController: UIViewController, MKMapViewDelegate, CLLocationMana
     var poorGPS = false
     var locationManager:CLLocationManager!
     var managedObjectContext:NSManagedObjectContext?
+    var inRunning = false
     
     
     func disableStartRunningButton() {
@@ -137,21 +138,24 @@ class RunningViewController: UIViewController, MKMapViewDelegate, CLLocationMana
                     
                     alertController.addAction(cancelAction)
                     
-                    let continueAction = UIAlertAction(title:"Go to settings", style: .default) {(action) in
+                    let continueAction = UIAlertAction(title:"Continue", style: .default) {(action) in
                         self.performSegue(withIdentifier: "startRunning", sender: self)
                     }
                     
                     alertController.addAction(continueAction)
                     
                     self.present(alertController, animated: true, completion: nil)
+                } else {
+                    self.performSegue(withIdentifier: "startRunning", sender: self)
                 }
-                performSegue(withIdentifier: "startRunning", sender: self)
             }
         }
     }
     
     func appWillResignActive() {
-        locationManager.stopUpdatingLocation()
+        if (!inRunning) {
+            locationManager.stopUpdatingLocation()
+        }
     }
     
     func appDidBecomeActive() {
@@ -189,10 +193,12 @@ class RunningViewController: UIViewController, MKMapViewDelegate, CLLocationMana
     }
     
     @IBAction func unwindToRvc(segue: UIStoryboardSegue) {
+        inRunning = false
         print("I'm back")
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        inRunning = true
         if let destination = segue.destination as? InRunningViewController {
             destination.managedObjectContext = self.managedObjectContext
             destination.locationManager = self.locationManager

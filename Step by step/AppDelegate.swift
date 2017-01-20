@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 import FacebookCore
+import AWSCore
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,18 +18,32 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-        
-        
+        window?.layer.backgroundColor = UIColor(red: 0, green: 148/255, blue: 210/255, alpha: 1).cgColor;
         let loginVC = window?.rootViewController as! LoginViewController
         loginVC.managedObjectContext = self.managedObjectContext
         
-        window?.layer.backgroundColor = UIColor(red: 0, green: 148/255, blue: 210/255, alpha: 1).cgColor;
         
-        return SDKApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
+        let credentialsProvider = AWSCognitoCredentialsProvider(
+            regionType: .usEast1,
+            identityPoolId: "us-east-1:b26c1aba-62c7-4c1f-b160-8a3005d8a5b3")
+        let configuration = AWSServiceConfiguration(
+            region: .usEast1,
+            credentialsProvider: credentialsProvider)
+        AWSServiceManager.default().defaultServiceConfiguration = configuration
+        
+        let rtv1 = AWSMobileClient.sharedInstance.didFinishLaunching(application: application, withOptions: launchOptions as [NSObject : AnyObject]?)
+        
+        let rtv2 = SDKApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
+        
+        return rtv1 && rtv2
     }
     
     func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
-        return SDKApplicationDelegate.shared.application(application, open: url, sourceApplication: sourceApplication, annotation: annotation)
+        let rtv1 = AWSMobileClient.sharedInstance.withApplication(application: application, withURL: url as NSURL, withSourceApplication: sourceApplication, withAnnotation: annotation as AnyObject)
+        
+        let rtv2 = SDKApplicationDelegate.shared.application(application, open: url, sourceApplication: sourceApplication, annotation: annotation)
+        
+        return rtv1 && rtv2
     }
     
     func applicationWillResignActive(_ application: UIApplication) {
@@ -48,6 +63,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        AWSMobileClient.sharedInstance.applicationDidBecomeActive(application: application)
     }
 
     func applicationWillTerminate(_ application: UIApplication) {

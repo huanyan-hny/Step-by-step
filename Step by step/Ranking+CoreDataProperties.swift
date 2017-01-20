@@ -18,4 +18,6 @@ extension Ranking {
     @NSManaged var startDate: Date?
     @NSManaged var endDate: Date?
     @NSManaged var synchronized: NSNumber?
+    @NSManaged var week: NSNumber?
+    @NSManaged var month: NSNumber?
 }

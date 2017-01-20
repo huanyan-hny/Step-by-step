@@ -7,6 +7,10 @@
 //
 
 import UIKit
+import AWSCognitoIdentityProvider
+import AWSMobileHubHelper
+import FacebookLogin
+import FacebookCore
 
 
 class SettingViewController: UITableViewController {
@@ -14,17 +18,60 @@ class SettingViewController: UITableViewController {
     var fieldType = TextFieldType.unknown
     var maxTextLength = 15
     
+    func logout() {
+        if (AWSIdentityManager.defaultIdentityManager().isLoggedIn) {
+            AWSIdentityManager.defaultIdentityManager().logout(completionHandler: {(result:Any?,error:Error?) in
+                DispatchQueue.main.async {
+                    if (error != nil) {
+                        let alertController = UIAlertController(title: "Error", message: "Error logging out, please try again", preferredStyle: .alert)
+                        
+                        let cancelAction = UIAlertAction(title: "OK", style: .cancel)  {(action) in
+                            return
+                        }
+                        alertController.addAction(cancelAction)
+                        self.present(alertController, animated: true, completion: nil)
+                    } else {
+                        self.performSegue(withIdentifier: "unwindToLogin", sender: self)
+                    }
+                }
+            })
+        }
+        if (AccessToken.current != nil){
+            LoginManager().logOut()
+            self.performSegue(withIdentifier: "unwindToLogin", sender: self)
+        }
 
+    }
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.tableView.deselectRow(at: indexPath, animated: true)
         if (indexPath == [0,0]) {
             fieldType = .username
-            maxTextLength = 10
+            maxTextLength = 15
             performSegue(withIdentifier: "changeProfile", sender: self)
         } else if (indexPath == [0,1]) {
             fieldType = .signature
-            maxTextLength = 15
+            maxTextLength = 30
             performSegue(withIdentifier: "changeProfile", sender: self)
+        } else if (indexPath == [3,0]) {
+            let alertController = UIAlertController(title: "Log out", message: "Are you sure you want to log out?", preferredStyle: .alert)
+            
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)  {(action) in
+                return
+            }
+            
+            alertController.addAction(cancelAction)
+            
+            let logoutAction = UIAlertAction(title:"Log out", style:.destructive) {(action) in
+                DispatchQueue.main.async {
+                    self.logout()
+                }
+                
+            }
+            
+            alertController.addAction(logoutAction)
+            
+            self.present(alertController, animated: true, completion: nil)
         }
     }
     

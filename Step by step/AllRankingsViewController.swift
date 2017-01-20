@@ -71,6 +71,11 @@ class AllRankingsViewController: UITableViewController {
         return cell
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        do{ try fetchResultsController?.performFetch()} catch _ { print("Could not fetch ranking!")}
+        tableView.reloadData()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "Rankings"

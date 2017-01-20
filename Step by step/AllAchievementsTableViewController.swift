@@ -15,7 +15,8 @@ class AllAchievementsTableViewController: UITableViewController {
     var rowHeight = CGFloat(75)
     var managedObjectContext:NSManagedObjectContext?
     var fetchResultsController:NSFetchedResultsController<NSFetchRequestResult>?
-    var newAchievementId = -1
+    var newAchievementIds = [Int]()
+    var achieved = [Int:Bool]()
     
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -30,17 +31,26 @@ class AllAchievementsTableViewController: UITableViewController {
         return rowHeight
     }
     
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let rankCell = cell as! AchievementTableViewCell
+        if (achieved[indexPath.section]!) {
+            rankCell.achievementMedal.image = #imageLiteral(resourceName: "medal")
+        }
+    }
+    
     
     func updateAchievements() {
+        for i in 0...8 {
+            achieved[i] = false
+        }
         for object in fetchResultsController!.fetchedObjects! {
             if let achievement = object as? Achievement {
                 if achievement.isNew!.boolValue {
-                    newAchievementId = achievement.id!.intValue
+                    newAchievementIds.append(achievement.id!.intValue)
                     achievement.isNew = 0
                     do{ try managedObjectContext!.save()} catch _ { print("Could not save!")}
                 } else {
-                    let cell = tableView.cellForRow(at: [achievement.id!.intValue-1,0]) as!AchievementTableViewCell
-                    cell.achievementMedal.image = #imageLiteral(resourceName: "medal")
+                    achieved[achievement.id!.intValue] = true
                 }
             }
         }
@@ -48,38 +58,42 @@ class AllAchievementsTableViewController: UITableViewController {
    
     func animateNewAchievement() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3, execute: {
-            let cell = self.tableView.cellForRow(at: [self.newAchievementId-1,0]) as! AchievementTableViewCell
-            cell.achievementMedal.image = #imageLiteral(resourceName: "medal")
-            
-            UIView.animate(withDuration: 0.5, animations: {
-                cell.achievementMedal.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
-            }, completion: { (finish: Bool) in
+            for newId in self.newAchievementIds {
+                let cell = self.tableView.cellForRow(at: [newId,0]) as! AchievementTableViewCell
+                cell.achievementMedal.image = #imageLiteral(resourceName: "medal")
+                
                 UIView.animate(withDuration: 0.5, animations: {
-                    cell.achievementMedal.transform = CGAffineTransform.identity
+                    cell.achievementMedal.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
+                }, completion: { (finish: Bool) in
+                    UIView.animate(withDuration: 0.5, animations: {
+                        cell.achievementMedal.transform = CGAffineTransform.identity
+                    })
                 })
-            })
+                
+                UIView.animate(withDuration: 1, animations: {
+                    cell.check.alpha = 1
+                })
+            }
             
-            UIView.animate(withDuration: 1, animations: {
-                cell.check.alpha = 1
-            })
         })
         tableView.isScrollEnabled = true
     }
     
     override func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
-        if (newAchievementId != -1){
+        if (!newAchievementIds.isEmpty){
             animateNewAchievement()
         }
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        do{ try fetchResultsController?.performFetch()} catch _ { print("Could not fetch ranking!")}
         updateAchievements()
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        if (newAchievementId != -1) {
+        if (!newAchievementIds.isEmpty) {
             tableView.isScrollEnabled = false
-            self.tableView.scrollToRow(at: [newAchievementId-1,0], at: .middle, animated: true)
+            self.tableView.scrollToRow(at: [newAchievementIds[0],0], at: .top, animated: true)
         }
     }
     

@@ -10,6 +10,7 @@ import UIKit
 import MapKit
 import HealthKit
 import CoreData
+import AWSDynamoDB
 
 class CustomPointAnnotation: MKPointAnnotation {
     var imageName: String!
@@ -43,10 +44,15 @@ class RunningResultViewController: UIViewController,MKMapViewDelegate, UITextFie
     var country:String?
     var address:String?
     
+    let objectMapper = AWSDynamoDBObjectMapper.default()
+    let activityView = UIView(frame:CGRect(x:0,y:0,width:80,height:80))
+    let activityIndicator = UIActivityIndicatorView.init(activityIndicatorStyle: .whiteLarge)
+    let component = Calendar.current.dateComponents([.weekOfYear, .day, .month,.year,.weekday], from: Date())
+    let userID = UserDefaults.standard.string(forKey: "userID")
     
     func updateUI() {
         let displayTime = Time.secondsFormatted(seconds: seconds)
-        let displayDistance = String(format:"%.2f", Double(round(distance*100)/100))
+        let displayDistance = String(format:"%.1f", Double(round(distance*10)/10))
         let displayPace = Time.secondsFormatted(seconds: pace)
         let displayEnergy = energy
         
@@ -206,6 +212,8 @@ class RunningResultViewController: UIViewController,MKMapViewDelegate, UITextFie
     }
 
     func persistRun() {
+        startLoadingAnimation()
+        print("Saving")
         let savedRun = NSEntityDescription.insertNewObject(forEntityName: "Run", into:managedObjectContext!) as! Run
         savedRun.userID = UserDefaults.standard.string(forKey: "userID")
         savedRun.distance = distance as NSNumber?
@@ -220,11 +228,141 @@ class RunningResultViewController: UIViewController,MKMapViewDelegate, UITextFie
         savedRun.address = address
         savedRun.city = city
         savedRun.country = country
-        savedRun.synchronized = true as NSNumber?
-        print("Saving")
-        do{ try managedObjectContext!.save()} catch _ { print("Could not save run!")}
-        performSegue(withIdentifier: "unwindToRvc", sender: self)
+        if (distance>=6) {
+            updateRunAchievement(id: 3)
+        }
+        
+        if (distance>=13) {
+            updateRunAchievement(id: 4)
+        }
+        
+        if (distance>=26) {
+            updateRunAchievement(id: 5)
+        }
+        updateRunRecord(run: savedRun)
+        
+        print("Uploading to Server")
+        let savedAllTimeRun = AllTimeRun()
+        savedAllTimeRun?._userId = UserDefaults.standard.string(forKey: "userID")
+        savedAllTimeRun?._distance = distance as NSNumber?
+        savedAllTimeRun?._duration = seconds as NSNumber?
+        savedAllTimeRun?._energy = energy as NSNumber?
+        savedAllTimeRun?._pace = pace as NSNumber?
+        savedAllTimeRun?._weather = weather
+        savedAllTimeRun?._date = date?.timeIntervalSince1970 as NSNumber?
+        savedAllTimeRun?._address = address
+        savedAllTimeRun?._city = city
+        savedAllTimeRun?._country = country
+        
+        objectMapper.save(savedAllTimeRun!, completionHandler: {(error:Error?) in
+            DispatchQueue.main.async {
+                if (error != nil) {
+                    self.stopLoadingAnimation()
+                    let alertController = UIAlertController(title: "Fail to upload to server", message: "You can upload the run later in running history (Error:\(error!.localizedDescription))", preferredStyle: .alert)
+                    
+                    let cancelAction = UIAlertAction(title: "OK", style: .cancel)  {(action) in
+                        savedRun.synchronized = 0
+                        do{ try self.managedObjectContext!.save()} catch _ { print("Could not save run!")}
+                        self.performSegue(withIdentifier: "unwindToRvc", sender: self)
+                    }
+                    
+                    alertController.addAction(cancelAction)
+                    self.present(alertController, animated: true, completion: nil)
+                } else {
+                    self.updateWeeklyRankingTable(savedRun:savedRun)
+                }
+            }
+        })
+        
     }
+    
+    func updateWeeklyRankingTable(savedRun:Run) {
+        let weekNumString = String(component.year!) + String(component.weekOfYear!)
+        let weekNum = NSNumber.init(value: Int(weekNumString)!)
+        objectMapper.load(WeeklyRanking.classForCoder(), hashKey: weekNum, rangeKey:userID).continue(with: AWSExecutor.default(), with: {(task:AWSTask!) -> Any! in
+            DispatchQueue.main.async {
+                if (task.error != nil) {
+                    self.stopLoadingAnimation()
+                    let alertController = UIAlertController(title: "Fail to upload to server", message: "You can upload the run later in running history (Error:\(task.error!.localizedDescription))", preferredStyle: .alert)
+                    
+                    let cancelAction = UIAlertAction(title: "OK", style: .cancel)  {(action) in
+                        savedRun.synchronized = 0
+                        do{ try self.managedObjectContext!.save()} catch _ { print("Could not save run!")}
+                        self.performSegue(withIdentifier: "unwindToRvc", sender: self)
+                    }
+                    
+                    alertController.addAction(cancelAction)
+                    self.present(alertController, animated: true, completion: nil)
+                } else if (task.result != nil) {
+                    let weeklyRanking = task.result as! WeeklyRanking
+                    weeklyRanking._distance = NSNumber(value: weeklyRanking._distance!.doubleValue + savedRun.distance!.doubleValue)
+                    weeklyRanking._appear = UserDefaults.standard.bool(forKey: "appear") as NSNumber
+                    self.objectMapper.save(weeklyRanking)
+                    self.updateMonthlyRankingTable(savedRun: savedRun)
+                }
+                
+            }
+        })
+    }
+    
+    func updateMonthlyRankingTable(savedRun:Run){
+        let monthNumString = String(component.year!) + String(component.month!)
+        let monthNum = NSNumber.init(value: Int(monthNumString)!)
+        objectMapper.load(MonthlyRanking.classForCoder(), hashKey: monthNum, rangeKey:userID).continue(with: AWSExecutor.default(), with: {(task:AWSTask!) -> Any! in
+            DispatchQueue.main.async {
+                if (task.error != nil) {
+                    self.stopLoadingAnimation()
+                    let alertController = UIAlertController(title: "Fail to upload to server", message: "You can upload the run later in running history (Error:\(task.error!.localizedDescription))", preferredStyle: .alert)
+                    
+                    let cancelAction = UIAlertAction(title: "OK", style: .cancel)  {(action) in
+                        savedRun.synchronized = 0
+                        do{ try self.managedObjectContext!.save()} catch _ { print("Could not save run!")}
+                        self.performSegue(withIdentifier: "unwindToRvc", sender: self)
+                    }
+                    
+                    alertController.addAction(cancelAction)
+                    self.present(alertController, animated: true, completion: nil)
+                } else if (task.result != nil) {
+                    let monthlyRanking = task.result as! MonthlyRanking
+                    monthlyRanking._distance = NSNumber(value: monthlyRanking._distance!.doubleValue + savedRun.distance!.doubleValue)
+                    monthlyRanking._appear = UserDefaults.standard.bool(forKey: "appear") as NSNumber
+                    self.objectMapper.save(monthlyRanking)
+                    self.updateUserTable(savedRun: savedRun)
+                }
+            }
+        })
+
+    }
+    func updateUserTable(savedRun:Run) {
+        objectMapper.load(User.classForCoder(), hashKey: userID!, rangeKey: nil).continue(with: AWSExecutor.default(), with: {(task:AWSTask!) -> Any! in
+            DispatchQueue.main.async {
+                if (task.error != nil) {
+                    self.stopLoadingAnimation()
+                    let alertController = UIAlertController(title: "Fail to upload to server", message: "You can upload the run later in running history (Error:\(task.error!.localizedDescription))", preferredStyle: .alert)
+                    
+                    let cancelAction = UIAlertAction(title: "OK", style: .cancel)  {(action) in
+                        savedRun.synchronized = 0
+                        do{ try self.managedObjectContext!.save()} catch _ { print("Could not save run!")}
+                        self.performSegue(withIdentifier: "unwindToRvc", sender: self)
+                    }
+                    
+                    alertController.addAction(cancelAction)
+                    self.present(alertController, animated: true, completion: nil)
+                } else if (task.result != nil) {
+                    let user = task.result as! User
+                    user._totalRunningDistance = NSNumber(value:user._totalRunningDistance!.doubleValue + savedRun.distance!.doubleValue)
+                    self.objectMapper.save(user)
+                    savedRun.synchronized = 1
+                    self.stopLoadingAnimation()
+                    do{ try self.managedObjectContext!.save()} catch _ { print("Could not save run!")}
+                    self.performSegue(withIdentifier: "unwindToRvc", sender: self)
+                }
+                
+            }
+        })
+    }
+    
+    
     
     func discardRun() {
         let alertController = UIAlertController(title: "Discard Run?", message: "Are you sure you want to discard this run?", preferredStyle: .alert)
@@ -241,6 +379,15 @@ class RunningResultViewController: UIViewController,MKMapViewDelegate, UITextFie
         
     }
     
+    func startLoadingAnimation() {
+        activityIndicator.startAnimating()
+        activityView.isHidden = false
+    }
+    
+    func stopLoadingAnimation() {
+        activityIndicator.stopAnimating()
+        activityView.isHidden = true
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -271,6 +418,15 @@ class RunningResultViewController: UIViewController,MKMapViewDelegate, UITextFie
         keyboardToolBar.addSubview(textField!)
         notes.inputAccessoryView = keyboardToolBar
         NotificationCenter.default.addObserver(self, selector: #selector(changeFirstResponder), name:NSNotification.Name.UIKeyboardDidShow, object: nil)
+        
+        self.view.addSubview(activityView)
+        self.view.addSubview(activityIndicator)
+        activityView.center = self.view.center
+        activityView.backgroundColor = UIColor(red:0,green:0,blue:0,alpha:0.7)
+        activityView.layer.cornerRadius = 10
+        activityView.clipsToBounds = true
+        activityView.isHidden = true
+        activityIndicator.center = self.view.center
     }
     
     func changeFirstResponder() {

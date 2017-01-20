@@ -12,48 +12,24 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="479" height="657"/>
+            <rect key="frame" x="0.0" y="0.0" width="750" height="1334"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LaunchScreen" translatesAutoresizingMaskIntoConstraints="NO" id="9ee-Zi-tRM">
-                    <rect key="frame" x="54.5" y="0.0" width="370" height="657"/>
-                </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launchscreen" translatesAutoresizingMaskIntoConstraints="NO" id="mCz-Ft-N34">
-                    <rect key="frame" x="54" y="0.0" width="370" height="657"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LaunchScreen" translatesAutoresizingMaskIntoConstraints="NO" id="mCz-Ft-N34">
+                    <rect key="frame" x="190" y="339" width="370" height="657"/>
                 </imageView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="9ee-Zi-tRM" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="1ue-m7-rBm"/>
-                <constraint firstItem="9ee-Zi-tRM" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Ehf-I0-XaS"/>
                 <constraint firstItem="mCz-Ft-N34" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="qwj-Ja-xLm"/>
                 <constraint firstItem="mCz-Ft-N34" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="yu7-CX-HBl"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <variation key="default">
-                <mask key="subviews">
-                    <exclude reference="9ee-Zi-tRM"/>
-                </mask>
-                <mask key="constraints">
-                    <exclude reference="1ue-m7-rBm"/>
-                    <exclude reference="Ehf-I0-XaS"/>
-                </mask>
-            </variation>
-            <variation key="heightClass=regular-widthClass=compact">
-                <mask key="subviews">
-                    <include reference="9ee-Zi-tRM"/>
-                </mask>
-                <mask key="constraints">
-                    <include reference="1ue-m7-rBm"/>
-                    <include reference="Ehf-I0-XaS"/>
-                </mask>
-            </variation>
-            <point key="canvasLocation" x="547.5" y="588.5"/>
+            <point key="canvasLocation" x="683" y="927"/>
         </view>
     </objects>
     <resources>
         <image name="LaunchScreen" width="370" height="657"/>
-        <image name="launchscreen" width="370" height="657"/>
     </resources>
 </document>

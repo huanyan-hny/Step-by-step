@@ -11,6 +11,9 @@ import Charts
 import CoreMotion
 import PNChart
 import CoreData
+import AWSMobileHubHelper
+import AWSDynamoDB
+import AWSS3
 
 class StepsViewController: UIViewController, ChartViewDelegate, PNChartDelegate, UIScrollViewDelegate {
 
@@ -22,6 +25,8 @@ class StepsViewController: UIViewController, ChartViewDelegate, PNChartDelegate,
     
     
     var managedObjectContext:NSManagedObjectContext?
+    let runFetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Run")
+    var runFetchResultsController:NSFetchedResultsController<NSFetchRequestResult>?
     var colors = [UIColor](repeatElement(Colors.myBlue, count: 7))
     var emptyWalkingData = [Int]()
     var emptyRunningData = [Double]()
@@ -30,12 +35,15 @@ class StepsViewController: UIViewController, ChartViewDelegate, PNChartDelegate,
     var walkingGoal = 3000
     var runningGoal = 5.0
     var weekDays = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"]
+//    var weekDays = ["周日","周一","周二","周三","周四","周五","周六"]
     var totalSteps = 0
     var totalRunnings = 0.0
     var dateByWeek = ""
     var dayOfWeek = 1
     var calendar = Calendar.current
+    var dataUpdatedCount = 0
     
+    let objectMapper = AWSDynamoDBObjectMapper.default()
     let monitor = StepsMonitor()
     let scrollView = UIScrollView()
     let walkingChart = PNBarChart()
@@ -53,7 +61,7 @@ class StepsViewController: UIViewController, ChartViewDelegate, PNChartDelegate,
     let thisWeekLabel = UILabel()
     let walkingLabel = UILabel()
     let weekLabel2 = UILabel()
-    let totalDistanceLabel = UILabel()
+    let totalRunningsLabel = UILabel()
     let thisWeekLabel2 = UILabel()
     let runningLabel  = UILabel()
     
@@ -61,7 +69,7 @@ class StepsViewController: UIViewController, ChartViewDelegate, PNChartDelegate,
         /*Screen size related UI*/
         if (Display.typeIsLike == .iphone7plus) { //iphone7plus
             weekLabel.frame = CGRect(x:9, y:26, width:135, height:18)
-            totalStepsLabel.frame = CGRect(x:0, y:78, width:90, height:28)
+            totalStepsLabel.frame = CGRect(x:0, y:78, width:140, height:28)
             thisWeekLabel.frame = CGRect(x:0, y:109, width: 65, height: 15)
             walkingLabel.frame = CGRect(x:340, y:0, width:55, height:18)
             walkingChart.frame = CGRect(x:115, y:30, width:294, height:150)
@@ -72,7 +80,7 @@ class StepsViewController: UIViewController, ChartViewDelegate, PNChartDelegate,
             walkingLabel.font = UIFont.systemFont(ofSize: 14)
         } else if (Display.typeIsLike == .iphone7) { //iphone 7
             weekLabel.frame = CGRect(x:7, y:21, width:115, height:13)
-            totalStepsLabel.frame = CGRect(x:0, y:68, width:80, height:25)
+            totalStepsLabel.frame = CGRect(x:0, y:68, width:120, height:25)
             thisWeekLabel.frame = CGRect(x:0, y:106, width: 59, height: 13)
             walkingLabel.frame = CGRect(x:310, y:0, width:50, height:16)
             walkingChart.frame = CGRect(x:105,y:26,width:270,height:121)
@@ -83,7 +91,7 @@ class StepsViewController: UIViewController, ChartViewDelegate, PNChartDelegate,
             walkingLabel.font = UIFont.systemFont(ofSize: 13)
         } else { //iphone SE
             weekLabel.frame = CGRect(x:6, y:16, width:105, height:14)
-            totalStepsLabel.frame = CGRect(x:20.5, y:55, width:65, height:20)
+            totalStepsLabel.frame = CGRect(x:20.5, y:55, width:100, height:20)
             thisWeekLabel.frame = CGRect(x:29, y:78, width: 59, height: 11)
             walkingLabel.frame = CGRect(x:266, y:0, width:50, height:14)
             walkingChart.frame = CGRect(x:85,y:21,width:230,height:100)
@@ -101,10 +109,9 @@ class StepsViewController: UIViewController, ChartViewDelegate, PNChartDelegate,
         weekLabel.center.x = (scrollView.frame.width - walkingChart.frame.width + 30)/2
         
         totalStepsLabel.center.x = weekLabel.center.x
-        totalStepsLabel.text = "\(totalSteps)"
         totalStepsLabel.textColor = Colors.myBlue
         totalStepsLabel.textAlignment = .center
-        
+        totalStepsLabel.text = "\(totalSteps)"
         
         thisWeekLabel.center.x = weekLabel.center.x
         thisWeekLabel.text = "this week"
@@ -122,13 +129,13 @@ class StepsViewController: UIViewController, ChartViewDelegate, PNChartDelegate,
         weekLabel2.sizeToFit()
         weekLabel2.center.x = (scrollView.frame.width - walkingChart.frame.width + 30)/2 + scrollView.frame.width
         
-        totalDistanceLabel.frame = totalStepsLabel.frame
-        totalDistanceLabel.frame.origin.x += scrollView.frame.width
-        totalDistanceLabel.center.x = weekLabel2.center.x
-        totalDistanceLabel.font = totalStepsLabel.font
-        totalDistanceLabel.text = "\(totalRunnings)"
-        totalDistanceLabel.textColor = Colors.myBlue
-        totalDistanceLabel.textAlignment = .center
+        totalRunningsLabel.frame = totalStepsLabel.frame
+        totalRunningsLabel.frame.origin.x += scrollView.frame.width
+        totalRunningsLabel.center.x = weekLabel2.center.x
+        totalRunningsLabel.font = totalStepsLabel.font
+        totalRunningsLabel.text = String(format:"%.1f miles", Double(round(totalRunnings*10)/10))
+        totalRunningsLabel.textColor = Colors.myBlue
+        totalRunningsLabel.textAlignment = .center
         
         thisWeekLabel2.frame = thisWeekLabel.frame
         thisWeekLabel2.frame.origin.x += scrollView.frame.width
@@ -163,7 +170,7 @@ class StepsViewController: UIViewController, ChartViewDelegate, PNChartDelegate,
         
         
         scrollView.addSubview(weekLabel2)
-        scrollView.addSubview(totalDistanceLabel)
+        scrollView.addSubview(totalRunningsLabel)
         scrollView.addSubview(thisWeekLabel2)
         scrollView.addSubview(runningLabel)
         scrollView.addSubview(runningChart)
@@ -244,9 +251,7 @@ class StepsViewController: UIViewController, ChartViewDelegate, PNChartDelegate,
     }
     
     
-    func retriveWalkingData() {
-        
-        weekDays = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"]
+    func retriveStatisticsData() {
         
         let today = Date()
         let beginOfToday = calendar.startOfDay(for: today)
@@ -256,15 +261,42 @@ class StepsViewController: UIViewController, ChartViewDelegate, PNChartDelegate,
         let component = calendar.dateComponents([.weekOfYear, .day, .month,.year,.weekday], from: today)
         dateByWeek = "Week \(component.weekOfYear!), " + dateFormatter.string(from:Date())
         dayOfWeek = component.weekday!
-        
+    
         for i in 1...component.weekday! {
             let beginOfWeekDay = calendar.date(byAdding: .day, value: -(component.weekday!-i), to: beginOfToday)!
             let endOfWeekDay = calendar.date(byAdding: .day, value: -(component.weekday!-i), to: endOfToday)!
+            
+            runFetchRequest.predicate = NSPredicate(format: "userID = %@ AND date>=%@ AND date <=%@", UserDefaults.standard.string(forKey: "userID")!,beginOfWeekDay as NSDate,endOfWeekDay as NSDate)
+            do{ try runFetchResultsController?.performFetch()} catch _ { print("Could not fetch run!")}
+            
+            var runningMiles = 0.0
+            for object in (runFetchResultsController?.fetchedObjects)! {
+                if let run = object as? Run {
+                    runningMiles += run.distance!.doubleValue
+                }
+            }
+            self.runningData[i-1] = runningMiles
+            
             pedometer.queryPedometerData(from: beginOfWeekDay, to: endOfWeekDay, withHandler: {data, error in
                 if (error==nil) {
                     DispatchQueue.main.async {
-                        self.walkingData[i-1] = (data?.numberOfSteps.intValue)!
-                        if(i==component.weekday!) {
+                        let steps = data!.numberOfSteps.intValue
+                        self.walkingData[i-1] = steps
+                        self.dataUpdatedCount += 1
+                        
+                        if (steps>=10000) {
+                            self.updateStepsAchievements(id: 0)
+                        }
+                        if (steps>=20000) {
+                            self.updateStepsAchievements(id: 1)
+                        }
+                        
+                        if (steps>=30000){
+                            self.updateStepsAchievements(id: 2)
+                        }
+                        self.updateStepsRecord(steps:steps)
+                        
+                        if (self.dataUpdatedCount==component.weekday) {
                             self.updateUI()
                         }
                     }
@@ -273,14 +305,9 @@ class StepsViewController: UIViewController, ChartViewDelegate, PNChartDelegate,
         }
     }
     
-    func retriveRunningData() {
-        runningData = [3.55, 4.29, 5.21, 2.13, 3.57, 3.56, 3.66]
-        totalRunnings = runningData.reduce(0, +)
-    }
-    
     func updateUI() {
-        walkingData = [1074,2456,4315,1000,2487,2687,800]
         totalSteps = walkingData.reduce(0, +)
+        totalRunnings = runningData.reduce(0, +)
         drawScrollView()
         if (pageControl.currentPage==0) {
             runningChart.updateData(emptyRunningData)
@@ -314,8 +341,13 @@ class StepsViewController: UIViewController, ChartViewDelegate, PNChartDelegate,
         self.tabBarController?.tabBar.tintColor = Colors.myBlue
         walkingGoal = UserDefaults.standard.integer(forKey: "dailyWalkingGoal")
         runningGoal = UserDefaults.standard.double(forKey: "dailyRunningGoal")
-        retriveWalkingData()
-        retriveRunningData()
+        walkingData = [Int](repeatElement(0, count: 7))
+        emptyWalkingData = [Int](repeatElement(0, count: 7))
+        runningData = [Double](repeatElement(0, count: 7))
+        emptyRunningData = [Double](repeatElement(0, count: 7))
+        monitor.refresh()
+        dataUpdatedCount = 0
+        retriveStatisticsData()
     }
     
     override func viewDidLoad() {
@@ -325,27 +357,157 @@ class StepsViewController: UIViewController, ChartViewDelegate, PNChartDelegate,
         NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: "steps"), object: monitor, queue: OperationQueue.main){ notification in
             self.updateSteps()
         }
-    
-        walkingData = [Int](repeatElement(walkingGoal/100, count: 7))
-        emptyWalkingData = [Int](repeatElement(walkingGoal/100, count: 7))
-        runningData = [Double](repeatElement(runningGoal/100, count: 7))
-        emptyRunningData = [Double](repeatElement(runningGoal/100, count: 7))
+        updateSteps()
+        runFetchRequest.sortDescriptors = [NSSortDescriptor(key: "date", ascending: false)]
+        runFetchResultsController = NSFetchedResultsController(fetchRequest: runFetchRequest, managedObjectContext: managedObjectContext!, sectionNameKeyPath: "date", cacheName: nil)
         
         dateFormatter.dateFormat = "MMM YYYY";
         dateFormatter.locale = Locale(identifier: "en-US")
-        updateSteps()
         
-        /*Tempoary - to be removed*/
+        
         test()
         
     }
+    
+        
     
     func test() {
         if(Display.typeIsLike == .iphone5 || Display.typeIsLike == .iphone6plus) {
             updateUI()
         }
-//        insertData()
     }
     
+    func checkFileExists() {
+        let documentPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        let avatarPath = documentPath.appendingPathComponent("userAvatar.png")
+        let fileExists = (try? avatarPath.checkResourceIsReachable()) ?? false
+        print(fileExists)
+    }
+    
+    func retrieveImg() {
+        
+        let imgView = UIImageView(frame: CGRect(x:30,y:50,width:300,height:400))
+        
+        let path = NSTemporaryDirectory().appending("happyhn2020@163.com.png")
+        let url = URL(fileURLWithPath: path)
+        
+        let avatarExists = (try? url.checkResourceIsReachable()) ?? false
+        
+        if (!avatarExists) {
+            let downloadRequest = AWSS3TransferManagerDownloadRequest()
+            downloadRequest?.bucket = "stepbystep-userfiles-mobilehub-138898687"
+            downloadRequest?.key = "happyhn2020@163.com.png"
+            downloadRequest?.downloadingFileURL = url
+            let manager = AWSS3TransferManager.default()
+            manager?.download(downloadRequest).continue(with: AWSExecutor.default(), with: {(task:AWSTask!) -> Any! in
+                
+                if (task.error != nil) {
+                    print(task.error!)
+                }
+                
+                if (task.exception != nil) {
+                    print (task.exception!)
+                }
+                
+                if (task.result != nil) {
+                    print("File downloaded to " + url.absoluteString)
+                    DispatchQueue.main.async {
+                        imgView.contentMode = .scaleAspectFit
+                        imgView.image = UIImage(contentsOfFile:url.path)
+                    }
+                    
+                }
+                
+                return nil
+            })
+        } else {
+            imgView.contentMode = .scaleAspectFit
+            imgView.image = UIImage(contentsOfFile:url.path)
+        }
+        
+        
+        self.view.addSubview(imgView)
+    }
+    
+    func uploadImg() {
+        let S3BucketName = "stepbystep-userfiles-mobilehub-138898687"
+        let uploadRequest = AWSS3TransferManagerUploadRequest()
+        let documentPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        let avatarPath = documentPath.appendingPathComponent("userAvatar.png")
+        uploadRequest?.body = avatarPath
+        uploadRequest?.key = "public/avatars/" + UserDefaults.standard.string(forKey: "userID")!
+        uploadRequest?.contentType = "image/jpeg"
+        uploadRequest?.bucket = S3BucketName
+        let manager = AWSS3TransferManager.default()
+        manager?.upload(uploadRequest).continue(with: AWSExecutor.default(), with: {(task:AWSTask!) -> Any! in
+            if task.error != nil {
+                let alertController = UIAlertController(title: "Error", message: "Error logging out, please try again", preferredStyle: .alert)
+                
+                let cancelAction = UIAlertAction(title: "OK", style: .cancel)  {(action) in
+                    return
+                }
+                alertController.addAction(cancelAction)
+                self.present(alertController, animated: true, completion: nil)
+            }
+           
+            if task.result != nil {
+                
+            }
+            return nil
+        })
+    }
+    
+    func queryData() {
+        let query = AWSDynamoDBQueryExpression()
+        
+        query.keyConditionExpression = "week = :weekNum"
+        query.expressionAttributeValues = [":weekNum":NSNumber.init(value: 201712)]
+        
+        objectMapper.query(WeeklyRanking.classForCoder(), expression: query).continue(with: AWSExecutor.default(), with: {(task:AWSTask!)-> Any! in
+            if (task.error != nil) {
+                print(task.error!)
+            }
+            if (task.exception != nil) {
+                print(task.exception!)
+            }
+            if (task.result != nil) {
+                let paginatedOutput = task.result!
+                for item in paginatedOutput.items {
+                    print(item)
+                    if let rank = item as? WeeklyRanking {
+                        print(rank._week!)
+                        print(rank._userId!)
+                        print(rank._distance!)
+                    }
+                }
+            }
+            return nil
+        })
+    }
+    
+    func loadData() {
+        objectMapper.load(WeeklyRanking.classForCoder(), hashKey:NSNumber.init(value: 201712), rangeKey: "chenyaoloveyou@gmail.com").continue(with: AWSExecutor.default(), with: {(task:AWSTask!) -> Any! in
+                let result = task.result as! WeeklyRanking
+                print(result._distance!.intValue)
+                return nil
+            })
+    }
+    
+    func insertData() {
+        let newUser = User()
+        newUser?._userId = "咯咯咯？"
+        newUser?._totalRunningDistance = 65
+        newUser?._name = "呱呱呱？"
+        newUser?._signature = "叽叽叽"
+
+        objectMapper.save(newUser!, completionHandler: {(error: Error?) -> Void in
+            if let error = error {
+                print("Amazon DynamoDB Save Error: \(error)")
+                return
+            }
+            print("Item saved.")
+        })
+        
+    }
 }
- 
+

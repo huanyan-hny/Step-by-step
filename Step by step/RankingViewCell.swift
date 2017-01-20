@@ -15,6 +15,7 @@ class RankingViewCell: UITableViewCell {
     @IBOutlet weak var distance: UILabel!
     @IBOutlet weak var ranking: UILabel!
     @IBOutlet weak var signature: UILabel!
+    var userId:String?
     
     override func layoutSubviews() {
         if(Display.typeIsLike == .iphone5) {
@@ -26,5 +27,6 @@ class RankingViewCell: UITableViewCell {
             self.avatar.layer.cornerRadius = 25
         }
         self.avatar.clipsToBounds = true
+        self.avatar.contentMode = .scaleAspectFill
     }
 }

@@ -32,7 +32,6 @@ class AllActivitiesViewController: UITableViewController, NSFetchedResultsContro
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         if let count = fetchResultsController?.sections?.count {
-            print(count)
             if (count == 0) {
                 displayEmptyMessage()
             } else {
@@ -52,7 +51,7 @@ class AllActivitiesViewController: UITableViewController, NSFetchedResultsContro
     
     func configureCell(cell: ActivityTableViewCell, indexPath: IndexPath) {
         let run = fetchResultsController?.object(at: indexPath) as! Run
-        let displayDistance = Double(round(run.distance!.doubleValue*100)/100)
+        let displayDistance = String(format:"%.1f", Double(round(run.distance!.doubleValue*10)/10))
         let displayTime = Time.secondsFormattedString(seconds: run.time!.intValue)
         cell.distanceLabel.text = "\(displayDistance) miles"
         cell.timeLabel.text = displayTime
@@ -124,8 +123,9 @@ class AllActivitiesViewController: UITableViewController, NSFetchedResultsContro
         return false
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        fetchResultsController?.delegate = self
+    override func viewWillAppear(_ animated: Bool) {
+        do{ try fetchResultsController?.performFetch()} catch _ { print("Could not fetch run!")}
+        tableView.reloadData()
     }
 
     override func viewDidLoad() {
