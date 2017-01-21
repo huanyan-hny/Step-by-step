@@ -8,5 +8,5 @@ use_frameworks!
 pod 'FacebookCore'
 pod 'FacebookLogin'
 pod 'FacebookShare'
-pod 'Charts'
+pod 'Localize-Swift', '~> 1.7'
 pod 'PNChart'

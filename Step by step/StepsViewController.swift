@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Charts
 import CoreMotion
 import PNChart
 import CoreData
@@ -15,7 +14,7 @@ import AWSMobileHubHelper
 import AWSDynamoDB
 import AWSS3
 
-class StepsViewController: UIViewController, ChartViewDelegate, PNChartDelegate, UIScrollViewDelegate {
+class StepsViewController: UIViewController, PNChartDelegate, UIScrollViewDelegate {
 
     @IBOutlet var currentSteps: UILabel!
     @IBOutlet var currentDistance: UILabel!

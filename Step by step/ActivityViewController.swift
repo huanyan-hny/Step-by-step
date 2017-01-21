@@ -429,6 +429,7 @@ class ActivityViewController: UIViewController, MKMapViewDelegate {
             if (self.run?.synchronized?.boolValue == false) {
                 self.managedObjectContext?.delete(self.run!)
                 do{ try self.managedObjectContext?.save()} catch _ { print("Could not save!")}
+                _=self.navigationController?.popViewController(animated: true)
             } else {
                 self.startLoadingAnimation()
                 self.objectMapper.load(AllTimeRun.classForCoder(), hashKey: self.userID!, rangeKey: self.run?.date?.timeIntervalSince1970 as NSNumber?).continue(with: AWSExecutor.default(), with: {(task:AWSTask!) -> Any! in

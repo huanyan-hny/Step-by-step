@@ -98,7 +98,7 @@ class InRunningViewController: UIViewController, MKMapViewDelegate, CLLocationMa
         if !paused {
             print(seconds)
             seconds += 1
-            let displayDistance = String(format:"%.1f", Double(round(distance*10)/10))
+            let displayDistance = String(format:"%.2f", Double(round(distance*100)/100))
             let displayTime = Time.secondsFormatted(seconds: seconds)
             
             timeLabel.text = displayTime

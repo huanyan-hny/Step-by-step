@@ -1,0 +1,546 @@
+
+/* Class = "UITableViewSection"; headerTitle = "Running"; ObjectID = "0hM-fk-rGO"; */
+"0hM-fk-rGO.headerTitle" = "Running";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "0na-DD-4NC"; */
+"0na-DD-4NC.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Steps"; ObjectID = "0nb-GR-4RG"; */
+"0nb-GR-4RG.text" = "Steps";
+
+/* Class = "UILabel"; text = "Highest daily steps"; ObjectID = "1BL-9a-eqJ"; */
+"1BL-9a-eqJ.text" = "Highest daily steps";
+
+/* Class = "UITableViewSection"; headerTitle = " "; ObjectID = "1bW-8e-rO8"; */
+"1bW-8e-rO8.headerTitle" = " ";
+
+/* Class = "UILabel"; text = "STATISTICS"; ObjectID = "1ea-C0-7uV"; */
+"1ea-C0-7uV.text" = "STATISTICS";
+
+/* Class = "UILabel"; text = "Achievement"; ObjectID = "2TI-5c-UN3"; */
+"2TI-5c-UN3.text" = "Achievement";
+
+/* Class = "UILabel"; text = "Daily goal"; ObjectID = "2kF-fg-ko2"; */
+"2kF-fg-ko2.text" = "Daily goal";
+
+/* Class = "UILabel"; text = "Language"; ObjectID = "35O-Hr-VpE"; */
+"35O-Hr-VpE.text" = "Language";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "3Cv-DJ-HXE"; */
+"3Cv-DJ-HXE.text" = "0";
+
+/* Class = "UILabel"; text = "Run 13 miles in one run"; ObjectID = "3Tn-DS-dYx"; */
+"3Tn-DS-dYx.text" = "Run 13 miles in one run";
+
+/* Class = "UITextField"; placeholder = "Email"; ObjectID = "3Zy-by-HMo"; */
+"3Zy-by-HMo.placeholder" = "Email";
+
+/* Class = "UILabel"; text = "Bronze Medal"; ObjectID = "3dQ-fm-Bhb"; */
+"3dQ-fm-Bhb.text" = "Bronze Medal";
+
+/* Class = "UILabel"; text = "Avg min/mi"; ObjectID = "3gJ-IN-eqX"; */
+"3gJ-IN-eqX.text" = "Avg min/mi";
+
+/* Class = "UILabel"; text = "0 min/mi"; ObjectID = "3jJ-fY-m0H"; */
+"3jJ-fY-m0H.text" = "0 min/mi";
+
+/* Class = "UILabel"; text = "Silver Medal"; ObjectID = "4WU-c4-dY7"; */
+"4WU-c4-dY7.text" = "Silver Medal";
+
+/* Class = "UITableViewSection"; headerTitle = " "; ObjectID = "4cj-LJ-H4d"; */
+"4cj-LJ-H4d.headerTitle" = " ";
+
+/* Class = "UIButton"; normalTitle = "Stop"; ObjectID = "503-00-zh0"; */
+"503-00-zh0.normalTitle" = "Stop";
+
+/* Class = "UILabel"; text = "Run 6 miles in one run"; ObjectID = "5LH-PK-ebo"; */
+"5LH-PK-ebo.text" = "Run 6 miles in one run";
+
+/* Class = "UIButton"; normalTitle = "WEEKLY"; ObjectID = "67N-vH-wV5"; */
+"67N-vH-wV5.normalTitle" = "WEEKLY";
+
+/* Class = "UILabel"; text = "Longest distance"; ObjectID = "6QO-Ki-4M8"; */
+"6QO-Ki-4M8.text" = "Longest distance";
+
+/* Class = "UILabel"; text = "Huanyan"; ObjectID = "6bd-Ed-ID7"; */
+"6bd-Ed-ID7.text" = "Huanyan";
+
+/* Class = "UILabel"; text = "Try to unlock more achievements!"; ObjectID = "6dO-VU-asy"; */
+"6dO-VU-asy.text" = "Try to unlock more achievements!";
+
+/* Class = "UILabel"; text = "Miles"; ObjectID = "6gj-ok-rez"; */
+"6gj-ok-rez.text" = "Miles";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "7Zh-IQ-JSn"; */
+"7Zh-IQ-JSn.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Walk 30000 steps in one day"; ObjectID = "7b4-9l-sQJ"; */
+"7b4-9l-sQJ.text" = "Walk 30000 steps in one day";
+
+/* Class = "UILabel"; text = "Fastest pace"; ObjectID = "7zQ-gM-nPr"; */
+"7zQ-gM-nPr.text" = "Fastest pace";
+
+/* Class = "UILabel"; text = "Welcome to Step by Step"; ObjectID = "8Sq-CH-XGA"; */
+"8Sq-CH-XGA.text" = "Welcome to Step by Step";
+
+/* Class = "UILabel"; text = "---"; ObjectID = "8ry-QE-Fhv"; */
+"8ry-QE-Fhv.text" = "---";
+
+/* Class = "UILabel"; text = "Log out"; ObjectID = "9nE-4J-ztF"; */
+"9nE-4J-ztF.text" = "Log out";
+
+/* Class = "UILabel"; text = "Privacy policy"; ObjectID = "ABO-SL-z6j"; */
+"ABO-SL-z6j.text" = "Privacy policy";
+
+/* Class = "UILabel"; text = "Miles"; ObjectID = "Axi-6s-yYy"; */
+"Axi-6s-yYy.text" = "Miles";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "BLn-Y5-HJM"; */
+"BLn-Y5-HJM.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Walk 20000 steps in one day"; ObjectID = "BQX-RT-Jhp"; */
+"BQX-RT-Jhp.text" = "Walk 20000 steps in one day";
+
+/* Class = "UILabel"; text = "Avg min/mi"; ObjectID = "Bcd-pd-xlv"; */
+"Bcd-pd-xlv.text" = "Avg min/mi";
+
+/* Class = "UILabel"; text = "0m 0s"; ObjectID = "Bhh-jO-XlW"; */
+"Bhh-jO-XlW.text" = "0m 0s";
+
+/* Class = "UILabel"; text = "Miles"; ObjectID = "CKj-5h-WXy"; */
+"CKj-5h-WXy.text" = "Miles";
+
+/* Class = "UILabel"; text = "No record yet"; ObjectID = "CRS-kh-HvE"; */
+"CRS-kh-HvE.text" = "No record yet";
+
+/* Class = "UILabel"; text = "Sky Walker"; ObjectID = "DbJ-Qi-bdN"; */
+"DbJ-Qi-bdN.text" = "Sky Walker";
+
+/* Class = "UITableViewSection"; headerTitle = " "; ObjectID = "Dz1-sG-Lam"; */
+"Dz1-sG-Lam.headerTitle" = " ";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "EW2-kX-HLw"; */
+"EW2-kX-HLw.text" = "0";
+
+/* Class = "UILabel"; text = "Time"; ObjectID = "Eaw-Xf-8bv"; */
+"Eaw-Xf-8bv.text" = "Time";
+
+/* Class = "UILabel"; text = "total"; ObjectID = "Ezh-KD-PWU"; */
+"Ezh-KD-PWU.text" = "total";
+
+/* Class = "UILabel"; text = "Ranking"; ObjectID = "FF7-1P-3RB"; */
+"FF7-1P-3RB.text" = "Ranking";
+
+/* Class = "UILabel"; text = "Partly Cloudy"; ObjectID = "FLo-Lf-j87"; */
+"FLo-Lf-j87.text" = "Partly Cloudy";
+
+/* Class = "UILabel"; text = "Jan 2, 2016 -  Jan 9, 2016"; ObjectID = "FzX-R7-p39"; */
+"FzX-R7-p39.text" = "Jan 2, 2016 -  Jan 9, 2016";
+
+/* Class = "UIBarButtonItem"; title = "Item"; ObjectID = "GMP-of-Cvn"; */
+"GMP-of-Cvn.title" = "Item";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "HNL-Yi-hJP"; */
+"HNL-Yi-hJP.text" = "0";
+
+/* Class = "UILabel"; text = "New York, United States"; ObjectID = "HfL-K5-Jtd"; */
+"HfL-K5-Jtd.text" = "New York, United States";
+
+/* Class = "UITableViewSection"; headerTitle = " "; ObjectID = "Hyf-kx-Th7"; */
+"Hyf-kx-Th7.headerTitle" = " ";
+
+/* Class = "UILabel"; text = "---"; ObjectID = "I4q-ky-mXh"; */
+"I4q-ky-mXh.text" = "---";
+
+/* Class = "UITableViewSection"; headerTitle = " "; ObjectID = "IGO-LM-5Vr"; */
+"IGO-LM-5Vr.headerTitle" = " ";
+
+/* Class = "UILabel"; text = "Miles"; ObjectID = "IVs-rk-Uik"; */
+"IVs-rk-Uik.text" = "Miles";
+
+/* Class = "UITableViewSection"; headerTitle = " "; ObjectID = "IZC-Dv-Vla"; */
+"IZC-Dv-Vla.headerTitle" = " ";
+
+/* Class = "UILabel"; text = "Good GPS"; ObjectID = "Ibr-DT-Tfs"; */
+"Ibr-DT-Tfs.text" = "Good GPS";
+
+/* Class = "UIButton"; normalTitle = "Start"; ObjectID = "Izh-jH-hjK"; */
+"Izh-jH-hjK.normalTitle" = "Start";
+
+/* Class = "UILabel"; text = "Calories"; ObjectID = "JA8-oT-QDU"; */
+"JA8-oT-QDU.text" = "Calories";
+
+/* Class = "UILabel"; text = "Partly Cloudy"; ObjectID = "L19-wd-oDI"; */
+"L19-wd-oDI.text" = "Partly Cloudy";
+
+/* Class = "UITableViewSection"; headerTitle = " "; ObjectID = "LQT-P6-3hd"; */
+"LQT-P6-3hd.headerTitle" = " ";
+
+/* Class = "UILabel"; text = "Signature"; ObjectID = "LeF-zU-i1E"; */
+"LeF-zU-i1E.text" = "Signature";
+
+/* Class = "UILabel"; text = "0 miles"; ObjectID = "Lrx-ge-gev"; */
+"Lrx-ge-gev.text" = "0 miles";
+
+/* Class = "UILabel"; text = "---"; ObjectID = "M3f-Sl-UqG"; */
+"M3f-Sl-UqG.text" = "---";
+
+/* Class = "UILabel"; text = "Maplestory"; ObjectID = "M4a-O7-Fel"; */
+"M4a-O7-Fel.text" = "Maplestory";
+
+/* Class = "UILabel"; text = "Marathon"; ObjectID = "MNI-M4-gGN"; */
+"MNI-M4-gGN.text" = "Marathon";
+
+/* Class = "UILabel"; text = "Run 26 miles in one run"; ObjectID = "NC5-OZ-Tea"; */
+"NC5-OZ-Tea.text" = "Run 26 miles in one run";
+
+/* Class = "UITableViewSection"; headerTitle = " "; ObjectID = "NNU-n1-vM9"; */
+"NNU-n1-vM9.headerTitle" = " ";
+
+/* Class = "UILabel"; text = "Half Marathon"; ObjectID = "Nfq-hU-dtr"; */
+"Nfq-hU-dtr.text" = "Half Marathon";
+
+/* Class = "UILabel"; text = "---"; ObjectID = "O8N-f6-ywh"; */
+"O8N-f6-ywh.text" = "---";
+
+/* Class = "UILabel"; text = "0 miles"; ObjectID = "OPl-Cu-Tym"; */
+"OPl-Cu-Tym.text" = "0 miles";
+
+/* Class = "UILabel"; text = "00:00"; ObjectID = "Oyu-M4-LCB"; */
+"Oyu-M4-LCB.text" = "00:00";
+
+/* Class = "UILabel"; text = "Strong Walker"; ObjectID = "PuM-dh-i7t"; */
+"PuM-dh-i7t.text" = "Strong Walker";
+
+/* Class = "UILabel"; text = "Walker"; ObjectID = "Q9q-sD-8BD"; */
+"Q9q-sD-8BD.text" = "Walker";
+
+/* Class = "UILabel"; text = "Cloudy"; ObjectID = "QCf-bG-EgA"; */
+"QCf-bG-EgA.text" = "Cloudy";
+
+/* Class = "UILabel"; text = "Walk 10000 steps in one day"; ObjectID = "QJu-jV-MQA"; */
+"QJu-jV-MQA.text" = "Walk 10000 steps in one day";
+
+/* Class = "UILabel"; text = "---"; ObjectID = "QOQ-lO-uTb"; */
+"QOQ-lO-uTb.text" = "---";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "Qeu-fG-Efp"; */
+"Qeu-fG-Efp.text" = "0";
+
+/* Class = "UITextField"; placeholder = "Username"; ObjectID = "Qy6-yS-DqU"; */
+"Qy6-yS-DqU.placeholder" = "Username";
+
+/* Class = "UILabel"; text = "How was the weather?"; ObjectID = "R5F-7W-ONQ"; */
+"R5F-7W-ONQ.text" = "How was the weather?";
+
+/* Class = "UILabel"; text = "Snowy"; ObjectID = "RJ0-gx-YHq"; */
+"RJ0-gx-YHq.text" = "Snowy";
+
+/* Class = "UIButton"; normalTitle = "New here? Sign up"; ObjectID = "RSb-fz-BT7"; */
+"RSb-fz-BT7.normalTitle" = "New here? Sign up";
+
+/* Class = "UILabel"; text = "Rainy"; ObjectID = "SNa-Vi-1x0"; */
+"SNa-Vi-1x0.text" = "Rainy";
+
+/* Class = "UILabel"; text = "---"; ObjectID = "SjC-0Y-Wwz"; */
+"SjC-0Y-Wwz.text" = "---";
+
+/* Class = "UILabel"; text = "---"; ObjectID = "TQq-R3-Ep6"; */
+"TQq-R3-Ep6.text" = "---";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "Teb-Dx-nHv"; */
+"Teb-Dx-nHv.text" = "Label";
+
+/* Class = "UILabel"; text = "January 2, 2016 - Monday"; ObjectID = "Tj6-qi-LCV"; */
+"Tj6-qi-LCV.text" = "January 2, 2016 - Monday";
+
+/* Class = "UILabel"; text = "0.00"; ObjectID = "TzM-80-FfX"; */
+"TzM-80-FfX.text" = "0.00";
+
+/* Class = "UILabel"; text = "DISTANCE"; ObjectID = "UIb-RJ-qUY"; */
+"UIb-RJ-qUY.text" = "DISTANCE";
+
+/* Class = "UILabel"; text = "Acknowledgement"; ObjectID = "UeT-KK-Jh6"; */
+"UeT-KK-Jh6.text" = "Acknowledgement";
+
+/* Class = "UILabel"; text = "Enter top 10 in leaderboard"; ObjectID = "VCL-ee-Vfq"; */
+"VCL-ee-Vfq.text" = "Enter top 10 in leaderboard";
+
+/* Class = "UILabel"; text = "Leaderboard"; ObjectID = "VjZ-rZ-0R2"; */
+"VjZ-rZ-0R2.text" = "Leaderboard";
+
+/* Class = "UILabel"; text = "Calories"; ObjectID = "VzZ-lS-MWe"; */
+"VzZ-lS-MWe.text" = "Calories";
+
+/* Class = "UILabel"; text = "Sunny"; ObjectID = "WOx-s0-oev"; */
+"WOx-s0-oev.text" = "Sunny";
+
+/* Class = "UILabel"; text = "Snowy"; ObjectID = "WwL-GI-OBI"; */
+"WwL-GI-OBI.text" = "Snowy";
+
+/* Class = "UILabel"; text = "Rainy"; ObjectID = "X4v-8h-TD4"; */
+"X4v-8h-TD4.text" = "Rainy";
+
+/* Class = "UILabel"; text = "Today's steps"; ObjectID = "Y5X-8Z-IVM"; */
+"Y5X-8Z-IVM.text" = "Today's steps";
+
+/* Class = "UILabel"; text = "Calorie"; ObjectID = "YCw-xo-0En"; */
+"YCw-xo-0En.text" = "Calorie";
+
+/* Class = "UILabel"; text = "Running"; ObjectID = "Yfr-nx-MdK"; */
+"Yfr-nx-MdK.text" = "Running";
+
+/* Class = "UILabel"; text = "Rate me"; ObjectID = "Z0l-ib-0y1"; */
+"Z0l-ib-0y1.text" = "Rate me";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "Zbb-vG-rHy"; */
+"Zbb-vG-rHy.text" = "Label";
+
+/* Class = "UITabBarItem"; title = "Me"; ObjectID = "acW-dT-cKf"; */
+"acW-dT-cKf.title" = "Me";
+
+/* Class = "UILabel"; text = "Gold Medal"; ObjectID = "afT-ts-pX8"; */
+"afT-ts-pX8.text" = "Gold Medal";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "b8K-0e-T1S"; */
+"b8K-0e-T1S.text" = "0";
+
+/* Class = "UILabel"; text = "---"; ObjectID = "bpQ-oG-9Jn"; */
+"bpQ-oG-9Jn.text" = "---";
+
+/* Class = "UILabel"; text = "Lift"; ObjectID = "c17-qy-nn4"; */
+"c17-qy-nn4.text" = "Lift";
+
+/* Class = "UILabel"; text = "Good GPS"; ObjectID = "c3s-vf-zMl"; */
+"c3s-vf-zMl.text" = "Good GPS";
+
+/* Class = "UILabel"; text = "---"; ObjectID = "cIN-Yk-V6b"; */
+"cIN-Yk-V6b.text" = "---";
+
+/* Class = "UITabBarItem"; title = "Running"; ObjectID = "cPa-gy-q4n"; */
+"cPa-gy-q4n.title" = "Running";
+
+/* Class = "UILabel"; text = "0/9 unlocked"; ObjectID = "dF2-BO-qFn"; */
+"dF2-BO-qFn.text" = "0/9 unlocked";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "dFN-pe-KCl"; */
+"dFN-pe-KCl.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "---"; ObjectID = "dvL-av-9MU"; */
+"dvL-av-9MU.text" = "---";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "eGb-Ts-rqS"; */
+"eGb-Ts-rqS.normalTitle" = "Button";
+
+/* Class = "UITabBarItem"; title = "Steps"; ObjectID = "ejg-ht-J73"; */
+"ejg-ht-J73.title" = "Steps";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "eyk-Bb-shw"; */
+"eyk-Bb-shw.text" = "0";
+
+/* Class = "UILabel"; text = "Longest duration"; ObjectID = "ezD-mM-hKc"; */
+"ezD-mM-hKc.text" = "Longest duration";
+
+/* Class = "UINavigationItem"; title = "Running result"; ObjectID = "f9n-YS-KOX"; */
+"f9n-YS-KOX.title" = "Running result";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "fB4-Fd-Ozn"; */
+"fB4-Fd-Ozn.text" = "0";
+
+/* Class = "UILabel"; text = "this week"; ObjectID = "fBQ-Xe-Ykm"; */
+"fBQ-Xe-Ykm.text" = "this week";
+
+/* Class = "UILabel"; text = "---"; ObjectID = "fDM-3c-tre"; */
+"fDM-3c-tre.text" = "---";
+
+/* Class = "UIButton"; normalTitle = "Forgot password?"; ObjectID = "fR2-HN-NWU"; */
+"fR2-HN-NWU.normalTitle" = "Forgot password?";
+
+/* Class = "UITabBarItem"; title = "Setting"; ObjectID = "fSC-73-ug6"; */
+"fSC-73-ug6.title" = "Setting";
+
+/* Class = "UILabel"; text = "Quarter Marathon"; ObjectID = "fos-sv-Moa"; */
+"fos-sv-Moa.text" = "Quarter Marathon";
+
+/* Class = "UILabel"; text = "There are no notes for this run"; ObjectID = "g3K-rz-zLq"; */
+"g3K-rz-zLq.text" = "There are no notes for this run";
+
+/* Class = "UILabel"; text = "Calories"; ObjectID = "gJC-ng-xZi"; */
+"gJC-ng-xZi.text" = "Calories";
+
+/* Class = "UILabel"; text = "No record yet"; ObjectID = "goJ-LY-Cz9"; */
+"goJ-LY-Cz9.text" = "No record yet";
+
+/* Class = "UILabel"; text = "Name"; ObjectID = "hHj-6M-MSr"; */
+"hHj-6M-MSr.text" = "Name";
+
+/* Class = "UILabel"; text = "1"; ObjectID = "hK7-eQ-uiS"; */
+"hK7-eQ-uiS.text" = "1";
+
+/* Class = "UILabel"; text = "Avg min/mi"; ObjectID = "hQJ-0b-Pr0"; */
+"hQJ-0b-Pr0.text" = "Avg min/mi";
+
+/* Class = "UILabel"; text = "0.00"; ObjectID = "hho-Cy-PLO"; */
+"hho-Cy-PLO.text" = "0.00";
+
+/* Class = "UILabel"; text = "Cloudy"; ObjectID = "htg-zM-n2O"; */
+"htg-zM-n2O.text" = "Cloudy";
+
+/* Class = "UILabel"; text = "TIME"; ObjectID = "hx1-D9-sdj"; */
+"hx1-D9-sdj.text" = "TIME";
+
+/* Class = "UITabBarItem"; title = "Ranking"; ObjectID = "i7w-t4-oFF"; */
+"i7w-t4-oFF.title" = "Ranking";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "iK1-QM-r2H"; */
+"iK1-QM-r2H.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "jNW-CW-W8U"; */
+"jNW-CW-W8U.text" = "0";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "jsd-E6-XAS"; */
+"jsd-E6-XAS.text" = "0";
+
+/* Class = "UILabel"; text = "---"; ObjectID = "kNv-gR-uJy"; */
+"kNv-gR-uJy.text" = "---";
+
+/* Class = "UILabel"; text = "1"; ObjectID = "kkg-dh-020"; */
+"kkg-dh-020.text" = "1";
+
+/* Class = "UILabel"; text = "Weekly: 17"; ObjectID = "kto-54-XvQ"; */
+"kto-54-XvQ.text" = "Weekly: 17";
+
+/* Class = "UILabel"; text = "Enter top 3 in leaderboard"; ObjectID = "lWT-PW-YGn"; */
+"lWT-PW-YGn.text" = "Enter top 3 in leaderboard";
+
+/* Class = "UILabel"; text = "Time"; ObjectID = "ldZ-pT-ap6"; */
+"ldZ-pT-ap6.text" = "Time";
+
+/* Class = "UILabel"; text = "Run"; ObjectID = "leH-PR-cuk"; */
+"leH-PR-cuk.text" = "Run";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "m8h-9t-rsN"; */
+"m8h-9t-rsN.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Sunny"; ObjectID = "mYc-zO-4xO"; */
+"mYc-zO-4xO.text" = "Sunny";
+
+/* Class = "UILabel"; text = "Personal Record"; ObjectID = "mfQ-6t-mp3"; */
+"mfQ-6t-mp3.text" = "Personal Record";
+
+/* Class = "UILabel"; text = "Notes"; ObjectID = "nS9-8f-BfT"; */
+"nS9-8f-BfT.text" = "Notes";
+
+/* Class = "UILabel"; text = "New York, United States"; ObjectID = "ngy-jd-rVU"; */
+"ngy-jd-rVU.text" = "New York, United States";
+
+/* Class = "UIButton"; normalTitle = "MONTHLY"; ObjectID = "oMe-qN-cQT"; */
+"oMe-qN-cQT.normalTitle" = "MONTHLY";
+
+/* Class = "UILabel"; text = "No record yet"; ObjectID = "oaV-IK-gfR"; */
+"oaV-IK-gfR.text" = "No record yet";
+
+/* Class = "UILabel"; text = "How's the weather today?"; ObjectID = "pkb-45-SzQ"; */
+"pkb-45-SzQ.text" = "How's the weather today?";
+
+/* Class = "UILabel"; text = "陈垚"; ObjectID = "qG8-mF-oGZ"; */
+"qG8-mF-oGZ.text" = "陈垚";
+
+/* Class = "UILabel"; text = "Log in with"; ObjectID = "qlK-bE-tqn"; */
+"qlK-bE-tqn.text" = "Log in with";
+
+/* Class = "UILabel"; text = "0.00"; ObjectID = "qsP-xr-QdS"; */
+"qsP-xr-QdS.text" = "0.00";
+
+/* Class = "UILabel"; text = "00:00"; ObjectID = "rD8-i2-kHn"; */
+"rD8-i2-kHn.text" = "00:00";
+
+/* Class = "UIButton"; normalTitle = "Pause"; ObjectID = "rsH-sH-rgx"; */
+"rsH-sH-rgx.normalTitle" = "Pause";
+
+/* Class = "UITextField"; placeholder = "Password"; ObjectID = "s2O-2J-fiG"; */
+"s2O-2J-fiG.placeholder" = "Password";
+
+/* Class = "UILabel"; text = "---"; ObjectID = "s5E-Xc-dXc"; */
+"s5E-Xc-dXc.text" = "---";
+
+/* Class = "UILabel"; text = "26 miles"; ObjectID = "sK8-xO-a8F"; */
+"sK8-xO-a8F.text" = "26 miles";
+
+/* Class = "UILabel"; text = "00:00"; ObjectID = "sW4-FC-Cfr"; */
+"sW4-FC-Cfr.text" = "00:00";
+
+/* Class = "UILabel"; text = "00:00"; ObjectID = "sd4-sG-3ZZ"; */
+"sd4-sG-3ZZ.text" = "00:00";
+
+/* Class = "UILabel"; text = "Enter top 20 in leaderboard"; ObjectID = "tqF-zA-NYC"; */
+"tqF-zA-NYC.text" = "Enter top 20 in leaderboard";
+
+/* Class = "UILabel"; text = "---"; ObjectID = "tti-mv-Yny"; */
+"tti-mv-Yny.text" = "---";
+
+/* Class = "UITableViewSection"; headerTitle = " "; ObjectID = "u1j-Xl-gA2"; */
+"u1j-Xl-gA2.headerTitle" = " ";
+
+/* Class = "UILabel"; text = "Notes"; ObjectID = "u3T-NM-UPH"; */
+"u3T-NM-UPH.text" = "Notes";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "uoT-t0-k7f"; */
+"uoT-t0-k7f.normalTitle" = "Button";
+
+/* Class = "UITextField"; placeholder = "Verification code"; ObjectID = "us2-3V-oq0"; */
+"us2-3V-oq0.placeholder" = "Verification code";
+
+/* Class = "UILabel"; text = "No record yet"; ObjectID = "uuB-tK-OWE"; */
+"uuB-tK-OWE.text" = "No record yet";
+
+/* Class = "UIButton"; normalTitle = "Log In"; ObjectID = "v4P-ZY-WNz"; */
+"v4P-ZY-WNz.normalTitle" = "Log In";
+
+/* Class = "UILabel"; text = "Walking"; ObjectID = "vYv-eb-8xV"; */
+"vYv-eb-8xV.text" = "Walking";
+
+/* Class = "UITableViewSection"; headerTitle = " "; ObjectID = "wKh-h6-Lfp"; */
+"wKh-h6-Lfp.headerTitle" = " ";
+
+/* Class = "UITextField"; placeholder = "Wanna say something?"; ObjectID = "wgT-hJ-OIB"; */
+"wgT-hJ-OIB.placeholder" = "Wanna say something?";
+
+/* Class = "UITableViewSection"; headerTitle = " "; ObjectID = "x4e-Xo-7eX"; */
+"x4e-Xo-7eX.headerTitle" = " ";
+
+/* Class = "UILabel"; text = "weeks since joining"; ObjectID = "xhx-sT-53Z"; */
+"xhx-sT-53Z.text" = "weeks since joining";
+
+/* Class = "UILabel"; text = "0 total miles"; ObjectID = "xpz-pI-Zx3"; */
+"xpz-pI-Zx3.text" = "0 total miles";
+
+/* Class = "UITableViewSection"; headerTitle = "Walking"; ObjectID = "xzO-YR-cwZ"; */
+"xzO-YR-cwZ.headerTitle" = "Walking";
+
+/* Class = "UITableViewSection"; headerTitle = " "; ObjectID = "xzX-sJ-usv"; */
+"xzX-sJ-usv.headerTitle" = " ";
+
+/* Class = "UILabel"; text = "Farthest distance"; ObjectID = "y3z-B3-QRP"; */
+"y3z-B3-QRP.text" = "Farthest distance";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "yQR-Zv-bet"; */
+"yQR-Zv-bet.text" = "0";
+
+/* Class = "UILabel"; text = "00:00"; ObjectID = "yU4-Ax-ojG"; */
+"yU4-Ax-ojG.text" = "00:00";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "ycA-c7-ivf"; */
+"ycA-c7-ivf.text" = "0";
+
+/* Class = "UILabel"; text = "---"; ObjectID = "zBO-9m-pS5"; */
+"zBO-9m-pS5.text" = "---";
+
+/* Class = "UILabel"; text = "00:00"; ObjectID = "zHf-Pp-kMO"; */
+"zHf-Pp-kMO.text" = "00:00";
+
+/* Class = "UILabel"; text = "---"; ObjectID = "zf3-Oc-TVd"; */
+"zf3-Oc-TVd.text" = "---";
+
+/* Class = "UILabel"; text = "Weekly Stats"; ObjectID = "zkX-PN-yoC"; */
+"zkX-PN-yoC.text" = "Weekly Stats";
