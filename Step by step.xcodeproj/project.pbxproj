@@ -64,6 +64,7 @@
 		0596360E1B0CCD81007BCC22 /* StepsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0596360D1B0CCD81007BCC22 /* StepsViewController.swift */; };
 		059636141B0CD725007BCC22 /* StepsMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059636131B0CD725007BCC22 /* StepsMonitor.swift */; };
 		05C00C731E308C51000675B8 /* NBUIKitMainThreadGuard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C00C721E308C51000675B8 /* NBUIKitMainThreadGuard.swift */; };
+		05C0A5C51E33CC0600E9BE61 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 05C0A5C71E33CC0600E9BE61 /* InfoPlist.strings */; };
 		05C364631BDB2F31008D1712 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05C364611BDB2F31008D1712 /* LaunchScreen.xib */; };
 		05DAC7311BDF6E1C008F10C5 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05DAC7301BDF6E1C008F10C5 /* MapKit.framework */; };
 		05DEFACA1C0557CC00EE5A5F /* InRunningViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DEFAC91C0557CC00EE5A5F /* InRunningViewController.swift */; };
@@ -171,6 +172,8 @@
 		05BAD6D01E33C9DC00CFA84F /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		05C00C721E308C51000675B8 /* NBUIKitMainThreadGuard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NBUIKitMainThreadGuard.swift; sourceTree = "<group>"; };
 		05C0966C1E21854700607379 /* Step by step-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Step by step-Bridging-Header.h"; sourceTree = "<group>"; };
+		05C0A5C61E33CC0600E9BE61 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		05C0A5C81E33CC1A00E9BE61 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		05C364621BDB2F31008D1712 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		05DAC7301BDF6E1C008F10C5 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		05DEFAC91C0557CC00EE5A5F /* InRunningViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InRunningViewController.swift; sourceTree = "<group>"; };
@@ -294,13 +297,13 @@
 				05C00C721E308C51000675B8 /* NBUIKitMainThreadGuard.swift */,
 				05E781C71E2D86C00090E410 /* Login */,
 				0506336E1E27598C001DA272 /* AmazonAws */,
-				050633521E272FE4001DA272 /* Sdk */,
 				056FA8A71E2437B400089132 /* Helper */,
 				05DEFAD01C05B53000EE5A5F /* Running */,
 				055E7BFC1E1B51D600356F29 /* Ranking */,
 				055E7C031E1B671800356F29 /* Achievement */,
 				055E7C081E1C022300356F29 /* Record */,
 				05DEFACF1C05B49400EE5A5F /* CoreData */,
+				050633521E272FE4001DA272 /* Sdk */,
 				0555EA4B1AE210CB00E127C8 /* Supporting Files */,
 			);
 			path = "Step by step";
@@ -314,6 +317,7 @@
 				0555EA4D1AE210CB00E127C8 /* AppDelegate.swift */,
 				0555EA4C1AE210CB00E127C8 /* Info.plist */,
 				05C0966C1E21854700607379 /* Step by step-Bridging-Header.h */,
+				05C0A5C71E33CC0600E9BE61 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -517,6 +521,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
 			);
 			mainGroup = 0555EA3F1AE210CB00E127C8;
 			productRefGroup = 0555EA491AE210CB00E127C8 /* Products */;
@@ -538,6 +543,7 @@
 				050633531E272FE4001DA272 /* Sdk in Resources */,
 				0555EA551AE210CB00E127C8 /* Main.storyboard in Resources */,
 				05C364631BDB2F31008D1712 /* LaunchScreen.xib in Resources */,
+				05C0A5C51E33CC0600E9BE61 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -696,6 +702,15 @@
 				05BAD6CF1E33C9DB00CFA84F /* zh-Hans */,
 			);
 			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		05C0A5C71E33CC0600E9BE61 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				05C0A5C61E33CC0600E9BE61 /* en */,
+				05C0A5C81E33CC1A00E9BE61 /* zh-Hans */,
+			);
+			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 		05C364611BDB2F31008D1712 /* LaunchScreen.xib */ = {
