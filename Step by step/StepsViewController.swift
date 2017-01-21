@@ -13,6 +13,7 @@ import CoreData
 import AWSMobileHubHelper
 import AWSDynamoDB
 import AWSS3
+import Localize_Swift
 
 class StepsViewController: UIViewController, PNChartDelegate, UIScrollViewDelegate {
 
@@ -21,7 +22,9 @@ class StepsViewController: UIViewController, PNChartDelegate, UIScrollViewDelega
     @IBOutlet var currentCalorie: UILabel!
     @IBOutlet weak var currentLift: UILabel!
     @IBOutlet weak var pageControl: UIPageControl!
+    @IBOutlet weak var todaystepLabel: UILabel!
     
+
     
     var managedObjectContext:NSManagedObjectContext?
     let runFetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Run")
@@ -34,7 +37,6 @@ class StepsViewController: UIViewController, PNChartDelegate, UIScrollViewDelega
     var walkingGoal = 3000
     var runningGoal = 5.0
     var weekDays = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"]
-//    var weekDays = ["周日","周一","周二","周三","周四","周五","周六"]
     var totalSteps = 0
     var totalRunnings = 0.0
     var dateByWeek = ""
@@ -361,14 +363,18 @@ class StepsViewController: UIViewController, PNChartDelegate, UIScrollViewDelega
         runFetchResultsController = NSFetchedResultsController(fetchRequest: runFetchRequest, managedObjectContext: managedObjectContext!, sectionNameKeyPath: "date", cacheName: nil)
         
         dateFormatter.dateFormat = "MMM YYYY";
-        dateFormatter.locale = Locale(identifier: "en-US")
-        
-        
-        test()
-        
+
+        UserDefaults.standard.set(["zh_Hans","en_US"], forKey: "AppleLanguages")
+        UserDefaults.standard.set("zh_Hans",forKey:"AppleLocale")
+        print(UserDefaults.standard.array(forKey: "AppleLanguages")!)
+//        todaystepLabel.text = "Test".localized()
     }
     
-        
+    
+    func localizeLabels() {
+
+    }
+    
     
     func test() {
         if(Display.typeIsLike == .iphone5 || Display.typeIsLike == .iphone6plus) {

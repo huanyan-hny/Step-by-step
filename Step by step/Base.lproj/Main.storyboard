@@ -209,6 +209,7 @@
                         <outlet property="currentLift" destination="b8K-0e-T1S" id="lvK-fc-g3s"/>
                         <outlet property="currentSteps" destination="ycA-c7-ivf" id="OHm-P7-LKC"/>
                         <outlet property="pageControl" destination="POJ-Ar-DgO" id="eAf-Sb-8lV"/>
+                        <outlet property="todaystepLabel" destination="Y5X-8Z-IVM" id="MgA-vY-5D7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="epq-eR-t1C" userLabel="First Responder" sceneMemberID="firstResponder"/>

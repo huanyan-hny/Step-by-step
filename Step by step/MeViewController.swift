@@ -27,6 +27,11 @@ class MeViewController: UITableViewController, UINavigationControllerDelegate, U
     @IBOutlet weak var achievementDetail: UILabel!
     @IBOutlet weak var recordTitle: UILabel!
     @IBOutlet weak var recordDetail: UILabel!
+    @IBOutlet weak var runLabel: UILabel!
+    @IBOutlet weak var rankingLabel: UILabel!
+    @IBOutlet weak var achievementLabel: UILabel!
+    @IBOutlet weak var personalRecordLabel: UILabel!
+    
     
     
     var managedObjectContext:NSManagedObjectContext?
@@ -262,6 +267,7 @@ class MeViewController: UITableViewController, UINavigationControllerDelegate, U
         }
         
         print(Display.typeIsLike)
+        localizeLabels()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -283,6 +289,9 @@ class MeViewController: UITableViewController, UINavigationControllerDelegate, U
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
+    }
+    
+    func localizeLabels() {
     }
 
 }

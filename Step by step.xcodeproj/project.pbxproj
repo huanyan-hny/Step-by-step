@@ -39,6 +39,7 @@
 		0555EA521AE210CB00E127C8 /* RunningViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0555EA511AE210CB00E127C8 /* RunningViewController.swift */; };
 		0555EA551AE210CB00E127C8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0555EA531AE210CB00E127C8 /* Main.storyboard */; };
 		0555EA661AE210CB00E127C8 /* Step_by_stepTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0555EA651AE210CB00E127C8 /* Step_by_stepTests.swift */; };
+		055E3CE01E33D121004F3A89 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 055E3CE21E33D121004F3A89 /* Localizable.strings */; };
 		055E7BFB1E1B51CE00356F29 /* AllRankingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055E7BFA1E1B51CE00356F29 /* AllRankingsViewController.swift */; };
 		055E7BFE1E1B521200356F29 /* RankingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055E7BFD1E1B521200356F29 /* RankingTableViewCell.swift */; };
 		055E7C001E1B66DC00356F29 /* AchievementTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055E7BFF1E1B66DC00356F29 /* AchievementTableViewCell.swift */; };
@@ -76,7 +77,7 @@
 		05E781DB1E2D93B50090E410 /* AWSCognitoIdentityProvider.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 05E781D91E2D93B50090E410 /* AWSCognitoIdentityProvider.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		05E781E01E2DC8D50090E410 /* AWSConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E781DE1E2DC8D50090E410 /* AWSConfiguration.swift */; };
 		05E781E11E2DC8D50090E410 /* AWSMobileClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E781DF1E2DC8D50090E410 /* AWSMobileClient.swift */; };
-		05E88DC91E2BD9B5005D40A3 /* Extentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E88DC81E2BD9B5005D40A3 /* Extentions.swift */; };
+		05E88DC91E2BD9B5005D40A3 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E88DC81E2BD9B5005D40A3 /* Extensions.swift */; };
 		05E88DCB1E2BF82A005D40A3 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E88DCA1E2BF82A005D40A3 /* User.swift */; };
 		05FEC9D41BDE83C50093DF7D /* RankingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FEC9D31BDE83C50093DF7D /* RankingViewController.swift */; };
 		988262BAF10AC5F8FF234B54 /* Pods_Step_by_step.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72A64F0ED2346E99320C8C04 /* Pods_Step_by_step.framework */; };
@@ -127,6 +128,7 @@
 		052E9F7D1BFF222D00BBF246 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		052E9F7F1C00515600BBF246 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		052EB0CC1E1317F100F17B11 /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		05398A2E1E34037F002B0A9B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		0539F9901E2710EC00C1FB19 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		0539F9921E2710F700C1FB19 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		0539F9941E2714EA00C1FB19 /* Test.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
@@ -144,6 +146,8 @@
 		0555EA5F1AE210CB00E127C8 /* Step by stepTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Step by stepTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0555EA641AE210CB00E127C8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0555EA651AE210CB00E127C8 /* Step_by_stepTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Step_by_stepTests.swift; sourceTree = "<group>"; };
+		055E3CE11E33D121004F3A89 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		055E3CE31E33D123004F3A89 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		055E7BFA1E1B51CE00356F29 /* AllRankingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllRankingsViewController.swift; sourceTree = "<group>"; };
 		055E7BFD1E1B521200356F29 /* RankingTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RankingTableViewCell.swift; sourceTree = "<group>"; };
 		055E7BFF1E1B66DC00356F29 /* AchievementTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AchievementTableViewCell.swift; sourceTree = "<group>"; };
@@ -168,7 +172,6 @@
 		058C8AC81E14B80600140D71 /* Pedometer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pedometer.swift; sourceTree = "<group>"; };
 		0596360D1B0CCD81007BCC22 /* StepsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepsViewController.swift; sourceTree = "<group>"; };
 		059636131B0CD725007BCC22 /* StepsMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = StepsMonitor.swift; sourceTree = "<group>"; };
-		05BAD6CF1E33C9DB00CFA84F /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		05BAD6D01E33C9DC00CFA84F /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		05C00C721E308C51000675B8 /* NBUIKitMainThreadGuard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NBUIKitMainThreadGuard.swift; sourceTree = "<group>"; };
 		05C0966C1E21854700607379 /* Step by step-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Step by step-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -183,7 +186,7 @@
 		05E781D91E2D93B50090E410 /* AWSCognitoIdentityProvider.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSCognitoIdentityProvider.framework; path = "Step by step/Sdk/Aws/AWSCognitoIdentityProvider.framework"; sourceTree = "<group>"; };
 		05E781DE1E2DC8D50090E410 /* AWSConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AWSConfiguration.swift; sourceTree = "<group>"; };
 		05E781DF1E2DC8D50090E410 /* AWSMobileClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AWSMobileClient.swift; sourceTree = "<group>"; };
-		05E88DC81E2BD9B5005D40A3 /* Extentions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extentions.swift; sourceTree = "<group>"; };
+		05E88DC81E2BD9B5005D40A3 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		05E88DCA1E2BF82A005D40A3 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		05FEC9D31BDE83C50093DF7D /* RankingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RankingViewController.swift; sourceTree = "<group>"; };
 		6115B23D8EB24AE7BEAFEA10 /* Pods-Step by step.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Step by step.release.xcconfig"; path = "Pods/Target Support Files/Pods-Step by step/Pods-Step by step.release.xcconfig"; sourceTree = "<group>"; };
@@ -304,6 +307,7 @@
 				055E7C081E1C022300356F29 /* Record */,
 				05DEFACF1C05B49400EE5A5F /* CoreData */,
 				050633521E272FE4001DA272 /* Sdk */,
+				055E3CE61E33D8DD004F3A89 /* Localization */,
 				0555EA4B1AE210CB00E127C8 /* Supporting Files */,
 			);
 			path = "Step by step";
@@ -317,7 +321,6 @@
 				0555EA4D1AE210CB00E127C8 /* AppDelegate.swift */,
 				0555EA4C1AE210CB00E127C8 /* Info.plist */,
 				05C0966C1E21854700607379 /* Step by step-Bridging-Header.h */,
-				05C0A5C71E33CC0600E9BE61 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -337,6 +340,15 @@
 				0555EA641AE210CB00E127C8 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		055E3CE61E33D8DD004F3A89 /* Localization */ = {
+			isa = PBXGroup;
+			children = (
+				055E3CE21E33D121004F3A89 /* Localizable.strings */,
+				05C0A5C71E33CC0600E9BE61 /* InfoPlist.strings */,
+			);
+			name = Localization;
 			sourceTree = "<group>";
 		};
 		055E7BFC1E1B51D600356F29 /* Ranking */ = {
@@ -369,7 +381,7 @@
 		056FA8A71E2437B400089132 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
-				05E88DC81E2BD9B5005D40A3 /* Extentions.swift */,
+				05E88DC81E2BD9B5005D40A3 /* Extensions.swift */,
 				05E26C941E20006600D1E22F /* Display.swift */,
 				057EA67B1E21F4C500064BFD /* Colors.swift */,
 				059636131B0CD725007BCC22 /* StepsMonitor.swift */,
@@ -540,6 +552,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				05269AF01DFBD6A000B2A600 /* Images.xcassets in Resources */,
+				055E3CE01E33D121004F3A89 /* Localizable.strings in Resources */,
 				050633531E272FE4001DA272 /* Sdk in Resources */,
 				0555EA551AE210CB00E127C8 /* Main.storyboard in Resources */,
 				05C364631BDB2F31008D1712 /* LaunchScreen.xib in Resources */,
@@ -663,7 +676,7 @@
 				055E7BFE1E1B521200356F29 /* RankingTableViewCell.swift in Sources */,
 				055E7BFB1E1B51CE00356F29 /* AllRankingsViewController.swift in Sources */,
 				05441A271BE07BEE00A8ECA4 /* Model.xcdatamodeld in Sources */,
-				05E88DC91E2BD9B5005D40A3 /* Extentions.swift in Sources */,
+				05E88DC91E2BD9B5005D40A3 /* Extensions.swift in Sources */,
 				05FEC9D41BDE83C50093DF7D /* RankingViewController.swift in Sources */,
 				056FA89C1E242C2700089132 /* Ranking.swift in Sources */,
 				052EB0CD1E1317F100F17B11 /* SettingViewController.swift in Sources */,
@@ -699,9 +712,18 @@
 			isa = PBXVariantGroup;
 			children = (
 				0555EA541AE210CB00E127C8 /* Base */,
-				05BAD6CF1E33C9DB00CFA84F /* zh-Hans */,
+				05398A2E1E34037F002B0A9B /* zh-Hans */,
 			);
 			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		055E3CE21E33D121004F3A89 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				055E3CE11E33D121004F3A89 /* en */,
+				055E3CE31E33D123004F3A89 /* zh-Hans */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 		05C0A5C71E33CC0600E9BE61 /* InfoPlist.strings */ = {
@@ -818,6 +840,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = CD9A6A6F4CEE6865278EB11E /* Pods-Step by step.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -843,6 +866,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6115B23D8EB24AE7BEAFEA10 /* Pods-Step by step.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";

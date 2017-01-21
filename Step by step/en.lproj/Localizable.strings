@@ -1,9 +1,9 @@
 /* 
-  InfoPlist.strings
+  Localizable.strings
   Step by step
 
   Created by Troy on 2017/1/21.
   Copyright © 2017年 Huanyan's. All rights reserved.
 */
 
-CFBundleDisplayName = "Step by step";
+

@@ -282,7 +282,7 @@
 "X4v-8h-TD4.text" = "Rainy";
 
 /* Class = "UILabel"; text = "Today's steps"; ObjectID = "Y5X-8Z-IVM"; */
-"Y5X-8Z-IVM.text" = "喵喵喵？";
+"Y5X-8Z-IVM.text" = "Today's steps";
 
 /* Class = "UILabel"; text = "Calorie"; ObjectID = "YCw-xo-0En"; */
 "YCw-xo-0En.text" = "Calorie";
