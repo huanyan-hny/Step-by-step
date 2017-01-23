@@ -20,7 +20,7 @@ import FacebookCore
 
 
 class LoginViewController: UIViewController {
-
+    
     enum actionType {
         case login
         case signUp
@@ -205,7 +205,7 @@ class LoginViewController: UIViewController {
                     self.actionButton.backgroundColor = Colors.myBlue
                     self.signUpButton.setTitle(NSLocalizedString("New here? Sign up", comment: ""), for: .normal)
                 })
-
+                
             }
             
             alertController.addAction(discardAction)
@@ -407,7 +407,7 @@ class LoginViewController: UIViewController {
     
     func checkLoginStatus() {
         print("Checking Login Status")
-
+        
         if (AccessToken.current != nil){
             DispatchQueue.main.async {
                 self.performSegue(withIdentifier: "toMain", sender: self)
@@ -473,7 +473,7 @@ class LoginViewController: UIViewController {
         wechatLoginButton.alpha = 0
         forgotButton.alpha = 0
         signUpButton.alpha = 0
-    
+        
         
         UIView.animate(withDuration: 2, animations: {
             if (Display.typeIsLike == .iphone5) {
@@ -506,6 +506,7 @@ class LoginViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         pool = AWSCognitoIdentityUserPool.init(forKey: AWSCognitoUserPoolsSignInProviderKey)
+        restoreLoginView()
         isNew = true
     }
     
@@ -524,7 +525,7 @@ class LoginViewController: UIViewController {
         manualLayout()
         drawUI()
     }
-
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         UIApplication.shared.setStatusBarHidden(false, with: .fade)
@@ -549,7 +550,7 @@ class LoginViewController: UIViewController {
                 kVC.managedObjectContext = self.managedObjectContext
             }
         }
-
+        
     }
     
     @IBAction func unwindToLogin(segue: UIStoryboardSegue) {
@@ -561,4 +562,3 @@ class LoginViewController: UIViewController {
     }
     
 }
-

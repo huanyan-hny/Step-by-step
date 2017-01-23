@@ -7,3 +7,7 @@
 */
 
 CFBundleDisplayName = "Step by step";
+NSLocationAlwaysUsageDescription = "步步需要你的同意以获取位置信息";
+NSLocationWhenInUseUsageDescription = "步步需要你的同意以获取位置信息";
+NSMotionUsageDescription = "步步需要你的同意以获取运动信息";
+NSPhotoLibraryUsageDescription = "步步需要你的同意以访问相册";

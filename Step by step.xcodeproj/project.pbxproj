@@ -28,6 +28,18 @@
 		05441A2E1BE089ED00A8ECA4 /* Run+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05441A2A1BE089ED00A8ECA4 /* Run+CoreDataProperties.swift */; };
 		05441A2F1BE089ED00A8ECA4 /* Run.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05441A2B1BE089ED00A8ECA4 /* Run.swift */; };
 		05441A561BE35EA800A8ECA4 /* RunningResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05441A551BE35EA800A8ECA4 /* RunningResultViewController.swift */; };
+		054B72161E35F9AB002F0B69 /* AWSCognitoIdentityProvider.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05E781D91E2D93B50090E410 /* AWSCognitoIdentityProvider.framework */; };
+		054B72171E35F9AB002F0B69 /* AWSCognitoIdentityProvider.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 05E781D91E2D93B50090E410 /* AWSCognitoIdentityProvider.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		054B72181E35F9AB002F0B69 /* AWSCognito.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05E781D61E2D931B0090E410 /* AWSCognito.framework */; };
+		054B72191E35F9AB002F0B69 /* AWSCognito.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 05E781D61E2D931B0090E410 /* AWSCognito.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		054B721A1E35F9AB002F0B69 /* AWSCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 050633541E27305C001DA272 /* AWSCore.framework */; };
+		054B721B1E35F9AB002F0B69 /* AWSCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 050633541E27305C001DA272 /* AWSCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		054B721C1E35F9AB002F0B69 /* AWSDynamoDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 050633551E27305C001DA272 /* AWSDynamoDB.framework */; };
+		054B721D1E35F9AB002F0B69 /* AWSDynamoDB.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 050633551E27305C001DA272 /* AWSDynamoDB.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		054B721E1E35F9AB002F0B69 /* AWSS3.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 050633561E27305C001DA272 /* AWSS3.framework */; };
+		054B721F1E35F9AB002F0B69 /* AWSS3.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 050633561E27305C001DA272 /* AWSS3.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		054B72231E35FA47002F0B69 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054B72211E35FA47002F0B69 /* LoginViewController.swift */; };
+		054B72241E35FA47002F0B69 /* LoginViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054B72221E35FA47002F0B69 /* LoginViewControllerExtensions.swift */; };
 		0555EA4E1AE210CB00E127C8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0555EA4D1AE210CB00E127C8 /* AppDelegate.swift */; };
 		0555EA521AE210CB00E127C8 /* RunningViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0555EA511AE210CB00E127C8 /* RunningViewController.swift */; };
 		0555EA551AE210CB00E127C8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0555EA531AE210CB00E127C8 /* Main.storyboard */; };
@@ -55,21 +67,14 @@
 		057EA67C1E21F4C500064BFD /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057EA67B1E21F4C500064BFD /* Colors.swift */; };
 		057F3FA51C0C96D6001BEA91 /* ActivityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057F3FA41C0C96D6001BEA91 /* ActivityTableViewCell.swift */; };
 		058483931C0C1674008AE503 /* AllActivitiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058483921C0C1674008AE503 /* AllActivitiesViewController.swift */; };
-		0586A8241E171D31005CC238 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0586A8231E171D31005CC238 /* LoginViewController.swift */; };
 		058C8AC91E14B80700140D71 /* Pedometer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058C8AC81E14B80600140D71 /* Pedometer.swift */; };
 		0596360E1B0CCD81007BCC22 /* StepsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0596360D1B0CCD81007BCC22 /* StepsViewController.swift */; };
 		059636141B0CD725007BCC22 /* StepsMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059636131B0CD725007BCC22 /* StepsMonitor.swift */; };
 		05C0A5C51E33CC0600E9BE61 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 05C0A5C71E33CC0600E9BE61 /* InfoPlist.strings */; };
 		05C364631BDB2F31008D1712 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05C364611BDB2F31008D1712 /* LaunchScreen.xib */; };
-		05D03B211E35E76B007E7713 /* AWSCognitoIdentityProvider.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05E781D91E2D93B50090E410 /* AWSCognitoIdentityProvider.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		05D03B221E35E76B007E7713 /* AWSCognito.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05E781D61E2D931B0090E410 /* AWSCognito.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		05D03B231E35E76B007E7713 /* AWSCore.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 050633541E27305C001DA272 /* AWSCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		05D03B241E35E76B007E7713 /* AWSDynamoDB.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 050633551E27305C001DA272 /* AWSDynamoDB.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		05D03B251E35E76B007E7713 /* AWSS3.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 050633561E27305C001DA272 /* AWSS3.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		05DAC7311BDF6E1C008F10C5 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05DAC7301BDF6E1C008F10C5 /* MapKit.framework */; };
 		05DEFACA1C0557CC00EE5A5F /* InRunningViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DEFAC91C0557CC00EE5A5F /* InRunningViewController.swift */; };
 		05E26C951E20006600D1E22F /* Display.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E26C941E20006600D1E22F /* Display.swift */; };
-		05E781CF1E2D86C00090E410 /* LoginViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E781C81E2D86C00090E410 /* LoginViewControllerExtensions.swift */; };
 		05E781E01E2DC8D50090E410 /* AWSConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E781DE1E2DC8D50090E410 /* AWSConfiguration.swift */; };
 		05E781E11E2DC8D50090E410 /* AWSMobileClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E781DF1E2DC8D50090E410 /* AWSMobileClient.swift */; };
 		05E88DC91E2BD9B5005D40A3 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E88DC81E2BD9B5005D40A3 /* Extensions.swift */; };
@@ -89,18 +94,19 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		05D03B201E35E762007E7713 /* CopyFiles */ = {
+		054B72201E35F9AB002F0B69 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				05D03B211E35E76B007E7713 /* AWSCognitoIdentityProvider.framework in CopyFiles */,
-				05D03B221E35E76B007E7713 /* AWSCognito.framework in CopyFiles */,
-				05D03B231E35E76B007E7713 /* AWSCore.framework in CopyFiles */,
-				05D03B241E35E76B007E7713 /* AWSDynamoDB.framework in CopyFiles */,
-				05D03B251E35E76B007E7713 /* AWSS3.framework in CopyFiles */,
+				054B72191E35F9AB002F0B69 /* AWSCognito.framework in Embed Frameworks */,
+				054B72171E35F9AB002F0B69 /* AWSCognitoIdentityProvider.framework in Embed Frameworks */,
+				054B721D1E35F9AB002F0B69 /* AWSDynamoDB.framework in Embed Frameworks */,
+				054B721B1E35F9AB002F0B69 /* AWSCore.framework in Embed Frameworks */,
+				054B721F1E35F9AB002F0B69 /* AWSS3.framework in Embed Frameworks */,
 			);
+			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -132,6 +138,8 @@
 		05441A2A1BE089ED00A8ECA4 /* Run+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Run+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		05441A2B1BE089ED00A8ECA4 /* Run.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Run.swift; sourceTree = "<group>"; };
 		05441A551BE35EA800A8ECA4 /* RunningResultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RunningResultViewController.swift; sourceTree = "<group>"; };
+		054B72211E35FA47002F0B69 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = "Step by step/LoginViewController.swift"; sourceTree = SOURCE_ROOT; };
+		054B72221E35FA47002F0B69 /* LoginViewControllerExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewControllerExtensions.swift; path = "Step by step/LoginViewControllerExtensions.swift"; sourceTree = SOURCE_ROOT; };
 		0555EA481AE210CB00E127C8 /* Step by step.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Step by step.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0555EA4C1AE210CB00E127C8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0555EA4D1AE210CB00E127C8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -164,7 +172,6 @@
 		057EA67B1E21F4C500064BFD /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		057F3FA41C0C96D6001BEA91 /* ActivityTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityTableViewCell.swift; sourceTree = "<group>"; };
 		058483921C0C1674008AE503 /* AllActivitiesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllActivitiesViewController.swift; sourceTree = "<group>"; };
-		0586A8231E171D31005CC238 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = ../LoginViewController.swift; sourceTree = "<group>"; };
 		058C8AC81E14B80600140D71 /* Pedometer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pedometer.swift; sourceTree = "<group>"; };
 		0596360D1B0CCD81007BCC22 /* StepsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepsViewController.swift; sourceTree = "<group>"; };
 		059636131B0CD725007BCC22 /* StepsMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = StepsMonitor.swift; sourceTree = "<group>"; };
@@ -176,7 +183,6 @@
 		05DAC7301BDF6E1C008F10C5 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		05DEFAC91C0557CC00EE5A5F /* InRunningViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InRunningViewController.swift; sourceTree = "<group>"; };
 		05E26C941E20006600D1E22F /* Display.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Display.swift; sourceTree = "<group>"; };
-		05E781C81E2D86C00090E410 /* LoginViewControllerExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewControllerExtensions.swift; sourceTree = "<group>"; };
 		05E781D61E2D931B0090E410 /* AWSCognito.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSCognito.framework; path = "Step by step/Sdk/Aws/extras/AWSCognito.framework"; sourceTree = "<group>"; };
 		05E781D91E2D93B50090E410 /* AWSCognitoIdentityProvider.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSCognitoIdentityProvider.framework; path = "Step by step/Sdk/Aws/AWSCognitoIdentityProvider.framework"; sourceTree = "<group>"; };
 		05E781DE1E2DC8D50090E410 /* AWSConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AWSConfiguration.swift; sourceTree = "<group>"; };
@@ -197,9 +203,14 @@
 				0506336C1E2732E4001DA272 /* libz.tbd in Frameworks */,
 				0506336D1E2732F1001DA272 /* libsqlite3.tbd in Frameworks */,
 				052E9F7E1BFF222D00BBF246 /* CoreLocation.framework in Frameworks */,
+				054B72161E35F9AB002F0B69 /* AWSCognitoIdentityProvider.framework in Frameworks */,
+				054B721C1E35F9AB002F0B69 /* AWSDynamoDB.framework in Frameworks */,
 				05DAC7311BDF6E1C008F10C5 /* MapKit.framework in Frameworks */,
+				054B721E1E35F9AB002F0B69 /* AWSS3.framework in Frameworks */,
 				988262BAF10AC5F8FF234B54 /* Pods_Step_by_step.framework in Frameworks */,
+				054B72181E35F9AB002F0B69 /* AWSCognito.framework in Frameworks */,
 				050633771E27598C001DA272 /* AWSMobileHubHelper.framework in Frameworks */,
+				054B721A1E35F9AB002F0B69 /* AWSCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -415,8 +426,8 @@
 		05E781C71E2D86C00090E410 /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				0586A8231E171D31005CC238 /* LoginViewController.swift */,
-				05E781C81E2D86C00090E410 /* LoginViewControllerExtensions.swift */,
+				054B72211E35FA47002F0B69 /* LoginViewController.swift */,
+				054B72221E35FA47002F0B69 /* LoginViewControllerExtensions.swift */,
 			);
 			name = Login;
 			path = UserPools;
@@ -453,7 +464,7 @@
 				0555EA451AE210CB00E127C8 /* Frameworks */,
 				0555EA461AE210CB00E127C8 /* Resources */,
 				8C9B8B168BE7BF45A4079451 /* [CP] Copy Pods Resources */,
-				05D03B201E35E762007E7713 /* CopyFiles */,
+				054B72201E35F9AB002F0B69 /* Embed Frameworks */,
 				0506335E1E273114001DA272 /* ShellScript */,
 				05D03B191E35E1DC007E7713 /* ShellScript */,
 			);
@@ -649,15 +660,14 @@
 				05E781E11E2DC8D50090E410 /* AWSMobileClient.swift in Sources */,
 				05269AEE1DFBC1E000B2A600 /* RankingViewCell.swift in Sources */,
 				055E7C051E1C020300356F29 /* AllRecordsTableViewController.swift in Sources */,
-				0586A8241E171D31005CC238 /* LoginViewController.swift in Sources */,
 				05E781E01E2DC8D50090E410 /* AWSConfiguration.swift in Sources */,
 				056FA8A21E242C4F00089132 /* Record+CoreDataProperties.swift in Sources */,
 				0506337A1E27598C001DA272 /* WeeklyRanking.swift in Sources */,
 				056FA8A01E242C4300089132 /* Record.swift in Sources */,
+				054B72231E35FA47002F0B69 /* LoginViewController.swift in Sources */,
 				0596360E1B0CCD81007BCC22 /* StepsViewController.swift in Sources */,
 				058C8AC91E14B80700140D71 /* Pedometer.swift in Sources */,
 				0559D3731E3532D70016221A /* LeaderboardSettingTableViewController.swift in Sources */,
-				05E781CF1E2D86C00090E410 /* LoginViewControllerExtensions.swift in Sources */,
 				05441A2C1BE089ED00A8ECA4 /* Location+CoreDataProperties.swift in Sources */,
 				0538E9241E355F0300C1979A /* NSBundle+Language.m in Sources */,
 				055E7C071E1C021900356F29 /* RecordTableViewCell.swift in Sources */,
@@ -666,6 +676,7 @@
 				055E7BFB1E1B51CE00356F29 /* AllRankingsViewController.swift in Sources */,
 				05441A271BE07BEE00A8ECA4 /* Model.xcdatamodeld in Sources */,
 				05E88DC91E2BD9B5005D40A3 /* Extensions.swift in Sources */,
+				054B72241E35FA47002F0B69 /* LoginViewControllerExtensions.swift in Sources */,
 				05FEC9D41BDE83C50093DF7D /* RankingViewController.swift in Sources */,
 				056FA89C1E242C2700089132 /* Ranking.swift in Sources */,
 				052EB0CD1E1317F100F17B11 /* SettingViewController.swift in Sources */,

@@ -84,7 +84,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>2</string>
+	<string>3</string>
 	<key>FacebookAppID</key>
 	<string>346993475693724</string>
 	<key>FacebookDisplayName</key>
@@ -123,13 +123,13 @@
 		</dict>
 	</dict>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string></string>
+	<string>Steps by steps needs your permission to access your location data</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string>Steps by steps needs your permission to access your location data</string>
 	<key>NSMotionUsageDescription</key>
-	<string></string>
+	<string>Steps by steps needs your permission to access your motion data</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string></string>
+	<string>Steps by steps needs your permission to access your photo library</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>location</string>
@@ -162,5 +162,11 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
+	<key>NSCalendarsUsageDescription</key>
+	<string></string>
+	<key>NSAppleMusicUsageDescription</key>
+	<string></string>
 </dict>
 </plist>
