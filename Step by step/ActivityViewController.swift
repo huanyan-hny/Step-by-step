@@ -498,3 +498,4 @@ class ActivityViewController: UIViewController, MKMapViewDelegate {
         activityIndicator.center = self.view.center
     }
 }
+

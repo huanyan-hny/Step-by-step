@@ -6,6 +6,11 @@
   Copyright © 2017年 Huanyan's. All rights reserved.
 */
 
+"Location access denied" = "Location access denied";
+"Motion access denied" = "Motion access denied";
+"Step by step is unable to retrieve your steps, please authorize access for in Settings" = "Step by step is unable to retrieve your steps, please authorize access for in Settings";
+"Step by step is unable to track your run, please authorize access for in your phone's Settings" = "Step by step is unable to track your run, please authorize access for in your phone's Settings";
+"Go to Settings" = "Go to Settings";
 "Fail to change Avatar" = "Fail to change Avatar";
 "Choose from photo library" = "Choose from photo library";
 "Name" = "Name";

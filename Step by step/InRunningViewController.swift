@@ -12,7 +12,7 @@ import HealthKit
 import CoreData
 import MapKit
 
-
+/*
 
 class InRunningViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     
@@ -277,4 +277,4 @@ class InRunningViewController: UIViewController, MKMapViewDelegate, CLLocationMa
         }
     }
 }
-
+*/

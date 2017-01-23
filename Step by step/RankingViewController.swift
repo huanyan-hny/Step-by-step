@@ -12,6 +12,7 @@ import AWSMobileHubHelper
 import AWSDynamoDB
 import AWSS3
 
+
 class RankingViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     enum rankingType {

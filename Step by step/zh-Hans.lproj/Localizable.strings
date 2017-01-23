@@ -5,7 +5,11 @@
   Created by Troy on 2017/1/21.
   Copyright © 2017年 Huanyan's. All rights reserved.
 */
-
+"Location access denied" = "位置访问被拒绝";
+"Motion access denied" = "运动访问被拒绝";
+"Step by step is unable to retrieve your steps, please authorize access for in Settings" = "Step by step 无法获取你的步数数据，请在手机设置中允许访问运动数据";
+"Step by step is unable to track your run, please authorize access for in your phone's Settings" = "Step by step is 无法最终你的跑步， 请在手机设置中允许访问位置数据";
+"Go to Settings" = "去设置";
 "Fail to change Avatar" = "修改头像失败";
 "Choose from photo library" = "从照片中选择";
 "Name" = "名字";

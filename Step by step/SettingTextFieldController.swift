@@ -9,6 +9,7 @@
 import UIKit
 import AWSDynamoDB
 
+
 public enum TextFieldType:String {
     case username = "Name"
     case signature = "Signature"
@@ -242,3 +243,4 @@ class SettingTextFieldController: UITableViewController, UITextFieldDelegate{
         activityIndicator.center = self.view.center
     }
 }
+

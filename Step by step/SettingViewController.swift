@@ -12,7 +12,7 @@ import AWSMobileHubHelper
 import FacebookLogin
 import FacebookCore
 
-
+/*
 class SettingViewController: UITableViewController {
 
     var fieldType = TextFieldType.unknown
@@ -109,3 +109,4 @@ class SettingViewController: UITableViewController {
         }
     }
 }
+*/

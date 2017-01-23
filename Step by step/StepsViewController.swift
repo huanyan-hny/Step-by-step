@@ -321,6 +321,20 @@ class StepsViewController: UIViewController, PNChartDelegate, UIScrollViewDelega
                             self.updateUI()
                         }
                     }
+                } else {
+                    let alertController = UIAlertController(title: NSLocalizedString("Motion access denied", comment: ""), message: NSLocalizedString("Step by step is unable to retrieve your steps, please authorize access for in Settings", comment: ""), preferredStyle: .alert)
+                    
+                    let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil)
+                    
+                    alertController.addAction(cancelAction)
+                    
+                    let openAction = UIAlertAction(title:NSLocalizedString("Go to Settings", comment: ""), style: .default) {(action) in
+                        if let settingURL = NSURL(string:UIApplicationOpenSettingsURLString) {
+                            UIApplication.shared.openURL(settingURL as URL)
+                        }
+                    }
+                    alertController.addAction(openAction)
+                    self.present(alertController, animated: true, completion: nil)
                 }
             })
         }
