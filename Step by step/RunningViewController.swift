@@ -83,22 +83,22 @@ class RunningViewController: UIViewController, MKMapViewDelegate, CLLocationMana
         if let accuracy = locationManager.location?.horizontalAccuracy {
             if (accuracy<0) {
                 gpsStrengthIcon.image = #imageLiteral(resourceName: "signal_none")
-                gpsStrengthText.text = "No GPS"
+                gpsStrengthText.text = NSLocalizedString("No GPS", comment: "")
                 gpsStrengthText.textColor = UIColor(red: 207.0/255.0, green: 216.0/255.0, blue: 220.0/255.0, alpha: 1)
                 poorGPS = true
             } else if (accuracy < 48) {
                 gpsStrengthIcon.image = #imageLiteral(resourceName: "signal_good")
-                gpsStrengthText.text = "Good GPS"
+                gpsStrengthText.text = NSLocalizedString("Good GPS", comment: "")
                 gpsStrengthText.textColor = UIColor(red: 139.0/255.0, green: 195.0/255.0, blue: 74.0/255.0, alpha: 1)
                 poorGPS = false
             } else if (accuracy > 163) {
                 gpsStrengthIcon.image = #imageLiteral(resourceName: "signal_poor")
-                gpsStrengthText.text = "Poor GPS"
+                gpsStrengthText.text = NSLocalizedString("Poor GPS", comment: "")
                 gpsStrengthText.textColor = UIColor(red: 237.0/255.0, green: 28.0/255.0, blue: 36.0/255.0, alpha: 1)
                 poorGPS = true
             } else {
                 gpsStrengthIcon.image = #imageLiteral(resourceName: "signal_fair")
-                gpsStrengthText.text = "Fair GPS"
+                gpsStrengthText.text = NSLocalizedString("Fair GPS", comment: "")
                 gpsStrengthText.textColor = UIColor(red: 248.0/255.0, green: 127.0/255.0, blue: 39.0/255.0, alpha: 1)
                 poorGPS = false
             }
@@ -181,7 +181,7 @@ class RunningViewController: UIViewController, MKMapViewDelegate, CLLocationMana
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = "Running";
+        self.navigationItem.title = NSLocalizedString("Running", comment: "")
         self.navigationController!.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
         self.startRunningButton.layer.cornerRadius = 20
         self.navigationController?.navigationBar.setValue(true, forKey: "hidesShadow")
@@ -207,6 +207,5 @@ class RunningViewController: UIViewController, MKMapViewDelegate, CLLocationMana
             destination.startRunning()
         }
     }
-    
 }
 

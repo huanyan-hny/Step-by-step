@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreMotion
+import CoreLocation
 import PNChart
 import CoreData
 import AWSMobileHubHelper
@@ -44,6 +45,7 @@ class StepsViewController: UIViewController, PNChartDelegate, UIScrollViewDelega
     var calendar = Calendar.current
     var dataUpdatedCount = 0
     
+    let language = UserDefaults.standard.array(forKey: "AppleLanguages")!.first as! String
     let objectMapper = AWSDynamoDBObjectMapper.default()
     let monitor = StepsMonitor()
     let scrollView = UIScrollView()
@@ -103,6 +105,20 @@ class StepsViewController: UIViewController, PNChartDelegate, UIScrollViewDelega
             walkingLabel.font = UIFont.systemFont(ofSize: 11)
         }
         
+        if (language == "zh_Hans") {
+            thisWeekLabel.text = "本周"
+            thisWeekLabel2.text = "本周"
+            walkingLabel.text = "步数"
+            runningLabel.text = "跑步"
+            totalRunningsLabel.text = String(format:"%.1f 公里", Double(round(totalRunnings*10)/10))
+        } else {
+            thisWeekLabel.text = "this week"
+            thisWeekLabel2.text = "this week"
+            walkingLabel.text = "Walking"
+            runningLabel.text = "Running"
+            totalRunningsLabel.text = String(format:"%.1f miles", Double(round((totalRunnings/1.60934)*10)/10))
+        }
+        
     
         weekLabel.text = dateByWeek
         weekLabel.textColor = Colors.myTextGray
@@ -115,12 +131,10 @@ class StepsViewController: UIViewController, PNChartDelegate, UIScrollViewDelega
         totalStepsLabel.text = "\(totalSteps)"
         
         thisWeekLabel.center.x = weekLabel.center.x
-        thisWeekLabel.text = "this week"
         thisWeekLabel.textColor = Colors.myTextLightGray
         thisWeekLabel.textAlignment = .center
         
         
-        walkingLabel.text = "Walking"
         walkingLabel.textColor = Colors.myTextLightGray
         
         weekLabel2.text = dateByWeek
@@ -134,7 +148,6 @@ class StepsViewController: UIViewController, PNChartDelegate, UIScrollViewDelega
         totalRunningsLabel.frame.origin.x += scrollView.frame.width
         totalRunningsLabel.center.x = weekLabel2.center.x
         totalRunningsLabel.font = totalStepsLabel.font
-        totalRunningsLabel.text = String(format:"%.1f miles", Double(round(totalRunnings*10)/10))
         totalRunningsLabel.textColor = Colors.myBlue
         totalRunningsLabel.textAlignment = .center
         
@@ -142,14 +155,13 @@ class StepsViewController: UIViewController, PNChartDelegate, UIScrollViewDelega
         thisWeekLabel2.frame.origin.x += scrollView.frame.width
         thisWeekLabel2.center.x = weekLabel2.center.x
         thisWeekLabel2.font = thisWeekLabel.font
-        thisWeekLabel2.text = "this week"
         thisWeekLabel2.textColor = Colors.myTextLightGray
         thisWeekLabel2.textAlignment = .center
         
         runningLabel.frame = walkingLabel.frame
         runningLabel.frame.origin.x += scrollView.frame.width
         runningLabel.font = walkingLabel.font
-        runningLabel.text = "Running"
+        
         runningLabel.textColor = Colors.myTextLightGray
         
         runningChart.frame = walkingChart.frame
@@ -260,7 +272,11 @@ class StepsViewController: UIViewController, PNChartDelegate, UIScrollViewDelega
         let endOfToday = calendar.date(byAdding: .second, value: -1, to: beginOfTomorrow)!
         
         let component = calendar.dateComponents([.weekOfYear, .day, .month,.year,.weekday], from: today)
-        dateByWeek = "Week \(component.weekOfYear!), " + dateFormatter.string(from:Date())
+        if (language == "zh_Hans") {
+            dateByWeek = "第\(component.weekOfYear!)周, " + dateFormatter.string(from:Date())
+        } else {
+            dateByWeek = "Week \(component.weekOfYear!), " + dateFormatter.string(from:Date())
+        }
         dayOfWeek = component.weekday!
     
         for i in 1...component.weekday! {
@@ -270,13 +286,17 @@ class StepsViewController: UIViewController, PNChartDelegate, UIScrollViewDelega
             runFetchRequest.predicate = NSPredicate(format: "userID = %@ AND date>=%@ AND date <=%@", UserDefaults.standard.string(forKey: "userID")!,beginOfWeekDay as NSDate,endOfWeekDay as NSDate)
             do{ try runFetchResultsController?.performFetch()} catch _ { print("Could not fetch run!")}
             
-            var runningMiles = 0.0
+            var runningDistance = 0.0
             for object in (runFetchResultsController?.fetchedObjects)! {
                 if let run = object as? Run {
-                    runningMiles += run.distance!.doubleValue
+                    if (language == "zh_Hans"){
+                        runningDistance += run.distance!.doubleValue
+                    } else {
+                        runningDistance += run.distance!.doubleValue/1.60934
+                    }
                 }
             }
-            self.runningData[i-1] = runningMiles
+            self.runningData[i-1] = runningDistance
             
             pedometer.queryPedometerData(from: beginOfWeekDay, to: endOfWeekDay, withHandler: {data, error in
                 if (error==nil) {
@@ -352,7 +372,7 @@ class StepsViewController: UIViewController, PNChartDelegate, UIScrollViewDelega
     }
     
     override func viewDidLoad() {
-        self.navigationItem.title = "Steps";
+        self.navigationItem.title = NSLocalizedString("Steps", comment: "")
         self.navigationController!.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
         self.navigationController?.navigationBar.setValue(true, forKey: "hidesShadow")
         NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: "steps"), object: monitor, queue: OperationQueue.main){ notification in
@@ -362,17 +382,17 @@ class StepsViewController: UIViewController, PNChartDelegate, UIScrollViewDelega
         runFetchRequest.sortDescriptors = [NSSortDescriptor(key: "date", ascending: false)]
         runFetchResultsController = NSFetchedResultsController(fetchRequest: runFetchRequest, managedObjectContext: managedObjectContext!, sectionNameKeyPath: "date", cacheName: nil)
         
-        dateFormatter.dateFormat = "MMM YYYY";
+        if(language == "zh_Hans") {
+            dateFormatter.dateFormat = "YYYY年MMM";
+            weekDays = ["周日","周一","周二","周三","周四","周五","周六"]
+        } else {
+            dateFormatter.dateFormat = "MMM YYYY";
+            weekDays = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"]
+        }
+        
 
-        UserDefaults.standard.set(["zh_Hans","en_US"], forKey: "AppleLanguages")
-        UserDefaults.standard.set("zh_Hans",forKey:"AppleLocale")
-        print(UserDefaults.standard.array(forKey: "AppleLanguages")!)
-//        todaystepLabel.text = "Test".localized()
-    }
-    
-    
-    func localizeLabels() {
-
+        
+        test()
     }
     
     

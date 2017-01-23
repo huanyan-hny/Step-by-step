@@ -13,15 +13,15 @@ class AllActivitiesViewController: UITableViewController, NSFetchedResultsContro
     
     var managedObjectContext:NSManagedObjectContext?
     var fetchResultsController:NSFetchedResultsController<NSFetchRequestResult>?
-    let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Run")
-    let dateFormatter = DateFormatter()
     var sectionHeaderHeight = CGFloat(30)
     var rowHeight = CGFloat(75)
-    
+    let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Run")
+    let dateFormatter = DateFormatter()
+    let language = UserDefaults.standard.array(forKey: "AppleLanguages")!.first as! String
     
     func displayEmptyMessage() {
         let messageLabel = UILabel(frame: CGRect(x:0,y:0,width:self.view.bounds.size.width,height:self.view.bounds.size.height))
-        messageLabel.text = "You don't have any running activities yet"
+        messageLabel.text = NSLocalizedString("No running", comment: "")
         messageLabel.textColor = Colors.myTextGray
         messageLabel.numberOfLines = 0;
         messageLabel.textAlignment = .center;
@@ -51,9 +51,16 @@ class AllActivitiesViewController: UITableViewController, NSFetchedResultsContro
     
     func configureCell(cell: ActivityTableViewCell, indexPath: IndexPath) {
         let run = fetchResultsController?.object(at: indexPath) as! Run
-        let displayDistance = String(format:"%.1f", Double(round(run.distance!.doubleValue*10)/10))
+        let displayDistance:String
         let displayTime = Time.secondsFormattedString(seconds: run.time!.intValue)
-        cell.distanceLabel.text = "\(displayDistance) miles"
+        if (language == "zh_Hans") {
+            displayDistance = String(format:"%.1f", Double(round(run.distance!.doubleValue*10)/10))
+            cell.distanceLabel.text = "\(displayDistance) 公里"
+        } else {
+            displayDistance = String(format:"%.1f", Double(round((run.distance!.doubleValue/1.60934)*10)/10))
+            cell.distanceLabel.text = "\(displayDistance) miles"
+        }
+        
         cell.timeLabel.text = displayTime
     }
 
@@ -78,26 +85,24 @@ class AllActivitiesViewController: UITableViewController, NSFetchedResultsContro
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        
+
         let indexPath = IndexPath(row: 0, section: section)
         let run = fetchResultsController?.object(at: indexPath) as! Run
         
         let date = run.date!
-        let city = run.city
         
         let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "ActivityTableHeaderView")
         headerView?.contentView.subviews.forEach({$0.removeFromSuperview()})
         
         let locationLabel = UILabel()
-        locationLabel.text = city
+        locationLabel.text = run.city
+
         locationLabel.font = UIFont(name:"Helvetica Neue", size: sectionHeaderHeight/2)
         locationLabel.textColor = UIColor(red:51.0/255.0, green:51.0/255.0, blue:51.0/255.0, alpha:1.0)
         locationLabel.sizeToFit()
         locationLabel.frame.origin.x = 10*tableView.frame.width/375
         locationLabel.frame.origin.y = (sectionHeaderHeight - locationLabel.frame.height)/2
         headerView?.contentView.addSubview(locationLabel)
-        
-        dateFormatter.dateFormat = "MMM d, YYYY"
         
         let dateLabel = UILabel()
         dateLabel.text = dateFormatter.string(from: date)
@@ -131,11 +136,10 @@ class AllActivitiesViewController: UITableViewController, NSFetchedResultsContro
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.tableFooterView = UIView()
-        self.navigationItem.title = "Run"
+        self.navigationItem.title = NSLocalizedString("Run", comment: "")
         self.navigationController!.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+        dateFormatter.dateStyle = .medium
         tableView.register(UITableViewHeaderFooterView.classForCoder(), forHeaderFooterViewReuseIdentifier: "ActivityTableHeaderView")
-        dateFormatter.dateStyle = .full
-        dateFormatter.locale = Locale(identifier: "en_US")
         if (Display.typeIsLike == .iphone5) {
             sectionHeaderHeight = CGFloat(26)
             rowHeight = CGFloat(64)

@@ -24,6 +24,9 @@ extension Run {
     @NSManaged var city: String?
     @NSManaged var country: String?
     @NSManaged var address: String?
+    @NSManaged var city_zh: String?
+    @NSManaged var country_zh: String?
+    @NSManaged var address_zh: String?
     @NSManaged var locations: NSOrderedSet?
     @NSManaged var pausedLocations: NSOrderedSet?
     @NSManaged var synchronized: NSNumber?

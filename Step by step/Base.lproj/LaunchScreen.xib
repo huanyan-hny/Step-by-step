@@ -6,6 +6,8 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -15,12 +17,16 @@
             <rect key="frame" x="0.0" y="0.0" width="750" height="1334"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LaunchScreen" translatesAutoresizingMaskIntoConstraints="NO" id="mCz-Ft-N34">
-                    <rect key="frame" x="190" y="339" width="370" height="657"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SIcon" translatesAutoresizingMaskIntoConstraints="NO" id="mCz-Ft-N34">
+                    <rect key="frame" x="265" y="557" width="220" height="220"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="mCz-Ft-N34" secondAttribute="height" multiplier="1:1" id="bwY-Ye-j7L"/>
+                    </constraints>
                 </imageView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="mCz-Ft-N34" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="110/667" id="n7R-55-UWw"/>
                 <constraint firstItem="mCz-Ft-N34" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="qwj-Ja-xLm"/>
                 <constraint firstItem="mCz-Ft-N34" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="yu7-CX-HBl"/>
             </constraints>
@@ -30,6 +36,6 @@
         </view>
     </objects>
     <resources>
-        <image name="LaunchScreen" width="370" height="657"/>
+        <image name="SIcon" width="1024" height="1024"/>
     </resources>
 </document>

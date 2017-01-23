@@ -99,7 +99,7 @@ class AllAchievementsTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = "Achievements"
+        self.navigationItem.title = NSLocalizedString("Achievements", comment: "")
         self.navigationController!.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
         self.tableView.tableFooterView = UIView()
         if (Display.typeIsLike == .iphone5) {

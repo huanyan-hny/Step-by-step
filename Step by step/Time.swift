@@ -10,6 +10,8 @@ import Foundation
 
 class Time {
     
+    static let language = UserDefaults.standard.array(forKey: "AppleLanguages")!.first as! String
+    
     static func secondsFormatted(seconds: Int) -> String {
         let hours = seconds / 3600
         let minutes = seconds / 60 % 60
@@ -24,13 +26,22 @@ class Time {
     }
     
     static func secondsFormattedString(seconds: Int) -> String {
-        if seconds >= 3600 {
-            return "\(seconds/3600)h \(seconds % 3600 / 60)m \(seconds % 60)s"
-        } else if seconds >= 60 {
-            return "\(seconds % 3600 / 60)m \(seconds % 60)s"
+        if (language == "zh_Hans") {
+            if seconds >= 3600 {
+                return "\(seconds/3600)小时 \(seconds % 3600 / 60)分 \(seconds % 60)秒"
+            } else if seconds >= 60 {
+                return "\(seconds % 3600 / 60)分 \(seconds % 60)秒"
+            } else {
+                return "\(seconds % 60)秒"
+            }
         } else {
-            return "\(seconds % 60)s"
+            if seconds >= 3600 {
+                return "\(seconds/3600)h \(seconds % 3600 / 60)m \(seconds % 60)s"
+            } else if seconds >= 60 {
+                return "\(seconds % 3600 / 60)m \(seconds % 60)s"
+            } else {
+                return "\(seconds % 60)s"
+            }
         }
-        
     }
 }

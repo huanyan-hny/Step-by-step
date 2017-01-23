@@ -14,6 +14,7 @@ class AllRankingsViewController: UITableViewController {
     var rowHeight = CGFloat(75)
     var managedObjectContext:NSManagedObjectContext?
     var fetchResultsController:NSFetchedResultsController<NSFetchRequestResult>?
+    let language = UserDefaults.standard.array(forKey: "AppleLanguages")!.first as! String
     
     
     func displayEmptyMessage() {
@@ -50,15 +51,29 @@ class AllRankingsViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "RankingTableViewCell", for: indexPath) as! RankingTableViewCell
         let ranking = fetchResultsController?.object(at: indexPath) as! Ranking
-        let displayDistance = Double(round(ranking.totalDistance!.doubleValue*100)/100)
+        let displayDistance:String
+        let displayRanking:String
+        
+        if (language == "zh_Hans") {
+            displayDistance = String(format:"%.1f 公里", Double(round(ranking.totalDistance!.doubleValue*10)/10))
+            if (ranking.type! == "Weekly") {
+                displayRanking = "周排名: \(ranking.rank!)"
+            } else {
+                displayRanking = "月排名: \(ranking.rank!)"
+            }
+        } else {
+            displayDistance = String(format:"%.1f miles", Double(round((ranking.totalDistance!.doubleValue/1.60934)*10)/10))
+            displayRanking = ranking.type! + " ranking: \(ranking.rank!)"
+        }
+        
+        
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .medium
-        dateFormatter.locale = Locale(identifier: "en-US")
         let displayDate = dateFormatter.string(from: ranking.startDate!) + " - " + dateFormatter.string(from: ranking.endDate!)
-        let displayRanking = ranking.type! + " ranking: \(ranking.rank!)"
+        
         
         cell.nameLabel.text = UserDefaults.standard.string(forKey: "username")
-        cell.distanceLabel.text = "\(displayDistance) miles"
+        cell.distanceLabel.text = displayDistance
         cell.rankLabel.text = displayRanking
         cell.dateLabel.text = displayDate
         let documentPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
@@ -78,7 +93,7 @@ class AllRankingsViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = "Rankings"
+        self.navigationItem.title = NSLocalizedString("Rankings", comment: "")
         self.navigationController!.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
         self.tableView.tableFooterView = UIView()
         if (Display.typeIsLike == .iphone5) {

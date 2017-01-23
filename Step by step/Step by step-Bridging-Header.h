@@ -3,3 +3,4 @@
 //
 
 #import <PNChart/PNChart.h>
+#include "NSBundle+Language.h"

@@ -42,6 +42,7 @@ class RankingDetailViewController: UIViewController {
     let objectMapper = AWSDynamoDBObjectMapper.default()
     let activityView = UIView(frame:CGRect(x:0,y:0,width:80,height:80))
     let activityIndicator = UIActivityIndicatorView.init(activityIndicatorStyle: .whiteLarge)
+    let language = UserDefaults.standard.array(forKey: "AppleLanguages")!.first as! String
     
     @IBAction func enlargeImage(_ sender: UIButton) {
         barChart.displayAnimated = false
@@ -207,7 +208,11 @@ class RankingDetailViewController: UIViewController {
                         let paginatedOutput = task.result!
                         for item in paginatedOutput.items {
                             if let run = item as? AllTimeRun {
-                                distanceOfTheDay += run._distance!.doubleValue
+                                if (self.language == "zh_Hans"){
+                                    distanceOfTheDay += run._distance!.doubleValue
+                                } else {
+                                    distanceOfTheDay += run._distance!.doubleValue/1.60934
+                                }
                             }
                         }
                         self.data[i-1] = distanceOfTheDay
@@ -231,7 +236,11 @@ class RankingDetailViewController: UIViewController {
             if (task.result != nil) {
                 let user = task.result as! User
                 DispatchQueue.main.async {
-                    self.totalDistance.text = String(format:"%.1f miles", Double(round(user._totalRunningDistance!.doubleValue*10)/10))
+                    if(self.language == "zh_Hans") {
+                        self.totalDistance.text = String(format:"%.1f 公里", Double(round(user._totalRunningDistance!.doubleValue*10)/10))
+                    } else {
+                        self.totalDistance.text = String(format:"%.1f miles", Double(round((user._totalRunningDistance!.doubleValue/1.60934)*10)/10))
+                    }
                 }
             }
             return nil
@@ -280,5 +289,10 @@ class RankingDetailViewController: UIViewController {
         detailView.clipsToBounds = true
         detailView.center.y -= self.view.bounds.height
         data = [Double](repeatElement(0, count: 7))
+        if (language == "zh_Hans") {
+            weekDays = ["周日","周一","周二","周三","周四","周五","周六"]
+        } else {
+            weekDays = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"]
+        }
     }
 }

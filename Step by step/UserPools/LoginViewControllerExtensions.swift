@@ -33,7 +33,7 @@ extension LoginViewController {
                 self.stopLoadingAnimation()
                 self.enableButtons()
                 if (error != nil) {
-                    let alertController = UIAlertController(title: "Unkown error", message: "Please try again", preferredStyle: .alert)
+                    let alertController = UIAlertController(title: NSLocalizedString("Unknown error", comment: ""), message: NSLocalizedString("Please try again later", comment: ""), preferredStyle: .alert)
                     
                     let cancelAction = UIAlertAction(title: "OK", style: .cancel)  {(action) in
                         return
@@ -323,7 +323,7 @@ extension LoginViewController {
                 self.enableButtons()
                 self.signUpButton.isEnabled = false
                 if (task.error != nil) {
-                    let alertController = UIAlertController(title: "Wrong code", message: "Please check your input and try again", preferredStyle: .alert)
+                    let alertController = UIAlertController(title: "Error (Wrong code?)", message: "Please check your input and try again", preferredStyle: .alert)
                     
                     let cancelAction = UIAlertAction(title: "OK", style: .cancel)  {(action) in
                         return
@@ -375,7 +375,7 @@ extension LoginViewController: AWSCognitoIdentityPasswordAuthentication {
                 DispatchQueue.main.async {
                     self.stopLoadingAnimation()
                     self.enableButtons()
-                    let alertController = UIAlertController(title: "Error logging in", message: "User not confirmed, please check your email and confirm", preferredStyle: .alert)
+                    let alertController = UIAlertController(title: "Error", message: "User not confirmed, please check your email and confirm", preferredStyle: .alert)
                     
                     let cancelAction = UIAlertAction(title: "OK", style: .cancel)  {(action) in
                         self.user = self.pool?.getUser(self.usernameField.text!)
@@ -412,7 +412,7 @@ extension LoginViewController: AWSCognitoIdentityPasswordAuthentication {
                 DispatchQueue.main.async {
                     self.stopLoadingAnimation()
                     self.enableButtons()
-                    let alertController = UIAlertController(title: "Error logging in", message: "Incorrect username/password, please check your input and try again", preferredStyle: .alert)
+                    let alertController = UIAlertController(title: "Error", message: "Incorrect username/password, please check your input and try again", preferredStyle: .alert)
                     
                     let cancelAction = UIAlertAction(title: "OK", style: .cancel)  {(action) in
                         return
@@ -510,7 +510,7 @@ extension LoginViewController {
                         
                         self.objectMapper.save(newUser!, completionHandler: {(error: Error?) -> Void in
                             if (error != nil) {
-                                let alertController = UIAlertController(title: "Fail to login", message: "Please try again later (Error:\(task.error!.localizedDescription))", preferredStyle: .alert)
+                                let alertController = UIAlertController(title: NSLocalizedString("Fail to login", comment: ""), message: NSLocalizedString("Please try again later", comment: "") + "(Error:\(task.error!.localizedDescription))", preferredStyle: .alert)
                                 
                                 let cancelAction = UIAlertAction(title: "OK", style: .cancel)  {(action) in
                                     return
@@ -532,7 +532,7 @@ extension LoginViewController {
                         let manager = AWSS3TransferManager.default()
                         manager?.upload(uploadRequest).continue(with: AWSExecutor.default(), with: {(task:AWSTask!) -> Any! in
                             if (task.error != nil) {
-                                let alertController = UIAlertController(title: "Fail to login", message: "Please try again later (Error:\(task.error!.localizedDescription))", preferredStyle: .alert)
+                                let alertController = UIAlertController(title: NSLocalizedString("Fail to login", comment: ""), message: NSLocalizedString("Please try again later", comment: "") + "(Error:\(task.error!.localizedDescription))", preferredStyle: .alert)
                                 
                                 let cancelAction = UIAlertAction(title: "OK", style: .cancel)  {(action) in
                                     return
@@ -565,7 +565,7 @@ extension LoginViewController {
             case .failed(let error):
                 print(error)
                 DispatchQueue.main.async{
-                    let alertController = UIAlertController(title: "Fail to login", message: "Please try again later (Error:\(error.localizedDescription))", preferredStyle: .alert)
+                    let alertController = UIAlertController(title: NSLocalizedString("Fail to login", comment: ""), message: NSLocalizedString("Please try again later", comment: "") + "(Error:\(error.localizedDescription))", preferredStyle: .alert)
                     
                     let cancelAction = UIAlertAction(title: "OK", style: .cancel)  {(action) in
                         return

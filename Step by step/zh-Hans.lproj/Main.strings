@@ -1,120 +1,119 @@
-
 /* Class = "UITableViewSection"; headerTitle = "Running"; ObjectID = "0hM-fk-rGO"; */
-"0hM-fk-rGO.headerTitle" = "Running";
+"0hM-fk-rGO.headerTitle" = "跑步";
 
 /* Class = "UIButton"; normalTitle = "Button"; ObjectID = "0na-DD-4NC"; */
 "0na-DD-4NC.normalTitle" = "Button";
 
 /* Class = "UILabel"; text = "Steps"; ObjectID = "0nb-GR-4RG"; */
-"0nb-GR-4RG.text" = "Steps";
+"0nb-GR-4RG.text" = "步数";
 
 /* Class = "UILabel"; text = "Highest daily steps"; ObjectID = "1BL-9a-eqJ"; */
-"1BL-9a-eqJ.text" = "Highest daily steps";
+"1BL-9a-eqJ.text" = "最高单日步数";
 
 /* Class = "UITableViewSection"; headerTitle = " "; ObjectID = "1bW-8e-rO8"; */
 "1bW-8e-rO8.headerTitle" = " ";
 
 /* Class = "UILabel"; text = "STATISTICS"; ObjectID = "1ea-C0-7uV"; */
-"1ea-C0-7uV.text" = "STATISTICS";
+"1ea-C0-7uV.text" = "统计数据";
 
 /* Class = "UILabel"; text = "Achievement"; ObjectID = "2TI-5c-UN3"; */
-"2TI-5c-UN3.text" = "Achievement";
+"2TI-5c-UN3.text" = "成就";
 
 /* Class = "UILabel"; text = "Daily goal"; ObjectID = "2kF-fg-ko2"; */
-"2kF-fg-ko2.text" = "Daily goal";
+"2kF-fg-ko2.text" = "每日目标";
 
 /* Class = "UILabel"; text = "Language"; ObjectID = "35O-Hr-VpE"; */
-"35O-Hr-VpE.text" = "Language";
+"35O-Hr-VpE.text" = "语言";
 
 /* Class = "UILabel"; text = "0"; ObjectID = "3Cv-DJ-HXE"; */
 "3Cv-DJ-HXE.text" = "0";
 
 /* Class = "UILabel"; text = "Run 13 miles in one run"; ObjectID = "3Tn-DS-dYx"; */
-"3Tn-DS-dYx.text" = "Run 13 miles in one run";
+"3Tn-DS-dYx.text" = "单次跑步超过20公里";
 
 /* Class = "UITextField"; placeholder = "Email"; ObjectID = "3Zy-by-HMo"; */
-"3Zy-by-HMo.placeholder" = "Email";
+"3Zy-by-HMo.placeholder" = "邮箱";
 
 /* Class = "UILabel"; text = "Bronze Medal"; ObjectID = "3dQ-fm-Bhb"; */
-"3dQ-fm-Bhb.text" = "Bronze Medal";
+"3dQ-fm-Bhb.text" = "铜牌";
 
 /* Class = "UILabel"; text = "Avg min/mi"; ObjectID = "3gJ-IN-eqX"; */
-"3gJ-IN-eqX.text" = "Avg min/mi";
+"3gJ-IN-eqX.text" = "配速(分钟/公里)";
 
 /* Class = "UILabel"; text = "0 min/mi"; ObjectID = "3jJ-fY-m0H"; */
-"3jJ-fY-m0H.text" = "0 min/mi";
+"3jJ-fY-m0H.text" = "0 分钟/公里";
 
 /* Class = "UILabel"; text = "Silver Medal"; ObjectID = "4WU-c4-dY7"; */
-"4WU-c4-dY7.text" = "Silver Medal";
+"4WU-c4-dY7.text" = "银牌";
 
 /* Class = "UITableViewSection"; headerTitle = " "; ObjectID = "4cj-LJ-H4d"; */
 "4cj-LJ-H4d.headerTitle" = " ";
 
 /* Class = "UIButton"; normalTitle = "Stop"; ObjectID = "503-00-zh0"; */
-"503-00-zh0.normalTitle" = "Stop";
+"503-00-zh0.normalTitle" = "停止";
 
 /* Class = "UILabel"; text = "Run 6 miles in one run"; ObjectID = "5LH-PK-ebo"; */
-"5LH-PK-ebo.text" = "Run 6 miles in one run";
+"5LH-PK-ebo.text" = "单次跑步超过10公里";
 
 /* Class = "UIButton"; normalTitle = "WEEKLY"; ObjectID = "67N-vH-wV5"; */
-"67N-vH-wV5.normalTitle" = "WEEKLY";
+"67N-vH-wV5.normalTitle" = "本周";
 
 /* Class = "UILabel"; text = "Longest distance"; ObjectID = "6QO-Ki-4M8"; */
-"6QO-Ki-4M8.text" = "Longest distance";
+"6QO-Ki-4M8.text" = "最长距离";
 
 /* Class = "UILabel"; text = "Huanyan"; ObjectID = "6bd-Ed-ID7"; */
 "6bd-Ed-ID7.text" = "Huanyan";
 
 /* Class = "UILabel"; text = "Try to unlock more achievements!"; ObjectID = "6dO-VU-asy"; */
-"6dO-VU-asy.text" = "Try to unlock more achievements!";
+"6dO-VU-asy.text" = "试着解锁更多成就吧!";
 
 /* Class = "UILabel"; text = "Miles"; ObjectID = "6gj-ok-rez"; */
-"6gj-ok-rez.text" = "Miles";
+"6gj-ok-rez.text" = "公里";
 
 /* Class = "UIButton"; normalTitle = "Button"; ObjectID = "7Zh-IQ-JSn"; */
 "7Zh-IQ-JSn.normalTitle" = "Button";
 
 /* Class = "UILabel"; text = "Walk 30000 steps in one day"; ObjectID = "7b4-9l-sQJ"; */
-"7b4-9l-sQJ.text" = "Walk 30000 steps in one day";
+"7b4-9l-sQJ.text" = "单日步数超过30000步";
 
 /* Class = "UILabel"; text = "Fastest pace"; ObjectID = "7zQ-gM-nPr"; */
-"7zQ-gM-nPr.text" = "Fastest pace";
+"7zQ-gM-nPr.text" = "最快配速";
 
 /* Class = "UILabel"; text = "Welcome to Step by Step"; ObjectID = "8Sq-CH-XGA"; */
-"8Sq-CH-XGA.text" = "Welcome to Step by Step";
+"8Sq-CH-XGA.text" = "欢迎";
 
 /* Class = "UILabel"; text = "---"; ObjectID = "8ry-QE-Fhv"; */
 "8ry-QE-Fhv.text" = "---";
 
 /* Class = "UILabel"; text = "Log out"; ObjectID = "9nE-4J-ztF"; */
-"9nE-4J-ztF.text" = "Log out";
+"9nE-4J-ztF.text" = "退出登录";
 
 /* Class = "UILabel"; text = "Privacy policy"; ObjectID = "ABO-SL-z6j"; */
-"ABO-SL-z6j.text" = "Privacy policy";
+"ABO-SL-z6j.text" = "隐私政策";
 
 /* Class = "UILabel"; text = "Miles"; ObjectID = "Axi-6s-yYy"; */
-"Axi-6s-yYy.text" = "Miles";
+"Axi-6s-yYy.text" = "公里";
 
 /* Class = "UIButton"; normalTitle = "Button"; ObjectID = "BLn-Y5-HJM"; */
 "BLn-Y5-HJM.normalTitle" = "Button";
 
 /* Class = "UILabel"; text = "Walk 20000 steps in one day"; ObjectID = "BQX-RT-Jhp"; */
-"BQX-RT-Jhp.text" = "Walk 20000 steps in one day";
+"BQX-RT-Jhp.text" = "单日步数超过20000步";
 
 /* Class = "UILabel"; text = "Avg min/mi"; ObjectID = "Bcd-pd-xlv"; */
-"Bcd-pd-xlv.text" = "Avg min/mi";
+"Bcd-pd-xlv.text" = "配速(分钟/公里)";
 
 /* Class = "UILabel"; text = "0m 0s"; ObjectID = "Bhh-jO-XlW"; */
-"Bhh-jO-XlW.text" = "0m 0s";
+"Bhh-jO-XlW.text" = "0分 0秒";
 
 /* Class = "UILabel"; text = "Miles"; ObjectID = "CKj-5h-WXy"; */
-"CKj-5h-WXy.text" = "Miles";
+"CKj-5h-WXy.text" = "公里";
 
 /* Class = "UILabel"; text = "No record yet"; ObjectID = "CRS-kh-HvE"; */
-"CRS-kh-HvE.text" = "No record yet";
+"CRS-kh-HvE.text" = "无记录";
 
 /* Class = "UILabel"; text = "Sky Walker"; ObjectID = "DbJ-Qi-bdN"; */
-"DbJ-Qi-bdN.text" = "Sky Walker";
+"DbJ-Qi-bdN.text" = "天行者";
 
 /* Class = "UITableViewSection"; headerTitle = " "; ObjectID = "Dz1-sG-Lam"; */
 "Dz1-sG-Lam.headerTitle" = " ";
@@ -123,16 +122,16 @@
 "EW2-kX-HLw.text" = "0";
 
 /* Class = "UILabel"; text = "Time"; ObjectID = "Eaw-Xf-8bv"; */
-"Eaw-Xf-8bv.text" = "Time";
+"Eaw-Xf-8bv.text" = "时间";
 
 /* Class = "UILabel"; text = "total"; ObjectID = "Ezh-KD-PWU"; */
-"Ezh-KD-PWU.text" = "total";
+"Ezh-KD-PWU.text" = "总里程";
 
 /* Class = "UILabel"; text = "Ranking"; ObjectID = "FF7-1P-3RB"; */
-"FF7-1P-3RB.text" = "Ranking";
+"FF7-1P-3RB.text" = "排名";
 
 /* Class = "UILabel"; text = "Partly Cloudy"; ObjectID = "FLo-Lf-j87"; */
-"FLo-Lf-j87.text" = "Partly Cloudy";
+"FLo-Lf-j87.text" = "多云";
 
 /* Class = "UILabel"; text = "Jan 2, 2016 -  Jan 9, 2016"; ObjectID = "FzX-R7-p39"; */
 "FzX-R7-p39.text" = "Jan 2, 2016 -  Jan 9, 2016";
@@ -156,31 +155,31 @@
 "IGO-LM-5Vr.headerTitle" = " ";
 
 /* Class = "UILabel"; text = "Miles"; ObjectID = "IVs-rk-Uik"; */
-"IVs-rk-Uik.text" = "Miles";
+"IVs-rk-Uik.text" = "公里";
 
 /* Class = "UITableViewSection"; headerTitle = " "; ObjectID = "IZC-Dv-Vla"; */
 "IZC-Dv-Vla.headerTitle" = " ";
 
 /* Class = "UILabel"; text = "Good GPS"; ObjectID = "Ibr-DT-Tfs"; */
-"Ibr-DT-Tfs.text" = "Good GPS";
+"Ibr-DT-Tfs.text" = "GPS良好";
 
 /* Class = "UIButton"; normalTitle = "Start"; ObjectID = "Izh-jH-hjK"; */
-"Izh-jH-hjK.normalTitle" = "Start";
+"Izh-jH-hjK.normalTitle" = "开始";
 
 /* Class = "UILabel"; text = "Calories"; ObjectID = "JA8-oT-QDU"; */
-"JA8-oT-QDU.text" = "Calories";
+"JA8-oT-QDU.text" = "卡路里";
 
 /* Class = "UILabel"; text = "Partly Cloudy"; ObjectID = "L19-wd-oDI"; */
-"L19-wd-oDI.text" = "Partly Cloudy";
+"L19-wd-oDI.text" = "多云";
 
 /* Class = "UITableViewSection"; headerTitle = " "; ObjectID = "LQT-P6-3hd"; */
 "LQT-P6-3hd.headerTitle" = " ";
 
 /* Class = "UILabel"; text = "Signature"; ObjectID = "LeF-zU-i1E"; */
-"LeF-zU-i1E.text" = "Signature";
+"LeF-zU-i1E.text" = "个性签名";
 
 /* Class = "UILabel"; text = "0 miles"; ObjectID = "Lrx-ge-gev"; */
-"Lrx-ge-gev.text" = "0 miles";
+"Lrx-ge-gev.text" = "0 公里";
 
 /* Class = "UILabel"; text = "---"; ObjectID = "M3f-Sl-UqG"; */
 "M3f-Sl-UqG.text" = "---";
@@ -189,37 +188,37 @@
 "M4a-O7-Fel.text" = "Maplestory";
 
 /* Class = "UILabel"; text = "Marathon"; ObjectID = "MNI-M4-gGN"; */
-"MNI-M4-gGN.text" = "Marathon";
+"MNI-M4-gGN.text" = "马拉松";
 
 /* Class = "UILabel"; text = "Run 26 miles in one run"; ObjectID = "NC5-OZ-Tea"; */
-"NC5-OZ-Tea.text" = "Run 26 miles in one run";
+"NC5-OZ-Tea.text" = "单次跑步超过40公里";
 
 /* Class = "UITableViewSection"; headerTitle = " "; ObjectID = "NNU-n1-vM9"; */
 "NNU-n1-vM9.headerTitle" = " ";
 
 /* Class = "UILabel"; text = "Half Marathon"; ObjectID = "Nfq-hU-dtr"; */
-"Nfq-hU-dtr.text" = "Half Marathon";
+"Nfq-hU-dtr.text" = "半程马拉松";
 
 /* Class = "UILabel"; text = "---"; ObjectID = "O8N-f6-ywh"; */
 "O8N-f6-ywh.text" = "---";
 
 /* Class = "UILabel"; text = "0 miles"; ObjectID = "OPl-Cu-Tym"; */
-"OPl-Cu-Tym.text" = "0 miles";
+"OPl-Cu-Tym.text" = "0 公里";
 
 /* Class = "UILabel"; text = "00:00"; ObjectID = "Oyu-M4-LCB"; */
 "Oyu-M4-LCB.text" = "00:00";
 
 /* Class = "UILabel"; text = "Strong Walker"; ObjectID = "PuM-dh-i7t"; */
-"PuM-dh-i7t.text" = "Strong Walker";
+"PuM-dh-i7t.text" = "疾行者";
 
 /* Class = "UILabel"; text = "Walker"; ObjectID = "Q9q-sD-8BD"; */
-"Q9q-sD-8BD.text" = "Walker";
+"Q9q-sD-8BD.text" = "行者";
 
 /* Class = "UILabel"; text = "Cloudy"; ObjectID = "QCf-bG-EgA"; */
-"QCf-bG-EgA.text" = "Cloudy";
+"QCf-bG-EgA.text" = "多云";
 
 /* Class = "UILabel"; text = "Walk 10000 steps in one day"; ObjectID = "QJu-jV-MQA"; */
-"QJu-jV-MQA.text" = "Walk 10000 steps in one day";
+"QJu-jV-MQA.text" = "单日步数超过10000步";
 
 /* Class = "UILabel"; text = "---"; ObjectID = "QOQ-lO-uTb"; */
 "QOQ-lO-uTb.text" = "---";
@@ -228,19 +227,19 @@
 "Qeu-fG-Efp.text" = "0";
 
 /* Class = "UITextField"; placeholder = "Username"; ObjectID = "Qy6-yS-DqU"; */
-"Qy6-yS-DqU.placeholder" = "Username";
+"Qy6-yS-DqU.placeholder" = "用户名";
 
 /* Class = "UILabel"; text = "How was the weather?"; ObjectID = "R5F-7W-ONQ"; */
-"R5F-7W-ONQ.text" = "How was the weather?";
+"R5F-7W-ONQ.text" = "天气怎么样？";
 
 /* Class = "UILabel"; text = "Snowy"; ObjectID = "RJ0-gx-YHq"; */
-"RJ0-gx-YHq.text" = "Snowy";
+"RJ0-gx-YHq.text" = "雪";
 
 /* Class = "UIButton"; normalTitle = "New here? Sign up"; ObjectID = "RSb-fz-BT7"; */
-"RSb-fz-BT7.normalTitle" = "New here? Sign up";
+"RSb-fz-BT7.normalTitle" = "没有账号？注册一个吧！";
 
 /* Class = "UILabel"; text = "Rainy"; ObjectID = "SNa-Vi-1x0"; */
-"SNa-Vi-1x0.text" = "Rainy";
+"SNa-Vi-1x0.text" = "雨";
 
 /* Class = "UILabel"; text = "---"; ObjectID = "SjC-0Y-Wwz"; */
 "SjC-0Y-Wwz.text" = "---";
@@ -258,49 +257,49 @@
 "TzM-80-FfX.text" = "0.00";
 
 /* Class = "UILabel"; text = "DISTANCE"; ObjectID = "UIb-RJ-qUY"; */
-"UIb-RJ-qUY.text" = "DISTANCE";
+"UIb-RJ-qUY.text" = "距离";
 
 /* Class = "UILabel"; text = "Acknowledgement"; ObjectID = "UeT-KK-Jh6"; */
-"UeT-KK-Jh6.text" = "Acknowledgement";
+"UeT-KK-Jh6.text" = "关于";
 
 /* Class = "UILabel"; text = "Enter top 10 in leaderboard"; ObjectID = "VCL-ee-Vfq"; */
-"VCL-ee-Vfq.text" = "Enter top 10 in leaderboard";
+"VCL-ee-Vfq.text" = "进入排行榜前10名";
 
 /* Class = "UILabel"; text = "Leaderboard"; ObjectID = "VjZ-rZ-0R2"; */
-"VjZ-rZ-0R2.text" = "Leaderboard";
+"VjZ-rZ-0R2.text" = "排行榜";
 
 /* Class = "UILabel"; text = "Calories"; ObjectID = "VzZ-lS-MWe"; */
-"VzZ-lS-MWe.text" = "Calories";
+"VzZ-lS-MWe.text" = "卡路里";
 
 /* Class = "UILabel"; text = "Sunny"; ObjectID = "WOx-s0-oev"; */
-"WOx-s0-oev.text" = "Sunny";
+"WOx-s0-oev.text" = "晴";
 
 /* Class = "UILabel"; text = "Snowy"; ObjectID = "WwL-GI-OBI"; */
-"WwL-GI-OBI.text" = "Snowy";
+"WwL-GI-OBI.text" = "雪";
 
 /* Class = "UILabel"; text = "Rainy"; ObjectID = "X4v-8h-TD4"; */
-"X4v-8h-TD4.text" = "Rainy";
+"X4v-8h-TD4.text" = "雨";
 
 /* Class = "UILabel"; text = "Today's steps"; ObjectID = "Y5X-8Z-IVM"; */
-"Y5X-8Z-IVM.text" = "喵喵喵？";
+"Y5X-8Z-IVM.text" = "今日步数";
 
 /* Class = "UILabel"; text = "Calorie"; ObjectID = "YCw-xo-0En"; */
-"YCw-xo-0En.text" = "Calorie";
+"YCw-xo-0En.text" = "卡路里";
 
 /* Class = "UILabel"; text = "Running"; ObjectID = "Yfr-nx-MdK"; */
-"Yfr-nx-MdK.text" = "Running";
+"Yfr-nx-MdK.text" = "跑步";
 
 /* Class = "UILabel"; text = "Rate me"; ObjectID = "Z0l-ib-0y1"; */
-"Z0l-ib-0y1.text" = "Rate me";
+"Z0l-ib-0y1.text" = "给个五星好评";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "Zbb-vG-rHy"; */
 "Zbb-vG-rHy.text" = "Label";
 
 /* Class = "UITabBarItem"; title = "Me"; ObjectID = "acW-dT-cKf"; */
-"acW-dT-cKf.title" = "Me";
+"acW-dT-cKf.title" = "我";
 
 /* Class = "UILabel"; text = "Gold Medal"; ObjectID = "afT-ts-pX8"; */
-"afT-ts-pX8.text" = "Gold Medal";
+"afT-ts-pX8.text" = "金牌";
 
 /* Class = "UILabel"; text = "0"; ObjectID = "b8K-0e-T1S"; */
 "b8K-0e-T1S.text" = "0";
@@ -309,19 +308,19 @@
 "bpQ-oG-9Jn.text" = "---";
 
 /* Class = "UILabel"; text = "Lift"; ObjectID = "c17-qy-nn4"; */
-"c17-qy-nn4.text" = "Lift";
+"c17-qy-nn4.text" = "爬楼层数";
 
 /* Class = "UILabel"; text = "Good GPS"; ObjectID = "c3s-vf-zMl"; */
-"c3s-vf-zMl.text" = "Good GPS";
+"c3s-vf-zMl.text" = "GPS 良好";
 
 /* Class = "UILabel"; text = "---"; ObjectID = "cIN-Yk-V6b"; */
 "cIN-Yk-V6b.text" = "---";
 
 /* Class = "UITabBarItem"; title = "Running"; ObjectID = "cPa-gy-q4n"; */
-"cPa-gy-q4n.title" = "Running";
+"cPa-gy-q4n.title" = "跑步";
 
 /* Class = "UILabel"; text = "0/9 unlocked"; ObjectID = "dF2-BO-qFn"; */
-"dF2-BO-qFn.text" = "0/9 unlocked";
+"dF2-BO-qFn.text" = "0/9 已解锁";
 
 /* Class = "UIButton"; normalTitle = "Button"; ObjectID = "dFN-pe-KCl"; */
 "dFN-pe-KCl.normalTitle" = "Button";
@@ -333,64 +332,64 @@
 "eGb-Ts-rqS.normalTitle" = "Button";
 
 /* Class = "UITabBarItem"; title = "Steps"; ObjectID = "ejg-ht-J73"; */
-"ejg-ht-J73.title" = "Steps";
+"ejg-ht-J73.title" = "计步";
 
 /* Class = "UILabel"; text = "0"; ObjectID = "eyk-Bb-shw"; */
 "eyk-Bb-shw.text" = "0";
 
 /* Class = "UILabel"; text = "Longest duration"; ObjectID = "ezD-mM-hKc"; */
-"ezD-mM-hKc.text" = "Longest duration";
+"ezD-mM-hKc.text" = "最长时间";
 
 /* Class = "UINavigationItem"; title = "Running result"; ObjectID = "f9n-YS-KOX"; */
-"f9n-YS-KOX.title" = "Running result";
+"f9n-YS-KOX.title" = "跑步结果";
 
 /* Class = "UILabel"; text = "0"; ObjectID = "fB4-Fd-Ozn"; */
 "fB4-Fd-Ozn.text" = "0";
 
 /* Class = "UILabel"; text = "this week"; ObjectID = "fBQ-Xe-Ykm"; */
-"fBQ-Xe-Ykm.text" = "this week";
+"fBQ-Xe-Ykm.text" = "本周";
 
 /* Class = "UILabel"; text = "---"; ObjectID = "fDM-3c-tre"; */
 "fDM-3c-tre.text" = "---";
 
 /* Class = "UIButton"; normalTitle = "Forgot password?"; ObjectID = "fR2-HN-NWU"; */
-"fR2-HN-NWU.normalTitle" = "Forgot password?";
+"fR2-HN-NWU.normalTitle" = "忘记密码?";
 
 /* Class = "UITabBarItem"; title = "Setting"; ObjectID = "fSC-73-ug6"; */
-"fSC-73-ug6.title" = "Setting";
+"fSC-73-ug6.title" = "设置";
 
 /* Class = "UILabel"; text = "Quarter Marathon"; ObjectID = "fos-sv-Moa"; */
-"fos-sv-Moa.text" = "Quarter Marathon";
+"fos-sv-Moa.text" = "四分之一马拉松";
 
 /* Class = "UILabel"; text = "There are no notes for this run"; ObjectID = "g3K-rz-zLq"; */
-"g3K-rz-zLq.text" = "There are no notes for this run";
+"g3K-rz-zLq.text" = "";
 
 /* Class = "UILabel"; text = "Calories"; ObjectID = "gJC-ng-xZi"; */
-"gJC-ng-xZi.text" = "Calories";
+"gJC-ng-xZi.text" = "卡路里";
 
 /* Class = "UILabel"; text = "No record yet"; ObjectID = "goJ-LY-Cz9"; */
-"goJ-LY-Cz9.text" = "No record yet";
+"goJ-LY-Cz9.text" = "无记录";
 
 /* Class = "UILabel"; text = "Name"; ObjectID = "hHj-6M-MSr"; */
-"hHj-6M-MSr.text" = "Name";
+"hHj-6M-MSr.text" = "名字";
 
 /* Class = "UILabel"; text = "1"; ObjectID = "hK7-eQ-uiS"; */
 "hK7-eQ-uiS.text" = "1";
 
 /* Class = "UILabel"; text = "Avg min/mi"; ObjectID = "hQJ-0b-Pr0"; */
-"hQJ-0b-Pr0.text" = "Avg min/mi";
+"hQJ-0b-Pr0.text" = "分钟/公里";
 
 /* Class = "UILabel"; text = "0.00"; ObjectID = "hho-Cy-PLO"; */
 "hho-Cy-PLO.text" = "0.00";
 
 /* Class = "UILabel"; text = "Cloudy"; ObjectID = "htg-zM-n2O"; */
-"htg-zM-n2O.text" = "Cloudy";
+"htg-zM-n2O.text" = "阴天";
 
 /* Class = "UILabel"; text = "TIME"; ObjectID = "hx1-D9-sdj"; */
-"hx1-D9-sdj.text" = "TIME";
+"hx1-D9-sdj.text" = "时间";
 
 /* Class = "UITabBarItem"; title = "Ranking"; ObjectID = "i7w-t4-oFF"; */
-"i7w-t4-oFF.title" = "Ranking";
+"i7w-t4-oFF.title" = "排行榜";
 
 /* Class = "UIButton"; normalTitle = "Button"; ObjectID = "iK1-QM-r2H"; */
 "iK1-QM-r2H.normalTitle" = "Button";
@@ -408,46 +407,46 @@
 "kkg-dh-020.text" = "1";
 
 /* Class = "UILabel"; text = "Weekly: 17"; ObjectID = "kto-54-XvQ"; */
-"kto-54-XvQ.text" = "Weekly: 17";
+"kto-54-XvQ.text" = "周排名: 17";
 
 /* Class = "UILabel"; text = "Enter top 3 in leaderboard"; ObjectID = "lWT-PW-YGn"; */
-"lWT-PW-YGn.text" = "Enter top 3 in leaderboard";
+"lWT-PW-YGn.text" = "进入排行榜前3名";
 
 /* Class = "UILabel"; text = "Time"; ObjectID = "ldZ-pT-ap6"; */
-"ldZ-pT-ap6.text" = "Time";
+"ldZ-pT-ap6.text" = "时间";
 
 /* Class = "UILabel"; text = "Run"; ObjectID = "leH-PR-cuk"; */
-"leH-PR-cuk.text" = "Run";
+"leH-PR-cuk.text" = "跑步";
 
 /* Class = "UIButton"; normalTitle = "Button"; ObjectID = "m8h-9t-rsN"; */
 "m8h-9t-rsN.normalTitle" = "Button";
 
 /* Class = "UILabel"; text = "Sunny"; ObjectID = "mYc-zO-4xO"; */
-"mYc-zO-4xO.text" = "Sunny";
+"mYc-zO-4xO.text" = "晴";
 
 /* Class = "UILabel"; text = "Personal Record"; ObjectID = "mfQ-6t-mp3"; */
-"mfQ-6t-mp3.text" = "Personal Record";
+"mfQ-6t-mp3.text" = "个人记录";
 
 /* Class = "UILabel"; text = "Notes"; ObjectID = "nS9-8f-BfT"; */
-"nS9-8f-BfT.text" = "Notes";
+"nS9-8f-BfT.text" = "记录";
 
 /* Class = "UILabel"; text = "New York, United States"; ObjectID = "ngy-jd-rVU"; */
 "ngy-jd-rVU.text" = "New York, United States";
 
 /* Class = "UIButton"; normalTitle = "MONTHLY"; ObjectID = "oMe-qN-cQT"; */
-"oMe-qN-cQT.normalTitle" = "MONTHLY";
+"oMe-qN-cQT.normalTitle" = "本月";
 
 /* Class = "UILabel"; text = "No record yet"; ObjectID = "oaV-IK-gfR"; */
-"oaV-IK-gfR.text" = "No record yet";
+"oaV-IK-gfR.text" = "无记录";
 
 /* Class = "UILabel"; text = "How's the weather today?"; ObjectID = "pkb-45-SzQ"; */
-"pkb-45-SzQ.text" = "How's the weather today?";
+"pkb-45-SzQ.text" = "今天天气怎么样?";
 
 /* Class = "UILabel"; text = "陈垚"; ObjectID = "qG8-mF-oGZ"; */
 "qG8-mF-oGZ.text" = "陈垚";
 
 /* Class = "UILabel"; text = "Log in with"; ObjectID = "qlK-bE-tqn"; */
-"qlK-bE-tqn.text" = "Log in with";
+"qlK-bE-tqn.text" = "第三方登录";
 
 /* Class = "UILabel"; text = "0.00"; ObjectID = "qsP-xr-QdS"; */
 "qsP-xr-QdS.text" = "0.00";
@@ -456,16 +455,16 @@
 "rD8-i2-kHn.text" = "00:00";
 
 /* Class = "UIButton"; normalTitle = "Pause"; ObjectID = "rsH-sH-rgx"; */
-"rsH-sH-rgx.normalTitle" = "Pause";
+"rsH-sH-rgx.normalTitle" = "暂停";
 
 /* Class = "UITextField"; placeholder = "Password"; ObjectID = "s2O-2J-fiG"; */
-"s2O-2J-fiG.placeholder" = "Password";
+"s2O-2J-fiG.placeholder" = "密码";
 
 /* Class = "UILabel"; text = "---"; ObjectID = "s5E-Xc-dXc"; */
 "s5E-Xc-dXc.text" = "---";
 
 /* Class = "UILabel"; text = "26 miles"; ObjectID = "sK8-xO-a8F"; */
-"sK8-xO-a8F.text" = "26 miles";
+"sK8-xO-a8F.text" = "26 公里";
 
 /* Class = "UILabel"; text = "00:00"; ObjectID = "sW4-FC-Cfr"; */
 "sW4-FC-Cfr.text" = "00:00";
@@ -474,7 +473,7 @@
 "sd4-sG-3ZZ.text" = "00:00";
 
 /* Class = "UILabel"; text = "Enter top 20 in leaderboard"; ObjectID = "tqF-zA-NYC"; */
-"tqF-zA-NYC.text" = "Enter top 20 in leaderboard";
+"tqF-zA-NYC.text" = "进入排行榜前20名";
 
 /* Class = "UILabel"; text = "---"; ObjectID = "tti-mv-Yny"; */
 "tti-mv-Yny.text" = "---";
@@ -483,7 +482,7 @@
 "u1j-Xl-gA2.headerTitle" = " ";
 
 /* Class = "UILabel"; text = "Notes"; ObjectID = "u3T-NM-UPH"; */
-"u3T-NM-UPH.text" = "Notes";
+"u3T-NM-UPH.text" = "记录";
 
 /* Class = "UIButton"; normalTitle = "Button"; ObjectID = "uoT-t0-k7f"; */
 "uoT-t0-k7f.normalTitle" = "Button";
@@ -492,37 +491,37 @@
 "us2-3V-oq0.placeholder" = "Verification code";
 
 /* Class = "UILabel"; text = "No record yet"; ObjectID = "uuB-tK-OWE"; */
-"uuB-tK-OWE.text" = "No record yet";
+"uuB-tK-OWE.text" = "无记录";
 
 /* Class = "UIButton"; normalTitle = "Log In"; ObjectID = "v4P-ZY-WNz"; */
-"v4P-ZY-WNz.normalTitle" = "Log In";
+"v4P-ZY-WNz.normalTitle" = "登录";
 
 /* Class = "UILabel"; text = "Walking"; ObjectID = "vYv-eb-8xV"; */
-"vYv-eb-8xV.text" = "Walking";
+"vYv-eb-8xV.text" = "步数";
 
 /* Class = "UITableViewSection"; headerTitle = " "; ObjectID = "wKh-h6-Lfp"; */
 "wKh-h6-Lfp.headerTitle" = " ";
 
 /* Class = "UITextField"; placeholder = "Wanna say something?"; ObjectID = "wgT-hJ-OIB"; */
-"wgT-hJ-OIB.placeholder" = "Wanna say something?";
+"wgT-hJ-OIB.placeholder" = "想说点什么吗?";
 
 /* Class = "UITableViewSection"; headerTitle = " "; ObjectID = "x4e-Xo-7eX"; */
 "x4e-Xo-7eX.headerTitle" = " ";
 
 /* Class = "UILabel"; text = "weeks since joining"; ObjectID = "xhx-sT-53Z"; */
-"xhx-sT-53Z.text" = "weeks since joining";
+"xhx-sT-53Z.text" = "周自加入以来";
 
 /* Class = "UILabel"; text = "0 total miles"; ObjectID = "xpz-pI-Zx3"; */
-"xpz-pI-Zx3.text" = "0 total miles";
+"xpz-pI-Zx3.text" = "共计0公里";
 
 /* Class = "UITableViewSection"; headerTitle = "Walking"; ObjectID = "xzO-YR-cwZ"; */
-"xzO-YR-cwZ.headerTitle" = "Walking";
+"xzO-YR-cwZ.headerTitle" = "计步";
 
 /* Class = "UITableViewSection"; headerTitle = " "; ObjectID = "xzX-sJ-usv"; */
 "xzX-sJ-usv.headerTitle" = " ";
 
 /* Class = "UILabel"; text = "Farthest distance"; ObjectID = "y3z-B3-QRP"; */
-"y3z-B3-QRP.text" = "Farthest distance";
+"y3z-B3-QRP.text" = "最远距离";
 
 /* Class = "UILabel"; text = "0"; ObjectID = "yQR-Zv-bet"; */
 "yQR-Zv-bet.text" = "0";
@@ -543,4 +542,10 @@
 "zf3-Oc-TVd.text" = "---";
 
 /* Class = "UILabel"; text = "Weekly Stats"; ObjectID = "zkX-PN-yoC"; */
-"zkX-PN-yoC.text" = "Weekly Stats";
+"zkX-PN-yoC.text" = "本周统计";
+
+/* Class = "UILabel"; text = "Join Leaderboard"; ObjectID = "JqO-8l-Ui5"; */
+"JqO-8l-Ui5.text" = "参加排行";
+
+/* Class = "UILabel"; text = "Don't Join Leaderboard"; ObjectID = "cm5-xv-NLQ"; */
+"cm5-xv-NLQ.text" = "不参加排行";

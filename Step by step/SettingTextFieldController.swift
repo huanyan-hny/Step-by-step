@@ -205,14 +205,14 @@ class SettingTextFieldController: UITableViewController, UITextFieldDelegate{
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.navigationItem.title = fieldType.rawValue
+        self.navigationItem.title = NSLocalizedString(fieldType.rawValue, comment: "")
         textField.becomeFirstResponder()
         if (fieldType == .dailyWalkingGoal) {
             textField.keyboardType = .numberPad
             textField.placeholder = "\(UserDefaults.standard.integer(forKey: "dailyWalkingGoal"))"
         } else if (fieldType == .dailyRunningGoal) {
             textField.keyboardType = .decimalPad
-            textField.placeholder = String.init(format: "%.1f miles", UserDefaults.standard.double(forKey: "dailyRunningGoal"))
+            textField.placeholder = String.init(format: "%.1f", UserDefaults.standard.double(forKey: "dailyRunningGoal"))
         } else if (fieldType == .username){
             textField.keyboardType = .default
             textField.placeholder = UserDefaults.standard.string(forKey: "username")
@@ -225,8 +225,8 @@ class SettingTextFieldController: UITableViewController, UITextFieldDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.tableFooterView = UIView()
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: "Save", style: .plain, target: self, action: #selector(save))
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem.init(title: "Cancel", style: .plain, target: self, action: #selector(cancel))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: NSLocalizedString("Save", comment: ""), style: .plain, target: self, action: #selector(save))
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem.init(title: NSLocalizedString("Cancel", comment: ""), style: .plain, target: self, action: #selector(cancel))
         self.navigationController!.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
         textField.returnKeyType = .done
         textField.delegate = self

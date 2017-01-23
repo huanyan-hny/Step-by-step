@@ -28,6 +28,7 @@
 		052E9F7E1BFF222D00BBF246 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 052E9F7D1BFF222D00BBF246 /* CoreLocation.framework */; };
 		052E9F801C00515600BBF246 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052E9F7F1C00515600BBF246 /* BaseViewController.swift */; };
 		052EB0CD1E1317F100F17B11 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052EB0CC1E1317F100F17B11 /* SettingViewController.swift */; };
+		0538E9241E355F0300C1979A /* NSBundle+Language.m in Sources */ = {isa = PBXBuildFile; fileRef = 0538E9231E355F0300C1979A /* NSBundle+Language.m */; };
 		0539F9951E2714EA00C1FB19 /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0539F9941E2714EA00C1FB19 /* Test.swift */; };
 		05441A271BE07BEE00A8ECA4 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 05441A251BE07BEE00A8ECA4 /* Model.xcdatamodeld */; };
 		05441A2C1BE089ED00A8ECA4 /* Location+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05441A281BE089ED00A8ECA4 /* Location+CoreDataProperties.swift */; };
@@ -39,6 +40,8 @@
 		0555EA521AE210CB00E127C8 /* RunningViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0555EA511AE210CB00E127C8 /* RunningViewController.swift */; };
 		0555EA551AE210CB00E127C8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0555EA531AE210CB00E127C8 /* Main.storyboard */; };
 		0555EA661AE210CB00E127C8 /* Step_by_stepTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0555EA651AE210CB00E127C8 /* Step_by_stepTests.swift */; };
+		0559D3711E35328E0016221A /* LanguageSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0559D3701E35328E0016221A /* LanguageSettingViewController.swift */; };
+		0559D3731E3532D70016221A /* LeaderboardSettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0559D3721E3532D70016221A /* LeaderboardSettingTableViewController.swift */; };
 		055E3CE01E33D121004F3A89 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 055E3CE21E33D121004F3A89 /* Localizable.strings */; };
 		055E7BFB1E1B51CE00356F29 /* AllRankingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055E7BFA1E1B51CE00356F29 /* AllRankingsViewController.swift */; };
 		055E7BFE1E1B521200356F29 /* RankingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055E7BFD1E1B521200356F29 /* RankingTableViewCell.swift */; };
@@ -64,7 +67,6 @@
 		058C8AC91E14B80700140D71 /* Pedometer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058C8AC81E14B80600140D71 /* Pedometer.swift */; };
 		0596360E1B0CCD81007BCC22 /* StepsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0596360D1B0CCD81007BCC22 /* StepsViewController.swift */; };
 		059636141B0CD725007BCC22 /* StepsMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059636131B0CD725007BCC22 /* StepsMonitor.swift */; };
-		05C00C731E308C51000675B8 /* NBUIKitMainThreadGuard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C00C721E308C51000675B8 /* NBUIKitMainThreadGuard.swift */; };
 		05C0A5C51E33CC0600E9BE61 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 05C0A5C71E33CC0600E9BE61 /* InfoPlist.strings */; };
 		05C364631BDB2F31008D1712 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05C364611BDB2F31008D1712 /* LaunchScreen.xib */; };
 		05DAC7311BDF6E1C008F10C5 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05DAC7301BDF6E1C008F10C5 /* MapKit.framework */; };
@@ -128,6 +130,8 @@
 		052E9F7D1BFF222D00BBF246 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		052E9F7F1C00515600BBF246 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		052EB0CC1E1317F100F17B11 /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		0538E9221E355F0300C1979A /* NSBundle+Language.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBundle+Language.h"; sourceTree = "<group>"; };
+		0538E9231E355F0300C1979A /* NSBundle+Language.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+Language.m"; sourceTree = "<group>"; };
 		05398A2E1E34037F002B0A9B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		0539F9901E2710EC00C1FB19 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		0539F9921E2710F700C1FB19 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
@@ -146,6 +150,8 @@
 		0555EA5F1AE210CB00E127C8 /* Step by stepTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Step by stepTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0555EA641AE210CB00E127C8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0555EA651AE210CB00E127C8 /* Step_by_stepTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Step_by_stepTests.swift; sourceTree = "<group>"; };
+		0559D3701E35328E0016221A /* LanguageSettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LanguageSettingViewController.swift; sourceTree = "<group>"; };
+		0559D3721E3532D70016221A /* LeaderboardSettingTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeaderboardSettingTableViewController.swift; sourceTree = "<group>"; };
 		055E3CE11E33D121004F3A89 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		055E3CE31E33D123004F3A89 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		055E7BFA1E1B51CE00356F29 /* AllRankingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllRankingsViewController.swift; sourceTree = "<group>"; };
@@ -173,7 +179,6 @@
 		0596360D1B0CCD81007BCC22 /* StepsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepsViewController.swift; sourceTree = "<group>"; };
 		059636131B0CD725007BCC22 /* StepsMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = StepsMonitor.swift; sourceTree = "<group>"; };
 		05BAD6D01E33C9DC00CFA84F /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
-		05C00C721E308C51000675B8 /* NBUIKitMainThreadGuard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NBUIKitMainThreadGuard.swift; sourceTree = "<group>"; };
 		05C0966C1E21854700607379 /* Step by step-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Step by step-Bridging-Header.h"; sourceTree = "<group>"; };
 		05C0A5C61E33CC0600E9BE61 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		05C0A5C81E33CC1A00E9BE61 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
@@ -296,8 +301,10 @@
 				052EB0CC1E1317F100F17B11 /* SettingViewController.swift */,
 				0517B3341E23309700D8DDCB /* SettingTextFieldController.swift */,
 				0517B3361E2330FD00D8DDCB /* SecondarySettingViewController.swift */,
+				0559D3701E35328E0016221A /* LanguageSettingViewController.swift */,
+				0559D3721E3532D70016221A /* LeaderboardSettingTableViewController.swift */,
 				0555EA531AE210CB00E127C8 /* Main.storyboard */,
-				05C00C721E308C51000675B8 /* NBUIKitMainThreadGuard.swift */,
+				055E3CE61E33D8DD004F3A89 /* Localization */,
 				05E781C71E2D86C00090E410 /* Login */,
 				0506336E1E27598C001DA272 /* AmazonAws */,
 				056FA8A71E2437B400089132 /* Helper */,
@@ -307,7 +314,6 @@
 				055E7C081E1C022300356F29 /* Record */,
 				05DEFACF1C05B49400EE5A5F /* CoreData */,
 				050633521E272FE4001DA272 /* Sdk */,
-				055E3CE61E33D8DD004F3A89 /* Localization */,
 				0555EA4B1AE210CB00E127C8 /* Supporting Files */,
 			);
 			path = "Step by step";
@@ -317,6 +323,8 @@
 			isa = PBXGroup;
 			children = (
 				05C364611BDB2F31008D1712 /* LaunchScreen.xib */,
+				0538E9221E355F0300C1979A /* NSBundle+Language.h */,
+				0538E9231E355F0300C1979A /* NSBundle+Language.m */,
 				05269AEF1DFBD69F00B2A600 /* Images.xcassets */,
 				0555EA4D1AE210CB00E127C8 /* AppDelegate.swift */,
 				0555EA4C1AE210CB00E127C8 /* Info.plist */,
@@ -650,6 +658,7 @@
 				056FA8981E242A6300089132 /* Achievement.swift in Sources */,
 				0539F9951E2714EA00C1FB19 /* Test.swift in Sources */,
 				05E26C951E20006600D1E22F /* Display.swift in Sources */,
+				0559D3711E35328E0016221A /* LanguageSettingViewController.swift in Sources */,
 				056FA8AB1E247B0900089132 /* Time.swift in Sources */,
 				050633781E27598C001DA272 /* AllTimeRun.swift in Sources */,
 				0517B3371E2330FD00D8DDCB /* SecondarySettingViewController.swift in Sources */,
@@ -658,7 +667,6 @@
 				055E7C021E1B671200356F29 /* AllAchievementsTableViewController.swift in Sources */,
 				052E9F801C00515600BBF246 /* BaseViewController.swift in Sources */,
 				05441A561BE35EA800A8ECA4 /* RunningResultViewController.swift in Sources */,
-				05C00C731E308C51000675B8 /* NBUIKitMainThreadGuard.swift in Sources */,
 				05E781E11E2DC8D50090E410 /* AWSMobileClient.swift in Sources */,
 				05269AEE1DFBC1E000B2A600 /* RankingViewCell.swift in Sources */,
 				055E7C051E1C020300356F29 /* AllRecordsTableViewController.swift in Sources */,
@@ -669,8 +677,10 @@
 				056FA8A01E242C4300089132 /* Record.swift in Sources */,
 				0596360E1B0CCD81007BCC22 /* StepsViewController.swift in Sources */,
 				058C8AC91E14B80700140D71 /* Pedometer.swift in Sources */,
+				0559D3731E3532D70016221A /* LeaderboardSettingTableViewController.swift in Sources */,
 				05E781CF1E2D86C00090E410 /* LoginViewControllerExtensions.swift in Sources */,
 				05441A2C1BE089ED00A8ECA4 /* Location+CoreDataProperties.swift in Sources */,
+				0538E9241E355F0300C1979A /* NSBundle+Language.m in Sources */,
 				055E7C071E1C021900356F29 /* RecordTableViewCell.swift in Sources */,
 				056FA89A1E242C1600089132 /* Achievement+CoreDataProperties.swift in Sources */,
 				055E7BFE1E1B521200356F29 /* RankingTableViewCell.swift in Sources */,

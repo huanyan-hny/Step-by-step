@@ -30,37 +30,29 @@ class ActivityViewController: UIViewController, MKMapViewDelegate {
     let activityIndicator = UIActivityIndicatorView.init(activityIndicatorStyle: .whiteLarge)
     let component = Calendar.current.dateComponents([.weekOfYear, .day, .month,.year,.weekday], from: Date())
     let userID = UserDefaults.standard.string(forKey: "userID")
+    let language = UserDefaults.standard.array(forKey: "AppleLanguages")!.first as! String
     
-    
-    func secondsToHoursMinutesSeconds(seconds: Int) -> String {
-        let hours = seconds / 3600
-        let minutes = seconds / 60 % 60
-        let seconds = seconds % 60
-        if hours>10 {
-            return String(format:"%02i:%02i:%02i", hours, minutes, seconds)
-        } else if hours>0 {
-            return String(format:"%01i:%02i:%02i", hours, minutes, seconds)
-        } else {
-            return String(format:"%02i:%02i",minutes, seconds)
-        }
-    }
     
     var run:Run?
     
     func updateUI() {
-        let displayTime = secondsToHoursMinutesSeconds(seconds: run!.time!.intValue)
-        let displayDistance = String(format:"%.1f", Double(round(run!.distance!.doubleValue*10)/10))
-        let displayPace = secondsToHoursMinutesSeconds(seconds: run!.pace!.intValue)
+        let displayTime = Time.secondsFormatted(seconds: run!.time!.intValue)
         let displayEnergy = run!.energy!.intValue
+        let displayDistance:String
+        let displayPace:String
+        
+        if (language == "zh_Hans") {
+            displayDistance = String(format:"%.1f", Double(round(run!.distance!.doubleValue*10)/10))
+            displayPace = Time.secondsFormatted(seconds: run!.pace!.intValue)
+        } else {
+            displayDistance = String(format:"%.1f", Double(round((run!.distance!.doubleValue/1.60934)*10)/10))
+            displayPace = Time.secondsFormatted(seconds:(Int(Double(run!.pace!.intValue)*1.60934)))
+        }
         
         timeLabel.text = displayTime
         distanceLabel.text = displayDistance
         averagePaceLabel.text = displayPace
         energyLabel.text = "\(displayEnergy)"
-        
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .medium
-        dateFormatter.locale = Locale(identifier: "en_US")
         
         let weather = run!.weather!
         
@@ -79,13 +71,20 @@ class ActivityViewController: UIViewController, MKMapViewDelegate {
                 print("No weather information")
         }
         
-        if (run!.address != nil && run!.city != nil) {
-            locationLabel.text = run!.address! + ", " + run!.city!
+        if (language == "zh_Hans") {
+            if (run!.address_zh != nil && run!.city_zh != nil) {
+                locationLabel.text = run!.address_zh! + ", " + run!.city_zh!
+            }
+        } else {
+            if (run!.address != nil && run!.city != nil) {
+                locationLabel.text = run!.address! + ", " + run!.city!
+            }
         }
         
+        
         let notes = run!.notes
-        if (notes==""){
-            notesLabel.text = "There are no notes"
+        if (notes == "") {
+            notesLabel.text = NSLocalizedString("There are no notes for this run", comment: "")
         } else {
             notesLabel.text = notes
         }
@@ -188,7 +187,7 @@ class ActivityViewController: UIViewController, MKMapViewDelegate {
             DispatchQueue.main.async {
                 if (task.error != nil) {
                     self.stopLoadingAnimation()
-                    let alertController = UIAlertController(title: "Fail to upload to server", message: "Please try again later(Error:\(task.error!.localizedDescription))", preferredStyle: .alert)
+                    let alertController = UIAlertController(title: NSLocalizedString("Fail to upload to server", comment: ""), message: NSLocalizedString("Please try again later", comment: "") + "(Error:\(task!.error!.localizedDescription))", preferredStyle: .alert)
                     
                     let cancelAction = UIAlertAction(title: "OK", style: .cancel)  {(action) in
                         return
@@ -215,7 +214,7 @@ class ActivityViewController: UIViewController, MKMapViewDelegate {
             DispatchQueue.main.async {
                 if (task.error != nil) {
                     self.stopLoadingAnimation()
-                    let alertController = UIAlertController(title: "Fail to upload to server", message: "Please try again later (Error:\(task.error!.localizedDescription))", preferredStyle: .alert)
+                    let alertController = UIAlertController(title: NSLocalizedString("Fail to upload to server", comment: ""), message: NSLocalizedString("Please try again later", comment: "") + "(Error:\(task!.error!.localizedDescription))", preferredStyle: .alert)
                     
                     let cancelAction = UIAlertAction(title: "OK", style: .cancel)  {(action) in
                         return
@@ -239,7 +238,7 @@ class ActivityViewController: UIViewController, MKMapViewDelegate {
             DispatchQueue.main.async {
                 if (task.error != nil) {
                     self.stopLoadingAnimation()
-                    let alertController = UIAlertController(title: "Fail to upload to server", message: "Please try again later(Error:\(task.error!.localizedDescription))", preferredStyle: .alert)
+                    let alertController = UIAlertController(title: NSLocalizedString("Fail to upload to server", comment: ""), message: NSLocalizedString("Please try again later", comment: "") + "(Error:\(task!.error!.localizedDescription))", preferredStyle: .alert)
                     
                     let cancelAction = UIAlertAction(title: "OK", style: .cancel)  {(action) in
                     }
@@ -277,7 +276,7 @@ class ActivityViewController: UIViewController, MKMapViewDelegate {
             DispatchQueue.main.async {
                 if (error != nil) {
                     self.stopLoadingAnimation()
-                    let alertController = UIAlertController(title: "Fail to upload to server", message: "Please try again later (Error:\(error!.localizedDescription))", preferredStyle: .alert)
+                    let alertController = UIAlertController(title: NSLocalizedString("Fail to upload to server", comment: ""), message: NSLocalizedString("Please try again later", comment: "") + "(Error:\(error!.localizedDescription))", preferredStyle: .alert)
                     
                     let cancelAction = UIAlertAction(title: "OK", style: .cancel)  {(action) in
                         return
@@ -295,18 +294,18 @@ class ActivityViewController: UIViewController, MKMapViewDelegate {
 
     
     func options() {
-        let alertController = UIAlertController(title: nil, message: "Options", preferredStyle: .actionSheet)
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) {(action) in}
+        let alertController = UIAlertController(title: nil, message: NSLocalizedString("Options", comment: ""), preferredStyle: .actionSheet)
+        let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel) {(action) in}
         
         alertController.addAction(cancelAction)
         
-        let deleteAction = UIAlertAction(title: "Delete", style:.destructive) { (action) in
+        let deleteAction = UIAlertAction(title: NSLocalizedString("Delete", comment: ""), style:.destructive) { (action) in
             self.deleteRun()
         }
         alertController.addAction(deleteAction)
         
         if(self.run?.synchronized?.boolValue == false) {
-            let uploadAction = UIAlertAction(title: "Upload to server", style:.default) {(action) in
+            let uploadAction = UIAlertAction(title: NSLocalizedString("Upload to server", comment: ""), style:.default) {(action) in
                 self.uploadRun()
             }
             
@@ -326,7 +325,7 @@ class ActivityViewController: UIViewController, MKMapViewDelegate {
             DispatchQueue.main.async {
                 if (task.error != nil) {
                     self.stopLoadingAnimation()
-                    let alertController = UIAlertController(title: "Fail to upload to server", message: "Please try again later(Error:\(task.error!.localizedDescription))", preferredStyle: .alert)
+                    let alertController = UIAlertController(title: NSLocalizedString("Fail to delete run", comment: ""), message: NSLocalizedString("Please try again later", comment: "") + "(Error:\(task!.error!.localizedDescription))", preferredStyle: .alert)
                     
                     let cancelAction = UIAlertAction(title: "OK", style: .cancel)  {(action) in
                         return
@@ -353,7 +352,7 @@ class ActivityViewController: UIViewController, MKMapViewDelegate {
             DispatchQueue.main.async {
                 if (task.error != nil) {
                     self.stopLoadingAnimation()
-                    let alertController = UIAlertController(title: "Fail to upload to server", message: "Please try again later (Error:\(task.error!.localizedDescription))", preferredStyle: .alert)
+                    let alertController = UIAlertController(title: NSLocalizedString("Fail to delete run", comment: ""), message: NSLocalizedString("Please try again later", comment: "") + "(Error:\(task!.error!.localizedDescription))", preferredStyle: .alert)
                     
                     let cancelAction = UIAlertAction(title: "OK", style: .cancel)  {(action) in
                         return
@@ -377,7 +376,7 @@ class ActivityViewController: UIViewController, MKMapViewDelegate {
             DispatchQueue.main.async {
                 if (task.error != nil) {
                     self.stopLoadingAnimation()
-                    let alertController = UIAlertController(title: "Fail to upload to server", message: "Please try again later(Error:\(task.error!.localizedDescription))", preferredStyle: .alert)
+                    let alertController = UIAlertController(title: NSLocalizedString("Fail to delete run", comment: ""), message: NSLocalizedString("Please try again later", comment: "") + "(Error:\(task!.error!.localizedDescription))", preferredStyle: .alert)
                     
                     let cancelAction = UIAlertAction(title: "OK", style: .cancel)  {(action) in
                     }
@@ -403,7 +402,7 @@ class ActivityViewController: UIViewController, MKMapViewDelegate {
             DispatchQueue.main.async {
                 if (task.error != nil) {
                     self.stopLoadingAnimation()
-                    let alertController = UIAlertController(title: "Fail to delete run", message: "Please try again later (Error:\(task!.error!.localizedDescription))", preferredStyle: .alert)
+                    let alertController = UIAlertController(title: NSLocalizedString("Fail to delete run", comment: ""), message: NSLocalizedString("Please try again later", comment: "") + "(Error:\(task!.error!.localizedDescription))", preferredStyle: .alert)
                     
                     let cancelAction = UIAlertAction(title: "OK", style: .cancel)  {(action) in
                         return
@@ -420,12 +419,12 @@ class ActivityViewController: UIViewController, MKMapViewDelegate {
     }
     
     func deleteRun() {
-        let alertController = UIAlertController(title: nil, message: "Delete this run?", preferredStyle: .alert)
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) {(action) in}
+        let alertController = UIAlertController(title: nil, message: NSLocalizedString("Delete this run?", comment: ""), preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel) {(action) in}
         
         alertController.addAction(cancelAction)
         
-        let deleteAction = UIAlertAction(title: "Delete", style:.destructive) { (action) in
+        let deleteAction = UIAlertAction(title: NSLocalizedString("Delete", comment: ""), style:.destructive) { (action) in
             if (self.run?.synchronized?.boolValue == false) {
                 self.managedObjectContext?.delete(self.run!)
                 do{ try self.managedObjectContext?.save()} catch _ { print("Could not save!")}
@@ -436,7 +435,7 @@ class ActivityViewController: UIViewController, MKMapViewDelegate {
                     DispatchQueue.main.async {
                         if (task.error != nil) {
                             self.stopLoadingAnimation()
-                            let alertController = UIAlertController(title: "Fail to delete run", message: "Please try again later (Error:\(task!.error!.localizedDescription))", preferredStyle: .alert)
+                            let alertController = UIAlertController(title: NSLocalizedString("Fail to delete run", comment: ""), message: NSLocalizedString("Please try again later", comment: "") + "(Error:\(task!.error!.localizedDescription))", preferredStyle: .alert)
                             
                             let cancelAction = UIAlertAction(title: "OK", style: .cancel)  {(action) in
                                 return
@@ -477,7 +476,7 @@ class ActivityViewController: UIViewController, MKMapViewDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MMM d, YYYY"
+        dateFormatter.dateStyle = .medium
         self.navigationItem.title = dateFormatter.string(from: run!.date!)
     }
     
@@ -486,7 +485,7 @@ class ActivityViewController: UIViewController, MKMapViewDelegate {
         mapView.delegate = self
         updateUI()
         
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title:"Options", style:.plain, target: self, action: #selector(options))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title:NSLocalizedString("Options", comment: ""), style:.plain, target: self, action: #selector(options))
         self.navigationItem.rightBarButtonItem?.tintColor = UIColor.white
         
         self.view.addSubview(activityView)

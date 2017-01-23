@@ -23,7 +23,7 @@ class SettingViewController: UITableViewController {
             AWSIdentityManager.defaultIdentityManager().logout(completionHandler: {(result:Any?,error:Error?) in
                 DispatchQueue.main.async {
                     if (error != nil) {
-                        let alertController = UIAlertController(title: "Error", message: "Error logging out, please try again", preferredStyle: .alert)
+                        let alertController = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: NSLocalizedString("Please try again later", comment: ""), preferredStyle: .alert)
                         
                         let cancelAction = UIAlertAction(title: "OK", style: .cancel)  {(action) in
                             return
@@ -54,15 +54,15 @@ class SettingViewController: UITableViewController {
             maxTextLength = 30
             performSegue(withIdentifier: "changeProfile", sender: self)
         } else if (indexPath == [3,0]) {
-            let alertController = UIAlertController(title: "Log out", message: "Are you sure you want to log out?", preferredStyle: .alert)
+            let alertController = UIAlertController(title: NSLocalizedString("Log out", comment: ""), message: NSLocalizedString("Are you sure you want to log out?", comment: ""), preferredStyle: .alert)
             
-            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)  {(action) in
+            let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel)  {(action) in
                 return
             }
             
             alertController.addAction(cancelAction)
             
-            let logoutAction = UIAlertAction(title:"Log out", style:.destructive) {(action) in
+            let logoutAction = UIAlertAction(title:NSLocalizedString("Log out", comment: ""), style:.destructive) {(action) in
                 DispatchQueue.main.async {
                     self.logout()
                 }
@@ -89,7 +89,7 @@ class SettingViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationItem.title = "Settings";
+        self.navigationItem.title = NSLocalizedString("Settings", comment: "");
         
         self.navigationController!.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
         

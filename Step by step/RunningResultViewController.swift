@@ -49,12 +49,20 @@ class RunningResultViewController: UIViewController,MKMapViewDelegate, UITextFie
     let activityIndicator = UIActivityIndicatorView.init(activityIndicatorStyle: .whiteLarge)
     let component = Calendar.current.dateComponents([.weekOfYear, .day, .month,.year,.weekday], from: Date())
     let userID = UserDefaults.standard.string(forKey: "userID")
+    let language = UserDefaults.standard.array(forKey: "AppleLanguages")!.first as! String
     
     func updateUI() {
         let displayTime = Time.secondsFormatted(seconds: seconds)
-        let displayDistance = String(format:"%.1f", Double(round(distance*10)/10))
-        let displayPace = Time.secondsFormatted(seconds: pace)
         let displayEnergy = energy
+        let displayDistance:String
+        let displayPace:String
+        if (language == "zh_Hans") {
+            displayDistance = String(format:"%.1f", Double(round(distance*10)/10))
+            displayPace = Time.secondsFormatted(seconds: pace)
+        } else {
+            displayDistance = String(format:"%.1f", Double(round((distance/1.60934)*10)/10))
+            displayPace = Time.secondsFormatted(seconds:(Int(Double(pace)*1.60934)))
+        }
         
         timeLabel.text = displayTime
         distanceLabel.text = displayDistance
@@ -62,13 +70,11 @@ class RunningResultViewController: UIViewController,MKMapViewDelegate, UITextFie
         energyLabel.text = "\(displayEnergy)"
 
         
-        if address != nil && city != nil {
+        if (address != nil && city != nil) {
             locationLabel.text = address! + ", " + city!
         }
         
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .medium
-        dateFormatter.locale = Locale(identifier: "en_US")
+        
         loadMap()
         markAnnotations()
     }
@@ -155,19 +161,9 @@ class RunningResultViewController: UIViewController,MKMapViewDelegate, UITextFie
     }
     
     func loadMap() {
-        if self.locations!.count > 0 {
-            mapView.isHidden = false
-            mapView.region = mapRegion()
-            mapView.add(polyline())
-        }
-        else {
-            mapView.isHidden = true
-            
-            UIAlertView(title: "Error",
-                message: "Sorry, this run has no locations saved",
-                delegate:nil,
-                cancelButtonTitle: "OK").show()
-        }
+        mapView.isHidden = false
+        mapView.region = mapRegion()
+        mapView.add(polyline())
     }
     
     @IBAction func setWeatherSunny(_ sender: UIButton) {
@@ -212,6 +208,8 @@ class RunningResultViewController: UIViewController,MKMapViewDelegate, UITextFie
     }
 
     func persistRun() {
+        textField!.resignFirstResponder()
+        notes.resignFirstResponder()
         startLoadingAnimation()
         print("Saving")
         let savedRun = NSEntityDescription.insertNewObject(forEntityName: "Run", into:managedObjectContext!) as! Run
@@ -228,6 +226,7 @@ class RunningResultViewController: UIViewController,MKMapViewDelegate, UITextFie
         savedRun.address = address
         savedRun.city = city
         savedRun.country = country
+
         if (distance>=6) {
             updateRunAchievement(id: 3)
         }
@@ -258,7 +257,7 @@ class RunningResultViewController: UIViewController,MKMapViewDelegate, UITextFie
             DispatchQueue.main.async {
                 if (error != nil) {
                     self.stopLoadingAnimation()
-                    let alertController = UIAlertController(title: "Fail to upload to server", message: "You can upload the run later in running history (Error:\(error!.localizedDescription))", preferredStyle: .alert)
+                    let alertController = UIAlertController(title: NSLocalizedString("Fail to upload to server", comment: ""), message: NSLocalizedString("You can upload the run later in running history", comment: "") + "(Error:\(error!.localizedDescription))", preferredStyle: .alert)
                     
                     let cancelAction = UIAlertAction(title: "OK", style: .cancel)  {(action) in
                         savedRun.synchronized = 0
@@ -283,7 +282,7 @@ class RunningResultViewController: UIViewController,MKMapViewDelegate, UITextFie
             DispatchQueue.main.async {
                 if (task.error != nil) {
                     self.stopLoadingAnimation()
-                    let alertController = UIAlertController(title: "Fail to upload to server", message: "You can upload the run later in running history (Error:\(task.error!.localizedDescription))", preferredStyle: .alert)
+                    let alertController = UIAlertController(title: NSLocalizedString("Fail to upload to server", comment: ""), message: NSLocalizedString("You can upload the run later in running history", comment: "") + "(Error:\(task.error!.localizedDescription))", preferredStyle: .alert)
                     
                     let cancelAction = UIAlertAction(title: "OK", style: .cancel)  {(action) in
                         savedRun.synchronized = 0
@@ -299,6 +298,14 @@ class RunningResultViewController: UIViewController,MKMapViewDelegate, UITextFie
                     weeklyRanking._appear = UserDefaults.standard.bool(forKey: "appear") as NSNumber
                     self.objectMapper.save(weeklyRanking)
                     self.updateMonthlyRankingTable(savedRun: savedRun)
+                } else if (task.result == nil) {
+                    let weeklyRanking = WeeklyRanking()
+                    weeklyRanking?._userId = self.userID!
+                    weeklyRanking?._week = weekNum
+                    weeklyRanking?._distance = savedRun.distance
+                    weeklyRanking?._appear = UserDefaults.standard.bool(forKey: "appear") as NSNumber
+                    self.objectMapper.save(weeklyRanking!)
+                    self.updateMonthlyRankingTable(savedRun: savedRun)
                 }
                 
             }
@@ -312,7 +319,7 @@ class RunningResultViewController: UIViewController,MKMapViewDelegate, UITextFie
             DispatchQueue.main.async {
                 if (task.error != nil) {
                     self.stopLoadingAnimation()
-                    let alertController = UIAlertController(title: "Fail to upload to server", message: "You can upload the run later in running history (Error:\(task.error!.localizedDescription))", preferredStyle: .alert)
+                    let alertController = UIAlertController(title: NSLocalizedString("Fail to upload to server", comment: ""), message: NSLocalizedString("You can upload the run later in running history", comment: "") + "(Error:\(task.error!.localizedDescription))", preferredStyle: .alert)
                     
                     let cancelAction = UIAlertAction(title: "OK", style: .cancel)  {(action) in
                         savedRun.synchronized = 0
@@ -328,6 +335,14 @@ class RunningResultViewController: UIViewController,MKMapViewDelegate, UITextFie
                     monthlyRanking._appear = UserDefaults.standard.bool(forKey: "appear") as NSNumber
                     self.objectMapper.save(monthlyRanking)
                     self.updateUserTable(savedRun: savedRun)
+                } else if (task.result == nil) {
+                    let monthlyRanking = MonthlyRanking()
+                    monthlyRanking?._userId = self.userID!
+                    monthlyRanking?._month = monthNum
+                    monthlyRanking?._distance = savedRun.distance
+                    monthlyRanking?._appear = UserDefaults.standard.bool(forKey: "appear") as NSNumber
+                    self.objectMapper.save(monthlyRanking!)
+                    self.updateUserTable(savedRun: savedRun)
                 }
             }
         })
@@ -338,7 +353,7 @@ class RunningResultViewController: UIViewController,MKMapViewDelegate, UITextFie
             DispatchQueue.main.async {
                 if (task.error != nil) {
                     self.stopLoadingAnimation()
-                    let alertController = UIAlertController(title: "Fail to upload to server", message: "You can upload the run later in running history (Error:\(task.error!.localizedDescription))", preferredStyle: .alert)
+                    let alertController = UIAlertController(title: NSLocalizedString("Fail to upload to server", comment: ""), message: NSLocalizedString("You can upload the run later in running history", comment: "") + "(Error:\(task.error!.localizedDescription))", preferredStyle: .alert)
                     
                     let cancelAction = UIAlertAction(title: "OK", style: .cancel)  {(action) in
                         savedRun.synchronized = 0
@@ -349,11 +364,11 @@ class RunningResultViewController: UIViewController,MKMapViewDelegate, UITextFie
                     alertController.addAction(cancelAction)
                     self.present(alertController, animated: true, completion: nil)
                 } else if (task.result != nil) {
+                    self.stopLoadingAnimation()
                     let user = task.result as! User
                     user._totalRunningDistance = NSNumber(value:user._totalRunningDistance!.doubleValue + savedRun.distance!.doubleValue)
                     self.objectMapper.save(user)
                     savedRun.synchronized = 1
-                    self.stopLoadingAnimation()
                     do{ try self.managedObjectContext!.save()} catch _ { print("Could not save run!")}
                     self.performSegue(withIdentifier: "unwindToRvc", sender: self)
                 }
@@ -365,13 +380,15 @@ class RunningResultViewController: UIViewController,MKMapViewDelegate, UITextFie
     
     
     func discardRun() {
-        let alertController = UIAlertController(title: "Discard Run?", message: "Are you sure you want to discard this run?", preferredStyle: .alert)
+        textField!.resignFirstResponder()
+        notes.resignFirstResponder()
+        let alertController = UIAlertController(title: NSLocalizedString("Discard Run?", comment: ""), message: NSLocalizedString("Are you sure you want to discard this run?", comment: ""), preferredStyle: .alert)
         
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil)
         
         alertController.addAction(cancelAction)
         
-        let discardAction = UIAlertAction(title:"Discard", style: .default) {(action) in
+        let discardAction = UIAlertAction(title:NSLocalizedString("Discard", comment: ""), style: .destructive) {(action) in
             self.performSegue(withIdentifier: "unwindToRvc", sender: self)
         }
         alertController.addAction(discardAction)
@@ -396,22 +413,21 @@ class RunningResultViewController: UIViewController,MKMapViewDelegate, UITextFie
         self.navigationController?.isNavigationBarHidden = false
         self.navigationController?.navigationBar.tintColor = UIColor.white
         
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: "Save", style: .plain, target: self, action: #selector(persistRun))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: NSLocalizedString("Save", comment: ""), style: .plain, target: self, action: #selector(persistRun))
         
         self.navigationItem.leftBarButtonItem = UIBarButtonItem.init(image:#imageLiteral(resourceName: "deleteButton"), style:.plain, target: self, action: #selector(discardRun))
     
         
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MMM d, YYYY"
+        dateFormatter.dateStyle = .medium
         self.navigationItem.title = dateFormatter.string(from: date!)
         
         
         let keyboardToolBar = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 40))
         keyboardToolBar.backgroundColor = UIColor(red: 249.0/255.0, green: 249.0/255.0, blue: 249.0/255.0, alpha: 1.0)
         notes.delegate = self
-        textField = UITextField.init(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 40))
+        textField = UITextField.init(frame: CGRect(x: 5, y: 0, width: self.view.frame.width-5, height: 40))
         textField!.borderStyle = .roundedRect
-        textField!.placeholder = "Input some notes"
         textField!.text = notes.text
         textField?.returnKeyType = .done
         textField?.delegate = self

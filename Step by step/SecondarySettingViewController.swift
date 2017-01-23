@@ -38,7 +38,7 @@ class SecondarySettingViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.tableFooterView = UIView()
-        self.navigationItem.title = "Daily Goal"
+        self.navigationItem.title = NSLocalizedString("Daily Goal", comment: "")
         self.navigationController!.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
     }
 

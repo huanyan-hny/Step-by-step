@@ -48,14 +48,15 @@ class InRunningViewController: UIViewController, MKMapViewDelegate, CLLocationMa
     var paused = false
     var resumedFromPausing = false
     var city: String?
-    var country: String?
-    var address: String?
+    var country:String?
+    var address:String?
     
     lazy var locations = [CLLocation]()
     lazy var pauseLocations = [CLLocation]()
     lazy var timer = Timer()
     
     let pedometer = Pedometer.sharedInstance
+    let language = UserDefaults.standard.array(forKey: "AppleLanguages")!.first as! String
     var startTime = Date()
     
     
@@ -91,6 +92,7 @@ class InRunningViewController: UIViewController, MKMapViewDelegate, CLLocationMa
                 }
             }
         })
+
     }
     
     
@@ -98,7 +100,14 @@ class InRunningViewController: UIViewController, MKMapViewDelegate, CLLocationMa
         if !paused {
             print(seconds)
             seconds += 1
-            let displayDistance = String(format:"%.2f", Double(round(distance*100)/100))
+            
+            let displayDistance:String
+            if (language == "zh_Hans") {
+                displayDistance = String(format:"%.1f", Double(round(distance*10)/10))
+            } else {
+                displayDistance = String(format:"%.1f", Double(round((distance/1.60934)*10)/10))
+            }
+            
             let displayTime = Time.secondsFormatted(seconds: seconds)
             
             timeLabel.text = displayTime
@@ -113,9 +122,14 @@ class InRunningViewController: UIViewController, MKMapViewDelegate, CLLocationMa
             })
             
             
-            if (seconds>0 && distance>0 && seconds%8==0) {
+            if (seconds>0 && distance>0 && seconds%4==0) {
                 pace = Int(Double(seconds)/distance)
-                let displayPace = Time.secondsFormatted(seconds:pace)
+                let displayPace:String
+                if (language == "zh_Hans") {
+                    displayPace = Time.secondsFormatted(seconds:pace)
+                } else {
+                    displayPace = Time.secondsFormatted(seconds:(Int(Double(pace)*1.60934)))
+                }
                 averagePaceLabel.text = displayPace
                 
                 if (seconds%10==0) {
@@ -139,19 +153,19 @@ class InRunningViewController: UIViewController, MKMapViewDelegate, CLLocationMa
         if let accuracy = locationManager.location?.horizontalAccuracy {
             if (accuracy<0) {
                 gpsStrengthIcon.image = #imageLiteral(resourceName: "signal_none")
-                gpsStrengthText.text = "No GPS"
+                gpsStrengthText.text = NSLocalizedString("No GPS", comment: "")
                 gpsStrengthText.textColor = UIColor(red: 207.0/255.0, green: 216.0/255.0, blue: 220.0/255.0, alpha: 1)
             } else if (accuracy < 48) {
                 gpsStrengthIcon.image = #imageLiteral(resourceName: "signal_good")
-                gpsStrengthText.text = "Good GPS"
+                gpsStrengthText.text = NSLocalizedString("Good GPS", comment: "")
                 gpsStrengthText.textColor = UIColor(red: 139.0/255.0, green: 195.0/255.0, blue: 74.0/255.0, alpha: 1)
             } else if (accuracy > 163) {
                 gpsStrengthIcon.image = #imageLiteral(resourceName: "signal_poor")
-                gpsStrengthText.text = "Poor GPS"
+                gpsStrengthText.text = NSLocalizedString("Poor GPS", comment: "")
                 gpsStrengthText.textColor = UIColor(red: 237.0/255.0, green: 28.0/255.0, blue: 36.0/255.0, alpha: 1)
             } else {
                 gpsStrengthIcon.image = #imageLiteral(resourceName: "signal_fair")
-                gpsStrengthText.text = "Fair GPS"
+                gpsStrengthText.text = NSLocalizedString("Fair GPS", comment: "")
                 gpsStrengthText.textColor = UIColor(red: 248.0/255.0, green: 127.0/255.0, blue: 39.0/255.0, alpha: 1)
             }
         }
@@ -185,23 +199,23 @@ class InRunningViewController: UIViewController, MKMapViewDelegate, CLLocationMa
         }
         if (paused == false){
             paused = true
-            pauseButton.setTitle("Resume", for: .normal)
+            pauseButton.setTitle(NSLocalizedString("Resume", comment: ""), for: .normal)
             pauseButton.backgroundColor = UIColor(red:53.0/255.0, green:204.0/255.0, blue:113.0/255.0, alpha:1.0)
         } else {
             paused = false
             resumedFromPausing = true
-            pauseButton.setTitle("Pause", for: .normal)
+            pauseButton.setTitle(NSLocalizedString("Pause", comment: ""), for: .normal)
             pauseButton.backgroundColor = UIColor(red:49.0/255.0,green:168.0/255.0,blue:213.0/255.0,alpha:1.0)
         }
     }
     
     @IBAction func stopRunning(_ sender: UIButton) {
-        let alertController = UIAlertController(title: nil, message: "Stop running?", preferredStyle: .actionSheet)
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) {(action) in}
+        let alertController = UIAlertController(title: nil, message: NSLocalizedString("Stop running?", comment: ""), preferredStyle: .actionSheet)
+        let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel) {(action) in}
         
         alertController.addAction(cancelAction)
         
-        let changeAction = UIAlertAction(title: "Stop", style:.destructive) { (action) in
+        let changeAction = UIAlertAction(title: NSLocalizedString("Stop", comment: ""), style:.destructive) { (action) in
             self.performSegue(withIdentifier: "stopRunning", sender: self)
         }
         alertController.addAction(changeAction)

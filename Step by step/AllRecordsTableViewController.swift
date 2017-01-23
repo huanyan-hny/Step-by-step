@@ -15,6 +15,7 @@ class AllRecordsTableViewController: UITableViewController {
     var rowHeight = CGFloat(75)
     var managedObjectContext:NSManagedObjectContext?
     var fetchResultsController:NSFetchedResultsController<NSFetchRequestResult>?
+    let language = UserDefaults.standard.array(forKey: "AppleLanguages")!.first as! String
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
@@ -34,15 +35,15 @@ class AllRecordsTableViewController: UITableViewController {
         headerView.textLabel?.textColor = UIColor(red:51.0/255.0, green:51.0/255.0, blue:51.0/255.0, alpha:1.0)
         headerView.textLabel?.font = UIFont(name:"Helvetica Neue", size: sectionHeaderHeight/2)
         if (section==0) {
-            headerView.textLabel?.text = "Running"
+            headerView.textLabel?.text = NSLocalizedString("Running", comment: "")
         } else {
-            headerView.textLabel?.text = "Walking"
+            headerView.textLabel?.text = NSLocalizedString("Walking", comment: "")
         }
     }
     
     func updateRecords() {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MMM D, YYYY"
+        dateFormatter.dateStyle = .medium
         for object in fetchResultsController!.fetchedObjects! {
             let record = object as! Record
             if let type = record.type {
@@ -50,11 +51,20 @@ class AllRecordsTableViewController: UITableViewController {
                 case "Distance":
                     let cell = tableView.cellForRow(at: [0,0]) as! RecordTableViewCell
                     cell.recordTime.text = dateFormatter.string(from: record.date!)
-                    cell.recordDetail.text = String(format: "%.1f miles", record.value!.doubleValue)
+                    if (language == "zh_Hans") {
+                        cell.recordDetail.text = String(format:"%.1f 公里", Double(round(record.value!.doubleValue*10)/10))
+                    } else {
+                        cell.recordDetail.text = String(format:"%.1f miles", Double(round((record.value!.doubleValue/1.60934)*10)/10))
+                    }
                 case "Pace":
                     let cell = tableView.cellForRow(at: [0,1]) as! RecordTableViewCell
                     cell.recordTime.text = dateFormatter.string(from: record.date!)
-                    cell.recordDetail.text = Time.secondsFormatted(seconds: record.value!.intValue) + "/mi"
+                    if (language == "zh_Hans") {
+                        cell.recordDetail.text = Time.secondsFormatted(seconds: record.value!.intValue) + "/公里"
+                    } else {
+                        cell.recordDetail.text = Time.secondsFormatted(seconds: Int(record.value!.doubleValue*1.60934)) + "/mi"
+                    }
+                    
                 case "Duration":
                     let cell = tableView.cellForRow(at: [0,2]) as! RecordTableViewCell
                     cell.recordTime.text = dateFormatter.string(from: record.date!)
@@ -78,7 +88,7 @@ class AllRecordsTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = "Personal Records"
+        self.navigationItem.title = NSLocalizedString("Personal Records", comment: "")
         self.navigationController!.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
         self.tableView.tableFooterView = UIView()
 

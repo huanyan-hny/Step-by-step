@@ -8,6 +8,8 @@
 
 import UIKit
 import CoreData
+import FacebookLogin
+import FacebookCore
 import AWSCognitoIdentityProvider
 import AWSMobileHubHelper
 import AWSDynamoDB
@@ -65,7 +67,9 @@ class LoginViewController: UIViewController {
     
     @IBAction func loginViaFacebook(_ sender: UIButton) {
         LoginManager().logIn([.publicProfile,.email], viewController: self, completion: {(result:LoginResult) in
-            self.fetchUserProfile()
+            if (AccessToken.current != nil) {
+                self.fetchUserProfile()
+            }
         })
     }
     
@@ -107,9 +111,9 @@ class LoginViewController: UIViewController {
                 self.passwordField.center.x -= self.view.frame.width
                 self.passwordField.alpha = 0
                 self.actionButton.center.y -= self.level
-                self.actionButton.setTitle("Request Reset", for: .normal)
+                self.actionButton.setTitle(NSLocalizedString("Request Reset", comment: ""), for: .normal)
                 self.actionButton.backgroundColor = Colors.myOrange
-                self.forgotButton.setTitle("Cancel", for: .normal)
+                self.forgotButton.setTitle(NSLocalizedString("Cancel", comment: ""), for: .normal)
             })
             action = .resetPassword
             forgotAction = .cancelForgot
@@ -119,9 +123,9 @@ class LoginViewController: UIViewController {
                 self.passwordField.center.x += self.view.frame.width
                 self.passwordField.alpha = 1
                 self.actionButton.center.y += self.level
-                self.actionButton.setTitle("Log In", for: .normal)
+                self.actionButton.setTitle(NSLocalizedString("Log In", comment: ""), for: .normal)
                 self.actionButton.backgroundColor = Colors.myBlue
-                self.forgotButton.setTitle("Forgot password?", for: .normal)
+                self.forgotButton.setTitle(NSLocalizedString("Forgot password?", comment: ""), for: .normal)
             })
             action = .login
             forgotAction = .resetPassword
@@ -133,10 +137,10 @@ class LoginViewController: UIViewController {
                 self.usernameField.center.x += self.view.frame.width
                 self.usernameField.alpha = 1
                 self.passwordField.text = ""
-                self.passwordField.placeholder = "Password"
-                self.actionButton.setTitle("Log In", for: .normal)
+                self.passwordField.placeholder = NSLocalizedString("Password", comment: "")
+                self.actionButton.setTitle(NSLocalizedString("Log In", comment: ""), for: .normal)
                 self.actionButton.backgroundColor = Colors.myBlue
-                self.forgotButton.setTitle("Forgot password?", for: .normal)
+                self.forgotButton.setTitle(NSLocalizedString("Forgot password?", comment: ""), for: .normal)
             })
         }
     }
@@ -154,9 +158,9 @@ class LoginViewController: UIViewController {
                 self.emailField.center.x += self.view.frame.width
                 self.emailField.alpha = 1
                 self.actionButton.center.y += self.level
-                self.actionButton.setTitle("Sign Up", for: .normal)
+                self.actionButton.setTitle(NSLocalizedString("Sign Up", comment: ""), for: .normal)
                 self.actionButton.backgroundColor = Colors.myOrange
-                self.signUpButton.setTitle("Cancel", for: .normal)
+                self.signUpButton.setTitle(NSLocalizedString("Cancel", comment: ""), for: .normal)
             })
             action = .signUp
             signUpAction = .cancelSignUp
@@ -166,23 +170,23 @@ class LoginViewController: UIViewController {
                 self.emailField.center.x -= self.view.frame.width
                 self.emailField.alpha = 0
                 self.actionButton.center.y -= self.level
-                self.actionButton.setTitle("Log In", for: .normal)
+                self.actionButton.setTitle(NSLocalizedString("Log In", comment: ""), for: .normal)
                 self.actionButton.backgroundColor = Colors.myBlue
-                self.signUpButton.setTitle("New here? Sign up", for: .normal)
+                self.signUpButton.setTitle(NSLocalizedString("New here? Sign up", comment: ""), for: .normal)
             })
             action = .login
             signUpAction = .signUp
         } else if (signUpAction == .cancelConfirm) {
             forgotButton.isEnabled = true
-            let alertController = UIAlertController(title: "User/Email not confirmed", message: "Registration not completed yet, continue?", preferredStyle: .alert)
+            let alertController = UIAlertController(title: NSLocalizedString("User/Email not confirmed", comment: ""), message: NSLocalizedString("Registration not completed yet, continue?", comment: ""), preferredStyle: .alert)
             
-            let cancelAction = UIAlertAction(title: "Cancal", style: .cancel)  {(action) in
+            let cancelAction = UIAlertAction(title: NSLocalizedString("Cancal", comment: ""), style: .cancel)  {(action) in
                 return
             }
             
             alertController.addAction(cancelAction)
             
-            let discardAction = UIAlertAction(title:"Continue", style: .default) {(action) in
+            let discardAction = UIAlertAction(title:NSLocalizedString("Continue", comment: ""), style: .default) {(action) in
                 self.forgotButton.isEnabled = true
                 self.action = .login
                 self.signUpAction = .signUp
@@ -197,9 +201,9 @@ class LoginViewController: UIViewController {
                     } else {
                         self.isNew = true
                     }
-                    self.actionButton.setTitle("Log In", for: .normal)
+                    self.actionButton.setTitle(NSLocalizedString("Log In", comment: ""), for: .normal)
                     self.actionButton.backgroundColor = Colors.myBlue
-                    self.signUpButton.setTitle("New here? Sign up", for: .normal)
+                    self.signUpButton.setTitle(NSLocalizedString("New here? Sign up", comment: ""), for: .normal)
                 })
 
             }
@@ -227,9 +231,9 @@ class LoginViewController: UIViewController {
             self.emailField.alpha = 0
             self.codeField.center.x -= self.view.frame.width
             self.codeField.alpha = 1
-            self.actionButton.setTitle("Confirm", for: .normal)
+            self.actionButton.setTitle(NSLocalizedString("Confirm", comment: ""), for: .normal)
             self.actionButton.backgroundColor = Colors.myOrange
-            self.signUpButton.setTitle("Cancel", for: .normal)
+            self.signUpButton.setTitle(NSLocalizedString("Cancel", comment: ""), for: .normal)
         })
         action = .signUpConfirm
         signUpAction = .cancelConfirm
@@ -246,10 +250,10 @@ class LoginViewController: UIViewController {
             self.usernameField.alpha = 0
             self.codeField.center.x -= self.view.frame.width
             self.codeField.alpha = 1
-            self.passwordField.placeholder = "New Password"
+            self.passwordField.placeholder = NSLocalizedString("New Password", comment: "")
             self.passwordField.center.x += self.view.frame.width
             self.passwordField.alpha = 1
-            self.actionButton.setTitle("Reset Password", for: .normal)
+            self.actionButton.setTitle(NSLocalizedString("Reset Password", comment: ""), for: .normal)
             self.actionButton.center.y += self.level
         })
         action = .resetConfirm
@@ -269,9 +273,9 @@ class LoginViewController: UIViewController {
                 self.actionButton.center.y -= self.level
                 self.isNew = true
             }
-            self.actionButton.setTitle("Log In", for: .normal)
+            self.actionButton.setTitle(NSLocalizedString("Log In", comment: ""), for: .normal)
             self.actionButton.backgroundColor = Colors.myBlue
-            self.signUpButton.setTitle("New here? Sign up", for: .normal)
+            self.signUpButton.setTitle(NSLocalizedString("New here? Sign up", comment: ""), for: .normal)
         })
     }
     
@@ -283,9 +287,9 @@ class LoginViewController: UIViewController {
             self.usernameField.center.x += self.view.frame.width
             self.usernameField.alpha = 1
             self.passwordField.text = ""
-            self.actionButton.setTitle("Log In", for: .normal)
+            self.actionButton.setTitle(NSLocalizedString("Log In", comment: ""), for: .normal)
             self.actionButton.backgroundColor = Colors.myBlue
-            self.forgotButton.setTitle("Forgot password?", for: .normal)
+            self.forgotButton.setTitle(NSLocalizedString("Forgot password?", comment: ""), for: .normal)
         })
         action = .login
         forgotAction = .resetPassword
@@ -297,9 +301,10 @@ class LoginViewController: UIViewController {
         passwordField.center.y += level
         actionButton.frame = passwordField.frame
         actionButton.center.y += level
-        actionButton.setTitle("Log In", for: .normal)
         actionButton.backgroundColor = Colors.myBlue
-        signUpButton.setTitle("New here? Sign up", for: .normal)
+        actionButton.setTitle(NSLocalizedString("Log In", comment: ""), for: .normal)
+        signUpButton.setTitle(NSLocalizedString("New here? Sign up", comment: ""), for: .normal)
+        forgotButton.setTitle(NSLocalizedString("Forgot password?", comment: ""), for: .normal)
         action = .login
         signUpAction = .signUp
         stopLoadingAnimation()
@@ -402,13 +407,14 @@ class LoginViewController: UIViewController {
     
     func checkLoginStatus() {
         print("Checking Login Status")
-        if (AWSIdentityManager.defaultIdentityManager().isLoggedIn) {
+
+        if (AccessToken.current != nil){
             DispatchQueue.main.async {
                 self.performSegue(withIdentifier: "toMain", sender: self)
             }
-            
         }
-        if (AccessToken.current != nil){
+        
+        if (AWSIdentityManager.defaultIdentityManager().isLoggedIn) {
             DispatchQueue.main.async {
                 self.performSegue(withIdentifier: "toMain", sender: self)
             }
@@ -446,7 +452,14 @@ class LoginViewController: UIViewController {
     }
     
     func launchView() {
-        appIcon.center.y = self.view.frame.height/2 - 150
+        
+        if(Display.typeIsLike == .iphone7plus) {
+            appIcon.frame.size = CGSize(width: 121, height: 121)
+        } else if (Display.typeIsLike == .iphone5) {
+            appIcon.frame.size = CGSize(width:94, height:94)
+        }
+        
+        appIcon.center = self.view.center
         emailField.center.x -= self.view.frame.width
         codeField.center.x -= self.view.frame.width
         AppTitle.alpha = 0
@@ -460,30 +473,39 @@ class LoginViewController: UIViewController {
         wechatLoginButton.alpha = 0
         forgotButton.alpha = 0
         signUpButton.alpha = 0
+    
         
         UIView.animate(withDuration: 2, animations: {
-            self.appIcon.center.y -= 50
+            if (Display.typeIsLike == .iphone5) {
+                self.appIcon.center.y -= 160
+            } else if (Display.typeIsLike == .iphone7) {
+                self.appIcon.center.y -= 180
+            } else if (Display.typeIsLike == .iphone7plus) {
+                self.appIcon.center.y -= 200
+            }
+            
+        }, completion: {(completed:Bool) in
+            UIView.animate(withDuration: 2, animations: {
+                self.AppTitle.alpha = 1
+                self.usernameField.alpha = 1
+                self.passwordField.alpha = 1
+                self.actionButton.alpha = 1
+                self.separator1.alpha = 1
+                self.separator2.alpha = 1
+                self.loginwithLabel.alpha = 1
+                self.facebookLoginButton.alpha = 1
+                self.wechatLoginButton.alpha = 1
+                self.forgotButton.alpha = 1
+                self.signUpButton.alpha = 1
+            })
         })
         
-        UIView.animate(withDuration: 2, animations: {
-            self.AppTitle.alpha = 1
-            self.usernameField.alpha = 1
-            self.passwordField.alpha = 1
-            self.actionButton.alpha = 1
-            self.separator1.alpha = 1
-            self.separator2.alpha = 1
-            self.loginwithLabel.alpha = 1
-            self.facebookLoginButton.alpha = 1
-            self.wechatLoginButton.alpha = 1
-            self.forgotButton.alpha = 1
-            self.signUpButton.alpha = 1
-        })
+        
         
     }
     
     override func viewDidAppear(_ animated: Bool) {
         pool = AWSCognitoIdentityUserPool.init(forKey: AWSCognitoUserPoolsSignInProviderKey)
-        restoreLoginView()
         isNew = true
     }
     

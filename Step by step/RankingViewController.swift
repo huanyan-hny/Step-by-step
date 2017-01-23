@@ -36,6 +36,7 @@ class RankingViewController: UIViewController, UITableViewDelegate, UITableViewD
     let manager = AWSS3TransferManager.default()
     let objectMapper = AWSDynamoDBObjectMapper.default()
     let calendar = Calendar.current
+    let language = UserDefaults.standard.array(forKey: "AppleLanguages")!.first as! String
     
     var selectedAvatar:UIImage?
     var selectedName:String?
@@ -230,6 +231,18 @@ class RankingViewController: UIViewController, UITableViewDelegate, UITableViewD
         self.activityView.isHidden = false
         clearTempFolder()
         finishedLoading = false
+        for starAvatar in starAvatars {
+            starAvatar.setImage(#imageLiteral(resourceName: "SIcon"), for: .normal)
+        }
+        
+        for starName in starNames {
+            starName.text = "---"
+        }
+        
+        for starSigniture in starSignitures {
+            starSigniture.text = "---"
+        }
+        
         weeklyRankings.removeAll()
         monthlyRankings.removeAll()
         retrieveUserData()
@@ -290,7 +303,12 @@ class RankingViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     func configureWeeklyRankingCell(cell:RankingViewCell, rank:Int) {
         cell.ranking.text = "\(rank+1)"
-        cell.distance.text = String(format:"%.1f miles", Double(round(weeklyRankings[rank]._distance!.doubleValue*10)/10))
+        if (language == "zh_Hans") {
+            cell.distance.text = String(format:"%.1f 公里", Double(round(weeklyRankings[rank]._distance!.doubleValue*10)/10))
+        } else {
+            cell.distance.text = String(format:"%.1f miles", Double(round((weeklyRankings[rank]._distance!.doubleValue/1.60934)*10)/10))
+        }
+        
         cell.name.text = userNames[weeklyRankings[rank]._userId!]
         cell.signature.text = userSignatures[weeklyRankings[rank]._userId!]
         cell.userId = weeklyRankings[rank]._userId
@@ -345,7 +363,12 @@ class RankingViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     func configureMonthlyRankingCell(cell:RankingViewCell, rank:Int) {
         cell.ranking.text = "\(rank+1)"
-        cell.distance.text = String(format:"%.1f miles", Double(round(monthlyRankings[rank]._distance!.doubleValue*10)/10))
+        
+        if (language == "zh_Hans") {
+            cell.distance.text = String(format:"%.1f 公里", Double(round(monthlyRankings[rank]._distance!.doubleValue*10)/10))
+        } else {
+            cell.distance.text = String(format:"%.1f miles", Double(round((monthlyRankings[rank]._distance!.doubleValue/1.60934)*10)/10))
+        }
         cell.name.text = userNames[monthlyRankings[rank]._userId!]
         cell.signature.text = userSignatures[monthlyRankings[rank]._userId!]
         cell.userId = monthlyRankings[rank]._userId
@@ -433,7 +456,6 @@ class RankingViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     override func viewWillAppear(_ animated: Bool) {
         self.tabBarController?.tabBar.tintColor = UIColor(red: 253.0/255.0, green: 97.0/255.0, blue: 92.0/255.0, alpha: 1.0)
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -442,16 +464,16 @@ class RankingViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = "Leaderboard";
+        self.navigationItem.title = NSLocalizedString("Leaderboard", comment: "")
         self.navigationController!.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+        self.navigationController?.navigationBar.tintColor = UIColor.white
         self.navigationController?.navigationBar.setValue(true, forKey: "hidesShadow")
         tableView.delegate = self
         slider.layer.cornerRadius = 2
+
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .full
-        dateFormatter.dateFormat = "MMMM d, yyyy - EEEE"
-        dateFormatter.locale = Locale(identifier: "en_US")
         dateLabel.text = dateFormatter.string(from: Date())
         
         if (Display.typeIsLike == .iphone5) {

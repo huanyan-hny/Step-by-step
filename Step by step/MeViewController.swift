@@ -27,24 +27,22 @@ class MeViewController: UITableViewController, UINavigationControllerDelegate, U
     @IBOutlet weak var achievementDetail: UILabel!
     @IBOutlet weak var recordTitle: UILabel!
     @IBOutlet weak var recordDetail: UILabel!
-    @IBOutlet weak var runLabel: UILabel!
-    @IBOutlet weak var rankingLabel: UILabel!
-    @IBOutlet weak var achievementLabel: UILabel!
-    @IBOutlet weak var personalRecordLabel: UILabel!
     
     
     
     var managedObjectContext:NSManagedObjectContext?
-    let numberOfAchievements = 12
+    var runFetchResultsController:NSFetchedResultsController<NSFetchRequestResult>?
+    var rankingFetchResultsController:NSFetchedResultsController<NSFetchRequestResult>?
+    var achievementFetchResultsController:NSFetchedResultsController<NSFetchRequestResult>?
+    var recordFetchResultsController:NSFetchedResultsController<NSFetchRequestResult>?
+    let numberOfAchievements = 9
     let imagePicker = UIImagePickerController()
     let runFetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Run")
     let rankingFetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Ranking")
     let achievementFetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Achievement")
     let recordFetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Record")
-    var runFetchResultsController:NSFetchedResultsController<NSFetchRequestResult>?
-    var rankingFetchResultsController:NSFetchedResultsController<NSFetchRequestResult>?
-    var achievementFetchResultsController:NSFetchedResultsController<NSFetchRequestResult>?
-    var recordFetchResultsController:NSFetchedResultsController<NSFetchRequestResult>?
+    let language = UserDefaults.standard.array(forKey: "AppleLanguages")!.first as! String
+    
 
     
     func initFetchRequest() {
@@ -93,11 +91,19 @@ class MeViewController: UITableViewController, UINavigationControllerDelegate, U
         for object in (runFetchResultsController?.fetchedObjects)! {
             numberOfRun += 1
             if let run = object as? Run {
-                totalDistance += run.distance!.doubleValue
+                if (language == "zh_Hans") {
+                    totalDistance += run.distance!.doubleValue
+                } else {
+                    totalDistance += run.distance!.doubleValue/1.60934
+                }
             }
         }
         self.runTitle.text = "\(numberOfRun)"
-        self.runDetail.text = String(format: "%.1f total miles", totalDistance)
+        if (language == "zh_Hans") {
+            self.runDetail.text = String(format: "共计%.1f公里", totalDistance)
+        } else {
+            self.runDetail.text = String(format: "%.1f total miles", totalDistance)
+        }
     }
     
     func updateRanking() {
@@ -105,19 +111,36 @@ class MeViewController: UITableViewController, UINavigationControllerDelegate, U
     }
     
     func updateAchievement() {
-        self.achievementDetail.textColor = Colors.myTextLightGray
-        self.achievementDetail.text = "Try to unlock more achievements!"
         
         let count = achievementFetchResultsController?.fetchedObjects?.count
-        self.achievementTitle.text = "\(count!)/12 unlocked"
+        
+        
+        self.achievementDetail.textColor = Colors.myTextLightGray
+        if (language == "zh_Hans") {
+            self.achievementTitle.text = "\(count!)/9 已解锁"
+            self.achievementDetail.text = "试着解锁更多成就吧!"
+        } else {
+            self.achievementTitle.text = "\(count!)/9 unlocked"
+            self.achievementDetail.text = "Try to unlock more achievements!"
+        }
+        
+        
         if (count == numberOfAchievements) {
-            self.achievementDetail.text = "Grats! You have unlocked all achievements"
+            if (language == "zh_Hans") {
+                self.achievementDetail.text = "祝贺你，你已经解锁所有成就"
+            } else {
+                self.achievementDetail.text = "Grats! You have unlocked all achievements"
+            }
         }
         
         for object in (achievementFetchResultsController?.fetchedObjects)! {
             if let achievement = object as? Achievement {
                 if achievement.isNew!.boolValue{
-                    self.achievementDetail.text = "New achievement unlocked!"
+                    if (language == "zh_Hans") {
+                        self.achievementDetail.text = "新成就已解锁！"
+                    } else {
+                        self.achievementDetail.text = "New achievement unlocked!"
+                    }
                     self.achievementDetail.textColor = Colors.myOrange
                 }
             }
@@ -133,16 +156,16 @@ class MeViewController: UITableViewController, UINavigationControllerDelegate, U
                 switch type {
                 case "Distance":
                     self.recordTitle.text = String(format: "%.2f miles", record.value!.doubleValue)
-                    self.recordDetail.text = "Farthest distance"
+                    self.recordDetail.text = NSLocalizedString("Farthest distance" , comment: "")
                 case "Pace":
                     self.recordTitle.text = Time.secondsFormatted(seconds: record.value!.intValue) + "/mi"
-                    self.recordDetail.text = "Fastest pace"
+                    self.recordDetail.text = NSLocalizedString("Fastest pace", comment: "")
                 case "Duration":
                     self.recordTitle.text = Time.secondsFormattedString(seconds: record.value!.intValue)
-                    self.recordDetail.text = "Longest duration"
+                    self.recordDetail.text = NSLocalizedString("Longest duration", comment: "")
                 case "Steps":
                     self.recordTitle.text = record.value!.stringValue
-                    self.recordDetail.text = "Highest daily steps"
+                    self.recordDetail.text = NSLocalizedString("Highest daily steps", comment: "")
                 default:
                     break
                 }
@@ -152,13 +175,13 @@ class MeViewController: UITableViewController, UINavigationControllerDelegate, U
     
     
     @IBAction func changeAvatar(_ sender: UIButton) {
-        let alertController = UIAlertController(title: nil, message: "Change your profile image", preferredStyle: .actionSheet)
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) {(action) in}
+        let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel) {(action) in}
         
         alertController.addAction(cancelAction)
         
-        let changeAction = UIAlertAction(title: "Choose from photo library", style: .default) { (action) in
+        let changeAction = UIAlertAction(title: NSLocalizedString("Choose from photo library", comment: ""), style: .default) { (action) in
             self.imagePicker.allowsEditing = false
             self.imagePicker.sourceType = .photoLibrary
             self.present(self.imagePicker, animated: true, completion: nil)
@@ -187,7 +210,7 @@ class MeViewController: UITableViewController, UINavigationControllerDelegate, U
             let manager = AWSS3TransferManager.default()
             manager?.upload(uploadRequest).continue(with: AWSExecutor.default(), with: {(task:AWSTask!) -> Any! in
                 if (task.error != nil) {
-                    let alertController = UIAlertController(title: "Fail to change Avatar", message: "Please try again later (Error:\(task.error!.localizedDescription))", preferredStyle: .alert)
+                    let alertController = UIAlertController(title: NSLocalizedString("Fail to change Avatar", comment: ""), message: NSLocalizedString("Please try again later", comment: "") + "(Error:\(task.error!.localizedDescription))", preferredStyle: .alert)
                     
                     let cancelAction = UIAlertAction(title: "OK", style: .cancel)  {(action) in
                         return
@@ -252,7 +275,7 @@ class MeViewController: UITableViewController, UINavigationControllerDelegate, U
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.tableFooterView = UIView();
-        self.navigationItem.title = "Me";
+        self.navigationItem.title = NSLocalizedString("Me", comment: "")
         self.navigationController!.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
         self.navigationController?.navigationBar.tintColor = UIColor.white
         self.navigationController?.navigationBar.setValue(true, forKey: "hidesShadow")
