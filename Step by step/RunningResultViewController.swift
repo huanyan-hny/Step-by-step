@@ -12,7 +12,7 @@ import HealthKit
 import CoreData
 import AWSDynamoDB
 
-/*
+
 class CustomPointAnnotation: MKPointAnnotation {
     var imageName: String!
 }
@@ -468,4 +468,4 @@ class RunningResultViewController: UIViewController,MKMapViewDelegate, UITextFie
         return true
     }
 }
- */
+ 

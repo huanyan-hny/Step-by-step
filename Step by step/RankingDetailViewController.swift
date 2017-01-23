@@ -10,7 +10,7 @@ import UIKit
 import PNChart
 import AWSDynamoDB
 
-/*
+
 class RankingDetailViewController: UIViewController {
 
     @IBOutlet weak var detailView: UIView!
@@ -297,4 +297,4 @@ class RankingDetailViewController: UIViewController {
         }
     }
 }
-*/
+

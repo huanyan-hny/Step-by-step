@@ -8,7 +8,7 @@
 
 import Foundation
 import CoreData
-/*
+
 extension UITextField {
     func setBottomBorder() {
         self.borderStyle = .none
@@ -176,4 +176,4 @@ extension RunningResultViewController {
 
     }
 }
-*/
+
