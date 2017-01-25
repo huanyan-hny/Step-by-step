@@ -220,7 +220,7 @@ class MeViewController: UITableViewController, UINavigationControllerDelegate, U
                     self.present(alertController, animated: true, completion: nil)
                 } else {
                     DispatchQueue.main.async {
-                        let avatarPath = documentPath.appendingPathComponent("userAvatar.png")
+                        let avatarPath = documentPath.appendingPathComponent(UserDefaults.standard.string(forKey: "userID")!)
                         try? userAvatarData?.write(to: avatarPath, options: .atomic)
                         self.userAvatar.setImage(pickedImage, for: .normal)
                     }
@@ -283,7 +283,7 @@ class MeViewController: UITableViewController, UINavigationControllerDelegate, U
         initFetchRequest()
         
         let documentPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-        let avatarPath = documentPath.appendingPathComponent("userAvatar.png")
+        let avatarPath = documentPath.appendingPathComponent(UserDefaults.standard.string(forKey: "userID")!)
         
         if let avatar = UIImage(contentsOfFile:avatarPath.path) {
             userAvatar.setImage(avatar, for: .normal)

@@ -524,6 +524,14 @@ class LoginViewController: UIViewController {
         codeField.addTarget(self, action: #selector(checkText), for: .editingChanged)
         manualLayout()
         drawUI()
+        
+        if (UserDefaults.standard.integer(forKey: "dailyWalkingGoal") == 0) {
+            UserDefaults.standard.set(10000, forKey: "dailyWalkingGoal")
+        }
+        
+        if (UserDefaults.standard.double(forKey: "dailyRunningGoal") == 0.0) {
+            UserDefaults.standard.set(5.0, forKey: "dailyRunningGoal")
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

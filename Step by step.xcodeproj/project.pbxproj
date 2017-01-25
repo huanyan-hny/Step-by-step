@@ -464,9 +464,9 @@
 				0555EA451AE210CB00E127C8 /* Frameworks */,
 				0555EA461AE210CB00E127C8 /* Resources */,
 				8C9B8B168BE7BF45A4079451 /* [CP] Copy Pods Resources */,
+				95D095EAE9C81DB4FB22B89B /* [CP] Embed Pods Frameworks */,
 				050497211E35FCC1008C8C6C /* Embed Frameworks */,
 				0506335E1E273114001DA272 /* ShellScript */,
-				05D03B191E35E1DC007E7713 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -584,19 +584,6 @@
 			shellPath = /bin/sh;
 			shellScript = "bash \"${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSCore.framework/strip-frameworks.sh\"";
 		};
-		05D03B191E35E1DC007E7713 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "APP_PATH=\"${TARGET_BUILD_DIR}/${WRAPPER_NAME}\"\n\n# This script loops through the frameworks embedded in the application and\n# removes unused architectures.\nfind \"$APP_PATH\" -name '*.framework' -type d | while read -r FRAMEWORK\ndo\nFRAMEWORK_EXECUTABLE_NAME=$(defaults read \"$FRAMEWORK/Info.plist\" CFBundleExecutable)\nFRAMEWORK_EXECUTABLE_PATH=\"$FRAMEWORK/$FRAMEWORK_EXECUTABLE_NAME\"\necho \"Executable is $FRAMEWORK_EXECUTABLE_PATH\"\n\nEXTRACTED_ARCHS=()\n\nfor ARCH in $ARCHS\ndo\necho \"Extracting $ARCH from $FRAMEWORK_EXECUTABLE_NAME\"\nlipo -extract \"$ARCH\" \"$FRAMEWORK_EXECUTABLE_PATH\" -o \"$FRAMEWORK_EXECUTABLE_PATH-$ARCH\"\nEXTRACTED_ARCHS+=(\"$FRAMEWORK_EXECUTABLE_PATH-$ARCH\")\ndone\n\necho \"Merging extracted architectures: ${ARCHS}\"\nlipo -o \"$FRAMEWORK_EXECUTABLE_PATH-merged\" -create \"${EXTRACTED_ARCHS[@]}\"\nrm \"${EXTRACTED_ARCHS[@]}\"\n\necho \"Replacing original executable with thinned version\"\nrm \"$FRAMEWORK_EXECUTABLE_PATH\"\nmv \"$FRAMEWORK_EXECUTABLE_PATH-merged\" \"$FRAMEWORK_EXECUTABLE_PATH\"\n\ndone";
-		};
 		8C9B8B168BE7BF45A4079451 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -610,6 +597,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Step by step/Pods-Step by step-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		95D095EAE9C81DB4FB22B89B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Step by step/Pods-Step by step-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		AADCB62D67EA10D16D842DBB /* [CP] Check Pods Manifest.lock */ = {
@@ -840,6 +842,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = CD9A6A6F4CEE6865278EB11E /* Pods-Step by step.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -849,25 +852,6 @@
 					"$(inherited)",
 					"$(SRCROOT)/**",
 					"$(PROJECT_DIR)/**",
-					"$(PROJECT_DIR)/Step\\ by\\ step/Sdk/Aws",
-					"$(PROJECT_DIR)/Step\\ by\\ step/Sdk/Aws",
-					"$(PROJECT_DIR)/Step\\ by\\ step/Sdk/Aws",
-					"$(PROJECT_DIR)/Step\\ by\\ step/Sdk/Aws",
-					"$(PROJECT_DIR)/Step\\ by\\ step/Sdk",
-					"$(PROJECT_DIR)/Step\\ by\\ step/Sdk",
-					"$(PROJECT_DIR)/Step\\ by\\ step/Sdk",
-					"$(PROJECT_DIR)/Step\\ by\\ step/Sdk",
-					"$(PROJECT_DIR)/Step\\ by\\ step/Sdk",
-					"$(PROJECT_DIR)/Step\\ by\\ step/Sdk/Aws",
-					"$(PROJECT_DIR)/Step\\ by\\ step/Sdk/Aws",
-					"$(PROJECT_DIR)/Step\\ by\\ step/Sdk/Aws",
-					"$(PROJECT_DIR)/Step\\ by\\ step/Sdk/Aws",
-					"$(PROJECT_DIR)/Step\\ by\\ step/Sdk/Aws",
-					"$(PROJECT_DIR)/Step\\ by\\ step/Sdk/Aws",
-					"$(PROJECT_DIR)/Step\\ by\\ step/Sdk/Aws",
-					"$(PROJECT_DIR)/Step\\ by\\ step/Sdk/Aws",
-					"$(PROJECT_DIR)/Step\\ by\\ step/Sdk/Aws",
-					"$(PROJECT_DIR)/Step\\ by\\ step/Sdk/Aws/extras",
 				);
 				INFOPLIST_FILE = "Step by step/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -884,6 +868,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6115B23D8EB24AE7BEAFEA10 /* Pods-Step by step.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -893,25 +878,6 @@
 					"$(inherited)",
 					"$(SRCROOT)/**",
 					"$(PROJECT_DIR)/**",
-					"$(PROJECT_DIR)/Step\\ by\\ step/Sdk/Aws",
-					"$(PROJECT_DIR)/Step\\ by\\ step/Sdk/Aws",
-					"$(PROJECT_DIR)/Step\\ by\\ step/Sdk/Aws",
-					"$(PROJECT_DIR)/Step\\ by\\ step/Sdk/Aws",
-					"$(PROJECT_DIR)/Step\\ by\\ step/Sdk",
-					"$(PROJECT_DIR)/Step\\ by\\ step/Sdk",
-					"$(PROJECT_DIR)/Step\\ by\\ step/Sdk",
-					"$(PROJECT_DIR)/Step\\ by\\ step/Sdk",
-					"$(PROJECT_DIR)/Step\\ by\\ step/Sdk",
-					"$(PROJECT_DIR)/Step\\ by\\ step/Sdk/Aws",
-					"$(PROJECT_DIR)/Step\\ by\\ step/Sdk/Aws",
-					"$(PROJECT_DIR)/Step\\ by\\ step/Sdk/Aws",
-					"$(PROJECT_DIR)/Step\\ by\\ step/Sdk/Aws",
-					"$(PROJECT_DIR)/Step\\ by\\ step/Sdk/Aws",
-					"$(PROJECT_DIR)/Step\\ by\\ step/Sdk/Aws",
-					"$(PROJECT_DIR)/Step\\ by\\ step/Sdk/Aws",
-					"$(PROJECT_DIR)/Step\\ by\\ step/Sdk/Aws",
-					"$(PROJECT_DIR)/Step\\ by\\ step/Sdk/Aws",
-					"$(PROJECT_DIR)/Step\\ by\\ step/Sdk/Aws/extras",
 				);
 				INFOPLIST_FILE = "Step by step/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -919,7 +885,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Step by step/Step by step-Bridging-Header.h";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

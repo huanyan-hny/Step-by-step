@@ -43,14 +43,40 @@ extension LoginViewController {
                 } else {
                     if let userID = AWSIdentityManager.defaultIdentityManager().userName {
                         UserDefaults.standard.set(userID, forKey: "userID")
-                        UserDefaults.standard.set(userID, forKey: "username")
-                        UserDefaults.standard.set("", forKey: "signature")
-                        UserDefaults.standard.set(true, forKey: "appear")
-                        UserDefaults.standard.set(10000, forKey: "dailyWalkingGoal")
-                        UserDefaults.standard.set(5.0, forKey: "dailyRunningGoal")
-                        self.performSegue(withIdentifier: "toMain", sender: self)
+                        self.objectMapper.load(User.classForCoder(), hashKey: userID, rangeKey: nil).continue(with: AWSExecutor.default(), with: {(task:AWSTask!) -> Any! in
+                            if (task.error != nil) {
+                                let alertController = UIAlertController(title: NSLocalizedString("Unknown error", comment: ""), message: NSLocalizedString("Please try again later", comment: ""), preferredStyle: .alert)
+                                
+                                let cancelAction = UIAlertAction(title: "OK", style: .cancel)  {(action) in
+                                    return
+                                }
+                                alertController.addAction(cancelAction)
+                                self.present(alertController, animated: true, completion: nil)
+                            }
+                            
+                            if (task.result != nil) {
+                                DispatchQueue.main.async {
+                                    let user = task.result as! User
+                                    UserDefaults.standard.set(user._name, forKey: "username")
+                                    UserDefaults.standard.set(user._signature, forKey: "signature")
+                                    self.performSegue(withIdentifier: "toMain", sender: self)
+                                }
+                            } else if (task.result == nil) {
+                                let newUser = User()
+                                newUser?._userId = userID
+                                newUser?._totalRunningDistance = 0
+                                newUser?._name = userID
+                                newUser?._signature = " "
+                                self.objectMapper.save(newUser!)
+                                DispatchQueue.main.async {
+                                    UserDefaults.standard.set(userID, forKey:"username")
+                                    UserDefaults.standard.set(" ", forKey:"signature")
+                                    self.performSegue(withIdentifier: "toMain", sender: self)
+                                }
+                            }
+                            return nil
+                        })
                     }
-                    
                 }
             }
         })
@@ -194,7 +220,7 @@ extension LoginViewController {
                 self.enableButtons()
                 self.forgotButton.isEnabled = false
                 if (task.error != nil || task.exception != nil) {
-                    let alertController = UIAlertController(title: "Error (Wrong code?)", message: "Please check your input and try again", preferredStyle: .alert)
+                    let alertController = UIAlertController(title: "Error", message: "Please check your input and try again", preferredStyle: .alert)
                     
                     let cancelAction = UIAlertAction(title: "OK", style: .cancel)  {(action) in
                         return
@@ -212,18 +238,17 @@ extension LoginViewController {
                             newUser?._signature = " "
                             
                             self.objectMapper.save(newUser!, completionHandler: {(error: Error?) -> Void in
-                                if error == nil {
-                                    DispatchQueue.main.async {
-                                        let alertController = UIAlertController(title: "Registration completed", message: "Please log in with your new account", preferredStyle: .alert)
-                                        
-                                        let cancelAction = UIAlertAction(title: "OK", style: .cancel)  {(action) in
-                                            self.completeSignUp()
-                                            return
-                                        }
-                                        
-                                        alertController.addAction(cancelAction)
-                                        self.present(alertController, animated: true, completion: nil)
+                                DispatchQueue.main.async {
+                                    UserDefaults.standard.set(true, forKey: "appear")
+                                    let alertController = UIAlertController(title: "Registration completed", message: "Please log in with your new account", preferredStyle: .alert)
+                                    
+                                    let cancelAction = UIAlertAction(title: "OK", style: .cancel)  {(action) in
+                                        self.completeSignUp()
+                                        return
                                     }
+                                    
+                                    alertController.addAction(cancelAction)
+                                    self.present(alertController, animated: true, completion: nil)
                                 }
                             })
                         }
@@ -462,46 +487,64 @@ extension LoginViewController {
     func fetchUserProfile() {
         
         let userID = AccessToken.current!.userId!
-        
         UserDefaults.standard.set(userID, forKey: "userID")
-        UserDefaults.standard.set(10000, forKey: "dailyWalkingGoal")
-        UserDefaults.standard.set(5.0, forKey: "dailyRunningGoal")
-        UserDefaults.standard.set("", forKey: "username")
-        UserDefaults.standard.set("", forKey: "signature")
-        UserDefaults.standard.set(true, forKey: "appear")
+        
         
         print("Fetching profile")
         let connection = GraphRequestConnection()
         connection.add(GraphRequest(graphPath: "/me",parameters:["fields":"name, email, picture.type(large)"])) { httpResponse, result in
             switch result {
             case .success(let response):
-                let results = response.dictionaryValue
-                
-                if let username = results?["name"] as? String {
-                    UserDefaults.standard.set(username, forKey: "username")
-                    print(username)
-                }
-                
-                if let userEmail = results?["email"] as? String {
-                    print(userEmail)
-                }
-                
-                if let picture = results?["picture"] as? NSDictionary, let data = picture["data"] as? NSDictionary{
-                    let url = data["url"] as! String
-                    
-                    let avatarData = try? Data(contentsOf: URL(string: url)!)
-                    if let userAvatar = UIImage(data: avatarData!) {
-                        let documentPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-                        let imagePath = documentPath.appendingPathComponent("userAvatar.png")
-                        
-                        let userAvatarData = UIImageJPEGRepresentation(userAvatar, 1.0)
-                        try? userAvatarData?.write(to: imagePath, options: .atomic)
-                    }
-                    
-                }
-                
                 self.objectMapper.load(User.classForCoder(), hashKey:userID, rangeKey:nil).continue(with: AWSExecutor.default(), with: {(task:AWSTask!) -> Any! in
+                    let documentPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+                    let avatarPath = documentPath.appendingPathComponent(userID)
+                    
                     if (task.result == nil) {
+                        UserDefaults.standard.set("Step by step", forKey: "username")
+                        UserDefaults.standard.set(" ", forKey: "signature")
+                        UserDefaults.standard.set(true, forKey: "appear")
+                        
+                        let results = response.dictionaryValue
+                        
+                        if let username = results?["name"] as? String {
+                            UserDefaults.standard.set(username, forKey: "username")
+                            print(username)
+                        }
+                        
+                        
+                        if let picture = results?["picture"] as? NSDictionary, let data = picture["data"] as? NSDictionary{
+                            let url = data["url"] as! String
+                            
+                            let avatarData = try? Data(contentsOf: URL(string: url)!)
+                            if let userAvatar = UIImage(data: avatarData!) {
+                                let userAvatarData = UIImageJPEGRepresentation(userAvatar, 1.0)
+                                try? userAvatarData?.write(to: avatarPath, options: .atomic)
+                            }
+                        }
+                        
+                        
+                        let S3BucketName = "stepbystep-userfiles-mobilehub-138898687"
+                        let uploadRequest = AWSS3TransferManagerUploadRequest()
+                        uploadRequest?.body = avatarPath
+                        uploadRequest?.key = "public/avatars/" + userID
+                        uploadRequest?.contentType = "image/jpeg"
+                        uploadRequest?.bucket = S3BucketName
+                        let manager = AWSS3TransferManager.default()
+                        manager?.upload(uploadRequest).continue(with: AWSExecutor.default(), with: {(task:AWSTask!) -> Any! in
+                            if (task.error != nil) {
+                                let alertController = UIAlertController(title: NSLocalizedString("Fail to login", comment: ""), message: NSLocalizedString("Please try again later", comment: "") + "(Error:\(task.error!.localizedDescription))", preferredStyle: .alert)
+                                
+                                let cancelAction = UIAlertAction(title: "OK", style: .cancel)  {(action) in
+                                    return
+                                }
+                                
+                                alertController.addAction(cancelAction)
+                                self.present(alertController, animated: true, completion: nil)
+                            }
+                            
+                            return nil
+                        })
+                        
                         let newUser = User()
                         newUser?._name = UserDefaults.standard.string(forKey: "username")
                         newUser?._signature = " "
@@ -518,49 +561,40 @@ extension LoginViewController {
                                 
                                 alertController.addAction(cancelAction)
                                 self.present(alertController, animated: true, completion: nil)
-                            }
-                        })
-                        
-                        let S3BucketName = "stepbystep-userfiles-mobilehub-138898687"
-                        let uploadRequest = AWSS3TransferManagerUploadRequest()
-                        let documentPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-                        let avatarPath = documentPath.appendingPathComponent("userAvatar.png")
-                        uploadRequest?.body = avatarPath
-                        uploadRequest?.key = "public/avatars/" + UserDefaults.standard.string(forKey: "userID")!
-                        uploadRequest?.contentType = "image/jpeg"
-                        uploadRequest?.bucket = S3BucketName
-                        let manager = AWSS3TransferManager.default()
-                        manager?.upload(uploadRequest).continue(with: AWSExecutor.default(), with: {(task:AWSTask!) -> Any! in
-                            if (task.error != nil) {
-                                let alertController = UIAlertController(title: NSLocalizedString("Fail to login", comment: ""), message: NSLocalizedString("Please try again later", comment: "") + "(Error:\(task.error!.localizedDescription))", preferredStyle: .alert)
-                                
-                                let cancelAction = UIAlertAction(title: "OK", style: .cancel)  {(action) in
-                                    return
-                                }
-                                
-                                alertController.addAction(cancelAction)
-                                self.present(alertController, animated: true, completion: nil)
                             } else {
                                 DispatchQueue.main.async {
                                     self.performSegue(withIdentifier: "toMain", sender: self)
                                 }
                             }
-                            
-                            return nil
                         })
                         
-                        
                     } else {
-                        DispatchQueue.main.async {
-                            let user = task.result as! User
-                            UserDefaults.standard.set(user._name, forKey: "username")
-                            UserDefaults.standard.set(user._signature, forKey: "signature")
-                            self.performSegue(withIdentifier: "toMain", sender: self)
+                        let user = task.result as! User
+                        UserDefaults.standard.set(user._name, forKey: "username")
+                        UserDefaults.standard.set(user._signature, forKey: "signature")
+                        
+                        let avatarExists = (try? avatarPath.checkResourceIsReachable()) ?? false
+                        
+                        if (!avatarExists) {
+                            let downloadRequest = AWSS3TransferManagerDownloadRequest()
+                            downloadRequest?.bucket = "stepbystep-userfiles-mobilehub-138898687"
+                            downloadRequest?.key = "public/avatars/" + userID
+                            downloadRequest?.downloadingFileURL = avatarPath
+                            let manager = AWSS3TransferManager.default()
+                            manager?.download(downloadRequest).continue(with: AWSExecutor.default(), with: {(task:AWSTask!) -> Any! in
+                                DispatchQueue.main.async {
+                                    self.performSegue(withIdentifier: "toMain", sender: self)
+                                }
+                                return nil
+                            })
+                        } else {
+                            DispatchQueue.main.async {
+                                self.performSegue(withIdentifier: "toMain", sender: self)
+                            }
                         }
                     }
                     return nil
                 })
-                
                 
             case .failed(let error):
                 print(error)

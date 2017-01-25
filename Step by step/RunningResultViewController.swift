@@ -257,6 +257,7 @@ class RunningResultViewController: UIViewController,MKMapViewDelegate, UITextFie
         objectMapper.save(savedAllTimeRun!, completionHandler: {(error:Error?) in
             DispatchQueue.main.async {
                 if (error != nil) {
+                    print("allTimeFailed")
                     self.stopLoadingAnimation()
                     let alertController = UIAlertController(title: NSLocalizedString("Fail to upload to server", comment: ""), message: NSLocalizedString("You can upload the run later in running history", comment: "") + "(Error:\(error!.localizedDescription))", preferredStyle: .alert)
                     
@@ -282,6 +283,7 @@ class RunningResultViewController: UIViewController,MKMapViewDelegate, UITextFie
         objectMapper.load(WeeklyRanking.classForCoder(), hashKey: weekNum, rangeKey:userID).continue(with: AWSExecutor.default(), with: {(task:AWSTask!) -> Any! in
             DispatchQueue.main.async {
                 if (task.error != nil) {
+                    print("weeklyFailed")
                     self.stopLoadingAnimation()
                     let alertController = UIAlertController(title: NSLocalizedString("Fail to upload to server", comment: ""), message: NSLocalizedString("You can upload the run later in running history", comment: "") + "(Error:\(task.error!.localizedDescription))", preferredStyle: .alert)
                     
@@ -319,6 +321,7 @@ class RunningResultViewController: UIViewController,MKMapViewDelegate, UITextFie
         objectMapper.load(MonthlyRanking.classForCoder(), hashKey: monthNum, rangeKey:userID).continue(with: AWSExecutor.default(), with: {(task:AWSTask!) -> Any! in
             DispatchQueue.main.async {
                 if (task.error != nil) {
+                    print("Monthly Failed")
                     self.stopLoadingAnimation()
                     let alertController = UIAlertController(title: NSLocalizedString("Fail to upload to server", comment: ""), message: NSLocalizedString("You can upload the run later in running history", comment: "") + "(Error:\(task.error!.localizedDescription))", preferredStyle: .alert)
                     

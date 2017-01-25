@@ -145,6 +145,7 @@ class RankingViewController: UIViewController, UITableViewDelegate, UITableViewD
                 self.enableSwitch()
                 self.activityIndicator.stopAnimating()
                 self.activityView.isHidden = true
+                self.tableView.scrollToRow(at: [0,0], at: .top, animated: true)
             }
             return nil
         })
@@ -190,6 +191,7 @@ class RankingViewController: UIViewController, UITableViewDelegate, UITableViewD
                 self.enableSwitch()
                 self.activityIndicator.stopAnimating()
                 self.activityView.isHidden = true
+                self.tableView.scrollToRow(at: [0,0], at: .top, animated: true)
             }
             return nil
         })
@@ -294,11 +296,22 @@ class RankingViewController: UIViewController, UITableViewDelegate, UITableViewD
                                 self.starAvatars[indexPath.row].setImage(UIImage(contentsOfFile: avatarUrl.path), for: .normal)
                             }
                         }
+                    } else {
+                        DispatchQueue.main.async {
+                            rankCell.avatar.image = #imageLiteral(resourceName: "SIcon")
+                            if (indexPath.row<3) {
+                                self.starAvatars[indexPath.row].setImage(#imageLiteral(resourceName: "SIcon"), for: .normal)
+                            }
+                        }
                     }
                     return nil
                 })
             }
-            
+        } else {
+            rankCell.avatar.image = UIImage(contentsOfFile: url.path)
+            if (indexPath.row<3) {
+                self.starAvatars[indexPath.row].setImage(UIImage(contentsOfFile: url.path), for: .normal)
+            }
         }
     }
     

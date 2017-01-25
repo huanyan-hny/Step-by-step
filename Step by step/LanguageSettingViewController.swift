@@ -25,8 +25,22 @@ class LanguageSettingViewController: UITableViewController {
             UserDefaults.standard.set("en",forKey:"AppleLocale")
         }
         
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        appDelegate.setLanguage(newLanguage:language_set!)
+        if (UserDefaults.standard.string(forKey: "originalLanguage") == "en") {
+            let alertController = UIAlertController(title:"已设定为中文", message: "请重新启动App使设定完全生效", preferredStyle: .alert)
+            
+            let cancelAction = UIAlertAction(title: "OK", style: .cancel)  {(action) in
+                DispatchQueue.main.async {
+                    _ = self.navigationController?.popViewController(animated: true)
+                }
+                return
+            }
+            alertController.addAction(cancelAction)
+            self.present(alertController, animated: true, completion: nil)
+        } else {
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            appDelegate.setLanguage(newLanguage:language_set!)
+        }
+        
     }
     
     

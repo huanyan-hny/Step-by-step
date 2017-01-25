@@ -26,6 +26,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
+        let language = UserDefaults.standard.array(forKey: "AppleLanguages")!.first as! String
+        
+        if (language == "zh_Hans") {
+            UserDefaults.standard.set(["zh_Hans"], forKey: "AppleLanguages")
+            UserDefaults.standard.set("zh_Hans",forKey:"AppleLocale")
+            UserDefaults.standard.set("zh_Hans", forKey:"originalLanguage")
+        } else {
+            UserDefaults.standard.set(["en"], forKey: "AppleLanguages")
+            UserDefaults.standard.set("en",forKey:"AppleLocale")
+            UserDefaults.standard.set("en", forKey:"originalLanguage")
+        }
+        
         window?.layer.backgroundColor = UIColor(red: 0, green: 148/255, blue: 210/255, alpha: 1).cgColor;
         let loginVC = window?.rootViewController as! LoginViewController
         loginVC.managedObjectContext = self.managedObjectContext

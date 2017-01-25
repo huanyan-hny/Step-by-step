@@ -84,11 +84,13 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>3</string>
+	<string>4</string>
 	<key>FacebookAppID</key>
 	<string>346993475693724</string>
 	<key>FacebookDisplayName</key>
 	<string>Step by Step</string>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>fbapi</string>
@@ -122,6 +124,10 @@
 			</dict>
 		</dict>
 	</dict>
+	<key>NSAppleMusicUsageDescription</key>
+	<string></string>
+	<key>NSCalendarsUsageDescription</key>
+	<string></string>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>Steps by steps needs your permission to access your location data</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
@@ -162,11 +168,5 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-	<key>ITSAppUsesNonExemptEncryption</key>
-	<false/>
-	<key>NSCalendarsUsageDescription</key>
-	<string></string>
-	<key>NSAppleMusicUsageDescription</key>
-	<string></string>
 </dict>
 </plist>

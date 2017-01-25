@@ -12,7 +12,7 @@ import AWSMobileHubHelper
 import FacebookLogin
 import FacebookCore
 
-/*
+
 class SettingViewController: UITableViewController {
 
     var fieldType = TextFieldType.unknown
@@ -99,7 +99,7 @@ class SettingViewController: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.tabBarController?.tabBar.tintColor = UIColor.lightGray
+        self.tabBarController?.tabBar.tintColor = Colors.myBlue
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -109,4 +109,4 @@ class SettingViewController: UITableViewController {
         }
     }
 }
-*/
+
