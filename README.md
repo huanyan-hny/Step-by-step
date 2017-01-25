@@ -1,2 +1,1 @@
-The Step by Step source code
-### Welcome
+Step by step is a simple and elegant running app.
