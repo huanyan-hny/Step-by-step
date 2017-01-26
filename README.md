@@ -26,6 +26,7 @@ Step by step’s goal is to help users live more active and healthier lives usin
 This statement is intended to clearly explain in human readable language what data we collect and how it is used. If after reading this statement you have further questions, please contact us at the email address listed at the end of this document.
 
 WHAT INFORMATION WE COLLECT
+
 Our apps and services may collect the following types of information in order to provide services:
 
 Your email address or your social login information as required to safeguard your data and verify your identity;
