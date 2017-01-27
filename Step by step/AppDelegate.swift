@@ -23,6 +23,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window?.rootViewController = loginVC
     }
     
+//    func application(application: UIApplication,
+//                     openURL url: URL, options: [String: AnyObject]) -> Bool {
+//        return GIDSignIn.sharedInstance().handleURL(url,
+//                                                    sourceApplication: options[UIApplicationOpenURLOptionsSourceApplicationKey] as? String,
+//                                                    annotation: options[UIApplicationOpenURLOptionsAnnotationKey])
+//    }
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
@@ -41,6 +47,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.layer.backgroundColor = UIColor(red: 0, green: 148/255, blue: 210/255, alpha: 1).cgColor;
         let loginVC = window?.rootViewController as! LoginViewController
         loginVC.managedObjectContext = self.managedObjectContext
+        
+        
+//        var configureError: NSError?
+//        GGLContext.sharedInstance().configureWithError(&configureError)
+//        assert(configureError == nil, "Error configuring Google services: \(configureError)")
+        
+//        GIDSignIn.sharedInstance().delegate = self
         
         
         let credentialsProvider = AWSCognitoCredentialsProvider(

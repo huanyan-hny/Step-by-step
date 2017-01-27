@@ -11,10 +11,8 @@ import CoreMotion
 import CoreLocation
 import PNChart
 import CoreData
-import AWSMobileHubHelper
 import AWSDynamoDB
 import AWSS3
-import Localize_Swift
 
 class StepsViewController: UIViewController, PNChartDelegate, UIScrollViewDelegate {
 

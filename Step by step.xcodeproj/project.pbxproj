@@ -19,7 +19,6 @@
 		050497301E35FD7A008C8C6C /* AWSCognito.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0504972E1E35FD7A008C8C6C /* AWSCognito.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0506336C1E2732E4001DA272 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 0539F9921E2710F700C1FB19 /* libz.tbd */; };
 		0506336D1E2732F1001DA272 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 0539F9901E2710EC00C1FB19 /* libsqlite3.tbd */; };
-		050633771E27598C001DA272 /* AWSMobileHubHelper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 050633701E27598C001DA272 /* AWSMobileHubHelper.framework */; };
 		050633781E27598C001DA272 /* AllTimeRun.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050633731E27598C001DA272 /* AllTimeRun.swift */; };
 		050633791E27598C001DA272 /* MonthlyRanking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050633741E27598C001DA272 /* MonthlyRanking.swift */; };
 		0506337A1E27598C001DA272 /* WeeklyRanking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050633751E27598C001DA272 /* WeeklyRanking.swift */; };
@@ -54,6 +53,8 @@
 		055E7C021E1B671200356F29 /* AllAchievementsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055E7C011E1B671200356F29 /* AllAchievementsTableViewController.swift */; };
 		055E7C051E1C020300356F29 /* AllRecordsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055E7C041E1C020300356F29 /* AllRecordsTableViewController.swift */; };
 		055E7C071E1C021900356F29 /* RecordTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055E7C061E1C021900356F29 /* RecordTableViewCell.swift */; };
+		056ECD331E3AC705004A6D6D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 056ECD321E3AC705004A6D6D /* GoogleService-Info.plist */; };
+		056ECD391E3AD1B7004A6D6D /* AWSMobileHubHelper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 056ECD381E3AD1B7004A6D6D /* AWSMobileHubHelper.framework */; };
 		056FA8981E242A6300089132 /* Achievement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056FA8971E242A6300089132 /* Achievement.swift */; };
 		056FA89A1E242C1600089132 /* Achievement+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056FA8991E242C1600089132 /* Achievement+CoreDataProperties.swift */; };
 		056FA89C1E242C2700089132 /* Ranking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056FA89B1E242C2700089132 /* Ranking.swift */; };
@@ -118,7 +119,6 @@
 		050497241E35FD5B008C8C6C /* AWSDynamoDB.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSDynamoDB.framework; path = "Step by step/Sdk/Aws/AWSDynamoDB.framework"; sourceTree = "<group>"; };
 		050497251E35FD5B008C8C6C /* AWSS3.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSS3.framework; path = "Step by step/Sdk/Aws/AWSS3.framework"; sourceTree = "<group>"; };
 		0504972E1E35FD7A008C8C6C /* AWSCognito.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSCognito.framework; path = "Step by step/Sdk/Aws/extras/AWSCognito.framework"; sourceTree = "<group>"; };
-		050633701E27598C001DA272 /* AWSMobileHubHelper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AWSMobileHubHelper.framework; sourceTree = "<group>"; };
 		050633731E27598C001DA272 /* AllTimeRun.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllTimeRun.swift; sourceTree = "<group>"; };
 		050633741E27598C001DA272 /* MonthlyRanking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonthlyRanking.swift; sourceTree = "<group>"; };
 		050633751E27598C001DA272 /* WeeklyRanking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeeklyRanking.swift; sourceTree = "<group>"; };
@@ -162,6 +162,8 @@
 		055E7C011E1B671200356F29 /* AllAchievementsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllAchievementsTableViewController.swift; sourceTree = "<group>"; };
 		055E7C041E1C020300356F29 /* AllRecordsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllRecordsTableViewController.swift; sourceTree = "<group>"; };
 		055E7C061E1C021900356F29 /* RecordTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordTableViewCell.swift; sourceTree = "<group>"; };
+		056ECD321E3AC705004A6D6D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		056ECD381E3AD1B7004A6D6D /* AWSMobileHubHelper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AWSMobileHubHelper.framework; sourceTree = "<group>"; };
 		056FA8971E242A6300089132 /* Achievement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Achievement.swift; sourceTree = "<group>"; };
 		056FA8991E242C1600089132 /* Achievement+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Achievement+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		056FA89B1E242C2700089132 /* Ranking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ranking.swift; sourceTree = "<group>"; };
@@ -210,9 +212,9 @@
 				0504972A1E35FD5B008C8C6C /* AWSDynamoDB.framework in Frameworks */,
 				0504972F1E35FD7A008C8C6C /* AWSCognito.framework in Frameworks */,
 				050497261E35FD5B008C8C6C /* AWSCognitoIdentityProvider.framework in Frameworks */,
+				056ECD391E3AD1B7004A6D6D /* AWSMobileHubHelper.framework in Frameworks */,
 				05DAC7311BDF6E1C008F10C5 /* MapKit.framework in Frameworks */,
 				988262BAF10AC5F8FF234B54 /* Pods_Step_by_step.framework in Frameworks */,
-				050633771E27598C001DA272 /* AWSMobileHubHelper.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -231,7 +233,7 @@
 			children = (
 				05E781DE1E2DC8D50090E410 /* AWSConfiguration.swift */,
 				05E781DF1E2DC8D50090E410 /* AWSMobileClient.swift */,
-				050633701E27598C001DA272 /* AWSMobileHubHelper.framework */,
+				056ECD381E3AD1B7004A6D6D /* AWSMobileHubHelper.framework */,
 				050633711E27598C001DA272 /* Models */,
 			);
 			path = AmazonAws;
@@ -324,6 +326,7 @@
 				0538E9231E355F0300C1979A /* NSBundle+Language.m */,
 				05269AEF1DFBD69F00B2A600 /* Images.xcassets */,
 				0555EA4D1AE210CB00E127C8 /* AppDelegate.swift */,
+				056ECD321E3AC705004A6D6D /* GoogleService-Info.plist */,
 				0555EA4C1AE210CB00E127C8 /* Info.plist */,
 				05C0966C1E21854700607379 /* Step by step-Bridging-Header.h */,
 			);
@@ -561,6 +564,7 @@
 				0555EA551AE210CB00E127C8 /* Main.storyboard in Resources */,
 				05C364631BDB2F31008D1712 /* LaunchScreen.xib in Resources */,
 				05C0A5C51E33CC0600E9BE61 /* InfoPlist.strings in Resources */,
+				056ECD331E3AC705004A6D6D /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -847,6 +851,7 @@
 			baseConfigurationReference = CD9A6A6F4CEE6865278EB11E /* Pods-Step by step.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -856,9 +861,12 @@
 					"$(inherited)",
 					"$(SRCROOT)/**",
 					"$(PROJECT_DIR)/**",
+					"$(PROJECT_DIR)/Step\\ by\\ step/AmazonAws",
 				);
 				INFOPLIST_FILE = "Step by step/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.huanyan.stepbystep;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -873,6 +881,7 @@
 			baseConfigurationReference = 6115B23D8EB24AE7BEAFEA10 /* Pods-Step by step.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -882,9 +891,12 @@
 					"$(inherited)",
 					"$(SRCROOT)/**",
 					"$(PROJECT_DIR)/**",
+					"$(PROJECT_DIR)/Step\\ by\\ step/AmazonAws",
 				);
 				INFOPLIST_FILE = "Step by step/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.huanyan.stepbystep;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";

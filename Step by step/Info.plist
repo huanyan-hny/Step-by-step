@@ -58,8 +58,6 @@
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
 	<string>Step by step</string>
-	<key>CFBundleDocumentTypes</key>
-	<array/>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -80,6 +78,14 @@
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>fb346993475693724</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.googleusercontent.apps.431736056347-6mmph03pv44nk5qhv70d441vimqv4hv4</string>
 			</array>
 		</dict>
 	</array>

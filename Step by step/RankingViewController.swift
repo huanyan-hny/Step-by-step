@@ -8,7 +8,7 @@
 
 import UIKit
 import CoreData
-import AWSMobileHubHelper
+//import AWSMobileHubHelper
 import AWSDynamoDB
 import AWSS3
 

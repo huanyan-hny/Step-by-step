@@ -8,4 +8,3 @@ use_frameworks!
 pod 'FacebookCore'
 pod 'FacebookLogin'
 pod 'PNChart'
-pod 'Google/SignIn'

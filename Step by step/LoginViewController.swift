@@ -75,16 +75,10 @@ class LoginViewController: UIViewController {
         })
     }
     
-    @IBAction func loginViaWechat(_ sender: UIButton) {
-        let alertController = UIAlertController(title: "Login via Wechat", message: "Wechat login will be supported soon!", preferredStyle: .alert)
+    @IBAction func loginViaGoogle(_ sender: UIButton) {
         
-        let cancelAction = UIAlertAction(title: "OK", style: .cancel)  {(action) in
-            return
-        }
-        
-        alertController.addAction(cancelAction)
-        self.present(alertController, animated: true, completion: nil)
     }
+    
     
     @IBAction func loginAction(_ sender: UIButton) {
         disableButtons()
