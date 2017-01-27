@@ -7,16 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		050497261E35FD5B008C8C6C /* AWSCognitoIdentityProvider.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 050497221E35FD5B008C8C6C /* AWSCognitoIdentityProvider.framework */; };
-		050497271E35FD5B008C8C6C /* AWSCognitoIdentityProvider.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 050497221E35FD5B008C8C6C /* AWSCognitoIdentityProvider.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		050497281E35FD5B008C8C6C /* AWSCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 050497231E35FD5B008C8C6C /* AWSCore.framework */; };
-		050497291E35FD5B008C8C6C /* AWSCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 050497231E35FD5B008C8C6C /* AWSCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		0504972A1E35FD5B008C8C6C /* AWSDynamoDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 050497241E35FD5B008C8C6C /* AWSDynamoDB.framework */; };
-		0504972B1E35FD5B008C8C6C /* AWSDynamoDB.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 050497241E35FD5B008C8C6C /* AWSDynamoDB.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		0504972C1E35FD5B008C8C6C /* AWSS3.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 050497251E35FD5B008C8C6C /* AWSS3.framework */; };
-		0504972D1E35FD5B008C8C6C /* AWSS3.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 050497251E35FD5B008C8C6C /* AWSS3.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		0504972F1E35FD7A008C8C6C /* AWSCognito.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0504972E1E35FD7A008C8C6C /* AWSCognito.framework */; };
-		050497301E35FD7A008C8C6C /* AWSCognito.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0504972E1E35FD7A008C8C6C /* AWSCognito.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0506336C1E2732E4001DA272 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 0539F9921E2710F700C1FB19 /* libz.tbd */; };
 		0506336D1E2732F1001DA272 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 0539F9901E2710EC00C1FB19 /* libsqlite3.tbd */; };
 		050633781E27598C001DA272 /* AllTimeRun.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050633731E27598C001DA272 /* AllTimeRun.swift */; };
@@ -32,6 +22,12 @@
 		052E9F801C00515600BBF246 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052E9F7F1C00515600BBF246 /* BaseViewController.swift */; };
 		052EB0CD1E1317F100F17B11 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052EB0CC1E1317F100F17B11 /* SettingViewController.swift */; };
 		0538E9241E355F0300C1979A /* NSBundle+Language.m in Sources */ = {isa = PBXBuildFile; fileRef = 0538E9231E355F0300C1979A /* NSBundle+Language.m */; };
+		053B58781E3B3332008F920B /* GoogleAppUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 053B58721E3B3332008F920B /* GoogleAppUtilities.framework */; };
+		053B58791E3B3332008F920B /* GoogleAuthUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 053B58731E3B3332008F920B /* GoogleAuthUtilities.framework */; };
+		053B587A1E3B3332008F920B /* GoogleNetworkingUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 053B58741E3B3332008F920B /* GoogleNetworkingUtilities.framework */; };
+		053B587B1E3B3332008F920B /* GoogleSignIn.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 053B58751E3B3332008F920B /* GoogleSignIn.framework */; };
+		053B587C1E3B3332008F920B /* GoogleSymbolUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 053B58761E3B3332008F920B /* GoogleSymbolUtilities.framework */; };
+		053B587D1E3B3332008F920B /* GoogleUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 053B58771E3B3332008F920B /* GoogleUtilities.framework */; };
 		05441A271BE07BEE00A8ECA4 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 05441A251BE07BEE00A8ECA4 /* Model.xcdatamodeld */; };
 		05441A2C1BE089ED00A8ECA4 /* Location+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05441A281BE089ED00A8ECA4 /* Location+CoreDataProperties.swift */; };
 		05441A2D1BE089ED00A8ECA4 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05441A291BE089ED00A8ECA4 /* Location.swift */; };
@@ -53,7 +49,6 @@
 		055E7C021E1B671200356F29 /* AllAchievementsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055E7C011E1B671200356F29 /* AllAchievementsTableViewController.swift */; };
 		055E7C051E1C020300356F29 /* AllRecordsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055E7C041E1C020300356F29 /* AllRecordsTableViewController.swift */; };
 		055E7C071E1C021900356F29 /* RecordTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055E7C061E1C021900356F29 /* RecordTableViewCell.swift */; };
-		056ECD331E3AC705004A6D6D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 056ECD321E3AC705004A6D6D /* GoogleService-Info.plist */; };
 		056ECD391E3AD1B7004A6D6D /* AWSMobileHubHelper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 056ECD381E3AD1B7004A6D6D /* AWSMobileHubHelper.framework */; };
 		056FA8981E242A6300089132 /* Achievement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056FA8971E242A6300089132 /* Achievement.swift */; };
 		056FA89A1E242C1600089132 /* Achievement+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056FA8991E242C1600089132 /* Achievement+CoreDataProperties.swift */; };
@@ -66,10 +61,23 @@
 		057061F11E1EFE98001AE518 /* PauseLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057061EF1E1EFE98001AE518 /* PauseLocation.swift */; };
 		0572A3C41C0AF846004A56C0 /* MeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0572A3C31C0AF846004A56C0 /* MeViewController.swift */; };
 		05745A111E25784600E8D1CA /* RankingDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05745A101E25784600E8D1CA /* RankingDetailViewController.swift */; };
+		0577B8351E3B31E500290FCE /* AWSCognitoIdentityProvider.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0577B8311E3B31E500290FCE /* AWSCognitoIdentityProvider.framework */; };
+		0577B8361E3B31E500290FCE /* AWSCognitoIdentityProvider.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0577B8311E3B31E500290FCE /* AWSCognitoIdentityProvider.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0577B8371E3B31E500290FCE /* AWSCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0577B8321E3B31E500290FCE /* AWSCore.framework */; };
+		0577B8381E3B31E500290FCE /* AWSCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0577B8321E3B31E500290FCE /* AWSCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0577B8391E3B31E500290FCE /* AWSDynamoDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0577B8331E3B31E500290FCE /* AWSDynamoDB.framework */; };
+		0577B83A1E3B31E500290FCE /* AWSDynamoDB.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0577B8331E3B31E500290FCE /* AWSDynamoDB.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0577B83B1E3B31E500290FCE /* AWSS3.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0577B8341E3B31E500290FCE /* AWSS3.framework */; };
+		0577B83C1E3B31E500290FCE /* AWSS3.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0577B8341E3B31E500290FCE /* AWSS3.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0577B83F1E3B31FF00290FCE /* AWSCognito.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0577B83E1E3B31FF00290FCE /* AWSCognito.framework */; };
+		0577B8401E3B31FF00290FCE /* AWSCognito.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0577B83E1E3B31FF00290FCE /* AWSCognito.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		057EA67C1E21F4C500064BFD /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057EA67B1E21F4C500064BFD /* Colors.swift */; };
 		057F3FA51C0C96D6001BEA91 /* ActivityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057F3FA41C0C96D6001BEA91 /* ActivityTableViewCell.swift */; };
 		058483931C0C1674008AE503 /* AllActivitiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058483921C0C1674008AE503 /* AllActivitiesViewController.swift */; };
+		058894EA1E3ADC0E00F9D3C7 /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 058894E91E3ADC0E00F9D3C7 /* SafariServices.framework */; };
+		058894EC1E3ADC1500F9D3C7 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 058894EB1E3ADC1500F9D3C7 /* SystemConfiguration.framework */; };
 		058C8AC91E14B80700140D71 /* Pedometer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058C8AC81E14B80600140D71 /* Pedometer.swift */; };
+		059558791E3AE732000B3DF9 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 059558781E3AE732000B3DF9 /* AddressBook.framework */; };
 		0596360E1B0CCD81007BCC22 /* StepsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0596360D1B0CCD81007BCC22 /* StepsViewController.swift */; };
 		059636141B0CD725007BCC22 /* StepsMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059636131B0CD725007BCC22 /* StepsMonitor.swift */; };
 		05C0A5C51E33CC0600E9BE61 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 05C0A5C71E33CC0600E9BE61 /* InfoPlist.strings */; };
@@ -82,7 +90,7 @@
 		05E88DC91E2BD9B5005D40A3 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E88DC81E2BD9B5005D40A3 /* Extensions.swift */; };
 		05E88DCB1E2BF82A005D40A3 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E88DCA1E2BF82A005D40A3 /* User.swift */; };
 		05FEC9D41BDE83C50093DF7D /* RankingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FEC9D31BDE83C50093DF7D /* RankingViewController.swift */; };
-		988262BAF10AC5F8FF234B54 /* Pods_Step_by_step.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72A64F0ED2346E99320C8C04 /* Pods_Step_by_step.framework */; };
+		48202CA4E51AD0211D7DC3C3 /* Pods_Step_by_step.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72A64F0ED2346E99320C8C04 /* Pods_Step_by_step.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -96,17 +104,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		050497211E35FCC1008C8C6C /* Embed Frameworks */ = {
+		0577B83D1E3B31E600290FCE /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				0504972D1E35FD5B008C8C6C /* AWSS3.framework in Embed Frameworks */,
-				050497271E35FD5B008C8C6C /* AWSCognitoIdentityProvider.framework in Embed Frameworks */,
-				0504972B1E35FD5B008C8C6C /* AWSDynamoDB.framework in Embed Frameworks */,
-				050497291E35FD5B008C8C6C /* AWSCore.framework in Embed Frameworks */,
-				050497301E35FD7A008C8C6C /* AWSCognito.framework in Embed Frameworks */,
+				0577B83C1E3B31E500290FCE /* AWSS3.framework in Embed Frameworks */,
+				0577B8361E3B31E500290FCE /* AWSCognitoIdentityProvider.framework in Embed Frameworks */,
+				0577B83A1E3B31E500290FCE /* AWSDynamoDB.framework in Embed Frameworks */,
+				0577B8381E3B31E500290FCE /* AWSCore.framework in Embed Frameworks */,
+				0577B8401E3B31FF00290FCE /* AWSCognito.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -114,11 +122,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		050497221E35FD5B008C8C6C /* AWSCognitoIdentityProvider.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSCognitoIdentityProvider.framework; path = "Step by step/Sdk/Aws/AWSCognitoIdentityProvider.framework"; sourceTree = "<group>"; };
-		050497231E35FD5B008C8C6C /* AWSCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSCore.framework; path = "Step by step/Sdk/Aws/AWSCore.framework"; sourceTree = "<group>"; };
-		050497241E35FD5B008C8C6C /* AWSDynamoDB.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSDynamoDB.framework; path = "Step by step/Sdk/Aws/AWSDynamoDB.framework"; sourceTree = "<group>"; };
-		050497251E35FD5B008C8C6C /* AWSS3.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSS3.framework; path = "Step by step/Sdk/Aws/AWSS3.framework"; sourceTree = "<group>"; };
-		0504972E1E35FD7A008C8C6C /* AWSCognito.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSCognito.framework; path = "Step by step/Sdk/Aws/extras/AWSCognito.framework"; sourceTree = "<group>"; };
 		050633731E27598C001DA272 /* AllTimeRun.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllTimeRun.swift; sourceTree = "<group>"; };
 		050633741E27598C001DA272 /* MonthlyRanking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonthlyRanking.swift; sourceTree = "<group>"; };
 		050633751E27598C001DA272 /* WeeklyRanking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeeklyRanking.swift; sourceTree = "<group>"; };
@@ -136,6 +139,12 @@
 		05398A2E1E34037F002B0A9B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		0539F9901E2710EC00C1FB19 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		0539F9921E2710F700C1FB19 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		053B58721E3B3332008F920B /* GoogleAppUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleAppUtilities.framework; path = "../../Downloads/Step-by-step-integration-lib-aws-my-sample-app-ios-swift/Sdk/Google/GoogleAppUtilities.framework"; sourceTree = "<group>"; };
+		053B58731E3B3332008F920B /* GoogleAuthUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleAuthUtilities.framework; path = "../../Downloads/Step-by-step-integration-lib-aws-my-sample-app-ios-swift/Sdk/Google/GoogleAuthUtilities.framework"; sourceTree = "<group>"; };
+		053B58741E3B3332008F920B /* GoogleNetworkingUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleNetworkingUtilities.framework; path = "../../Downloads/Step-by-step-integration-lib-aws-my-sample-app-ios-swift/Sdk/Google/GoogleNetworkingUtilities.framework"; sourceTree = "<group>"; };
+		053B58751E3B3332008F920B /* GoogleSignIn.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleSignIn.framework; path = "../../Downloads/Step-by-step-integration-lib-aws-my-sample-app-ios-swift/Sdk/Google/GoogleSignIn.framework"; sourceTree = "<group>"; };
+		053B58761E3B3332008F920B /* GoogleSymbolUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleSymbolUtilities.framework; path = "../../Downloads/Step-by-step-integration-lib-aws-my-sample-app-ios-swift/Sdk/Google/GoogleSymbolUtilities.framework"; sourceTree = "<group>"; };
+		053B58771E3B3332008F920B /* GoogleUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleUtilities.framework; path = "../../Downloads/Step-by-step-integration-lib-aws-my-sample-app-ios-swift/Sdk/Google/GoogleUtilities.framework"; sourceTree = "<group>"; };
 		05441A261BE07BEE00A8ECA4 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		05441A281BE089ED00A8ECA4 /* Location+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Location+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		05441A291BE089ED00A8ECA4 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
@@ -162,7 +171,6 @@
 		055E7C011E1B671200356F29 /* AllAchievementsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllAchievementsTableViewController.swift; sourceTree = "<group>"; };
 		055E7C041E1C020300356F29 /* AllRecordsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllRecordsTableViewController.swift; sourceTree = "<group>"; };
 		055E7C061E1C021900356F29 /* RecordTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordTableViewCell.swift; sourceTree = "<group>"; };
-		056ECD321E3AC705004A6D6D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		056ECD381E3AD1B7004A6D6D /* AWSMobileHubHelper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AWSMobileHubHelper.framework; sourceTree = "<group>"; };
 		056FA8971E242A6300089132 /* Achievement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Achievement.swift; sourceTree = "<group>"; };
 		056FA8991E242C1600089132 /* Achievement+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Achievement+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -175,10 +183,18 @@
 		057061EF1E1EFE98001AE518 /* PauseLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PauseLocation.swift; sourceTree = "<group>"; };
 		0572A3C31C0AF846004A56C0 /* MeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeViewController.swift; sourceTree = "<group>"; };
 		05745A101E25784600E8D1CA /* RankingDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RankingDetailViewController.swift; sourceTree = "<group>"; };
+		0577B8311E3B31E500290FCE /* AWSCognitoIdentityProvider.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AWSCognitoIdentityProvider.framework; sourceTree = "<group>"; };
+		0577B8321E3B31E500290FCE /* AWSCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AWSCore.framework; sourceTree = "<group>"; };
+		0577B8331E3B31E500290FCE /* AWSDynamoDB.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AWSDynamoDB.framework; sourceTree = "<group>"; };
+		0577B8341E3B31E500290FCE /* AWSS3.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AWSS3.framework; sourceTree = "<group>"; };
+		0577B83E1E3B31FF00290FCE /* AWSCognito.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AWSCognito.framework; sourceTree = "<group>"; };
 		057EA67B1E21F4C500064BFD /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		057F3FA41C0C96D6001BEA91 /* ActivityTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityTableViewCell.swift; sourceTree = "<group>"; };
 		058483921C0C1674008AE503 /* AllActivitiesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllActivitiesViewController.swift; sourceTree = "<group>"; };
+		058894E91E3ADC0E00F9D3C7 /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = System/Library/Frameworks/SafariServices.framework; sourceTree = SDKROOT; };
+		058894EB1E3ADC1500F9D3C7 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		058C8AC81E14B80600140D71 /* Pedometer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pedometer.swift; sourceTree = "<group>"; };
+		059558781E3AE732000B3DF9 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		0596360D1B0CCD81007BCC22 /* StepsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepsViewController.swift; sourceTree = "<group>"; };
 		059636131B0CD725007BCC22 /* StepsMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = StepsMonitor.swift; sourceTree = "<group>"; };
 		05BAD6D01E33C9DC00CFA84F /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
@@ -204,17 +220,26 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				053B58781E3B3332008F920B /* GoogleAppUtilities.framework in Frameworks */,
+				053B58791E3B3332008F920B /* GoogleAuthUtilities.framework in Frameworks */,
+				053B587A1E3B3332008F920B /* GoogleNetworkingUtilities.framework in Frameworks */,
+				053B587B1E3B3332008F920B /* GoogleSignIn.framework in Frameworks */,
+				053B587C1E3B3332008F920B /* GoogleSymbolUtilities.framework in Frameworks */,
+				053B587D1E3B3332008F920B /* GoogleUtilities.framework in Frameworks */,
+				0577B8371E3B31E500290FCE /* AWSCore.framework in Frameworks */,
+				0577B8391E3B31E500290FCE /* AWSDynamoDB.framework in Frameworks */,
+				0577B8351E3B31E500290FCE /* AWSCognitoIdentityProvider.framework in Frameworks */,
+				059558791E3AE732000B3DF9 /* AddressBook.framework in Frameworks */,
+				058894EC1E3ADC1500F9D3C7 /* SystemConfiguration.framework in Frameworks */,
+				058894EA1E3ADC0E00F9D3C7 /* SafariServices.framework in Frameworks */,
 				0506336C1E2732E4001DA272 /* libz.tbd in Frameworks */,
-				050497281E35FD5B008C8C6C /* AWSCore.framework in Frameworks */,
 				0506336D1E2732F1001DA272 /* libsqlite3.tbd in Frameworks */,
+				0577B83F1E3B31FF00290FCE /* AWSCognito.framework in Frameworks */,
+				0577B83B1E3B31E500290FCE /* AWSS3.framework in Frameworks */,
 				052E9F7E1BFF222D00BBF246 /* CoreLocation.framework in Frameworks */,
-				0504972C1E35FD5B008C8C6C /* AWSS3.framework in Frameworks */,
-				0504972A1E35FD5B008C8C6C /* AWSDynamoDB.framework in Frameworks */,
-				0504972F1E35FD7A008C8C6C /* AWSCognito.framework in Frameworks */,
-				050497261E35FD5B008C8C6C /* AWSCognitoIdentityProvider.framework in Frameworks */,
 				056ECD391E3AD1B7004A6D6D /* AWSMobileHubHelper.framework in Frameworks */,
 				05DAC7311BDF6E1C008F10C5 /* MapKit.framework in Frameworks */,
-				988262BAF10AC5F8FF234B54 /* Pods_Step_by_step.framework in Frameworks */,
+				48202CA4E51AD0211D7DC3C3 /* Pods_Step_by_step.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -261,11 +286,11 @@
 		0555EA3F1AE210CB00E127C8 = {
 			isa = PBXGroup;
 			children = (
-				0504972E1E35FD7A008C8C6C /* AWSCognito.framework */,
-				050497221E35FD5B008C8C6C /* AWSCognitoIdentityProvider.framework */,
-				050497231E35FD5B008C8C6C /* AWSCore.framework */,
-				050497241E35FD5B008C8C6C /* AWSDynamoDB.framework */,
-				050497251E35FD5B008C8C6C /* AWSS3.framework */,
+				0577B83E1E3B31FF00290FCE /* AWSCognito.framework */,
+				0577B8311E3B31E500290FCE /* AWSCognitoIdentityProvider.framework */,
+				0577B8321E3B31E500290FCE /* AWSCore.framework */,
+				0577B8331E3B31E500290FCE /* AWSDynamoDB.framework */,
+				0577B8341E3B31E500290FCE /* AWSS3.framework */,
 				052E9F7D1BFF222D00BBF246 /* CoreLocation.framework */,
 				05DAC7301BDF6E1C008F10C5 /* MapKit.framework */,
 				0555EA4A1AE210CB00E127C8 /* Step by step */,
@@ -326,7 +351,6 @@
 				0538E9231E355F0300C1979A /* NSBundle+Language.m */,
 				05269AEF1DFBD69F00B2A600 /* Images.xcassets */,
 				0555EA4D1AE210CB00E127C8 /* AppDelegate.swift */,
-				056ECD321E3AC705004A6D6D /* GoogleService-Info.plist */,
 				0555EA4C1AE210CB00E127C8 /* Info.plist */,
 				05C0966C1E21854700607379 /* Step by step-Bridging-Header.h */,
 			);
@@ -442,6 +466,15 @@
 		487E18CB53FF71ACC70D4507 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				053B58721E3B3332008F920B /* GoogleAppUtilities.framework */,
+				053B58731E3B3332008F920B /* GoogleAuthUtilities.framework */,
+				053B58741E3B3332008F920B /* GoogleNetworkingUtilities.framework */,
+				053B58751E3B3332008F920B /* GoogleSignIn.framework */,
+				053B58761E3B3332008F920B /* GoogleSymbolUtilities.framework */,
+				053B58771E3B3332008F920B /* GoogleUtilities.framework */,
+				059558781E3AE732000B3DF9 /* AddressBook.framework */,
+				058894EB1E3ADC1500F9D3C7 /* SystemConfiguration.framework */,
+				058894E91E3ADC0E00F9D3C7 /* SafariServices.framework */,
 				0539F9921E2710F700C1FB19 /* libz.tbd */,
 				0539F9901E2710EC00C1FB19 /* libsqlite3.tbd */,
 				72A64F0ED2346E99320C8C04 /* Pods_Step_by_step.framework */,
@@ -471,7 +504,7 @@
 				0555EA461AE210CB00E127C8 /* Resources */,
 				8C9B8B168BE7BF45A4079451 /* [CP] Copy Pods Resources */,
 				95D095EAE9C81DB4FB22B89B /* [CP] Embed Pods Frameworks */,
-				050497211E35FCC1008C8C6C /* Embed Frameworks */,
+				0577B83D1E3B31E600290FCE /* Embed Frameworks */,
 				0506335E1E273114001DA272 /* ShellScript */,
 			);
 			buildRules = (
@@ -564,7 +597,6 @@
 				0555EA551AE210CB00E127C8 /* Main.storyboard in Resources */,
 				05C364631BDB2F31008D1712 /* LaunchScreen.xib in Resources */,
 				05C0A5C51E33CC0600E9BE61 /* InfoPlist.strings in Resources */,
-				056ECD331E3AC705004A6D6D /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -800,6 +832,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -840,6 +873,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VALIDATE_PRODUCT = YES;
@@ -851,7 +885,6 @@
 			baseConfigurationReference = CD9A6A6F4CEE6865278EB11E /* Pods-Step by step.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -861,12 +894,18 @@
 					"$(inherited)",
 					"$(SRCROOT)/**",
 					"$(PROJECT_DIR)/**",
-					"$(PROJECT_DIR)/Step\\ by\\ step/AmazonAws",
 				);
 				INFOPLIST_FILE = "Step by step/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				OTHER_LDFLAGS = "$(inherited)";
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-force_load",
+					"$(PROJECT_DIR)/Step\\ by\\ step/Sdk/Google/GoogleUtilities.framework/GoogleUtilities",
+					"-force_load",
+					"$(PROJECT_DIR)/Step\\ by\\ step/Sdk/Google/GoogleSignIn.framework/GoogleSignIn",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.huanyan.stepbystep;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -881,7 +920,6 @@
 			baseConfigurationReference = 6115B23D8EB24AE7BEAFEA10 /* Pods-Step by step.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -891,12 +929,17 @@
 					"$(inherited)",
 					"$(SRCROOT)/**",
 					"$(PROJECT_DIR)/**",
-					"$(PROJECT_DIR)/Step\\ by\\ step/AmazonAws",
 				);
 				INFOPLIST_FILE = "Step by step/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-force_load",
+					"$(PROJECT_DIR)/Step\\ by\\ step/Sdk/Google/GoogleUtilities.framework/GoogleUtilities",
+					"-force_load",
+					"$(PROJECT_DIR)/Step\\ by\\ step/Sdk/Google/GoogleSignIn.framework/GoogleSignIn",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.huanyan.stepbystep;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";

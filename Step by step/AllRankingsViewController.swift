@@ -54,7 +54,7 @@ class AllRankingsViewController: UITableViewController {
         let displayDistance:String
         let displayRanking:String
         
-        if (language == "zh_Hans") {
+        if (language == "zh-Hans") {
             displayDistance = String(format:"%.1f 公里", Double(round(ranking.totalDistance!.doubleValue*10)/10))
             if (ranking.type! == "Weekly") {
                 displayRanking = "周排名: \(ranking.rank!)"
@@ -77,7 +77,7 @@ class AllRankingsViewController: UITableViewController {
         cell.rankLabel.text = displayRanking
         cell.dateLabel.text = displayDate
         let documentPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-        let avatarPath = documentPath.appendingPathComponent("userAvatar.png")
+        let avatarPath = documentPath.appendingPathComponent(UserDefaults.standard.string(forKey: "userID")!)
         
         if let avatar = UIImage(contentsOfFile:avatarPath.path) {
             cell.userAvatar.image = avatar

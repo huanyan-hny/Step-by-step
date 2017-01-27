@@ -10,9 +10,10 @@ import UIKit
 import CoreData
 import FacebookCore
 import AWSCore
+import GoogleSignIn
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate{
 
     var window: UIWindow?
 
@@ -23,21 +24,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window?.rootViewController = loginVC
     }
     
-//    func application(application: UIApplication,
-//                     openURL url: URL, options: [String: AnyObject]) -> Bool {
-//        return GIDSignIn.sharedInstance().handleURL(url,
-//                                                    sourceApplication: options[UIApplicationOpenURLOptionsSourceApplicationKey] as? String,
-//                                                    annotation: options[UIApplicationOpenURLOptionsAnnotationKey])
-//    }
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
+        
         let language = UserDefaults.standard.array(forKey: "AppleLanguages")!.first as! String
         
-        if (language == "zh_Hans") {
-            UserDefaults.standard.set(["zh_Hans"], forKey: "AppleLanguages")
-            UserDefaults.standard.set("zh_Hans",forKey:"AppleLocale")
-            UserDefaults.standard.set("zh_Hans", forKey:"originalLanguage")
+        if (language.characters.count >= 7 && language.substring(to: language.index(language.startIndex, offsetBy: 7)) == "zh-Hans") {
+            UserDefaults.standard.set(["zh-Hans"], forKey: "AppleLanguages")
+            UserDefaults.standard.set("zh-Hans",forKey:"AppleLocale")
+            UserDefaults.standard.set("zh-Hans", forKey:"originalLanguage")
         } else {
             UserDefaults.standard.set(["en"], forKey: "AppleLanguages")
             UserDefaults.standard.set("en",forKey:"AppleLocale")
@@ -47,14 +43,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.layer.backgroundColor = UIColor(red: 0, green: 148/255, blue: 210/255, alpha: 1).cgColor;
         let loginVC = window?.rootViewController as! LoginViewController
         loginVC.managedObjectContext = self.managedObjectContext
-        
-        
-//        var configureError: NSError?
-//        GGLContext.sharedInstance().configureWithError(&configureError)
-//        assert(configureError == nil, "Error configuring Google services: \(configureError)")
-        
-//        GIDSignIn.sharedInstance().delegate = self
-        
         
         let credentialsProvider = AWSCognitoCredentialsProvider(
             regionType: .usEast1,
@@ -68,7 +56,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let rtv2 = SDKApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
 
-        return rtv1 && rtv2
+        return rtv1 || rtv2
     }
     
     func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
@@ -76,7 +64,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let rtv2 = SDKApplicationDelegate.shared.application(application, open: url, sourceApplication: sourceApplication, annotation: annotation)
         
-        return rtv1 && rtv2
+        return rtv1 || rtv2
     }
     
     func applicationWillResignActive(_ application: UIApplication) {

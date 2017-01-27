@@ -51,7 +51,7 @@ class AllRecordsTableViewController: UITableViewController {
                 case "Distance":
                     let cell = tableView.cellForRow(at: [0,0]) as! RecordTableViewCell
                     cell.recordTime.text = dateFormatter.string(from: record.date!)
-                    if (language == "zh_Hans") {
+                    if (language == "zh-Hans") {
                         cell.recordDetail.text = String(format:"%.1f 公里", Double(round(record.value!.doubleValue*10)/10))
                     } else {
                         cell.recordDetail.text = String(format:"%.1f miles", Double(round((record.value!.doubleValue/1.60934)*10)/10))
@@ -59,7 +59,7 @@ class AllRecordsTableViewController: UITableViewController {
                 case "Pace":
                     let cell = tableView.cellForRow(at: [0,1]) as! RecordTableViewCell
                     cell.recordTime.text = dateFormatter.string(from: record.date!)
-                    if (language == "zh_Hans") {
+                    if (language == "zh-Hans") {
                         cell.recordDetail.text = Time.secondsFormatted(seconds: record.value!.intValue) + "/公里"
                     } else {
                         cell.recordDetail.text = Time.secondsFormatted(seconds: Int(record.value!.doubleValue*1.60934)) + "/mi"

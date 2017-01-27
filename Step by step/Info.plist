@@ -36,7 +36,13 @@
 		<key>IdentityManager</key>
 		<dict>
 			<key>Default</key>
-			<dict/>
+			<dict>
+				<key>Google</key>
+				<dict>
+					<key>ClientId</key>
+					<string>366970256540-qrmtt5slad1e0igij8rk91a02nmq267m.apps.googleusercontent.com</string>
+				</dict>
+			</dict>
 		</dict>
 		<key>MobileHub</key>
 		<dict>
@@ -83,14 +89,17 @@
 		<dict>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>com.huanyan.stepbystep</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>com.googleusercontent.apps.431736056347-6mmph03pv44nk5qhv70d441vimqv4hv4</string>
+				<string>com.googleusercontent.apps.366970256540-qrmtt5slad1e0igij8rk91a02nmq267m</string>
+				<string>com.huanyan.stepbystep</string>
 			</array>
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>4</string>
+	<string>5</string>
 	<key>FacebookAppID</key>
 	<string>346993475693724</string>
 	<key>FacebookDisplayName</key>

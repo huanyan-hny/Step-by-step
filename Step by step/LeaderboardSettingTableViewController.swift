@@ -43,6 +43,8 @@ class LeaderboardSettingTableViewController: UITableViewController {
                     weeklyRanking._appear = self.appear_set! as NSNumber
                     self.objectMapper.save(weeklyRanking)
                     self.updateMonthlyRankingTable()
+                } else if (task.result == nil) {
+                    self.updateMonthlyRankingTable()
                 }
             }
         })
@@ -69,6 +71,10 @@ class LeaderboardSettingTableViewController: UITableViewController {
                     let monthlyRanking = task.result as! MonthlyRanking
                     monthlyRanking._appear = self.appear_set! as NSNumber
                     self.objectMapper.save(monthlyRanking)
+                    UserDefaults.standard.set(self.appear_set, forKey: "appear")
+                    _ = self.navigationController?.popViewController(animated: true)
+                } else if (task.result == nil) {
+                    self.stopLoadingAnimation()
                     UserDefaults.standard.set(self.appear_set, forKey: "appear")
                     _ = self.navigationController?.popViewController(animated: true)
                 }

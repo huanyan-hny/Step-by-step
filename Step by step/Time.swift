@@ -26,7 +26,7 @@ class Time {
     }
     
     static func secondsFormattedString(seconds: Int) -> String {
-        if (language == "zh_Hans") {
+        if (language == "zh-Hans") {
             if seconds >= 3600 {
                 return "\(seconds/3600)小时 \(seconds % 3600 / 60)分 \(seconds % 60)秒"
             } else if seconds >= 60 {

@@ -53,7 +53,7 @@ class AllActivitiesViewController: UITableViewController, NSFetchedResultsContro
         let run = fetchResultsController?.object(at: indexPath) as! Run
         let displayDistance:String
         let displayTime = Time.secondsFormattedString(seconds: run.time!.intValue)
-        if (language == "zh_Hans") {
+        if (language == "zh-Hans") {
             displayDistance = String(format:"%.1f", Double(round(run.distance!.doubleValue*10)/10))
             cell.distanceLabel.text = "\(displayDistance) 公里"
         } else {

@@ -103,7 +103,7 @@ class StepsViewController: UIViewController, PNChartDelegate, UIScrollViewDelega
             walkingLabel.font = UIFont.systemFont(ofSize: 11)
         }
         
-        if (language == "zh_Hans") {
+        if (language == "zh-Hans") {
             thisWeekLabel.text = "本周"
             thisWeekLabel2.text = "本周"
             walkingLabel.text = "步数"
@@ -270,7 +270,7 @@ class StepsViewController: UIViewController, PNChartDelegate, UIScrollViewDelega
         let endOfToday = calendar.date(byAdding: .second, value: -1, to: beginOfTomorrow)!
         
         let component = calendar.dateComponents([.weekOfYear, .day, .month,.year,.weekday], from: today)
-        if (language == "zh_Hans") {
+        if (language == "zh-Hans") {
             dateByWeek = "第\(component.weekOfYear!)周, " + dateFormatter.string(from:Date())
         } else {
             dateByWeek = "Week \(component.weekOfYear!), " + dateFormatter.string(from:Date())
@@ -287,7 +287,7 @@ class StepsViewController: UIViewController, PNChartDelegate, UIScrollViewDelega
             var runningDistance = 0.0
             for object in (runFetchResultsController?.fetchedObjects)! {
                 if let run = object as? Run {
-                    if (language == "zh_Hans"){
+                    if (language == "zh-Hans"){
                         runningDistance += run.distance!.doubleValue
                     } else {
                         runningDistance += run.distance!.doubleValue/1.60934
@@ -394,24 +394,14 @@ class StepsViewController: UIViewController, PNChartDelegate, UIScrollViewDelega
         runFetchRequest.sortDescriptors = [NSSortDescriptor(key: "date", ascending: false)]
         runFetchResultsController = NSFetchedResultsController(fetchRequest: runFetchRequest, managedObjectContext: managedObjectContext!, sectionNameKeyPath: "date", cacheName: nil)
         
-        if(language == "zh_Hans") {
+        if(language == "zh-Hans") {
             dateFormatter.dateFormat = "YYYY年MMM";
             weekDays = ["周日","周一","周二","周三","周四","周五","周六"]
         } else {
             dateFormatter.dateFormat = "MMM YYYY";
             weekDays = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"]
         }
-        
 
-        
-        test()
-    }
-    
-    
-    func test() {
-        if(Display.typeIsLike == .iphone5 || Display.typeIsLike == .iphone6plus) {
-            updateUI()
-        }
     }
 }
 

@@ -320,7 +320,7 @@ class RankingViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     func configureWeeklyRankingCell(cell:RankingViewCell, rank:Int) {
         cell.ranking.text = "\(rank+1)"
-        if (language == "zh_Hans") {
+        if (language == "zh-Hans") {
             cell.distance.text = String(format:"%.1f 公里", Double(round(weeklyRankings[rank]._distance!.doubleValue*10)/10))
         } else {
             cell.distance.text = String(format:"%.1f miles", Double(round((weeklyRankings[rank]._distance!.doubleValue/1.60934)*10)/10))
@@ -381,7 +381,7 @@ class RankingViewController: UIViewController, UITableViewDelegate, UITableViewD
     func configureMonthlyRankingCell(cell:RankingViewCell, rank:Int) {
         cell.ranking.text = "\(rank+1)"
         
-        if (language == "zh_Hans") {
+        if (language == "zh-Hans") {
             cell.distance.text = String(format:"%.1f 公里", Double(round(monthlyRankings[rank]._distance!.doubleValue*10)/10))
         } else {
             cell.distance.text = String(format:"%.1f miles", Double(round((monthlyRankings[rank]._distance!.doubleValue/1.60934)*10)/10))

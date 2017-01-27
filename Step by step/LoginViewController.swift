@@ -15,7 +15,7 @@ import AWSMobileHubHelper
 import AWSDynamoDB
 import FacebookLogin
 import FacebookCore
-
+import GoogleSignIn
 
 
 
@@ -76,7 +76,8 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func loginViaGoogle(_ sender: UIButton) {
-        
+        startLoadingAnimation()
+        handleGoogleLogin()
     }
     
     
@@ -411,7 +412,7 @@ class LoginViewController: UIViewController {
     func checkLoginStatus() {
         print("Checking Login Status")
         
-        if (AccessToken.current != nil){
+        if (AWSGoogleSignInProvider.sharedInstance().isLoggedIn){
             DispatchQueue.main.async {
                 self.performSegue(withIdentifier: "toMain", sender: self)
             }
@@ -422,6 +423,14 @@ class LoginViewController: UIViewController {
                 self.performSegue(withIdentifier: "toMain", sender: self)
             }
         }
+        
+        if (AccessToken.current != nil){
+            DispatchQueue.main.async {
+                self.performSegue(withIdentifier: "toMain", sender: self)
+            }
+        }
+        
+        
     }
     
     func manualLayout() {
@@ -535,6 +544,7 @@ class LoginViewController: UIViewController {
         if (UserDefaults.standard.double(forKey: "dailyRunningGoal") == 0.0) {
             UserDefaults.standard.set(5.0, forKey: "dailyRunningGoal")
         }
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

@@ -113,7 +113,7 @@
 "CRS-kh-HvE.text" = "无记录";
 
 /* Class = "UILabel"; text = "Sky Walker"; ObjectID = "DbJ-Qi-bdN"; */
-"DbJ-Qi-bdN.text" = "天行者";
+"DbJ-Qi-bdN.text" = "高级步行者";
 
 /* Class = "UITableViewSection"; headerTitle = " "; ObjectID = "Dz1-sG-Lam"; */
 "Dz1-sG-Lam.headerTitle" = " ";
@@ -209,10 +209,10 @@
 "Oyu-M4-LCB.text" = "00:00";
 
 /* Class = "UILabel"; text = "Strong Walker"; ObjectID = "PuM-dh-i7t"; */
-"PuM-dh-i7t.text" = "疾行者";
+"PuM-dh-i7t.text" = "中级步行者";
 
 /* Class = "UILabel"; text = "Walker"; ObjectID = "Q9q-sD-8BD"; */
-"Q9q-sD-8BD.text" = "行者";
+"Q9q-sD-8BD.text" = "初级步行者";
 
 /* Class = "UILabel"; text = "Cloudy"; ObjectID = "QCf-bG-EgA"; */
 "QCf-bG-EgA.text" = "多云";

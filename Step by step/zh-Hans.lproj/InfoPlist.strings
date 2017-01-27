@@ -6,7 +6,7 @@
   Copyright © 2017年 Huanyan's. All rights reserved.
 */
 
-CFBundleDisplayName = "Step by step";
+CFBundleDisplayName = "步步";
 NSLocationAlwaysUsageDescription = "步步需要你的同意以获取位置信息";
 NSLocationWhenInUseUsageDescription = "步步需要你的同意以获取位置信息";
 NSMotionUsageDescription = "步步需要你的同意以获取运动信息";

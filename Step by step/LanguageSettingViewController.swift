@@ -17,9 +17,9 @@ class LanguageSettingViewController: UITableViewController {
     var language_set:String?
     
     func save() {
-        if (language_set == "zh_Hans") {
-            UserDefaults.standard.set(["zh_Hans"], forKey: "AppleLanguages")
-            UserDefaults.standard.set("zh_Hans",forKey:"AppleLocale")
+        if (language_set == "zh-Hans") {
+            UserDefaults.standard.set(["zh-Hans"], forKey: "AppleLanguages")
+            UserDefaults.standard.set("zh-Hans",forKey:"AppleLocale")
         } else {
             UserDefaults.standard.set(["en"], forKey: "AppleLanguages")
             UserDefaults.standard.set("en",forKey:"AppleLocale")
@@ -53,7 +53,7 @@ class LanguageSettingViewController: UITableViewController {
         } else {
             enCheck.isHidden = true
             zhCheck.isHidden = false
-            language_set = "zh_Hans"
+            language_set = "zh-Hans"
         }
         
         if (language_set == language) {
@@ -84,7 +84,7 @@ class LanguageSettingViewController: UITableViewController {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: NSLocalizedString("Save", comment: ""), style: .plain, target: self, action: #selector(save))
         self.navigationItem.rightBarButtonItem?.isEnabled = false
         self.navigationItem.rightBarButtonItem?.tintColor = Colors.myUnavailable
-        if (language == "zh_Hans") {
+        if (language == "zh-Hans") {
             enCheck.isHidden = true
             zhCheck.isHidden = false
         } else {

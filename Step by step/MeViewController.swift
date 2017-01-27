@@ -91,7 +91,7 @@ class MeViewController: UITableViewController, UINavigationControllerDelegate, U
         for object in (runFetchResultsController?.fetchedObjects)! {
             numberOfRun += 1
             if let run = object as? Run {
-                if (language == "zh_Hans") {
+                if (language == "zh-Hans") {
                     totalDistance += run.distance!.doubleValue
                 } else {
                     totalDistance += run.distance!.doubleValue/1.60934
@@ -99,7 +99,7 @@ class MeViewController: UITableViewController, UINavigationControllerDelegate, U
             }
         }
         self.runTitle.text = "\(numberOfRun)"
-        if (language == "zh_Hans") {
+        if (language == "zh-Hans") {
             self.runDetail.text = String(format: "共计%.1f公里", totalDistance)
         } else {
             self.runDetail.text = String(format: "%.1f total miles", totalDistance)
@@ -116,7 +116,7 @@ class MeViewController: UITableViewController, UINavigationControllerDelegate, U
         
         
         self.achievementDetail.textColor = Colors.myTextLightGray
-        if (language == "zh_Hans") {
+        if (language == "zh-Hans") {
             self.achievementTitle.text = "\(count!)/9 已解锁"
             self.achievementDetail.text = "试着解锁更多成就吧!"
         } else {
@@ -126,7 +126,7 @@ class MeViewController: UITableViewController, UINavigationControllerDelegate, U
         
         
         if (count == numberOfAchievements) {
-            if (language == "zh_Hans") {
+            if (language == "zh-Hans") {
                 self.achievementDetail.text = "祝贺你，你已经解锁所有成就"
             } else {
                 self.achievementDetail.text = "Grats! You have unlocked all achievements"
@@ -136,7 +136,7 @@ class MeViewController: UITableViewController, UINavigationControllerDelegate, U
         for object in (achievementFetchResultsController?.fetchedObjects)! {
             if let achievement = object as? Achievement {
                 if achievement.isNew!.boolValue{
-                    if (language == "zh_Hans") {
+                    if (language == "zh-Hans") {
                         self.achievementDetail.text = "新成就已解锁！"
                     } else {
                         self.achievementDetail.text = "New achievement unlocked!"

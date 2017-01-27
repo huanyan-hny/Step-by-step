@@ -102,7 +102,7 @@ class InRunningViewController: UIViewController, MKMapViewDelegate, CLLocationMa
             seconds += 1
             
             let displayDistance:String
-            if (language == "zh_Hans") {
+            if (language == "zh-Hans") {
                 displayDistance = String(format:"%.1f", Double(round(distance*10)/10))
             } else {
                 displayDistance = String(format:"%.1f", Double(round((distance/1.60934)*10)/10))
@@ -125,7 +125,7 @@ class InRunningViewController: UIViewController, MKMapViewDelegate, CLLocationMa
             if (seconds>0 && distance>0 && seconds%4==0) {
                 pace = Int(Double(seconds)/distance)
                 let displayPace:String
-                if (language == "zh_Hans") {
+                if (language == "zh-Hans") {
                     displayPace = Time.secondsFormatted(seconds:pace)
                 } else {
                     displayPace = Time.secondsFormatted(seconds:(Int(Double(pace)*1.60934)))

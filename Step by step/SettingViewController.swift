@@ -19,7 +19,10 @@ class SettingViewController: UITableViewController, SFSafariViewControllerDelega
     var maxTextLength = 15
     
     func logout() {
-        if (AWSIdentityManager.defaultIdentityManager().isLoggedIn) {
+        if (AWSGoogleSignInProvider.sharedInstance().isLoggedIn){
+            AWSGoogleSignInProvider.sharedInstance().logout()
+            self.performSegue(withIdentifier: "unwindToLogin", sender: self)
+        } else if (AWSIdentityManager.defaultIdentityManager().isLoggedIn) {
             AWSIdentityManager.defaultIdentityManager().logout(completionHandler: {(result:Any?,error:Error?) in
                 DispatchQueue.main.async {
                     if (error != nil) {
@@ -35,8 +38,7 @@ class SettingViewController: UITableViewController, SFSafariViewControllerDelega
                     }
                 }
             })
-        }
-        if (AccessToken.current != nil){
+        } else if (AccessToken.current != nil){
             LoginManager().logOut()
             self.performSegue(withIdentifier: "unwindToLogin", sender: self)
         }

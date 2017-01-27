@@ -209,7 +209,7 @@ class RankingDetailViewController: UIViewController {
                         let paginatedOutput = task.result!
                         for item in paginatedOutput.items {
                             if let run = item as? AllTimeRun {
-                                if (self.language == "zh_Hans"){
+                                if (self.language == "zh-Hans"){
                                     distanceOfTheDay += run._distance!.doubleValue
                                 } else {
                                     distanceOfTheDay += run._distance!.doubleValue/1.60934
@@ -237,7 +237,7 @@ class RankingDetailViewController: UIViewController {
             if (task.result != nil) {
                 let user = task.result as! User
                 DispatchQueue.main.async {
-                    if(self.language == "zh_Hans") {
+                    if(self.language == "zh-Hans") {
                         self.totalDistance.text = String(format:"%.1f 公里", Double(round(user._totalRunningDistance!.doubleValue*10)/10))
                     } else {
                         self.totalDistance.text = String(format:"%.1f miles", Double(round((user._totalRunningDistance!.doubleValue/1.60934)*10)/10))
@@ -290,7 +290,7 @@ class RankingDetailViewController: UIViewController {
         detailView.clipsToBounds = true
         detailView.center.y -= self.view.bounds.height
         data = [Double](repeatElement(0, count: 7))
-        if (language == "zh_Hans") {
+        if (language == "zh-Hans") {
             weekDays = ["周日","周一","周二","周三","周四","周五","周六"]
         } else {
             weekDays = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"]

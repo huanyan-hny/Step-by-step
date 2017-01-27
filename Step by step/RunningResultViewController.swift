@@ -57,7 +57,7 @@ class RunningResultViewController: UIViewController,MKMapViewDelegate, UITextFie
         let displayEnergy = energy
         let displayDistance:String
         let displayPace:String
-        if (language == "zh_Hans") {
+        if (language == "zh-Hans") {
             displayDistance = String(format:"%.1f", Double(round(distance*10)/10))
             displayPace = Time.secondsFormatted(seconds: pace)
         } else {

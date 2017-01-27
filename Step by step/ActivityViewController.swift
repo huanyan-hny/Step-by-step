@@ -41,7 +41,7 @@ class ActivityViewController: UIViewController, MKMapViewDelegate {
         let displayDistance:String
         let displayPace:String
         
-        if (language == "zh_Hans") {
+        if (language == "zh-Hans") {
             displayDistance = String(format:"%.1f", Double(round(run!.distance!.doubleValue*10)/10))
             displayPace = Time.secondsFormatted(seconds: run!.pace!.intValue)
         } else {
@@ -71,7 +71,7 @@ class ActivityViewController: UIViewController, MKMapViewDelegate {
                 print("No weather information")
         }
         
-        if (language == "zh_Hans") {
+        if (language == "zh-Hans") {
             if (run!.address_zh != nil && run!.city_zh != nil) {
                 locationLabel.text = run!.address_zh! + ", " + run!.city_zh!
             }
