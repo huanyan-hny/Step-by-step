@@ -89,7 +89,7 @@ extension LoginViewController {
         guard let usernameValue = self.usernameField.text, !usernameValue.isEmpty else {
             self.stopLoadingAnimation()
             self.enableButtons()
-            let alertController = UIAlertController(title: "Missing Username", message: "Please enter username", preferredStyle: .alert)
+            let alertController = UIAlertController(title: NSLocalizedString("Missing Username", comment: ""), message: NSLocalizedString("Please enter username", comment: ""), preferredStyle: .alert)
             
             let cancelAction = UIAlertAction(title: "OK", style: .cancel)  {(action) in
                 return
@@ -104,7 +104,7 @@ extension LoginViewController {
         guard let passwordValue = self.passwordField.text,!passwordValue.isEmpty else {
             self.stopLoadingAnimation()
             self.enableButtons()
-            let alertController = UIAlertController(title: "Missing Password", message: "Please enter password", preferredStyle: .alert)
+            let alertController = UIAlertController(title: NSLocalizedString("Missing Password", comment: ""), message: NSLocalizedString("Please enter password", comment: ""), preferredStyle: .alert)
             
             let cancelAction = UIAlertAction(title: "OK", style: .cancel)  {(action) in
                 return
@@ -121,7 +121,7 @@ extension LoginViewController {
         guard let emailValue = self.emailField.text, !emailValue.isEmpty else {
             self.stopLoadingAnimation()
             self.enableButtons()
-            let alertController = UIAlertController(title: "Missing Email", message: "Please enter Email", preferredStyle: .alert)
+            let alertController = UIAlertController(title: NSLocalizedString("Missing Email", comment: ""), message: NSLocalizedString("Please enter Email", comment: ""), preferredStyle: .alert)
             
             let cancelAction = UIAlertAction(title: "OK", style: .cancel)  {(action) in
                 return
@@ -141,7 +141,7 @@ extension LoginViewController {
         if (passwordValue.characters.count<6) {
             self.stopLoadingAnimation()
             self.enableButtons()
-            let alertController = UIAlertController(title: "Password too short", message: "The length of password must be at least 6", preferredStyle: .alert)
+            let alertController = UIAlertController(title: NSLocalizedString("Password too short", comment: ""), message: NSLocalizedString("The length of password must be at least 6", comment: ""), preferredStyle: .alert)
             
             let cancelAction = UIAlertAction(title: "OK", style: .cancel)  {(action) in
                 return
@@ -161,7 +161,7 @@ extension LoginViewController {
                 self.stopLoadingAnimation()
                 self.enableButtons()
                 if (task.error != nil) {
-                    let alertController = UIAlertController(title: "Error", message: "Please check your input and try again", preferredStyle: .alert)
+                    let alertController = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: NSLocalizedString("Please check your input and try again", comment: ""), preferredStyle: .alert)
                     
                     let cancelAction = UIAlertAction(title: "OK", style: .cancel)  {(action) in
                         return
@@ -172,7 +172,7 @@ extension LoginViewController {
                 }
                 
                 if (task.exception != nil) {
-                    let alertController = UIAlertController(title: "Error", message: "Please check your input and try again", preferredStyle: .alert)
+                    let alertController = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: NSLocalizedString("Please check your input and try again", comment: ""), preferredStyle: .alert)
                     
                     let cancelAction = UIAlertAction(title: "OK", style: .cancel)  {(action) in
                         return
@@ -203,7 +203,7 @@ extension LoginViewController {
         guard let confirmationCodeValue = self.codeField.text,!confirmationCodeValue.isEmpty else {
             self.stopLoadingAnimation()
             self.enableButtons()
-            let alertController = UIAlertController(title: "Missing Confirmation Code", message: "Please enter the confirmation code received", preferredStyle: .alert)
+            let alertController = UIAlertController(title: NSLocalizedString("Missing Confirmation Code", comment: ""), message: NSLocalizedString("Please enter the confirmation code received", comment: ""), preferredStyle: .alert)
             
             let cancelAction = UIAlertAction(title: "OK", style: .cancel)  {(action) in
                 return
@@ -220,7 +220,7 @@ extension LoginViewController {
                 self.enableButtons()
                 self.forgotButton.isEnabled = false
                 if (task.error != nil || task.exception != nil) {
-                    let alertController = UIAlertController(title: "Error", message: "Please check your input and try again", preferredStyle: .alert)
+                    let alertController = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: NSLocalizedString("Please check your input and try again", comment: ""), preferredStyle: .alert)
                     
                     let cancelAction = UIAlertAction(title: "OK", style: .cancel)  {(action) in
                         return
@@ -240,7 +240,7 @@ extension LoginViewController {
                             self.objectMapper.save(newUser!, completionHandler: {(error: Error?) -> Void in
                                 DispatchQueue.main.async {
                                     UserDefaults.standard.set(true, forKey: "appear")
-                                    let alertController = UIAlertController(title: "Registration completed", message: "Please log in with your new account", preferredStyle: .alert)
+                                    let alertController = UIAlertController(title: NSLocalizedString("Registration completed", comment: ""), message: NSLocalizedString("Please log in with your new account", comment: ""), preferredStyle: .alert)
                                     
                                     let cancelAction = UIAlertAction(title: "OK", style: .cancel)  {(action) in
                                         self.completeSignUp()
@@ -270,7 +270,7 @@ extension LoginViewController {
         
         guard let usernameValue = self.usernameField.text, !usernameValue.isEmpty else {
             
-            let alertController = UIAlertController(title: "Missing Username", message: "Please enter username", preferredStyle: .alert)
+            let alertController = UIAlertController(title: NSLocalizedString("Missing Username", comment: ""), message: NSLocalizedString("Please enter username", comment: ""), preferredStyle: .alert)
             
             let cancelAction = UIAlertAction(title: "OK", style: .cancel)  {(action) in
                 return
@@ -286,7 +286,7 @@ extension LoginViewController {
         self.user?.forgotPassword().continue(with: AWSExecutor.default(), with: {(task:AWSTask) -> Any? in
             DispatchQueue.main.async {
                 if (task.error != nil) {
-                    let alertController = UIAlertController(title: "User not found", message: "Please check your input and try again", preferredStyle: .alert)
+                    let alertController = UIAlertController(title: NSLocalizedString("User not found", comment: ""), message: NSLocalizedString("Please check your input and try again", comment: ""), preferredStyle: .alert)
                     
                     let cancelAction = UIAlertAction(title: "OK", style: .cancel)  {(action) in
                         return
@@ -295,7 +295,7 @@ extension LoginViewController {
                     alertController.addAction(cancelAction)
                     self.present(alertController, animated: true, completion: nil)
                 } else if (task.exception != nil) {
-                    let alertController = UIAlertController(title: "Error", message: "Please check your input and try again", preferredStyle: .alert)
+                    let alertController = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: NSLocalizedString("Please check your input and try again", comment: ""), preferredStyle: .alert)
                     
                     let cancelAction = UIAlertAction(title: "OK", style: .cancel)  {(action) in
                         return
@@ -317,7 +317,7 @@ extension LoginViewController {
             self.stopLoadingAnimation()
             self.enableButtons()
             self.signUpButton.isEnabled = false
-            let alertController = UIAlertController(title: "Missing Confirmation Code", message: "Please enter the confirmation code received", preferredStyle: .alert)
+            let alertController = UIAlertController(title: NSLocalizedString("Missing Confirmation Code", comment: ""), message: NSLocalizedString("Please enter the confirmation code received", comment: ""), preferredStyle: .alert)
             
             let cancelAction = UIAlertAction(title: "OK", style: .cancel)  {(action) in
                 return
@@ -331,7 +331,7 @@ extension LoginViewController {
         guard let newPassword = self.passwordField.text, !newPassword.isEmpty else {
             self.stopLoadingAnimation()
             self.enableButtons()
-            let alertController = UIAlertController(title: "Missing New Password", message: "Please enter a new password", preferredStyle: .alert)
+            let alertController = UIAlertController(title: NSLocalizedString("Missing New Password", comment: ""), message: NSLocalizedString("Please enter a new password", comment: ""), preferredStyle: .alert)
             
             let cancelAction = UIAlertAction(title: "OK", style: .cancel)  {(action) in
                 return
@@ -348,7 +348,8 @@ extension LoginViewController {
                 self.enableButtons()
                 self.signUpButton.isEnabled = false
                 if (task.error != nil) {
-                    let alertController = UIAlertController(title: "Error (Wrong code?)", message: "Please check your input and try again", preferredStyle: .alert)
+                    
+                    let alertController = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: NSLocalizedString("Please check your input and try again", comment: "") + "(Error:\(task.error!.localizedDescription))", preferredStyle: .alert)
                     
                     let cancelAction = UIAlertAction(title: "OK", style: .cancel)  {(action) in
                         return
@@ -357,7 +358,7 @@ extension LoginViewController {
                     alertController.addAction(cancelAction)
                     self.present(alertController, animated: true, completion: nil)
                 } else {
-                    let alertController = UIAlertController(title: "Reset successful", message: "Your password has been successfully reset", preferredStyle: .alert)
+                    let alertController = UIAlertController(title: NSLocalizedString("Reset successful", comment: ""), message: NSLocalizedString("Your password has been successfully reset", comment: ""), preferredStyle: .alert)
                     
                     let cancelAction = UIAlertAction(title: "OK", style: .cancel)  {(action) in
                         self.completeResetPassword()
@@ -394,13 +395,13 @@ extension LoginViewController: AWSCognitoIdentityPasswordAuthentication {
     func didCompleteStepWithError(_ error: Error?) {
         if let error = error as? NSError{
             
-            let errorType = error.userInfo["__type"]! as! String
+            let errorMessage = error.userInfo["message"]! as! String
             
-            if (errorType=="UserNotConfirmedException") {
+            if (errorMessage=="User is not confirmed.") {
                 DispatchQueue.main.async {
                     self.stopLoadingAnimation()
                     self.enableButtons()
-                    let alertController = UIAlertController(title: "Error", message: "User not confirmed, please check your email and confirm", preferredStyle: .alert)
+                    let alertController = UIAlertController(title: NSLocalizedString("User not confirmed", comment: ""), message: NSLocalizedString("Please check your email and confirm", comment: ""), preferredStyle: .alert)
                     
                     let cancelAction = UIAlertAction(title: "OK", style: .cancel)  {(action) in
                         self.user = self.pool?.getUser(self.usernameField.text!)
@@ -411,7 +412,7 @@ extension LoginViewController: AWSCognitoIdentityPasswordAuthentication {
                                 self.stopLoadingAnimation()
                                 self.enableButtons()
                                 if (task.error != nil || task.exception != nil) {
-                                    let alertController = UIAlertController(title: "Error", message: "An error happen, please check your input and try again later", preferredStyle: .alert)
+                                    let alertController = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: NSLocalizedString("An error happened, please check your input and try again", comment: "") + "(Error:\(task.error!.localizedDescription))", preferredStyle: .alert)
                                     
                                     let cancelAction = UIAlertAction(title: "OK", style: .cancel)  {(action) in
                                         self.restoreLoginView()
@@ -433,11 +434,37 @@ extension LoginViewController: AWSCognitoIdentityPasswordAuthentication {
                     alertController.addAction(cancelAction)
                     self.present(alertController, animated: true, completion: nil)
                 }
+            } else if (errorMessage == "Incorrect username or password.") {
+                DispatchQueue.main.async {
+                    self.stopLoadingAnimation()
+                    self.enableButtons()
+                    let alertController = UIAlertController(title: NSLocalizedString("Incorrect username or password", comment: ""), message: NSLocalizedString("Please check your input and try again", comment: ""), preferredStyle: .alert)
+                    
+                    let cancelAction = UIAlertAction(title: "OK", style: .cancel)  {(action) in
+                        return
+                    }
+                    
+                    alertController.addAction(cancelAction)
+                    self.present(alertController, animated: true, completion: nil)
+                }
+            } else if (errorMessage == "User does not exist.") {
+                DispatchQueue.main.async {
+                    self.stopLoadingAnimation()
+                    self.enableButtons()
+                    let alertController = UIAlertController(title: NSLocalizedString("User not found", comment: ""), message: NSLocalizedString("Please check your input and try again", comment: ""), preferredStyle: .alert)
+                    
+                    let cancelAction = UIAlertAction(title: "OK", style: .cancel)  {(action) in
+                        return
+                    }
+                    
+                    alertController.addAction(cancelAction)
+                    self.present(alertController, animated: true, completion: nil)
+                }
             } else {
                 DispatchQueue.main.async {
                     self.stopLoadingAnimation()
                     self.enableButtons()
-                    let alertController = UIAlertController(title: "Error", message: "Incorrect username/password, please check your input and try again", preferredStyle: .alert)
+                    let alertController = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: NSLocalizedString("Please check your input and try again", comment: "") + "(Error:\(error.localizedDescription))", preferredStyle: .alert)
                     
                     let cancelAction = UIAlertAction(title: "OK", style: .cancel)  {(action) in
                         return
@@ -464,7 +491,7 @@ extension LoginViewController: AWSCognitoUserPoolsSignInHandler {
                 DispatchQueue.main.async{
                     self.stopLoadingAnimation()
                     self.enableButtons()
-                    let alertController = UIAlertController(title: "Missing Username/Password", message: "Please enter a valid Username/Password", preferredStyle: .alert)
+                    let alertController = UIAlertController(title: NSLocalizedString("Missing Username/Password", comment: ""), message: NSLocalizedString("Please enter a valid Username/Password", comment: ""), preferredStyle: .alert)
                     
                     let cancelAction = UIAlertAction(title: "OK", style: .cancel)  {(action) in
                         return

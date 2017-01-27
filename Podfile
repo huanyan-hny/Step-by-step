@@ -7,5 +7,5 @@ use_frameworks!
 
 pod 'FacebookCore'
 pod 'FacebookLogin'
-pod 'Localize-Swift', '~> 1.7'
 pod 'PNChart'
+pod 'Google/SignIn'

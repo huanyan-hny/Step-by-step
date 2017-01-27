@@ -66,7 +66,9 @@ class LoginViewController: UIViewController {
     
     
     @IBAction func loginViaFacebook(_ sender: UIButton) {
+        UIApplication.shared.setStatusBarStyle(.default, animated: false)
         LoginManager().logIn([.publicProfile,.email], viewController: self, completion: {(result:LoginResult) in
+            UIApplication.shared.setStatusBarStyle(.lightContent, animated: false)
             if (AccessToken.current != nil) {
                 self.fetchUserProfile()
             }
@@ -110,6 +112,7 @@ class LoginViewController: UIViewController {
             UIView.animate(withDuration: 0.5, animations: {
                 self.passwordField.center.x -= self.view.frame.width
                 self.passwordField.alpha = 0
+                self.passwordField.text = ""
                 self.actionButton.center.y -= self.level
                 self.actionButton.setTitle(NSLocalizedString("Request Reset", comment: ""), for: .normal)
                 self.actionButton.backgroundColor = Colors.myOrange
@@ -134,6 +137,7 @@ class LoginViewController: UIViewController {
             UIView.animate(withDuration: 0.5, animations: {
                 self.codeField.center.x += self.view.frame.width
                 self.codeField.alpha = 0
+                self.codeField.text = ""
                 self.usernameField.center.x += self.view.frame.width
                 self.usernameField.alpha = 1
                 self.passwordField.text = ""
@@ -169,6 +173,7 @@ class LoginViewController: UIViewController {
             UIView.animate(withDuration: 0.5, animations: {
                 self.emailField.center.x -= self.view.frame.width
                 self.emailField.alpha = 0
+                self.emailField.text = ""
                 self.actionButton.center.y -= self.level
                 self.actionButton.setTitle(NSLocalizedString("Log In", comment: ""), for: .normal)
                 self.actionButton.backgroundColor = Colors.myBlue
@@ -180,7 +185,7 @@ class LoginViewController: UIViewController {
             forgotButton.isEnabled = true
             let alertController = UIAlertController(title: NSLocalizedString("User/Email not confirmed", comment: ""), message: NSLocalizedString("Registration not completed yet, continue?", comment: ""), preferredStyle: .alert)
             
-            let cancelAction = UIAlertAction(title: NSLocalizedString("Cancal", comment: ""), style: .cancel)  {(action) in
+            let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel)  {(action) in
                 return
             }
             
@@ -194,6 +199,7 @@ class LoginViewController: UIViewController {
                 UIView.animate(withDuration: 0.5, animations: {
                     self.codeField.center.x += self.view.frame.width
                     self.codeField.alpha = 0
+                    self.codeField.text = ""
                     self.passwordField.center.x += self.view.frame.width
                     self.passwordField.alpha = 1
                     if (self.isNew){
@@ -229,6 +235,7 @@ class LoginViewController: UIViewController {
             self.passwordField.alpha = 0
             self.emailField.center.x -= self.view.frame.width
             self.emailField.alpha = 0
+            self.emailField.text = ""
             self.codeField.center.x -= self.view.frame.width
             self.codeField.alpha = 1
             self.actionButton.setTitle(NSLocalizedString("Confirm", comment: ""), for: .normal)
@@ -267,6 +274,7 @@ class LoginViewController: UIViewController {
         UIView.animate(withDuration: 0.5, animations: {
             self.codeField.center.x += self.view.frame.width
             self.codeField.alpha = 0
+            self.codeField.text = ""
             self.passwordField.center.x += self.view.frame.width
             self.passwordField.alpha = 1
             if (self.isNew){
@@ -284,6 +292,7 @@ class LoginViewController: UIViewController {
         UIView.animate(withDuration: 0.5, animations: {
             self.codeField.center.x += self.view.frame.width
             self.codeField.alpha = 0
+            self.codeField.text = ""
             self.usernameField.center.x += self.view.frame.width
             self.usernameField.alpha = 1
             self.passwordField.text = ""

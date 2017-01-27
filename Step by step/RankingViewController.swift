@@ -32,13 +32,6 @@ class RankingViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var activityView: UIView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
-    
-
-    let manager = AWSS3TransferManager.default()
-    let objectMapper = AWSDynamoDBObjectMapper.default()
-    let calendar = Calendar.current
-    let language = UserDefaults.standard.array(forKey: "AppleLanguages")!.first as! String
-    
     var selectedAvatar:UIImage?
     var selectedName:String?
     var selectedSignature:String?
@@ -54,6 +47,13 @@ class RankingViewController: UIViewController, UITableViewDelegate, UITableViewD
     var userSignatures = [String:String]()
     var finishedLoading = false
     var type = rankingType.weekly
+
+    let manager = AWSS3TransferManager.default()
+    let objectMapper = AWSDynamoDBObjectMapper.default()
+    let calendar = Calendar.current
+    let language = UserDefaults.standard.array(forKey: "AppleLanguages")!.first as! String
+    
+    
 
     
     @IBAction func changeToWeekly(_ sender: UIButton) {
@@ -87,8 +87,11 @@ class RankingViewController: UIViewController, UITableViewDelegate, UITableViewD
         selectedSignature = starSignitures[index].text
         selectedCurrentDistance = starDistances[index].text
         selectedRanking = "\(index+1)"
-        let cell = tableView.cellForRow(at: [0,index]) as! RankingViewCell
-        selectedUserId = cell.userId
+        if (type == .weekly) {
+            selectedUserId = weeklyRankings[index]._userId
+        } else {
+            selectedUserId = monthlyRankings[index]._userId
+        }
         performSegue(withIdentifier: "showDetail", sender: self)
 
     }

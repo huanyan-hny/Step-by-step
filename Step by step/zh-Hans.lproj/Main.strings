@@ -80,7 +80,7 @@
 "7zQ-gM-nPr.text" = "最快配速";
 
 /* Class = "UILabel"; text = "Welcome to Step by Step"; ObjectID = "8Sq-CH-XGA"; */
-"8Sq-CH-XGA.text" = "欢迎";
+"8Sq-CH-XGA.text" = "步步";
 
 /* Class = "UILabel"; text = "---"; ObjectID = "8ry-QE-Fhv"; */
 "8ry-QE-Fhv.text" = "---";
@@ -290,7 +290,7 @@
 "Yfr-nx-MdK.text" = "跑步";
 
 /* Class = "UILabel"; text = "Rate me"; ObjectID = "Z0l-ib-0y1"; */
-"Z0l-ib-0y1.text" = "给个五星好评";
+"Z0l-ib-0y1.text" = "喜欢步步吗？给个好评吧！";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "Zbb-vG-rHy"; */
 "Zbb-vG-rHy.text" = "Label";

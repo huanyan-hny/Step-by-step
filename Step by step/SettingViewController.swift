@@ -11,9 +11,9 @@ import AWSCognitoIdentityProvider
 import AWSMobileHubHelper
 import FacebookLogin
 import FacebookCore
+import SafariServices
 
-
-class SettingViewController: UITableViewController {
+class SettingViewController: UITableViewController, SFSafariViewControllerDelegate{
 
     var fieldType = TextFieldType.unknown
     var maxTextLength = 15
@@ -53,6 +53,17 @@ class SettingViewController: UITableViewController {
             fieldType = .signature
             maxTextLength = 30
             performSegue(withIdentifier: "changeProfile", sender: self)
+        } else if (indexPath == [2,1]) {
+            if #available(iOS 9.0, *) {
+                let safariVC = SFSafariViewController(url: URL(string: "https://huanyan-hny.github.io/Step-by-step/")!)
+                self.present(safariVC, animated: true, completion: nil)
+                safariVC.delegate = self
+                UIApplication.shared.setStatusBarStyle(.default, animated: false)
+            } else {
+                UIApplication.shared.openURL(URL(string: "https://huanyan-hny.github.io/Step-by-step/")!)
+            }
+        } else if (indexPath == [2,2]) {
+            UIApplication.shared.openURL(URL(string: "itms-apps://itunes.apple.com/app/1179166655")!)
         } else if (indexPath == [3,0]) {
             let alertController = UIAlertController(title: NSLocalizedString("Log out", comment: ""), message: NSLocalizedString("Are you sure you want to log out?", comment: ""), preferredStyle: .alert)
             
@@ -84,6 +95,11 @@ class SettingViewController: UITableViewController {
             return 50
         }
         return 45
+    }
+    
+    @available(iOS 9.0, *)
+    func safariViewControllerDidFinish(_ controller: SFSafariViewController) {
+        UIApplication.shared.setStatusBarStyle(.lightContent, animated: false)
     }
     
     override func viewDidLoad() {

@@ -26,6 +26,7 @@
 		0517B3351E23309700D8DDCB /* SettingTextFieldController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0517B3341E23309700D8DDCB /* SettingTextFieldController.swift */; };
 		0517B3371E2330FD00D8DDCB /* SecondarySettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0517B3361E2330FD00D8DDCB /* SecondarySettingViewController.swift */; };
 		051AC0A61D7A7BDA00D6C82F /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051AC0A51D7A7BDA00D6C82F /* ActivityViewController.swift */; };
+		051F3B281E39C9BD00A6D5D2 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051F3B271E39C9BD00A6D5D2 /* AboutViewController.swift */; };
 		05269AEE1DFBC1E000B2A600 /* RankingViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05269AED1DFBC1E000B2A600 /* RankingViewCell.swift */; };
 		05269AF01DFBD6A000B2A600 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05269AEF1DFBD69F00B2A600 /* Images.xcassets */; };
 		052E9F7E1BFF222D00BBF246 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 052E9F7D1BFF222D00BBF246 /* CoreLocation.framework */; };
@@ -124,6 +125,7 @@
 		0517B3341E23309700D8DDCB /* SettingTextFieldController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingTextFieldController.swift; sourceTree = "<group>"; };
 		0517B3361E2330FD00D8DDCB /* SecondarySettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondarySettingViewController.swift; sourceTree = "<group>"; };
 		051AC0A51D7A7BDA00D6C82F /* ActivityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
+		051F3B271E39C9BD00A6D5D2 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		05269AED1DFBC1E000B2A600 /* RankingViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RankingViewCell.swift; sourceTree = "<group>"; };
 		05269AEF1DFBD69F00B2A600 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		052E9F7D1BFF222D00BBF246 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -298,6 +300,7 @@
 				0517B3361E2330FD00D8DDCB /* SecondarySettingViewController.swift */,
 				0559D3701E35328E0016221A /* LanguageSettingViewController.swift */,
 				0559D3721E3532D70016221A /* LeaderboardSettingTableViewController.swift */,
+				051F3B271E39C9BD00A6D5D2 /* AboutViewController.swift */,
 				0555EA531AE210CB00E127C8 /* Main.storyboard */,
 				055E3CE61E33D8DD004F3A89 /* Localization */,
 				05E781C71E2D86C00090E410 /* Login */,
@@ -684,6 +687,7 @@
 				052EB0CD1E1317F100F17B11 /* SettingViewController.swift in Sources */,
 				057EA67C1E21F4C500064BFD /* Colors.swift in Sources */,
 				059636141B0CD725007BCC22 /* StepsMonitor.swift in Sources */,
+				051F3B281E39C9BD00A6D5D2 /* AboutViewController.swift in Sources */,
 				057061F11E1EFE98001AE518 /* PauseLocation.swift in Sources */,
 				051AC0A61D7A7BDA00D6C82F /* ActivityViewController.swift in Sources */,
 				058483931C0C1674008AE503 /* AllActivitiesViewController.swift in Sources */,

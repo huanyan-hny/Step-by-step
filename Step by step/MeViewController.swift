@@ -185,6 +185,7 @@ class MeViewController: UITableViewController, UINavigationControllerDelegate, U
             self.imagePicker.allowsEditing = false
             self.imagePicker.sourceType = .photoLibrary
             self.present(self.imagePicker, animated: true, completion: nil)
+            UIApplication.shared.setStatusBarStyle(.default, animated: false)
         }
         alertController.addAction(changeAction)
         
@@ -230,6 +231,7 @@ class MeViewController: UITableViewController, UINavigationControllerDelegate, U
             })
 
         }
+        UIApplication.shared.setStatusBarStyle(.lightContent, animated: false)
         self.dismiss(animated: true, completion: nil)
     }
     

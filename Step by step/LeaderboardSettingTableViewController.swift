@@ -121,6 +121,8 @@ class LeaderboardSettingTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.tableFooterView = UIView()
+        self.navigationItem.title = NSLocalizedString("Leaderboard", comment: "")
+        self.navigationController!.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
         self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: NSLocalizedString("Save", comment: ""), style: .plain, target: self, action: #selector(updateWeeklyRunningTable))
         self.view.addSubview(activityView)
         self.view.addSubview(activityIndicator)

@@ -68,6 +68,7 @@
 "Error (Wrong code?)" = "Error (Wrong code?)";
 "Registration completed" = "Registration completed";
 "Please log in with your new account" = "Please log in with your new account";
+"User not found, please check your input and try again" = "User not found, please check your input and try again";
 "User not found" = "User not found";
 "Missing New Password" = "Missing New Password";
 "Please enter a new password" = "Please enter a new password";
@@ -95,3 +96,4 @@
 "Daily Goal" = "Daily Goal";
 "Log out" = "Log out";
 "Are you sure you want to log out?" = "Are you sure you want to log out?";
+"An error happened, please check your input and try again later" = "An error happened, please check your input and try again later";
