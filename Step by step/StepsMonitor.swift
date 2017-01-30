@@ -34,6 +34,10 @@ class StepsMonitor{
     }
     
     func refresh() {
+        steps = 0
+        distance = 0
+        calorie = 0
+        lift = 0
         pedometer.stopUpdates()
         pedometer.startUpdates(from: Calendar.current.startOfDay(for: Date()), withHandler:{data, error in
             if (error==nil) {

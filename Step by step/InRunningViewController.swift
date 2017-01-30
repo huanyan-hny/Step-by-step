@@ -61,7 +61,6 @@ class InRunningViewController: UIViewController, MKMapViewDelegate, CLLocationMa
     
     
     func startRunning() {
-        print("Started running")
         startTime = Date()
         seconds = 0
         distance = 0.0
@@ -73,20 +72,16 @@ class InRunningViewController: UIViewController, MKMapViewDelegate, CLLocationMa
         CLGeocoder().reverseGeocodeLocation(locations.first!, completionHandler: {(placemarks, error) -> Void in
             if error == nil {
                 if let addr = placemarks?.first?.addressDictionary {
-                    print (addr)
                     
                     if let address = addr["Thoroughfare"] as? String {
-                        print (address)
                         self.address = address
                     }
                     
                     if let city = addr["City"] as? String {
-                        print(city)
                         self.city = city
                     }
                     
                     if let country = addr["Country"] as? String {
-                        print(country)
                         self.country = country
                     }
                 }
@@ -98,14 +93,13 @@ class InRunningViewController: UIViewController, MKMapViewDelegate, CLLocationMa
     
     func eachSecond(_ timer:Timer) {
         if !paused {
-            print(seconds)
             seconds += 1
             
             let displayDistance:String
             if (language == "zh-Hans") {
-                displayDistance = String(format:"%.1f", Double(round(distance*10)/10))
+                displayDistance = String(format:"%.2f", Double(round(distance*100)/100))
             } else {
-                displayDistance = String(format:"%.1f", Double(round((distance/1.60934)*10)/10))
+                displayDistance = String(format:"%.2f", Double(round((distance/1.60934)*100)/100))
             }
             
             let displayTime = Time.secondsFormatted(seconds: seconds)
@@ -142,7 +136,6 @@ class InRunningViewController: UIViewController, MKMapViewDelegate, CLLocationMa
 
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        print("Updated")
         let lastUpdatedLocation = locations.last! as CLLocation
         
         let center = CLLocationCoordinate2D(latitude: lastUpdatedLocation.coordinate.latitude, longitude: lastUpdatedLocation.coordinate.longitude)
@@ -175,7 +168,6 @@ class InRunningViewController: UIViewController, MKMapViewDelegate, CLLocationMa
                 if location.horizontalAccuracy < 163 {
                     if self.locations.count>0 && seconds>1 {
                         let increment = location.distance(from: self.locations.last!) / 1000.0
-                        print(increment)
                         if increment > 0.005 {
                             if !resumedFromPausing {
                                 distance += increment

@@ -107,7 +107,15 @@ class MeViewController: UITableViewController, UINavigationControllerDelegate, U
     }
     
     func updateRanking() {
-        self.rankingTitle.text = "\((rankingFetchResultsController?.fetchedObjects?.count)!)"
+        var count = 0
+        for object in (rankingFetchResultsController?.fetchedObjects)! {
+            let rankingItem = object as! Ranking
+            if (rankingItem.type! == "Weekly") {
+                count += 1
+            }
+        }
+        
+        self.rankingTitle.text = "\(count)"
     }
     
     func updateAchievement() {
@@ -231,7 +239,6 @@ class MeViewController: UITableViewController, UINavigationControllerDelegate, U
             })
 
         }
-        UIApplication.shared.setStatusBarStyle(.lightContent, animated: false)
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -261,6 +268,7 @@ class MeViewController: UITableViewController, UINavigationControllerDelegate, U
         if let signature = UserDefaults.standard.string(forKey: "signature") {
             userSignature.text = signature
         }
+        UIApplication.shared.setStatusBarStyle(.lightContent, animated: false)
         performFetch()
         updateUI()
     }
@@ -290,9 +298,6 @@ class MeViewController: UITableViewController, UINavigationControllerDelegate, U
         if let avatar = UIImage(contentsOfFile:avatarPath.path) {
             userAvatar.setImage(avatar, for: .normal)
         }
-        
-        print(Display.typeIsLike)
-        localizeLabels()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -315,9 +320,5 @@ class MeViewController: UITableViewController, UINavigationControllerDelegate, U
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
-    
-    func localizeLabels() {
-    }
-
 }
 

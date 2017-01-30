@@ -12,7 +12,7 @@ import AWSDynamoDB
 
 public enum TextFieldType:String {
     case username = "Name"
-    case signature = "Signature"
+    case signature = "What's up"
     case dailyWalkingGoal = "Daily walking goal"
     case dailyRunningGoal = "Daily running goal"
     case unknown = ""

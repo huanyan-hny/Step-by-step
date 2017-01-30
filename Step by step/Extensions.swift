@@ -59,8 +59,8 @@ extension StepsViewController {
                 let stepsRecord = records.first!
                 if (stepsRecord.value!.intValue < steps) {
                     stepsRecord.value = steps as NSNumber?
+                    stepsRecord.date = Date()
                 }
-                stepsRecord.date = Date()
             }
             try managedObjectContext?.save()
         } catch _ {}
@@ -125,9 +125,7 @@ extension RunningResultViewController {
             } else {
                 let distanceRecord = records.first!
                 if (distanceRecord.value!.doubleValue < run.distance!.doubleValue) {
-                    print(run.distance!)
                     distanceRecord.value = run.distance
-                    print(distanceRecord.value!)
                     distanceRecord.date = Date()
                 }
             }
@@ -148,8 +146,9 @@ extension RunningResultViewController {
                 let durationRecord = records.first!
                 if (durationRecord.value!.intValue < run.time!.intValue) {
                     durationRecord.value = run.time
+                    durationRecord.date = Date()
                 }
-                durationRecord.date = Date()
+               
             }
             try managedObjectContext?.save()
         } catch _ {}
@@ -166,10 +165,11 @@ extension RunningResultViewController {
                 savedRecord.synchronized = 0
             } else {
                 let paceRecord = records.first!
-                if (paceRecord.value == 0 || paceRecord.value!.intValue > run.pace!.intValue) {
+                if (run.pace!.intValue>0 && (paceRecord.value == 0 || paceRecord.value!.intValue > run.pace!.intValue)) {
                     paceRecord.value = run.pace
+                    paceRecord.date = Date()
                 }
-                paceRecord.date = Date()
+                
             }
             try managedObjectContext?.save()
         } catch _ {}

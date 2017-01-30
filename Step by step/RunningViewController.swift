@@ -58,7 +58,6 @@ class RunningViewController: UIViewController, MKMapViewDelegate, CLLocationMana
     }
     
     func mapViewDidFinishRenderingMap(_ mapView: MKMapView, fullyRendered: Bool) {
-        print("rendered")
         startRunningButton.backgroundColor = UIColor(red:49.0/255.0,green:168.0/255.0,blue:213.0/255.0,alpha:1.0)
         startRunningButton.isEnabled = true
     }
@@ -132,13 +131,13 @@ class RunningViewController: UIViewController, MKMapViewDelegate, CLLocationMana
         if (isLocationAccessAuthorized()) {
             if mapView.userLocation.location != nil {
                 if (poorGPS) {
-                    let alertController = UIAlertController(title: "Poor or no GPS signal", message: "Step by step might be unable to track your run accurately due to poor GPS signal, continue?", preferredStyle: .alert)
+                    let alertController = UIAlertController(title: NSLocalizedString("Poor or no GPS signal", comment: ""), message: NSLocalizedString("Step by step might be unable to track your run accurately due to poor GPS signal, continue?", comment: ""), preferredStyle: .alert)
                     
-                    let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+                    let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil)
                     
                     alertController.addAction(cancelAction)
                     
-                    let continueAction = UIAlertAction(title:"Continue", style: .default) {(action) in
+                    let continueAction = UIAlertAction(title:NSLocalizedString("Continue", comment: ""), style: .default) {(action) in
                         self.performSegue(withIdentifier: "startRunning", sender: self)
                     }
                     
@@ -194,7 +193,6 @@ class RunningViewController: UIViewController, MKMapViewDelegate, CLLocationMana
     
     @IBAction func unwindToRvc(segue: UIStoryboardSegue) {
         inRunning = false
-        print("I'm back")
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

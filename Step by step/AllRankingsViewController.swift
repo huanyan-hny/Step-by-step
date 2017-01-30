@@ -19,7 +19,7 @@ class AllRankingsViewController: UITableViewController {
     
     func displayEmptyMessage() {
         let messageLabel = UILabel(frame: CGRect(x:0,y:0,width:self.view.bounds.size.width,height:self.view.bounds.size.height))
-        messageLabel.text = "You don't have any ranking history yet"
+        messageLabel.text = NSLocalizedString("You don't have any ranking history yet", comment: "")
         messageLabel.textColor = Colors.myTextGray
         messageLabel.numberOfLines = 0;
         messageLabel.textAlignment = .center;
@@ -69,6 +69,7 @@ class AllRankingsViewController: UITableViewController {
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .medium
+        dateFormatter.locale = Locale(identifier: UserDefaults.standard.string(forKey: "AppleLocale")!)
         let displayDate = dateFormatter.string(from: ranking.startDate!) + " - " + dateFormatter.string(from: ranking.endDate!)
         
         

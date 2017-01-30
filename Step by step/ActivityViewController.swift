@@ -42,10 +42,10 @@ class ActivityViewController: UIViewController, MKMapViewDelegate {
         let displayPace:String
         
         if (language == "zh-Hans") {
-            displayDistance = String(format:"%.1f", Double(round(run!.distance!.doubleValue*10)/10))
+            displayDistance = String(format:"%.2f", Double(round(run!.distance!.doubleValue*100)/100))
             displayPace = Time.secondsFormatted(seconds: run!.pace!.intValue)
         } else {
-            displayDistance = String(format:"%.1f", Double(round((run!.distance!.doubleValue/1.60934)*10)/10))
+            displayDistance = String(format:"%.2f", Double(round((run!.distance!.doubleValue/1.60934)*100)/100))
             displayPace = Time.secondsFormatted(seconds:(Int(Double(run!.pace!.intValue)*1.60934)))
         }
         
@@ -71,14 +71,9 @@ class ActivityViewController: UIViewController, MKMapViewDelegate {
                 print("No weather information")
         }
         
-        if (language == "zh-Hans") {
-            if (run!.address_zh != nil && run!.city_zh != nil) {
-                locationLabel.text = run!.address_zh! + ", " + run!.city_zh!
-            }
-        } else {
-            if (run!.address != nil && run!.city != nil) {
-                locationLabel.text = run!.address! + ", " + run!.city!
-            }
+        
+        if (run!.address != nil && run!.city != nil) {
+            locationLabel.text = run!.address! + ", " + run!.city!
         }
         
         
@@ -477,6 +472,7 @@ class ActivityViewController: UIViewController, MKMapViewDelegate {
     override func viewWillAppear(_ animated: Bool) {
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .medium
+        dateFormatter.locale = Locale(identifier: UserDefaults.standard.string(forKey: "AppleLocale")!)
         self.navigationItem.title = dateFormatter.string(from: run!.date!)
     }
     

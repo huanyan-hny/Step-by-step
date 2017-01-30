@@ -110,8 +110,18 @@ class RankingViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
     }
     
+    func displayEmptyMessage() {
+        let messageLabel = UILabel(frame: CGRect(x:0,y:0,width:self.tableView.bounds.size.width,height:self.tableView.bounds.size.height))
+        messageLabel.text = NSLocalizedString("No one is here yet, come and be the first!", comment: "")
+        messageLabel.textColor = Colors.myTextGray
+        messageLabel.numberOfLines = 0;
+        messageLabel.textAlignment = .center;
+        messageLabel.font = UIFont(name: "TrebuchetMS", size: 15)
+        messageLabel.sizeToFit()
+        self.tableView.backgroundView = messageLabel;
+    }
+    
     func retrieveWeeklyRankingData() {
-        print("Retrieve ranking data")
         disableSwitch()
         let query = AWSDynamoDBQueryExpression()
         let component = calendar.dateComponents([.weekOfYear, .day, .month,.year,.weekday], from: Date())
@@ -133,14 +143,12 @@ class RankingViewController: UIViewController, UITableViewDelegate, UITableViewD
                 let paginatedOutput = task.result!
                 for item in paginatedOutput.items {
                     if let rankItem = item as? WeeklyRanking {
-                        if rankItem._appear!.boolValue {
+                        if rankItem._appear!.boolValue && rankItem._distance!.doubleValue >= 0.1 {
                             self.weeklyRankings.append(rankItem)
-                            print("Retrived rank item")
                         }
                     }
                 }
             }
-            print("Finished retrieving ranking data")
             self.weeklyRankings.sort(by: {$0._distance!.doubleValue>$1._distance!.doubleValue})
             DispatchQueue.main.async {
                 self.finishedLoading = true
@@ -148,7 +156,11 @@ class RankingViewController: UIViewController, UITableViewDelegate, UITableViewD
                 self.enableSwitch()
                 self.activityIndicator.stopAnimating()
                 self.activityView.isHidden = true
-                self.tableView.scrollToRow(at: [0,0], at: .top, animated: true)
+                if (self.weeklyRankings.count>0){
+                    self.tableView.scrollToRow(at: [0,0], at: .top, animated: true)
+                } else {
+                    self.displayEmptyMessage()
+                }
             }
             return nil
         })
@@ -156,7 +168,6 @@ class RankingViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func retrieveMonthlyRankingData() {
-        print("Retrieve ranking data")
         disableSwitch()
         let query = AWSDynamoDBQueryExpression()
         let component = calendar.dateComponents([.weekOfYear, .day, .month,.year,.weekday], from: Date())
@@ -178,15 +189,13 @@ class RankingViewController: UIViewController, UITableViewDelegate, UITableViewD
                 let paginatedOutput = task.result!
                 for item in paginatedOutput.items {
                     if let rankItem = item as? MonthlyRanking {
-                        if rankItem._appear!.boolValue {
+                        if rankItem._appear!.boolValue && rankItem._distance!.doubleValue >= 0.1 {
                             self.monthlyRankings.append(rankItem)
-                            print("Retrived rank item")
                         }
                     }
                 }
             }
             
-            print("Finished retrieving ranking data")
             self.monthlyRankings.sort(by: {$0._distance!.doubleValue>$1._distance!.doubleValue})
             DispatchQueue.main.async {
                 self.finishedLoading = true
@@ -194,7 +203,11 @@ class RankingViewController: UIViewController, UITableViewDelegate, UITableViewD
                 self.enableSwitch()
                 self.activityIndicator.stopAnimating()
                 self.activityView.isHidden = true
-                self.tableView.scrollToRow(at: [0,0], at: .top, animated: true)
+                if (self.monthlyRankings.count>0) {
+                    self.tableView.scrollToRow(at: [0,0], at: .top, animated: true)
+                } else {
+                    self.displayEmptyMessage()
+                }
             }
             return nil
         })
@@ -202,7 +215,6 @@ class RankingViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func retrieveUserData() {
-        print("Retrieve user data")
         disableSwitch()
         let scanExpression = AWSDynamoDBScanExpression()
         objectMapper.scan(User.classForCoder(), expression: scanExpression).continue(with: AWSExecutor.default(), with: {(task:AWSTask!)-> Any! in
@@ -218,11 +230,9 @@ class RankingViewController: UIViewController, UITableViewDelegate, UITableViewD
                     if let userItem = item as? User {
                         self.userNames[userItem._userId!] = userItem._name
                         self.userSignatures[userItem._userId!] = userItem._signature
-                        print("Retrived data for " + userItem._userId!)
                     }
                 }
             }
-            print("Finished retrieving user data")
             if (self.type == .weekly){
                 self.retrieveWeeklyRankingData()
             } else {
@@ -290,7 +300,6 @@ class RankingViewController: UIViewController, UITableViewDelegate, UITableViewD
                     }
                     
                     if (task.result != nil) {
-                        print("Retrieved avatar for " + self.userNames[rankCell.userId!]!)
                         let avatarPath = NSTemporaryDirectory().appending(rankCell.userId!)
                         let avatarUrl = URL(fileURLWithPath: avatarPath)
                         DispatchQueue.main.async {
@@ -491,6 +500,7 @@ class RankingViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .full
+        dateFormatter.locale = Locale(identifier: UserDefaults.standard.string(forKey: "AppleLocale")!)
         dateLabel.text = dateFormatter.string(from: Date())
         
         if (Display.typeIsLike == .iphone5) {

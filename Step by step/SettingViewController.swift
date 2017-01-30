@@ -16,7 +16,7 @@ import SafariServices
 class SettingViewController: UITableViewController, SFSafariViewControllerDelegate{
 
     var fieldType = TextFieldType.unknown
-    var maxTextLength = 15
+    var maxTextLength = 10
     
     func logout() {
         if (AWSGoogleSignInProvider.sharedInstance().isLoggedIn){
@@ -49,11 +49,11 @@ class SettingViewController: UITableViewController, SFSafariViewControllerDelega
         self.tableView.deselectRow(at: indexPath, animated: true)
         if (indexPath == [0,0]) {
             fieldType = .username
-            maxTextLength = 15
+            maxTextLength = 10
             performSegue(withIdentifier: "changeProfile", sender: self)
         } else if (indexPath == [0,1]) {
             fieldType = .signature
-            maxTextLength = 30
+            maxTextLength = 20
             performSegue(withIdentifier: "changeProfile", sender: self)
         } else if (indexPath == [2,1]) {
             if #available(iOS 9.0, *) {
@@ -99,10 +99,7 @@ class SettingViewController: UITableViewController, SFSafariViewControllerDelega
         return 45
     }
     
-    @available(iOS 9.0, *)
-    func safariViewControllerDidFinish(_ controller: SFSafariViewController) {
-        UIApplication.shared.setStatusBarStyle(.lightContent, animated: false)
-    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -118,6 +115,7 @@ class SettingViewController: UITableViewController, SFSafariViewControllerDelega
     
     override func viewWillAppear(_ animated: Bool) {
         self.tabBarController?.tabBar.tintColor = Colors.myBlue
+        UIApplication.shared.setStatusBarStyle(.lightContent, animated: false)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

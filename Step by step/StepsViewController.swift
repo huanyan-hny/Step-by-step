@@ -1,3 +1,5 @@
+
+
 //
 //  HomeViewController.swift
 //  Step by step
@@ -42,13 +44,14 @@ class StepsViewController: UIViewController, PNChartDelegate, UIScrollViewDelega
     var dayOfWeek = 1
     var calendar = Calendar.current
     var dataUpdatedCount = 0
+    var walkingChart = PNBarChart()
+    var runningChart = PNBarChart()
     
+    let userID = UserDefaults.standard.string(forKey: "userID")
     let language = UserDefaults.standard.array(forKey: "AppleLanguages")!.first as! String
     let objectMapper = AWSDynamoDBObjectMapper.default()
     let monitor = StepsMonitor()
     let scrollView = UIScrollView()
-    let walkingChart = PNBarChart()
-    let runningChart = PNBarChart()
     let dateFormatter = DateFormatter()
     let pedometer = Pedometer.sharedInstance
     let yWalkingLabelZero = UILabel()
@@ -77,6 +80,7 @@ class StepsViewController: UIViewController, PNChartDelegate, UIScrollViewDelega
             scrollView.frame = CGRect(x:0, y:360 , width:414, height:180)
             weekLabel.font = UIFont.systemFont(ofSize: 15)
             totalStepsLabel.font = UIFont.systemFont(ofSize: 28)
+            totalRunningsLabel.font = UIFont.systemFont(ofSize: 24)
             thisWeekLabel.font = UIFont.systemFont(ofSize: 14)
             walkingLabel.font = UIFont.systemFont(ofSize: 14)
         } else if (Display.typeIsLike == .iphone7) { //iphone 7
@@ -88,6 +92,7 @@ class StepsViewController: UIViewController, PNChartDelegate, UIScrollViewDelega
             scrollView.frame = CGRect(x:0, y:330, width:375, height:150)
             weekLabel.font = UIFont.systemFont(ofSize: 13)
             totalStepsLabel.font = UIFont.systemFont(ofSize: 25)
+            totalRunningsLabel.font = UIFont.systemFont(ofSize: 21)
             thisWeekLabel.font = UIFont.systemFont(ofSize: 13)
             walkingLabel.font = UIFont.systemFont(ofSize: 13)
         } else { //iphone SE
@@ -99,6 +104,7 @@ class StepsViewController: UIViewController, PNChartDelegate, UIScrollViewDelega
             scrollView.frame = CGRect(x:0, y:280, width:320, height:125)
             weekLabel.font = UIFont.systemFont(ofSize: 11)
             totalStepsLabel.font = UIFont.systemFont(ofSize: 20)
+            totalRunningsLabel.font = UIFont.systemFont(ofSize: 17)
             thisWeekLabel.font = UIFont.systemFont(ofSize: 11)
             walkingLabel.font = UIFont.systemFont(ofSize: 11)
         }
@@ -145,7 +151,6 @@ class StepsViewController: UIViewController, PNChartDelegate, UIScrollViewDelega
         totalRunningsLabel.frame = totalStepsLabel.frame
         totalRunningsLabel.frame.origin.x += scrollView.frame.width
         totalRunningsLabel.center.x = weekLabel2.center.x
-        totalRunningsLabel.font = totalStepsLabel.font
         totalRunningsLabel.textColor = Colors.myBlue
         totalRunningsLabel.textAlignment = .center
         
@@ -210,6 +215,7 @@ class StepsViewController: UIViewController, PNChartDelegate, UIScrollViewDelega
         chart.xLabels = weekDays
         chart.yValues = values
         chart.yValueMax = maxValue
+        colors = [UIColor](repeatElement(Colors.myBlue, count: 7))
         colors[dayOfWeek-1] = Colors.myOrange
         chart.strokeColors = colors
     
@@ -264,6 +270,14 @@ class StepsViewController: UIViewController, PNChartDelegate, UIScrollViewDelega
     
     func retriveStatisticsData() {
         
+        walkingGoal = UserDefaults.standard.integer(forKey: "dailyWalkingGoal")
+        runningGoal = UserDefaults.standard.double(forKey: "dailyRunningGoal")
+        walkingData = [Int](repeatElement(0, count: 7))
+        emptyWalkingData = [Int](repeatElement(0, count: 7))
+        runningData = [Double](repeatElement(0, count: 7))
+        emptyRunningData = [Double](repeatElement(0, count: 7))
+        dataUpdatedCount = 0
+        
         let today = Date()
         let beginOfToday = calendar.startOfDay(for: today)
         let beginOfTomorrow = calendar.startOfDay(for: calendar.date(byAdding: .day, value: 1, to: beginOfToday)!)
@@ -277,24 +291,27 @@ class StepsViewController: UIViewController, PNChartDelegate, UIScrollViewDelega
         }
         dayOfWeek = component.weekday!
     
+        
         for i in 1...component.weekday! {
             let beginOfWeekDay = calendar.date(byAdding: .day, value: -(component.weekday!-i), to: beginOfToday)!
             let endOfWeekDay = calendar.date(byAdding: .day, value: -(component.weekday!-i), to: endOfToday)!
             
-            runFetchRequest.predicate = NSPredicate(format: "userID = %@ AND date>=%@ AND date <=%@", UserDefaults.standard.string(forKey: "userID")!,beginOfWeekDay as NSDate,endOfWeekDay as NSDate)
-            do{ try runFetchResultsController?.performFetch()} catch _ { print("Could not fetch run!")}
-            
-            var runningDistance = 0.0
-            for object in (runFetchResultsController?.fetchedObjects)! {
-                if let run = object as? Run {
-                    if (language == "zh-Hans"){
-                        runningDistance += run.distance!.doubleValue
-                    } else {
-                        runningDistance += run.distance!.doubleValue/1.60934
+            if (userID != nil) {
+                runFetchRequest.predicate = NSPredicate(format: "userID = %@ AND date>=%@ AND date <=%@", userID!,beginOfWeekDay as NSDate,endOfWeekDay as NSDate)
+                do{ try runFetchResultsController?.performFetch()} catch _ { print("Could not fetch run!")}
+                
+                var runningDistance = 0.0
+                for object in (runFetchResultsController?.fetchedObjects)! {
+                    if let run = object as? Run {
+                        if (language == "zh-Hans"){
+                            runningDistance += run.distance!.doubleValue
+                        } else {
+                            runningDistance += run.distance!.doubleValue/1.60934
+                        }
                     }
                 }
+                self.runningData[i-1] = runningDistance
             }
-            self.runningData[i-1] = runningDistance
             
             pedometer.queryPedometerData(from: beginOfWeekDay, to: endOfWeekDay, withHandler: {data, error in
                 if (error==nil) {
@@ -356,6 +373,19 @@ class StepsViewController: UIViewController, PNChartDelegate, UIScrollViewDelega
         self.currentDistance.text = "\(self.monitor.distance)"
         self.currentCalorie.text = "\(self.monitor.calorie)"
         self.currentLift.text = "\(self.monitor.lift)"
+        let today = Date()
+        let beginOfToday = calendar.startOfDay(for: today)
+        let beginOfTomorrow = calendar.startOfDay(for: calendar.date(byAdding: .day, value: 1, to: beginOfToday)!)
+        let endOfToday = calendar.date(byAdding: .second, value: -1, to: beginOfTomorrow)!
+        pedometer.queryPedometerData(from: beginOfToday, to: endOfToday, withHandler: {data, error in
+            if (error==nil) {
+                DispatchQueue.main.async {
+                    let steps = data!.numberOfSteps.intValue
+                    self.walkingData[self.dayOfWeek-1] = steps
+                    self.updateUI()
+                }
+            }
+        })
     }
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
@@ -370,16 +400,21 @@ class StepsViewController: UIViewController, PNChartDelegate, UIScrollViewDelega
         }
     }
     
+    func onNewDay() {
+        walkingChart.removeFromSuperview()
+        runningChart.removeFromSuperview()
+        walkingChart = PNBarChart()
+        runningChart = PNBarChart()
+        self.monitor.refresh()
+        self.retriveStatisticsData()
+        self.currentSteps.text = "\(self.monitor.steps)"
+        self.currentDistance.text = "\(self.monitor.distance)"
+        self.currentCalorie.text = "\(self.monitor.calorie)"
+        self.currentLift.text = "\(self.monitor.lift)"
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         self.tabBarController?.tabBar.tintColor = Colors.myBlue
-        walkingGoal = UserDefaults.standard.integer(forKey: "dailyWalkingGoal")
-        runningGoal = UserDefaults.standard.double(forKey: "dailyRunningGoal")
-        walkingData = [Int](repeatElement(0, count: 7))
-        emptyWalkingData = [Int](repeatElement(0, count: 7))
-        runningData = [Double](repeatElement(0, count: 7))
-        emptyRunningData = [Double](repeatElement(0, count: 7))
-        monitor.refresh()
-        dataUpdatedCount = 0
         retriveStatisticsData()
     }
     
@@ -390,10 +425,16 @@ class StepsViewController: UIViewController, PNChartDelegate, UIScrollViewDelega
         NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: "steps"), object: monitor, queue: OperationQueue.main){ notification in
             self.updateSteps()
         }
+        
+        NotificationCenter.default.addObserver(forName: NSNotification.Name.UIApplicationSignificantTimeChange, object: nil, queue: OperationQueue.main){notification in
+            self.onNewDay()
+        }
         updateSteps()
+        
         runFetchRequest.sortDescriptors = [NSSortDescriptor(key: "date", ascending: false)]
         runFetchResultsController = NSFetchedResultsController(fetchRequest: runFetchRequest, managedObjectContext: managedObjectContext!, sectionNameKeyPath: "date", cacheName: nil)
-        
+        dateFormatter.locale = Locale(identifier: UserDefaults.standard.string(forKey: "AppleLocale")!)
+
         if(language == "zh-Hans") {
             dateFormatter.dateFormat = "YYYY年MMM";
             weekDays = ["周日","周一","周二","周三","周四","周五","周六"]

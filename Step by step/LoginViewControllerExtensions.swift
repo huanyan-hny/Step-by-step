@@ -27,13 +27,12 @@ import GoogleSignIn
 
 
 extension LoginViewController {
-
-    
     func handleGoogleLogin() {
         AWSGoogleSignInProvider.sharedInstance().setScopes(["profile", "openid"])
         AWSGoogleSignInProvider.sharedInstance().setViewControllerForGoogleSignIn(self)
         AWSIdentityManager.defaultIdentityManager().loginWithSign(AWSGoogleSignInProvider.sharedInstance(), completionHandler: {(result:Any?, error:Error?) -> Void in
             DispatchQueue.main.async {
+                UIApplication.shared.setStatusBarStyle(.lightContent, animated: false)
                 if (error != nil) {
                     self.stopLoadingAnimation()
                     let alertController = UIAlertController(title: NSLocalizedString("Unknown error", comment: ""), message: NSLocalizedString("Please try again later", comment: ""), preferredStyle: .alert)
@@ -51,6 +50,7 @@ extension LoginViewController {
                     let documentPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
                     let avatarPath = documentPath.appendingPathComponent(userID!)
                     UserDefaults.standard.set(userID, forKey: "userID")
+                    UserDefaults.standard.set(true, forKey: "appear")
                     
                     self.objectMapper.load(User.classForCoder(), hashKey: userID!, rangeKey: nil).continue(with: AWSExecutor.default(), with: {(task:AWSTask!) -> Any! in
                         if (task.error != nil) {
@@ -96,7 +96,6 @@ extension LoginViewController {
                             
                             UserDefaults.standard.set(username, forKey: "username")
                             UserDefaults.standard.set(" ", forKey: "signature")
-                            UserDefaults.standard.set(true, forKey: "appear")
                             
                             let avatarData = try? Data(contentsOf: avatarURL!)
                             if let userAvatar = UIImage(data: avatarData!) {
@@ -181,6 +180,7 @@ extension LoginViewController {
                 } else {
                     if let userID = AWSIdentityManager.defaultIdentityManager().userName {
                         UserDefaults.standard.set(userID, forKey: "userID")
+                        UserDefaults.standard.set(true, forKey: "appear")
                         let documentPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
                         let avatarPath = documentPath.appendingPathComponent(userID)
                         self.objectMapper.load(User.classForCoder(), hashKey: userID, rangeKey: nil).continue(with: AWSExecutor.default(), with: {(task:AWSTask!) -> Any! in
@@ -248,6 +248,7 @@ extension LoginViewController {
         guard let usernameValue = self.usernameField.text, !usernameValue.isEmpty else {
             self.stopLoadingAnimation()
             self.enableButtons()
+            self.forgotButton.isEnabled = false
             let alertController = UIAlertController(title: NSLocalizedString("Missing Username", comment: ""), message: NSLocalizedString("Please enter username", comment: ""), preferredStyle: .alert)
             
             let cancelAction = UIAlertAction(title: "OK", style: .cancel)  {(action) in
@@ -263,6 +264,7 @@ extension LoginViewController {
         guard let passwordValue = self.passwordField.text,!passwordValue.isEmpty else {
             self.stopLoadingAnimation()
             self.enableButtons()
+            self.forgotButton.isEnabled = false
             let alertController = UIAlertController(title: NSLocalizedString("Missing Password", comment: ""), message: NSLocalizedString("Please enter password", comment: ""), preferredStyle: .alert)
             
             let cancelAction = UIAlertAction(title: "OK", style: .cancel)  {(action) in
@@ -300,6 +302,7 @@ extension LoginViewController {
         if (passwordValue.characters.count<6) {
             self.stopLoadingAnimation()
             self.enableButtons()
+            self.forgotButton.isEnabled = false
             let alertController = UIAlertController(title: NSLocalizedString("Password too short", comment: ""), message: NSLocalizedString("The length of password must be at least 6", comment: ""), preferredStyle: .alert)
             
             let cancelAction = UIAlertAction(title: "OK", style: .cancel)  {(action) in
@@ -310,17 +313,26 @@ extension LoginViewController {
             self.present(alertController, animated: true, completion: nil)
         }
         
-        signUp(usernameValue: usernameValue, passwordValue: passwordValue, attributes: attributes)
-        
-    }
-    
-    func signUp(usernameValue:String, passwordValue:String, attributes:[AWSCognitoIdentityUserAttributeType]) {
         self.pool?.signUp(usernameValue, password: passwordValue, userAttributes: attributes, validationData: nil).continue(with: AWSExecutor.default(), with: {(task: AWSTask) -> Any? in
             DispatchQueue.main.async {
                 self.stopLoadingAnimation()
                 self.enableButtons()
-                if (task.error != nil) {
+                self.forgotButton.isEnabled = false
+                if let error = task.error as? NSError {
+                    let errorMessage = error.userInfo["message"]! as! String
+                    
                     let alertController = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: NSLocalizedString("Please check your input and try again", comment: ""), preferredStyle: .alert)
+                    
+                    if (errorMessage == "User already exists") {
+                        alertController.title = NSLocalizedString("User already exists", comment: "")
+                        alertController.message = NSLocalizedString("Please try another username", comment: "")
+                    }
+                    
+                    if (errorMessage == "Invalid email address format.") {
+                        alertController.title = NSLocalizedString("Invalid email address", comment: "")
+                        alertController.message = NSLocalizedString("Please input a valid email address", comment: "")
+                    }
+                    
                     
                     let cancelAction = UIAlertAction(title: "OK", style: .cancel)  {(action) in
                         return
@@ -344,8 +356,18 @@ extension LoginViewController {
                 if (task.result != nil) {
                     let response = task.result! as AWSCognitoIdentityUserPoolSignUpResponse
                     if (response.user.confirmedStatus != .confirmed) {
-                        self.user = self.pool?.getUser(self.usernameField.text!)
-                        self.confirmSignUp()
+                        
+                        let alertController = UIAlertController(title: NSLocalizedString("Registration in progress", comment: ""), message: NSLocalizedString("Please check your email and enter the confirmation code received", comment: ""), preferredStyle: .alert)
+                        
+                        let cancelAction = UIAlertAction(title: "OK", style: .cancel)  {(action) in
+                            self.user = self.pool?.getUser(self.usernameField.text!)
+                            self.confirmSignUp()
+                            return
+                        }
+                        
+                        alertController.addAction(cancelAction)
+                        self.present(alertController, animated: true, completion: nil)
+                        
                     } else {
                         self.restoreLoginView()
                     }
@@ -355,13 +377,16 @@ extension LoginViewController {
             
             return nil
         })
+
+        
     }
-    
+
     
     func handleSignUpConfirm() {
         guard let confirmationCodeValue = self.codeField.text,!confirmationCodeValue.isEmpty else {
             self.stopLoadingAnimation()
             self.enableButtons()
+            self.forgotButton.isEnabled = false
             let alertController = UIAlertController(title: NSLocalizedString("Missing Confirmation Code", comment: ""), message: NSLocalizedString("Please enter the confirmation code received", comment: ""), preferredStyle: .alert)
             
             let cancelAction = UIAlertAction(title: "OK", style: .cancel)  {(action) in
@@ -398,7 +423,6 @@ extension LoginViewController {
                             
                             self.objectMapper.save(newUser!, completionHandler: {(error: Error?) -> Void in
                                 DispatchQueue.main.async {
-                                    UserDefaults.standard.set(true, forKey: "appear")
                                     let alertController = UIAlertController(title: NSLocalizedString("Registration completed", comment: ""), message: NSLocalizedString("Please log in with your new account", comment: ""), preferredStyle: .alert)
                                     
                                     let cancelAction = UIAlertAction(title: "OK", style: .cancel)  {(action) in
@@ -674,9 +698,8 @@ extension LoginViewController {
         
         let userID = AccessToken.current!.userId!
         UserDefaults.standard.set(userID, forKey: "userID")
-        
-        
-        print("Fetching profile")
+        UserDefaults.standard.set(true, forKey: "appear")
+
         let connection = GraphRequestConnection()
         connection.add(GraphRequest(graphPath: "/me",parameters:["fields":"name, email, picture.type(large)"])) { httpResponse, result in
             switch result {
@@ -688,13 +711,11 @@ extension LoginViewController {
                     if (task.result == nil) {
                         UserDefaults.standard.set("Step by step", forKey: "username")
                         UserDefaults.standard.set(" ", forKey: "signature")
-                        UserDefaults.standard.set(true, forKey: "appear")
                         
                         let results = response.dictionaryValue
                         
                         if let username = results?["name"] as? String {
                             UserDefaults.standard.set(username, forKey: "username")
-                            print(username)
                         }
                         
                         
@@ -769,12 +790,14 @@ extension LoginViewController {
                             let manager = AWSS3TransferManager.default()
                             manager?.download(downloadRequest).continue(with: AWSExecutor.default(), with: {(task:AWSTask!) -> Any! in
                                 DispatchQueue.main.async {
+                                    self.stopLoadingAnimation()
                                     self.performSegue(withIdentifier: "toMain", sender: self)
                                 }
                                 return nil
                             })
                         } else {
                             DispatchQueue.main.async {
+                                self.stopLoadingAnimation()
                                 self.performSegue(withIdentifier: "toMain", sender: self)
                             }
                         }
@@ -783,8 +806,8 @@ extension LoginViewController {
                 })
                 
             case .failed(let error):
-                print(error)
                 DispatchQueue.main.async{
+                    self.stopLoadingAnimation()
                     let alertController = UIAlertController(title: NSLocalizedString("Fail to login", comment: ""), message: NSLocalizedString("Please try again later", comment: "") + "(Error:\(error.localizedDescription))", preferredStyle: .alert)
                     
                     let cancelAction = UIAlertAction(title: "OK", style: .cancel)  {(action) in
@@ -803,7 +826,6 @@ extension LoginViewController {
 
 extension LoginViewController:UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        print("Return pressed")
         textField.resignFirstResponder()
         return false
     }

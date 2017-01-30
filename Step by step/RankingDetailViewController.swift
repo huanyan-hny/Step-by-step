@@ -106,7 +106,7 @@ class RankingDetailViewController: UIViewController {
         
         separator.center.y = (thisweekLabel.center.y + totalDistance.center.y)/2-3
         
-        drawWeeklyChart(chart: barChart, values: data, maxValue: 6)
+        drawWeeklyChart(chart: barChart, values: data, maxValue: Float(UserDefaults.standard.double(forKey: "dailyRunningGoal")))
     }
     
     func drawWeeklyChart(chart:PNBarChart,values:[Any], maxValue:Float) {

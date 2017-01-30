@@ -21,7 +21,7 @@ class AllActivitiesViewController: UITableViewController, NSFetchedResultsContro
     
     func displayEmptyMessage() {
         let messageLabel = UILabel(frame: CGRect(x:0,y:0,width:self.view.bounds.size.width,height:self.view.bounds.size.height))
-        messageLabel.text = NSLocalizedString("No running", comment: "")
+        messageLabel.text = NSLocalizedString("You don't have any running activities yet", comment: "")
         messageLabel.textColor = Colors.myTextGray
         messageLabel.numberOfLines = 0;
         messageLabel.textAlignment = .center;
@@ -54,10 +54,10 @@ class AllActivitiesViewController: UITableViewController, NSFetchedResultsContro
         let displayDistance:String
         let displayTime = Time.secondsFormattedString(seconds: run.time!.intValue)
         if (language == "zh-Hans") {
-            displayDistance = String(format:"%.1f", Double(round(run.distance!.doubleValue*10)/10))
+            displayDistance = String(format:"%.2f", Double(round(run.distance!.doubleValue*100)/100))
             cell.distanceLabel.text = "\(displayDistance) 公里"
         } else {
-            displayDistance = String(format:"%.1f", Double(round((run.distance!.doubleValue/1.60934)*10)/10))
+            displayDistance = String(format:"%.2f", Double(round((run.distance!.doubleValue/1.60934)*100)/100))
             cell.distanceLabel.text = "\(displayDistance) miles"
         }
         
@@ -139,6 +139,7 @@ class AllActivitiesViewController: UITableViewController, NSFetchedResultsContro
         self.navigationItem.title = NSLocalizedString("Run", comment: "")
         self.navigationController!.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
         dateFormatter.dateStyle = .medium
+        dateFormatter.locale = Locale(identifier: UserDefaults.standard.string(forKey: "AppleLocale")!)
         tableView.register(UITableViewHeaderFooterView.classForCoder(), forHeaderFooterViewReuseIdentifier: "ActivityTableHeaderView")
         if (Display.typeIsLike == .iphone5) {
             sectionHeaderHeight = CGFloat(26)

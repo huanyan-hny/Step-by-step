@@ -58,10 +58,10 @@ class RunningResultViewController: UIViewController,MKMapViewDelegate, UITextFie
         let displayDistance:String
         let displayPace:String
         if (language == "zh-Hans") {
-            displayDistance = String(format:"%.1f", Double(round(distance*10)/10))
+            displayDistance = String(format:"%.2f", Double(round(distance*100)/100))
             displayPace = Time.secondsFormatted(seconds: pace)
         } else {
-            displayDistance = String(format:"%.1f", Double(round((distance/1.60934)*10)/10))
+            displayDistance = String(format:"%.2f", Double(round((distance/1.60934)*100)/100))
             displayPace = Time.secondsFormatted(seconds:(Int(Double(pace)*1.60934)))
         }
         
@@ -212,7 +212,6 @@ class RunningResultViewController: UIViewController,MKMapViewDelegate, UITextFie
         textField!.resignFirstResponder()
         notes.resignFirstResponder()
         startLoadingAnimation()
-        print("Saving")
         let savedRun = NSEntityDescription.insertNewObject(forEntityName: "Run", into:managedObjectContext!) as! Run
         savedRun.userID = UserDefaults.standard.string(forKey: "userID")
         savedRun.distance = distance as NSNumber?
@@ -241,7 +240,6 @@ class RunningResultViewController: UIViewController,MKMapViewDelegate, UITextFie
         }
         updateRunRecord(run: savedRun)
         
-        print("Uploading to Server")
         let savedAllTimeRun = AllTimeRun()
         savedAllTimeRun?._userId = UserDefaults.standard.string(forKey: "userID")
         savedAllTimeRun?._distance = distance as NSNumber?
@@ -253,11 +251,13 @@ class RunningResultViewController: UIViewController,MKMapViewDelegate, UITextFie
         savedAllTimeRun?._address = address
         savedAllTimeRun?._city = city
         savedAllTimeRun?._country = country
+        if (notes.text != "") {
+            savedAllTimeRun?._notes = notes.text
+        }
         
         objectMapper.save(savedAllTimeRun!, completionHandler: {(error:Error?) in
             DispatchQueue.main.async {
                 if (error != nil) {
-                    print("allTimeFailed")
                     self.stopLoadingAnimation()
                     let alertController = UIAlertController(title: NSLocalizedString("Fail to upload to server", comment: ""), message: NSLocalizedString("You can upload the run later in running history", comment: "") + "(Error:\(error!.localizedDescription))", preferredStyle: .alert)
                     
@@ -270,7 +270,20 @@ class RunningResultViewController: UIViewController,MKMapViewDelegate, UITextFie
                     alertController.addAction(cancelAction)
                     self.present(alertController, animated: true, completion: nil)
                 } else {
-                    self.updateWeeklyRankingTable(savedRun:savedRun)
+                    if (self.pace < 250 && self.pace > 0) {
+                        self.stopLoadingAnimation()
+                        let alertController = UIAlertController(title: NSLocalizedString("You ran too fast", comment: ""), message: NSLocalizedString("This run will not get ranked", comment:""), preferredStyle: .alert)
+                        
+                        let cancelAction = UIAlertAction(title: "OK", style: .cancel)  {(action) in
+                            savedRun.synchronized = 1
+                            do{ try self.managedObjectContext!.save()} catch _ { print("Could not save run!")}
+                            self.performSegue(withIdentifier: "unwindToRvc", sender: self)
+                        }
+                        alertController.addAction(cancelAction)
+                        self.present(alertController, animated: true, completion: nil)
+                    } else {
+                        self.updateWeeklyRankingTable(savedRun:savedRun)
+                    }
                 }
             }
         })
@@ -283,7 +296,6 @@ class RunningResultViewController: UIViewController,MKMapViewDelegate, UITextFie
         objectMapper.load(WeeklyRanking.classForCoder(), hashKey: weekNum, rangeKey:userID).continue(with: AWSExecutor.default(), with: {(task:AWSTask!) -> Any! in
             DispatchQueue.main.async {
                 if (task.error != nil) {
-                    print("weeklyFailed")
                     self.stopLoadingAnimation()
                     let alertController = UIAlertController(title: NSLocalizedString("Fail to upload to server", comment: ""), message: NSLocalizedString("You can upload the run later in running history", comment: "") + "(Error:\(task.error!.localizedDescription))", preferredStyle: .alert)
                     
@@ -321,7 +333,6 @@ class RunningResultViewController: UIViewController,MKMapViewDelegate, UITextFie
         objectMapper.load(MonthlyRanking.classForCoder(), hashKey: monthNum, rangeKey:userID).continue(with: AWSExecutor.default(), with: {(task:AWSTask!) -> Any! in
             DispatchQueue.main.async {
                 if (task.error != nil) {
-                    print("Monthly Failed")
                     self.stopLoadingAnimation()
                     let alertController = UIAlertController(title: NSLocalizedString("Fail to upload to server", comment: ""), message: NSLocalizedString("You can upload the run later in running history", comment: "") + "(Error:\(task.error!.localizedDescription))", preferredStyle: .alert)
                     
@@ -424,6 +435,7 @@ class RunningResultViewController: UIViewController,MKMapViewDelegate, UITextFie
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .medium
+        dateFormatter.locale = Locale(identifier: UserDefaults.standard.string(forKey: "AppleLocale")!)
         self.navigationItem.title = dateFormatter.string(from: date!)
         
         
@@ -451,6 +463,10 @@ class RunningResultViewController: UIViewController,MKMapViewDelegate, UITextFie
     
     func changeFirstResponder() {
         textField?.becomeFirstResponder()
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        notes.text = textField.text
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

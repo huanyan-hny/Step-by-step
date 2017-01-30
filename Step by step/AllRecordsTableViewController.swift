@@ -44,6 +44,7 @@ class AllRecordsTableViewController: UITableViewController {
     func updateRecords() {
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .medium
+        dateFormatter.locale = Locale(identifier: UserDefaults.standard.string(forKey: "AppleLocale")!)
         for object in fetchResultsController!.fetchedObjects! {
             let record = object as! Record
             if let type = record.type {

@@ -40,8 +40,8 @@
 /* Class = "UILabel"; text = "Avg min/mi"; ObjectID = "3gJ-IN-eqX"; */
 "3gJ-IN-eqX.text" = "配速(分钟/公里)";
 
-/* Class = "UILabel"; text = "0 min/mi"; ObjectID = "3jJ-fY-m0H"; */
-"3jJ-fY-m0H.text" = "0 分钟/公里";
+/* Class = "UILabel"; text = "00:00/mi"; ObjectID = "3jJ-fY-m0H"; */
+"3jJ-fY-m0H.text" = "00:00/公里";
 
 /* Class = "UILabel"; text = "Silver Medal"; ObjectID = "4WU-c4-dY7"; */
 "4WU-c4-dY7.text" = "银牌";
@@ -290,7 +290,7 @@
 "Yfr-nx-MdK.text" = "跑步";
 
 /* Class = "UILabel"; text = "Rate me"; ObjectID = "Z0l-ib-0y1"; */
-"Z0l-ib-0y1.text" = "喜欢步步吗？给个好评吧！";
+"Z0l-ib-0y1.text" = "喜欢步步吗？去App Store评个分吧！";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "Zbb-vG-rHy"; */
 "Zbb-vG-rHy.text" = "Label";
@@ -448,7 +448,7 @@
 /* Class = "UILabel"; text = "Log in with"; ObjectID = "qlK-bE-tqn"; */
 "qlK-bE-tqn.text" = "第三方登录";
 
-/* Class = "UILabel"; text = "0.00"; ObjectID = "qsP-xr-QdS"; */
+/* Class = "UILabel"; text = "0.0"; ObjectID = "qsP-xr-QdS"; */
 "qsP-xr-QdS.text" = "0.00";
 
 /* Class = "UILabel"; text = "00:00"; ObjectID = "rD8-i2-kHn"; */

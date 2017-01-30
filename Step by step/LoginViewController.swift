@@ -67,6 +67,7 @@ class LoginViewController: UIViewController {
     
     @IBAction func loginViaFacebook(_ sender: UIButton) {
         UIApplication.shared.setStatusBarStyle(.default, animated: false)
+        startLoadingAnimation()
         LoginManager().logIn([.publicProfile,.email], viewController: self, completion: {(result:LoginResult) in
             UIApplication.shared.setStatusBarStyle(.lightContent, animated: false)
             if (AccessToken.current != nil) {
@@ -76,6 +77,7 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func loginViaGoogle(_ sender: UIButton) {
+        UIApplication.shared.setStatusBarStyle(.default, animated: false)
         startLoadingAnimation()
         handleGoogleLogin()
     }
@@ -410,7 +412,6 @@ class LoginViewController: UIViewController {
     }
     
     func checkLoginStatus() {
-        print("Checking Login Status")
         
         if (AWSGoogleSignInProvider.sharedInstance().isLoggedIn){
             DispatchQueue.main.async {
@@ -443,8 +444,8 @@ class LoginViewController: UIViewController {
             passwordField.center.y += 40
             actionButton.center.y += 90
             actionButton.frame.size.height -= 5
-            actionButton.titleLabel?.font = UIFont.systemFont(ofSize: 12)
             
+            actionButton.titleLabel?.font = UIFont.systemFont(ofSize: 12)
             usernameField.font = UIFont.systemFont(ofSize: 12)
             passwordField.font = UIFont.systemFont(ofSize: 12)
             emailField.font = UIFont.systemFont(ofSize: 12)
@@ -458,6 +459,23 @@ class LoginViewController: UIViewController {
             actionButton.frame = usernameField.frame
             passwordField.center.y += 55
             actionButton.center.y += 110
+        } else if (Display.typeIsLike == .iphone4) {
+            usernameField.frame.size.width = 140
+            usernameField.center.x = self.view.frame.width/2
+            usernameField.center.y = self.view.frame.height/2 - 30
+            passwordField.frame = usernameField.frame
+            actionButton.frame = usernameField.frame
+            passwordField.center.y += 40
+            actionButton.center.y += 75
+            actionButton.frame.size.height -= 20
+            
+            actionButton.titleLabel?.font = UIFont.systemFont(ofSize: 10)
+            usernameField.font = UIFont.systemFont(ofSize: 10)
+            passwordField.font = UIFont.systemFont(ofSize: 10)
+            emailField.font = UIFont.systemFont(ofSize: 10)
+            codeField.font = UIFont.systemFont(ofSize: 10)
+            thumbnailSize = 21
+            thumbnailViewSize = 27
         }
         loginwithLabel.sizeToFit()
         loginwithLabel.center.x = self.view.frame.width/2
@@ -469,6 +487,8 @@ class LoginViewController: UIViewController {
             appIcon.frame.size = CGSize(width: 121, height: 121)
         } else if (Display.typeIsLike == .iphone5) {
             appIcon.frame.size = CGSize(width:94, height:94)
+        } else if (Display.typeIsLike == .iphone4) {
+            appIcon.frame.size = CGSize(width:79, height:79)
         }
         
         appIcon.center = self.view.center
@@ -494,6 +514,8 @@ class LoginViewController: UIViewController {
                 self.appIcon.center.y -= 180
             } else if (Display.typeIsLike == .iphone7plus) {
                 self.appIcon.center.y -= 200
+            } else if (Display.typeIsLike == .iphone4) {
+                self.appIcon.center.y -= 140
             }
             
         }, completion: {(completed:Bool) in
@@ -517,7 +539,6 @@ class LoginViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        pool = AWSCognitoIdentityUserPool.init(forKey: AWSCognitoUserPoolsSignInProviderKey)
         restoreLoginView()
         isNew = true
     }
@@ -536,6 +557,7 @@ class LoginViewController: UIViewController {
         codeField.addTarget(self, action: #selector(checkText), for: .editingChanged)
         manualLayout()
         drawUI()
+        pool = AWSCognitoIdentityUserPool.init(forKey: AWSCognitoUserPoolsSignInProviderKey)
         
         if (UserDefaults.standard.integer(forKey: "dailyWalkingGoal") == 0) {
             UserDefaults.standard.set(10000, forKey: "dailyWalkingGoal")
@@ -575,7 +597,7 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func unwindToLogin(segue: UIStoryboardSegue) {
-        print("Logged out")
+        restoreLoginView()
     }
     
     override var prefersStatusBarHidden: Bool {
