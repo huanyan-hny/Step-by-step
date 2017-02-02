@@ -25,7 +25,6 @@ class StepsViewController: UIViewController, PNChartDelegate, UIScrollViewDelega
     @IBOutlet weak var pageControl: UIPageControl!
     @IBOutlet weak var todaystepLabel: UILabel!
     
-
     
     var managedObjectContext:NSManagedObjectContext?
     let runFetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Run")
@@ -78,7 +77,7 @@ class StepsViewController: UIViewController, PNChartDelegate, UIScrollViewDelega
             walkingLabel.frame = CGRect(x:340, y:0, width:55, height:18)
             walkingChart.frame = CGRect(x:115, y:30, width:294, height:150)
             scrollView.frame = CGRect(x:0, y:360 , width:414, height:180)
-            weekLabel.font = UIFont.systemFont(ofSize: 15)
+            weekLabel.font = UIFont.systemFont(ofSize: 13)
             totalStepsLabel.font = UIFont.systemFont(ofSize: 28)
             totalRunningsLabel.font = UIFont.systemFont(ofSize: 24)
             thisWeekLabel.font = UIFont.systemFont(ofSize: 14)
@@ -90,7 +89,7 @@ class StepsViewController: UIViewController, PNChartDelegate, UIScrollViewDelega
             walkingLabel.frame = CGRect(x:310, y:0, width:50, height:16)
             walkingChart.frame = CGRect(x:105,y:26,width:270,height:121)
             scrollView.frame = CGRect(x:0, y:330, width:375, height:150)
-            weekLabel.font = UIFont.systemFont(ofSize: 13)
+            weekLabel.font = UIFont.systemFont(ofSize: 12)
             totalStepsLabel.font = UIFont.systemFont(ofSize: 25)
             totalRunningsLabel.font = UIFont.systemFont(ofSize: 21)
             thisWeekLabel.font = UIFont.systemFont(ofSize: 13)
@@ -102,7 +101,7 @@ class StepsViewController: UIViewController, PNChartDelegate, UIScrollViewDelega
             walkingLabel.frame = CGRect(x:266, y:0, width:50, height:14)
             walkingChart.frame = CGRect(x:85,y:21,width:230,height:100)
             scrollView.frame = CGRect(x:0, y:280, width:320, height:125)
-            weekLabel.font = UIFont.systemFont(ofSize: 11)
+            weekLabel.font = UIFont.systemFont(ofSize: 10)
             totalStepsLabel.font = UIFont.systemFont(ofSize: 20)
             totalRunningsLabel.font = UIFont.systemFont(ofSize: 17)
             thisWeekLabel.font = UIFont.systemFont(ofSize: 11)
@@ -434,15 +433,20 @@ class StepsViewController: UIViewController, PNChartDelegate, UIScrollViewDelega
         runFetchRequest.sortDescriptors = [NSSortDescriptor(key: "date", ascending: false)]
         runFetchResultsController = NSFetchedResultsController(fetchRequest: runFetchRequest, managedObjectContext: managedObjectContext!, sectionNameKeyPath: "date", cacheName: nil)
         dateFormatter.locale = Locale(identifier: UserDefaults.standard.string(forKey: "AppleLocale")!)
-
+        dateFormatter.dateStyle = .medium
+        
         if(language == "zh-Hans") {
-            dateFormatter.dateFormat = "YYYY年MMM";
             weekDays = ["周日","周一","周二","周三","周四","周五","周六"]
         } else {
-            dateFormatter.dateFormat = "MMM YYYY";
             weekDays = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"]
         }
 
+    }
+    
+    func test() {
+        walkingData = [1000,2000,3000,4000,5000,6000,7000]
+        runningData = [7,6,5,4,3,2,1]
+        updateUI()
     }
 }
 

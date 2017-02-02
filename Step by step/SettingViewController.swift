@@ -65,7 +65,7 @@ class SettingViewController: UITableViewController, SFSafariViewControllerDelega
                 UIApplication.shared.openURL(URL(string: "https://huanyan-hny.github.io/Step-by-step/")!)
             }
         } else if (indexPath == [2,2]) {
-            UIApplication.shared.openURL(URL(string: "itms-apps://itunes.apple.com/app/1179166655")!)
+            UIApplication.shared.openURL(URL(string: "https://itunes.apple.com/app/id1179166655")!)
         } else if (indexPath == [3,0]) {
             let alertController = UIAlertController(title: NSLocalizedString("Log out", comment: ""), message: NSLocalizedString("Are you sure you want to log out?", comment: ""), preferredStyle: .alert)
             

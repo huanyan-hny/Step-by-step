@@ -207,7 +207,37 @@ class RunningResultViewController: UIViewController,MKMapViewDelegate, UITextFie
         weathers[4].setImage(#imageLiteral(resourceName: "Snowy"), for: .normal)
         self.weather = "Snowy"
     }
-
+    
+    func saveRun() {
+        let appearAsked = UserDefaults.standard.bool(forKey: "appearAsked")
+        if (appearAsked == false) {
+            let alertController = UIAlertController(title: NSLocalizedString("Join leaderboard?", comment: ""), message: NSLocalizedString("Your running activity, avatar, name and what's up will be uploaded and shown on the leaderboard (You can change your choice later in Settings)", comment: ""), preferredStyle: .alert)
+            
+            let cancelAction = UIAlertAction(title: NSLocalizedString("Don't join", comment: ""), style: .cancel)  {(action) in
+                DispatchQueue.main.async {
+                    UserDefaults.standard.set(true, forKey: "appearAsked")
+                    UserDefaults.standard.set(false, forKey: "appear")
+                    self.persistRun()
+                }
+            }
+            
+            let joinAction = UIAlertAction(title:NSLocalizedString("Join", comment: ""), style:.default) {(action) in
+                DispatchQueue.main.async {
+                    UserDefaults.standard.set(true, forKey: "appearAsked")
+                    UserDefaults.standard.set(true, forKey: "appear")
+                    self.persistRun()
+                }
+            }
+            
+            alertController.addAction(cancelAction)
+            alertController.addAction(joinAction)
+            
+            self.present(alertController, animated: true, completion: nil)
+        } else {
+            persistRun()
+        }
+    }
+    
     func persistRun() {
         textField!.resignFirstResponder()
         notes.resignFirstResponder()
@@ -240,6 +270,19 @@ class RunningResultViewController: UIViewController,MKMapViewDelegate, UITextFie
         }
         updateRunRecord(run: savedRun)
         
+        let appear = UserDefaults.standard.bool(forKey: "appear")
+        
+        if (appear) {
+            updateAllTimeRun(savedRun: savedRun)
+        } else {
+            savedRun.synchronized = 1
+            do{ try self.managedObjectContext!.save()} catch _ { print("Could not save run!")}
+            self.performSegue(withIdentifier: "unwindToRvc", sender: self)
+        }
+        
+    }
+    
+    func updateAllTimeRun(savedRun:Run) {
         let savedAllTimeRun = AllTimeRun()
         savedAllTimeRun?._userId = UserDefaults.standard.string(forKey: "userID")
         savedAllTimeRun?._distance = distance as NSNumber?
@@ -287,7 +330,6 @@ class RunningResultViewController: UIViewController,MKMapViewDelegate, UITextFie
                 }
             }
         })
-        
     }
     
     func updateWeeklyRankingTable(savedRun:Run) {
@@ -428,7 +470,7 @@ class RunningResultViewController: UIViewController,MKMapViewDelegate, UITextFie
         self.navigationController?.isNavigationBarHidden = false
         self.navigationController?.navigationBar.tintColor = UIColor.white
         
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: NSLocalizedString("Save", comment: ""), style: .plain, target: self, action: #selector(persistRun))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: NSLocalizedString("Save", comment: ""), style: .plain, target: self, action: #selector(saveRun))
         
         self.navigationItem.leftBarButtonItem = UIBarButtonItem.init(image:#imageLiteral(resourceName: "deleteButton"), style:.plain, target: self, action: #selector(discardRun))
     

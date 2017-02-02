@@ -40,7 +40,7 @@
 "Fail to delete run" = "Fail to delete run";
 "Fail to upload to server" = "Fail to upload to server";
 "Fail to set" = "Fail to set";
-"Upload to server" = "Upload to server";
+"Upload to leaderboard" = "Upload to leaderboard";
 "New here? Sign up" = "New here? Sign up";
 "Log In" = "Log In";
 "Password" = "Password";
@@ -112,3 +112,9 @@
 "No one is here yet, start running and be the first!" = "No one is here yet, start running and be the first!";
 "Poor or no GPS signal" = "Poor or no GPS signal";
 "Step by step might be unable to track your run accurately due to poor GPS signal, continue?" = "Step by step might be unable to track your run accurately due to poor GPS signal, continue?";
+"Join leaderboard?" = "Join leaderboard?";
+"Your running activity, avatar, name and what's up will be uploaded and shown on the leaderboard (You can change your choice later in Settings)" = "Your running activity, avatar, name and what's up will be uploaded and shown on the leaderboard (You can change your choice later in Settings)";
+"Don't join" = "Don't join";
+"Join" = "Join";
+"Username" = "Username";
+"Username/Email" = "Username/Email";

@@ -226,8 +226,8 @@
 /* Class = "UILabel"; text = "0"; ObjectID = "Qeu-fG-Efp"; */
 "Qeu-fG-Efp.text" = "0";
 
-/* Class = "UITextField"; placeholder = "Username"; ObjectID = "Qy6-yS-DqU"; */
-"Qy6-yS-DqU.placeholder" = "用户名";
+/* Class = "UITextField"; placeholder = "Username/Email"; ObjectID = "Qy6-yS-DqU"; */
+"Qy6-yS-DqU.placeholder" = "用户名/邮箱";
 
 /* Class = "UILabel"; text = "How was the weather?"; ObjectID = "R5F-7W-ONQ"; */
 "R5F-7W-ONQ.text" = "天气怎么样？";

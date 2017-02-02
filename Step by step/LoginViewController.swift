@@ -156,6 +156,7 @@ class LoginViewController: UIViewController {
             emailField.alpha = 0
             emailField.isHidden = false
             UIView.animate(withDuration: 0.5, animations: {
+                self.usernameField.placeholder = NSLocalizedString("Username", comment: "")
                 self.emailField.center.x += self.view.frame.width
                 self.emailField.alpha = 1
                 self.actionButton.center.y += self.level
@@ -168,6 +169,7 @@ class LoginViewController: UIViewController {
         } else if (signUpAction == .cancelSignUp) {
             forgotButton.isEnabled = true
             UIView.animate(withDuration: 0.5, animations: {
+                self.usernameField.placeholder = NSLocalizedString("Username/Email", comment: "")
                 self.emailField.center.x -= self.view.frame.width
                 self.emailField.alpha = 0
                 self.emailField.text = ""
@@ -194,6 +196,7 @@ class LoginViewController: UIViewController {
                 self.signUpAction = .signUp
                 self.forgotButton.isEnabled = true
                 UIView.animate(withDuration: 0.5, animations: {
+                    self.usernameField.placeholder = NSLocalizedString("Username/Email", comment: "")
                     self.codeField.center.x += self.view.frame.width
                     self.codeField.alpha = 0
                     self.codeField.text = ""
@@ -269,6 +272,7 @@ class LoginViewController: UIViewController {
         action = .login
         signUpAction = .signUp
         UIView.animate(withDuration: 0.5, animations: {
+            self.usernameField.placeholder = NSLocalizedString("Username/Email", comment: "")
             self.codeField.center.x += self.view.frame.width
             self.codeField.alpha = 0
             self.codeField.text = ""

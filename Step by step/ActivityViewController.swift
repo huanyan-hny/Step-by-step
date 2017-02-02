@@ -299,8 +299,8 @@ class ActivityViewController: UIViewController, MKMapViewDelegate {
         }
         alertController.addAction(deleteAction)
         
-        if(self.run?.synchronized?.boolValue == false) {
-            let uploadAction = UIAlertAction(title: NSLocalizedString("Upload to server", comment: ""), style:.default) {(action) in
+        if(self.run?.synchronized?.boolValue == false && UserDefaults.standard.bool(forKey: "appear")) {
+            let uploadAction = UIAlertAction(title: NSLocalizedString("Upload to leaderboard", comment: ""), style:.default) {(action) in
                 self.uploadRun()
             }
             

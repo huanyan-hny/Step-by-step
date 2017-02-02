@@ -50,7 +50,6 @@ extension LoginViewController {
                     let documentPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
                     let avatarPath = documentPath.appendingPathComponent(userID!)
                     UserDefaults.standard.set(userID, forKey: "userID")
-                    UserDefaults.standard.set(true, forKey: "appear")
                     
                     self.objectMapper.load(User.classForCoder(), hashKey: userID!, rangeKey: nil).continue(with: AWSExecutor.default(), with: {(task:AWSTask!) -> Any! in
                         if (task.error != nil) {
@@ -180,7 +179,6 @@ extension LoginViewController {
                 } else {
                     if let userID = AWSIdentityManager.defaultIdentityManager().userName {
                         UserDefaults.standard.set(userID, forKey: "userID")
-                        UserDefaults.standard.set(true, forKey: "appear")
                         let documentPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
                         let avatarPath = documentPath.appendingPathComponent(userID)
                         self.objectMapper.load(User.classForCoder(), hashKey: userID, rangeKey: nil).continue(with: AWSExecutor.default(), with: {(task:AWSTask!) -> Any! in
@@ -698,7 +696,6 @@ extension LoginViewController {
         
         let userID = AccessToken.current!.userId!
         UserDefaults.standard.set(userID, forKey: "userID")
-        UserDefaults.standard.set(true, forKey: "appear")
 
         let connection = GraphRequestConnection()
         connection.add(GraphRequest(graphPath: "/me",parameters:["fields":"name, email, picture.type(large)"])) { httpResponse, result in

@@ -82,6 +82,15 @@ class RankingViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     @IBAction func displayStarDetail(_ sender: UIButton) {
         let index = starAvatars.startIndex.distance(to: starAvatars.index(of: sender)!) as Int
+        
+        if (type == .weekly && index >= weeklyRankings.count) {
+            return
+        }
+        
+        if (type == .monthly && index >= monthlyRankings.count) {
+            return
+        }
+        
         selectedAvatar = sender.imageView?.image
         selectedName = starNames[index].text
         selectedSignature = starSignitures[index].text
@@ -112,7 +121,7 @@ class RankingViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     func displayEmptyMessage() {
         let messageLabel = UILabel(frame: CGRect(x:0,y:0,width:self.tableView.bounds.size.width,height:self.tableView.bounds.size.height))
-        messageLabel.text = NSLocalizedString("No one is here yet, come and be the first!", comment: "")
+        messageLabel.text = NSLocalizedString("No one is here yet, start running and be the first!", comment: "")
         messageLabel.textColor = Colors.myTextGray
         messageLabel.numberOfLines = 0;
         messageLabel.textAlignment = .center;
@@ -257,6 +266,10 @@ class RankingViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         for starSigniture in starSignitures {
             starSigniture.text = "---"
+        }
+        
+        for starDistance in starDistances {
+            starDistance.text = "---"
         }
         
         weeklyRankings.removeAll()

@@ -7,8 +7,8 @@
 */
 "Location access denied" = "位置访问被拒绝";
 "Motion access denied" = "运动访问被拒绝";
-"Step by step is unable to retrieve your steps, please authorize access for in Settings" = "Step by step 无法获取你的步数数据，请在手机设置中允许访问运动数据";
-"Step by step is unable to track your run, please authorize access for in your phone's Settings" = "Step by step is 无法最终你的跑步， 请在手机设置中允许访问位置数据";
+"Step by step is unable to retrieve your steps, please authorize access for in Settings" = "步步无法获取你的步数数据，请在手机设置中允许访问运动数据";
+"Step by step is unable to track your run, please authorize access for in your phone's Settings" = "步步无法追踪你的跑步， 请在手机设置中允许访问位置数据";
 "Go to Settings" = "去设置";
 "Fail to change Avatar" = "修改头像失败";
 "Choose from photo library" = "从照片中选择";
@@ -38,8 +38,8 @@
 "Please try again later" = "请稍后再试";
 "Fail to delete run" = "删除失败";
 "Fail to upload to server" = "无法上传至服务器";
-"Fail to set" = "无法设置";
-"Upload to server" = "上传至服务器";
+"Fail to set" = "设置失败";
+"Upload to leaderboard" = "上传至排行榜";
 "New here? Sign up" = "没有账号？注册一个吧!";
 "Log In" = "登录";
 "Password" = "密码";
@@ -112,3 +112,9 @@
 "No one is here yet, start running and be the first!" = "这里还没有人呢，开始跑步成为第一吧！";
 "Poor or no GPS signal" = "GPS信号差";
 "Step by step might be unable to track your run accurately due to poor GPS signal, continue?" = "GPS信号强度不足，步步可能无法准确记录你的跑步，继续？";
+"Join leaderboard?" = "参加排行榜?";
+"Your running activity, avatar, name and what's up will be uploaded and shown on the leaderboard (You can change your choice later in Settings)" = "你的跑步距离，头像，名字和个性签名将会上传并显示在排行榜上 (你可以之后在设置中改变选择)";
+"Don't join" = "不参加";
+"Join" = "参加";
+"Username" = "用户名";
+"Username/Email" = "用户名/邮箱";
